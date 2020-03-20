@@ -1,0 +1,76 @@
+﻿@model Markers_GPS_Coordiantes.Data.Marker
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Marker</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MarkerId" />
+            <div class="form-group">
+                <label asp-for="MarkerToken" class="control-label"></label>
+                <input asp-for="MarkerToken" class="form-control" />
+                <span asp-validation-for="MarkerToken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsersId" class="control-label"></label>
+                <select asp-for="UsersId" class="form-control" asp-items="ViewBag.UsersId"></select>
+                <span asp-validation-for="UsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionId" class="control-label"></label>
+                <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionId"></select>
+                <span asp-validation-for="PositionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedDate" class="control-label"></label>
+                <input asp-for="DeletedDate" class="form-control" />
+                <span asp-validation-for="DeletedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedByUsersId" class="control-label"></label>
+                <input asp-for="DeletedByUsersId" class="form-control" />
+                <span asp-validation-for="DeletedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastModifiedByUsersId" class="control-label"></label>
+                <input asp-for="LastModifiedByUsersId" class="form-control" />
+                <span asp-validation-for="LastModifiedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastModifiedDate" class="control-label"></label>
+                <input asp-for="LastModifiedDate" class="form-control" />
+                <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedByUsersId" class="control-label"></label>
+                <input asp-for="CreatedByUsersId" class="form-control" />
+                <span asp-validation-for="CreatedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

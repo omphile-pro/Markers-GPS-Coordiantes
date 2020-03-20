@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Users>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <center><h2 class="text-primary" style="padding-top:100px;"><strong>Add Administrator</strong></h2></center>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UsersToken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Loginname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RaceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SchoolName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Displayname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhysicalAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedByUsersId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedByUsersId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsersToken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loginname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RaceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchoolName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Displayname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.GenderDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UsersId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UsersId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UsersId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

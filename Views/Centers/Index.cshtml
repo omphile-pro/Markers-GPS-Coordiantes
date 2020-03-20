@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Center>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-primary" style="padding-top:100px;"><strong>Centers</strong></h2>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterToken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedByUsers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedByUsers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedByUsers)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterToken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUsers.Loginname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedByUsers.Loginname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedByUsers.Loginname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CenterId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CenterId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CenterId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

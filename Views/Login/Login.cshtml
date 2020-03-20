@@ -1,0 +1,44 @@
+﻿@model Markers_GPS_Coordiantes.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<center><h2 class="text-primary" style="padding-top:100px; color:#008B8B !important; ">
+    <strong style="color:#008B8B !important;" >Login</strong></h2></center>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label" ></label>
+                <input asp-for="Username" class="form-control" placeholder="Enter Username"/>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                
+                <input asp-for="Password" name="Password" placeholder="Enter Password" required="" id="myInput"  class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+                <label class="check" for="check3">Show password</label>
+            </div>
+            <!-- script for show password -->
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+            </script>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

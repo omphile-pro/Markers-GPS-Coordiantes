@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.VMarkersGpscoordinates>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="col-sm-12 col-md-6">
+    <h2 class="text-primary" style="padding-top:100px;"><strong>Markers</strong></h2>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CentreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CentreName  )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model. Distance )
+            </th>
+            <th>
+              
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CentreNumber)
+                </td>
+             
+                <td>
+                    @Html.DisplayFor(modelItem => item.CentreName )
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

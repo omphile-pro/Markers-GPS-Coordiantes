@@ -1,0 +1,96 @@
+﻿@model Markers_GPS_Coordiantes.Data.Center
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Center</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CenterId" />
+            <div class="form-group">
+                <label asp-for="CenterToken" class="control-label"></label>
+                <input asp-for="CenterToken" class="form-control" />
+                <span asp-validation-for="CenterToken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CenterName" class="control-label"></label>
+                <input asp-for="CenterName" class="form-control" />
+                <span asp-validation-for="CenterName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CenterNumber" class="control-label"></label>
+                <input asp-for="CenterNumber" class="form-control" />
+                <span asp-validation-for="CenterNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CenterDescription" class="control-label"></label>
+                <input asp-for="CenterDescription" class="form-control" />
+                <span asp-validation-for="CenterDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label"></label>
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedDate" class="control-label"></label>
+                <input asp-for="DeletedDate" class="form-control" />
+                <span asp-validation-for="DeletedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedByUsersId" class="control-label"></label>
+                <select asp-for="DeletedByUsersId" class="form-control" asp-items="ViewBag.DeletedByUsersId"></select>
+                <span asp-validation-for="DeletedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastModifiedByUsersId" class="control-label"></label>
+                <select asp-for="LastModifiedByUsersId" class="form-control" asp-items="ViewBag.LastModifiedByUsersId"></select>
+                <span asp-validation-for="LastModifiedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastModifiedDate" class="control-label"></label>
+                <input asp-for="LastModifiedDate" class="form-control" />
+                <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedByUsersId" class="control-label"></label>
+                <select asp-for="CreatedByUsersId" class="form-control" asp-items="ViewBag.CreatedByUsersId"></select>
+                <span asp-validation-for="CreatedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
