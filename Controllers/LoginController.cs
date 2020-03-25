@@ -30,8 +30,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         public async Task<IActionResult> Login(LoginViewModel model) 
         {
             //  I ASKED YOU TO BREAK ON THE FIRST LINE OF THE FUNCTION
-
-
             if (ModelState.IsValid) 
             {
                 try 
@@ -105,7 +103,6 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             return View(model);
         }
-
 
         public async Task<IActionResult> SignOut() 
         {

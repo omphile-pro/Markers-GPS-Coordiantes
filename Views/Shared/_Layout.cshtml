@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Markers GPS Coordiantes</title>
+    <title>@ViewData["Title"] Markers GPS Coordiantes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
@@ -38,22 +38,7 @@
                 </div>
                 <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
                 <input type="checkbox" id="drop" />
-                <ul class="menu ml-auto mt-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#stats">Statistics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#testi">Testimonials</a>
-                    </li>
-
-
+                <ul class="menu ml-auto mt-1">  
                     @if (roleID == 2)
                     {
                         <li class="nav-item dropdown">
@@ -72,7 +57,7 @@
                             <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Setup</strong></a>
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item " asp-controller="Users" asp-action="Create">Create Administrator</a>
-                                <a class="dropdown-item " asp-controller="Markers" asp-action="Index">Administrtrator Logins</a>
+                                <a class="dropdown-item " asp-controller="Users" asp-action="Index">Administrtrator Logins</a>
                                 <a class="dropdown-item " asp-controller="Centers" asp-action="Index">Marking Centers</a>
                             </div>
                         </li>
@@ -96,23 +81,21 @@
 
                         @if (roleID == 0)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="~/Login/">Sign In</a>
-                        </li>
+                        
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="~/Login/SignOut/">Sign Out</a>
+                            <a class="nav-link text-light" href="~/Login/Index/">Sign Out</a>
                         </li>
                     }
                     </ul>
             </nav>
     </header>
     <div class="container-fullwidth">
-        <main role="main" class="pb-3">
+
             @RenderBody()
-        </main>
+       
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
