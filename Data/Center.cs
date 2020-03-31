@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Markers_GPS_Coordiantes.Data
 {
@@ -10,12 +15,28 @@ namespace Markers_GPS_Coordiantes.Data
             Exam = new HashSet<Exam>();
             Marker = new HashSet<Marker>();
             MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
+            Users = new HashSet<Users>();
         }
 
+        [Column(TypeName = "int")]
+        [Required(ErrorMessage = "Please Enter Centre Number")]
+        [DisplayName("Center Name")]
         public int CenterId { get; set; }
         public Guid CenterToken { get; set; }
+
+        [Column(TypeName = "varchar(255)")]
+        [Required(ErrorMessage = "Please Enter Centre Number")]
+        [DisplayName("Center Name")]
         public string CenterName { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        [Required(ErrorMessage = "Please Enter Centre Number")]
+        [DisplayName("Center Number")]
+
         public string CenterNumber { get; set; }
+        [Column(TypeName = "varchar(2000)")]
+        [Required(ErrorMessage = "Please Enter Centre Number")]
+        [DisplayName("Center Description")]
+
         public string CenterDescription { get; set; }
         public int CityId { get; set; }
         public decimal? Longitude { get; set; }
@@ -29,11 +50,9 @@ namespace Markers_GPS_Coordiantes.Data
         public bool IsDeleted { get; set; }
 
         public virtual City City { get; set; }
-        public virtual Users CreatedByUsers { get; set; }
-        public virtual Users DeletedByUsers { get; set; }
-        public virtual Users LastModifiedByUsers { get; set; }
         public virtual ICollection<Exam> Exam { get; set; }
         public virtual ICollection<Marker> Marker { get; set; }
         public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

@@ -59,7 +59,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
                         //  BASED ON THE ROLES ON THE SERVER REDIRECT TO SPECIFIC PAGE FOR EITHER MARKER OF SUPER ADMIN
                         //  MARKER
-                        if (usersRole.RoleId == (int)RoleIDs.Marker)
+                        if (usersRole.RoleId == (int)RoleIDs.CenterManager)
                         {
                             //  get marker record
                             var marker = db.Marker.Where(u => u.UsersId == user.UsersId).FirstOrDefault();
@@ -78,6 +78,11 @@ namespace Markers_GPS_Coordiantes.Controllers
                             return RedirectToAction("Index", "Marker");
                         }
 
+                        //  ADMINISTRATOR
+                        else if (usersRole.RoleId == (int)RoleIDs.CenterManager)
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
                         //  ADMINISTRATOR
                         else if (usersRole.RoleId == (int)RoleIDs.Administrator) 
                         {
@@ -110,7 +115,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public async Task<IActionResult> SignOut() 
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

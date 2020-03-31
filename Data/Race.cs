@@ -5,7 +5,14 @@ namespace Markers_GPS_Coordiantes.Data
 {
     public partial class Race
     {
+        public Race()
+        {
+            MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
+        }
+
         public int RaceId { get; set; }
         public string RaceDescription { get; set; }
+
+        public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
     }
 }

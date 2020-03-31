@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Markers_GPS_Coordiantes.Data
 {
@@ -7,9 +12,6 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public Users()
         {
-            CenterCreatedByUsers = new HashSet<Center>();
-            CenterDeletedByUsers = new HashSet<Center>();
-            CenterLastModifiedByUsers = new HashSet<Center>();
             MarkerCreatedByUsers = new HashSet<Marker>();
             MarkerDeletedByUsers = new HashSet<Marker>();
             MarkerLastModifiedByUsers = new HashSet<Marker>();
@@ -20,14 +22,22 @@ namespace Markers_GPS_Coordiantes.Data
         }
 
         public int UsersId { get; set; }
+
+        [Column(TypeName = "int")]
+        [Required(ErrorMessage = "Please Enter Centre Number")]
+        [DisplayName("Center Name")]
+        public int CenterId { get; set; }
         public Guid UsersToken { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        [Required(ErrorMessage = "Login Name Required")]
+        [DisplayName("Login Name")]
         public string Loginname { get; set; }
         public string Password { get; set; }
         public int GenderId { get; set; }
-        public int RaceId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string SchoolName { get; set; }
+
+     
         public string EmailAddress { get; set; }
         public string MobileNo { get; set; }
         public string Telephone { get; set; }
@@ -40,10 +50,8 @@ namespace Markers_GPS_Coordiantes.Data
         public DateTime CreateDate { get; set; }
         public bool IsDeleted { get; set; }
 
+        public virtual Center Center { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual ICollection<Center> CenterCreatedByUsers { get; set; }
-        public virtual ICollection<Center> CenterDeletedByUsers { get; set; }
-        public virtual ICollection<Center> CenterLastModifiedByUsers { get; set; }
         public virtual ICollection<Marker> MarkerCreatedByUsers { get; set; }
         public virtual ICollection<Marker> MarkerDeletedByUsers { get; set; }
         public virtual ICollection<Marker> MarkerLastModifiedByUsers { get; set; }

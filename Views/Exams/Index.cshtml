@@ -4,9 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<center><h2 class="text-primary" style="padding-top:100px;"><strong>Assign Paper No Marking Center</strong></h2></center>
+    <center><h2 class="text-primary" style="padding-top:100px;"><strong>Assign Paper No to Marking Center</strong></h2></center>
 
-<a asp-action="Create">Create New</a>
+<p>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -48,48 +49,47 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExamToken)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PaperNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedByUsersId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModifiedByUsersId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModifiedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedByUsersId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Center.CenterName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject.SubjectName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ExamId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ExamId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamToken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ExamId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ExamId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

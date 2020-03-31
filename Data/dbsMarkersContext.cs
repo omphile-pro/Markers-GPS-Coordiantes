@@ -47,7 +47,7 @@ namespace Markers_GPS_Coordiantes.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=197.242.147.140,1433;Database=dbsMarkers;User Id=markers_user;Password=S3rv3R_ErR0R; Trusted_Connection=True; Integrated Security=false;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-NHLANHLA\\SQLEXPRESS;Database=dbsMarkers;User Id=sa;Password=Password1; Trusted_Connection=True; Integrated Security=false;");
             }
         }
 
@@ -100,23 +100,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Center_City");
-
-                entity.HasOne(d => d.CreatedByUsers)
-                    .WithMany(p => p.CenterCreatedByUsers)
-                    .HasForeignKey(d => d.CreatedByUsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Center_CreatedByUsers");
-
-                entity.HasOne(d => d.DeletedByUsers)
-                    .WithMany(p => p.CenterDeletedByUsers)
-                    .HasForeignKey(d => d.DeletedByUsersId)
-                    .HasConstraintName("FK_Center_DeletedByUsers");
-
-                entity.HasOne(d => d.LastModifiedByUsers)
-                    .WithMany(p => p.CenterLastModifiedByUsers)
-                    .HasForeignKey(d => d.LastModifiedByUsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Center_LastModifiedByUsers");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -156,6 +139,11 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.LastModifiedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.PaperNumber)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
 
@@ -361,8 +349,7 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.ToTable("MarkersGPSCoordinates");
 
-                entity.Property(e => e.MarkersId)
-                    .HasColumnName("MarkersID");
+                entity.Property(e => e.MarkersId).HasColumnName("MarkersID");
 
                 entity.Property(e => e.Cellphone)
                     .HasMaxLength(255)
@@ -370,21 +357,21 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.CenterId).HasColumnName("CenterID");
 
-                entity.Property(e => e.CentreName).HasMaxLength(225);
-
                 entity.Property(e => e.CentreNumber).HasMaxLength(255);
 
                 entity.Property(e => e.CreatedByUsersId).HasColumnName("CreatedByUsersID");
 
-                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ExamId).HasColumnName("ExamID");
 
                 entity.Property(e => e.FullName)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Gender)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.GenderId).HasColumnName("GenderID");
 
                 entity.Property(e => e.HomeTelephone)
                     .HasMaxLength(255)
@@ -398,10 +385,6 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
 
-                entity.Property(e => e.Paper)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.PersalNumber)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -411,21 +394,13 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Position)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.PositionId).HasColumnName("PositionID");
 
                 entity.Property(e => e.PostalCode)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Race)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Subject)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.RaceId).HasColumnName("RaceID");
 
                 entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
 
@@ -439,9 +414,33 @@ namespace Markers_GPS_Coordiantes.Data
                     .WithMany(p => p.MarkersGpscoordinates)
                     .HasForeignKey(d => d.CenterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MarkersGPSCoordinates _Center");
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Center");
 
-                entity.HasOne(d => d.SubjectNavigation)
+                entity.HasOne(d => d.Exam)
+                    .WithMany(p => p.MarkersGpscoordinates)
+                    .HasForeignKey(d => d.ExamId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Exam");
+
+                entity.HasOne(d => d.Gender)
+                    .WithMany(p => p.MarkersGpscoordinates)
+                    .HasForeignKey(d => d.GenderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Gender");
+
+                entity.HasOne(d => d.Position)
+                    .WithMany(p => p.MarkersGpscoordinates)
+                    .HasForeignKey(d => d.PositionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Position");
+
+                entity.HasOne(d => d.Race)
+                    .WithMany(p => p.MarkersGpscoordinates)
+                    .HasForeignKey(d => d.RaceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Race");
+
+                entity.HasOne(d => d.Subject)
                     .WithMany(p => p.MarkersGpscoordinates)
                     .HasForeignKey(d => d.SubjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -451,7 +450,7 @@ namespace Markers_GPS_Coordiantes.Data
                     .WithMany(p => p.MarkersGpscoordinates)
                     .HasForeignKey(d => d.UsersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MarkersGPSCoordinates _Users");
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Users");
             });
 
             modelBuilder.Entity<MarkersReport>(entity =>
@@ -563,6 +562,8 @@ namespace Markers_GPS_Coordiantes.Data
             {
                 entity.Property(e => e.UsersId).HasColumnName("UsersID");
 
+                entity.Property(e => e.CenterId).HasColumnName("CenterID");
+
                 entity.Property(e => e.CreateDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
@@ -615,17 +616,17 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(2000)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RaceId).HasColumnName("RaceID");
-
-                entity.Property(e => e.SchoolName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Telephone)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UsersToken).HasDefaultValueSql("(newid())");
+
+                entity.HasOne(d => d.Center)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.CenterId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_Center");
 
                 entity.HasOne(d => d.Gender)
                     .WithMany(p => p.Users)
@@ -1025,8 +1026,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CentreName).HasMaxLength(225);
-
                 entity.Property(e => e.CentreNumber).HasMaxLength(255);
 
                 entity.Property(e => e.Distance)
@@ -1034,10 +1033,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.FullName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Gender)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -1055,7 +1050,8 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.MarkersId).HasColumnName("MarkersID");
 
-                entity.Property(e => e.Paper)
+                entity.Property(e => e.PaperNumber)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -1068,23 +1064,18 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Position)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.PositionId).HasColumnName("PositionID");
 
                 entity.Property(e => e.PostalCode)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Race)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Subject)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
+
+                entity.Property(e => e.SubjectName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UsersId).HasColumnName("UsersID");
 

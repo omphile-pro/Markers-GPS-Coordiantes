@@ -1,42 +1,104 @@
 ﻿@model Markers_GPS_Coordiantes.LoginViewModel
-
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Home";
 }
-<center><h2 class="text-primary" style="padding-top:100px; color:#008B8B !important; ">
-    <strong style="color:#008B8B !important;" >Login</strong></h2></center>
-<div class="row justify-content-center">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label" ></label>
-                <input asp-for="Username" class="form-control" placeholder="Enter Username"/>
-                <span asp-validation-for="Username" class="text-danger"></span>
+
+<div class="banner" id="home">
+    <div class="layer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 banner-text-w3pvt">
+                    <!-- banner slider-->
+                    <div class="csslider infinity" id="slider1">
+                        <input type="radio" name="slides" checked="checked" id="slides_1" />
+                        <input type="radio" name="slides" id="slides_2" />
+                        <input type="radio" name="slides" id="slides_3" />
+                        <ul class="banner_slide_bg">
+                            <li>
+                                <div class="container-fluid">
+                                    <div class="w3ls_banner_txt">
+                                        <h3 class="b-w3ltxt text-capitalize mt-md-4">GPS Coordinates Admin</h3>
+                                        <h4 class="b-w3ltxt text-capitalize mt-md-2">Adaptive Distance Calculations</h4>
+                                        <p class="w3ls_pvt-title my-3">
+                                            Find the fastest route, calculate mileage from city to city, traffic conditions, GPS maps, maps with street views, printable maps and much more
+                                        </p>
+                                        <a href="#about" class="btn btn-banner my-3" style="background-color: #AA00FF;">Read More</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="container-fluid">
+                                    <div class="w3ls_banner_txt">
+                                        <h3 class="b-w3ltxt text-capitalize mt-md-4">Technical Support</h3>
+                                        <h4 class="b-w3ltxt text-capitalize mt-md-2">Daily updates to improve your institution.</h4>
+                                        <p class="w3ls_pvt-title my-3">
+                                            Development and customization of Administration Systems.
+                                        </p>
+                                        <a href="#services" class="btn btn-banner my-3" style="background-color: #AA00FF;">Read More</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="navigation">
+                            <div>
+                                <label for="slides_1"></label>
+                                <label for="slides_2"></label>
+                                <label for="slides_3"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //banner slider-->
+                </div>
+                <div class="col-lg-5 col-md-8 px-lg-3 px-0">
+                    <div class="banner-form-w3 ml-lg-5">
+                        <div class="padding">
+                            <!-- banner form -->
+                            <form asp-action="Login">
+                                <center><h5 class="mb-3">Sign In</h5></center>
+                                <div class="form-style-w3ls">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="Username" class="control-label"></label>
+
+                                        <input placeholder="Username" name="Username" type="text" required="">
+
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Password" class="control-label"></label>
+
+                                        <input asp-for="Password" name="Password" placeholder="Enter Password" type="text" required="" id="myInput" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                        <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+                                        <label class="check" for="check3">Show password</label>
+                                    </div>
+                                </div>
+                                <!-- script for show password -->
+                                <script>
+                                    function myFunction() {
+                                        var x = document.getElementById("myInput");
+                                        if (x.type === "password") {
+                                            x.type = "text";
+                                        } else {
+                                            x.type = "password";
+                                        }
+                                    }
+                                </script>
+                                <div class="form-group">
+                                    <center><input type="submit" value="Login" class="btn btn-primary" /></center>
+                                </div>
+                            </form>
+
+
+
+                            <!-- //banner form -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                
-                <input asp-for="Password" name="Password" placeholder="Enter Password" required="" id="myInput"  class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-                <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
-                <label class="check" for="check3">Show password</label>
-            </div>
-            <!-- script for show password -->
-            <script>
-                function myFunction() {
-                    var x = document.getElementById("myInput");
-                    if (x.type === "password") {
-                        x.type = "text";
-                    } else {
-                        x.type = "password";
-                    }
-                }
-            </script>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

@@ -3,8 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
+    <center><h2 class="text-primary" style="padding-top:100px;"><strong>Assign Paper No to Marking Center</strong></h2></center>
 
 <h4>MarkersGpscoordinates</h4>
 <hr />
@@ -25,14 +24,25 @@
                 <select asp-for="UsersId" class ="form-control" asp-items="ViewBag.UsersId"></select>
             </div>
             <div class="form-group">
+                <label asp-for="RaceId" class="control-label"></label>
+                <select asp-for="RaceId" class ="form-control" asp-items="ViewBag.RaceId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExamId" class="control-label"></label>
+                <select asp-for="ExamId" class ="form-control" asp-items="ViewBag.ExamId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenderId" class="control-label"></label>
+                <select asp-for="GenderId" class ="form-control" asp-items="ViewBag.GenderId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionId" class="control-label"></label>
+                <select asp-for="PositionId" class ="form-control" asp-items="ViewBag.PositionId"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="CentreNumber" class="control-label"></label>
                 <input asp-for="CentreNumber" class="form-control" />
                 <span asp-validation-for="CentreNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CentreName" class="control-label"></label>
-                <input asp-for="CentreName" class="form-control" />
-                <span asp-validation-for="CentreName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FullName" class="control-label"></label>
@@ -40,34 +50,9 @@
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Race" class="control-label"></label>
-                <input asp-for="Race" class="form-control" />
-                <span asp-validation-for="Race" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="IdNumber" class="control-label"></label>
                 <input asp-for="IdNumber" class="form-control" />
                 <span asp-validation-for="IdNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subject" class="control-label"></label>
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Paper" class="control-label"></label>
-                <input asp-for="Paper" class="form-control" />
-                <span asp-validation-for="Paper" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Position" class="control-label"></label>
-                <input asp-for="Position" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PhysicalAddress" class="control-label"></label>
@@ -109,16 +94,7 @@
                 <input asp-for="Longitude" class="form-control" />
                 <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedByUsersId" class="control-label"></label>
-                <input asp-for="CreatedByUsersId" class="form-control" />
-                <span asp-validation-for="CreatedByUsersId" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

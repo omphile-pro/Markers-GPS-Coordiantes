@@ -53,10 +53,28 @@
             @Html.DisplayFor(model => model.DeletedDate)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DeletedByUsersId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DeletedByUsersId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastModifiedByUsersId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastModifiedByUsersId)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastModifiedDate)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastModifiedDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedByUsersId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedByUsersId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreateDate)
@@ -75,24 +93,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.City.CityDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedByUsers)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedByUsers.Loginname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeletedByUsers)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeletedByUsers.Loginname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastModifiedByUsers)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastModifiedByUsers.Loginname)
         </dd>
     </dl>
 </div>

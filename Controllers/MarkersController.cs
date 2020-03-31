@@ -82,7 +82,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                         PostalAddress = marker.PostalAddress,
                         Displayname = marker.Firstname + " " + marker.Lastname,
                         GenderId = Convert.ToInt32(marker.GenderId),      //  make sure this value required
-                        RaceId = Convert.ToInt32(marker.RaceId),          //  same here
+                             //  same here
                         Loginname = marker.EmailAddress,
                         Password = "Password1",  //  you need to create a password generator
                         
@@ -112,7 +112,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     var newRole = new UsersRole()
                     {
                         UsersId = newUser.UsersId,
-                        RoleId = (int)RoleIDs.Marker,
+                        RoleId = (int)RoleIDs.CenterManager,
                         CreatedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("usersID"))
                     };
 

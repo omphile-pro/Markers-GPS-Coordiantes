@@ -8,13 +8,14 @@ namespace Markers_GPS_Coordiantes.Data
         public Exam()
         {
             MarkerExam = new HashSet<MarkerExam>();
+            MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
         }
 
         public int ExamId { get; set; }
         public Guid ExamToken { get; set; }
         public int CenterId { get; set; }
         public int SubjectId { get; set; }
-        public int PaperNumber { get; set; }
+        public string PaperNumber { get; set; }
         public DateTime? DeletedDate { get; set; }
         public int? DeletedByUsersId { get; set; }
         public int LastModifiedByUsersId { get; set; }
@@ -26,5 +27,6 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual Center Center { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual ICollection<MarkerExam> MarkerExam { get; set; }
+        public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
     }
 }

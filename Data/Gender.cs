@@ -7,12 +7,14 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public Gender()
         {
+            MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
             Users = new HashSet<Users>();
         }
 
         public int GenderId { get; set; }
         public string GenderDescription { get; set; }
 
+        public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
         public virtual ICollection<Users> Users { get; set; }
     }
 }

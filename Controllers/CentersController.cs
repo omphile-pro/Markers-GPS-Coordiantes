@@ -12,10 +12,11 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class CentersController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
+
         // GET: Centers
         public async Task<IActionResult> Index()
         {
-            var dbsMarkersContext = _context.Center.Include(c => c.City).Include(c => c.CreatedByUsers).Include(c => c.DeletedByUsers).Include(c => c.LastModifiedByUsers);
+            var dbsMarkersContext = _context.Center.Include(c => c.City);
             return View(await dbsMarkersContext.ToListAsync());
         }
 
@@ -29,9 +30,6 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             var center = await _context.Center
                 .Include(c => c.City)
-                .Include(c => c.CreatedByUsers)
-                .Include(c => c.DeletedByUsers)
-                .Include(c => c.LastModifiedByUsers)
                 .FirstOrDefaultAsync(m => m.CenterId == id);
             if (center == null)
             {
@@ -45,9 +43,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         public IActionResult Create()
         {
             ViewData["CityId"] = new SelectList(_context.City, "CityId", "CityDescription");
-            ViewData["CreatedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname");
-            ViewData["DeletedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname");
-            ViewData["LastModifiedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname");
             return View();
         }
 
@@ -65,9 +60,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CityId"] = new SelectList(_context.City, "CityId", "CityDescription", center.CityId);
-            ViewData["CreatedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.CreatedByUsersId);
-            ViewData["DeletedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.DeletedByUsersId);
-            ViewData["LastModifiedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.LastModifiedByUsersId);
             return View(center);
         }
 
@@ -85,9 +77,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return NotFound();
             }
             ViewData["CityId"] = new SelectList(_context.City, "CityId", "CityDescription", center.CityId);
-            ViewData["CreatedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.CreatedByUsersId);
-            ViewData["DeletedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.DeletedByUsersId);
-            ViewData["LastModifiedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.LastModifiedByUsersId);
             return View(center);
         }
 
@@ -124,9 +113,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CityId"] = new SelectList(_context.City, "CityId", "CityDescription", center.CityId);
-            ViewData["CreatedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.CreatedByUsersId);
-            ViewData["DeletedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.DeletedByUsersId);
-            ViewData["LastModifiedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", center.LastModifiedByUsersId);
             return View(center);
         }
 
@@ -140,9 +126,6 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             var center = await _context.Center
                 .Include(c => c.City)
-                .Include(c => c.CreatedByUsers)
-                .Include(c => c.DeletedByUsers)
-                .Include(c => c.LastModifiedByUsers)
                 .FirstOrDefaultAsync(m => m.CenterId == id);
             if (center == null)
             {

@@ -12,13 +12,26 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class UsersController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
-
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var dbsMarkersContext = _context.Users.Include(u => u.Gender);
+            var dbsMarkersContext = _context.Users.Include(u => u.Center).Include(u => u.Gender);
             return View(await dbsMarkersContext.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
+
+        {
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.Users select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Displayname.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+        }
+
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -29,6 +42,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
 
             var users = await _context.Users
+                .Include(u => u.Center)
                 .Include(u => u.Gender)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)
@@ -42,6 +56,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName");
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription");
             return View();
         }
@@ -51,7 +66,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsersId,UsersToken,Loginname,Password,GenderId,RaceId,Firstname,Lastname,SchoolName,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
+        public async Task<IActionResult> Create([Bind("UsersId,CenterId,UsersToken,Loginname,Password,GenderId,Firstname,Lastname,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +74,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
             return View(users);
         }
@@ -76,6 +92,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound();
             }
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
             return View(users);
         }
@@ -85,7 +102,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsersId,UsersToken,Loginname,Password,GenderId,RaceId,Firstname,Lastname,SchoolName,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("UsersId,CenterId,UsersToken,Loginname,Password,GenderId,Firstname,Lastname,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
         {
             if (id != users.UsersId)
             {
@@ -112,6 +129,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
             return View(users);
         }
@@ -125,6 +143,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
 
             var users = await _context.Users
+                .Include(u => u.Center)
                 .Include(u => u.Gender)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)

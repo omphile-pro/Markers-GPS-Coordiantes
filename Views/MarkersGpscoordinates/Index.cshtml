@@ -3,18 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-    <center><h2 class="text-primary" style="padding-top:100px;"><strong>Add Subject</strong></h2></center>
-<form method="get" asp-action="Index">
+    <center><h2 class="text-primary" style="padding-top:100px;"><strong>Assign Paper No to Marking Center</strong></h2></center>
 
-    <p>
-        <input type="search" placeholder="Enter Marker Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <a asp-action="Index">Retrieve all Markers</a>
-    </p>
-</form>
-
-<a asp-action="Create">Create New</a>
-        </p>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -22,28 +15,10 @@
                 @Html.DisplayNameFor(model => model.CentreNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CentreName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Race)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.IdNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Paper)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhysicalAddress)
@@ -79,7 +54,19 @@
                 @Html.DisplayNameFor(model => model.Center)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubjectNavigation)
+                @Html.DisplayNameFor(model => model.Exam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Users)
@@ -88,82 +75,74 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CentreNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CentreName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Race)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Paper)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostalCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PersalNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkTelephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTelephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cellphone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Longitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedByUsersId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Center.CenterName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SubjectNavigation.SubjectName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Users.Loginname)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.MarkersId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.MarkersId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.MarkersId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentreNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersalNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkTelephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTelephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cellphone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Exam.PaperNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.GenderDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.PositionDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Race.RaceDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Loginname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MarkersId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MarkersId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MarkersId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-    </section>

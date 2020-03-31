@@ -3,12 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="col-sm-12 col-md-6">
-    <h2 class="text-primary" style="padding-top:100px;"><strong>Markers</strong></h2>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-</div>
+    
+        <center><h2 class="text-primary" style="padding-top:100px;"><strong>Distance Report</strong></h2></center>
+
+
+    
 
 <table class="table">
     <thead>
@@ -17,10 +16,24 @@
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PhysicalAddress)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CentreNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CentreName)
+                @Html.DisplayNameFor(model => model.CenterName)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PaperNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Distance)
@@ -38,20 +51,29 @@
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PhysicalAddress)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CentreNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperNumber)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.CentreName)
+                @Html.DisplayFor(modelItem => item.PositionDescription)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Distance)++
+                @Html.DisplayFor(modelItem => item.Distance)+
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+
         </tr>
         }
     </tbody>
