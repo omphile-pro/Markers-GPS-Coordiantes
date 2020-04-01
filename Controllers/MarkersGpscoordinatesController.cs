@@ -37,9 +37,24 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
-            var dbsMarkersContext = _context.MarkersGpscoordinates.Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users);
+
+            var dbsMarkersContext = _context.MarkersGpscoordinates.Include(m => m.Center).Include(m => m.SubjectNavigation).Include(m => m.Users);
             return View(await dbsMarkersContext.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
+
+        {
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.MarkersGpscoordinates select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+        }
+
 
         // GET: MarkersGpscoordinates/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -55,6 +70,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
+
+
             if (id == null)
             {
                 return NotFound();
@@ -62,11 +79,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             var markersGpscoordinates = await _context.MarkersGpscoordinates
                 .Include(m => m.Center)
-                .Include(m => m.Exam)
-                .Include(m => m.Gender)
-                .Include(m => m.Position)
-                .Include(m => m.Race)
-                .Include(m => m.Subject)
+                .Include(m => m.SubjectNavigation)
                 .Include(m => m.Users)
                 .FirstOrDefaultAsync(m => m.MarkersId == id);
             if (markersGpscoordinates == null)
@@ -91,13 +104,11 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
-            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName");
-            ViewData["ExamId"] = new SelectList(_context.Exam, "ExamId", "PaperNumber");
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription");
-            ViewData["PositionId"] = new SelectList(_context.Position, "PositionId", "PositionDescription");
-            ViewData["RaceId"] = new SelectList(_context.Race, "RaceId", "RaceDescription");
-            ViewData["SubjectId"] = new SelectList(_context.Subject, "SubjectId", "SubjectName");
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname");
+
+
+            ViewData["CenterId"] = new SelectList(_context.Center.OrderBy(j => j.CenterName), "CenterId", "CenterName");
+            ViewData["SubjectId"] = new SelectList(_context.Subject.OrderBy(i => i.SubjectName), "SubjectId", "SubjectName");
+            ViewData["UsersId"] = new SelectList(_context.Users.OrderBy(g => g.Firstname), "UsersId", "Loginname");
             return View();
         }
 
@@ -106,7 +117,36 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MarkersId,SubjectId,CenterId,UsersId,RaceId,ExamId,GenderId,PositionId,CentreNumber,FullName,IdNumber,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
+        public async Task<IActionResult> Create([Bind("SubjectId,CenterId,UsersId,CentreNumber,CentreName,FullName,Gender,Race,IdNumber,Subject,Paper,Position,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
+        {
+            //  CHECK PERMISSIONS  -- ADD THIS TO ALL PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+
+
+            if (ModelState.IsValid)
+            {
+                //markersGpscoordinates.MarkersId = null;
+                _context.Add(markersGpscoordinates);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", markersGpscoordinates.CenterId);
+            ViewData["SubjectId"] = new SelectList(_context.Subject, "SubjectId", "SubjectName", markersGpscoordinates.SubjectId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", markersGpscoordinates.UsersId);
+            return View(markersGpscoordinates);
+        }
+
+        // GET: MarkersGpscoordinates/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
@@ -119,25 +159,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
-            if (ModelState.IsValid)
-            {
-                _context.Add(markersGpscoordinates);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", markersGpscoordinates.CenterId);
-            ViewData["ExamId"] = new SelectList(_context.Exam, "ExamId", "PaperNumber", markersGpscoordinates.ExamId);
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", markersGpscoordinates.GenderId);
-            ViewData["PositionId"] = new SelectList(_context.Position, "PositionId", "PositionDescription", markersGpscoordinates.PositionId);
-            ViewData["RaceId"] = new SelectList(_context.Race, "RaceId", "RaceDescription", markersGpscoordinates.RaceId);
-            ViewData["SubjectId"] = new SelectList(_context.Subject, "SubjectId", "SubjectName", markersGpscoordinates.SubjectId);
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", markersGpscoordinates.UsersId);
-            return View(markersGpscoordinates);
-        }
 
-        // GET: MarkersGpscoordinates/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
             if (id == null)
             {
                 return NotFound();
@@ -149,10 +171,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return NotFound();
             }
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", markersGpscoordinates.CenterId);
-            ViewData["ExamId"] = new SelectList(_context.Exam, "ExamId", "PaperNumber", markersGpscoordinates.ExamId);
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", markersGpscoordinates.GenderId);
-            ViewData["PositionId"] = new SelectList(_context.Position, "PositionId", "PositionDescription", markersGpscoordinates.PositionId);
-            ViewData["RaceId"] = new SelectList(_context.Race, "RaceId", "RaceDescription", markersGpscoordinates.RaceId);
             ViewData["SubjectId"] = new SelectList(_context.Subject, "SubjectId", "SubjectName", markersGpscoordinates.SubjectId);
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", markersGpscoordinates.UsersId);
             return View(markersGpscoordinates);
@@ -163,7 +181,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MarkersId,SubjectId,CenterId,UsersId,RaceId,ExamId,GenderId,PositionId,CentreNumber,FullName,IdNumber,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
+        public async Task<IActionResult> Edit(int id, [Bind("MarkersId,SubjectId,CenterId,UsersId,CentreNumber,CentreName,FullName,Gender,Race,IdNumber,Subject,Paper,Position,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
@@ -176,6 +194,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
+
             if (id != markersGpscoordinates.MarkersId)
             {
                 return NotFound();
@@ -202,10 +221,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", markersGpscoordinates.CenterId);
-            ViewData["ExamId"] = new SelectList(_context.Exam, "ExamId", "PaperNumber", markersGpscoordinates.ExamId);
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", markersGpscoordinates.GenderId);
-            ViewData["PositionId"] = new SelectList(_context.Position, "PositionId", "PositionDescription", markersGpscoordinates.PositionId);
-            ViewData["RaceId"] = new SelectList(_context.Race, "RaceId", "RaceDescription", markersGpscoordinates.RaceId);
             ViewData["SubjectId"] = new SelectList(_context.Subject, "SubjectId", "SubjectName", markersGpscoordinates.SubjectId);
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", markersGpscoordinates.UsersId);
             return View(markersGpscoordinates);
@@ -225,6 +240,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
+
             if (id == null)
             {
                 return NotFound();
@@ -232,11 +248,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             var markersGpscoordinates = await _context.MarkersGpscoordinates
                 .Include(m => m.Center)
-                .Include(m => m.Exam)
-                .Include(m => m.Gender)
-                .Include(m => m.Position)
-                .Include(m => m.Race)
-                .Include(m => m.Subject)
+                .Include(m => m.SubjectNavigation)
                 .Include(m => m.Users)
                 .FirstOrDefaultAsync(m => m.MarkersId == id);
             if (markersGpscoordinates == null)
@@ -252,6 +264,18 @@ namespace Markers_GPS_Coordiantes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+
             var markersGpscoordinates = await _context.MarkersGpscoordinates.FindAsync(id);
             _context.MarkersGpscoordinates.Remove(markersGpscoordinates);
             await _context.SaveChangesAsync();

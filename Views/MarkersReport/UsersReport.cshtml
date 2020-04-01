@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Vreport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+        <center><h2 class="text-primary" style="padding-top:100px;"><strong>Distance Report</strong></h2></center>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RoleDescription)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleDescription)
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

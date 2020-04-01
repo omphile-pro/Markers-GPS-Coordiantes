@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Markers_GPS_Coordiantes.Data
 {
@@ -22,22 +17,13 @@ namespace Markers_GPS_Coordiantes.Data
         }
 
         public int UsersId { get; set; }
-
-        [Column(TypeName = "int")]
-        [Required(ErrorMessage = "Please Enter Centre Number")]
-        [DisplayName("Center Name")]
         public int CenterId { get; set; }
         public Guid UsersToken { get; set; }
-        [Column(TypeName = "varchar(255)")]
-        [Required(ErrorMessage = "Login Name Required")]
-        [DisplayName("Login Name")]
         public string Loginname { get; set; }
         public string Password { get; set; }
         public int GenderId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-
-     
         public string EmailAddress { get; set; }
         public string MobileNo { get; set; }
         public string Telephone { get; set; }

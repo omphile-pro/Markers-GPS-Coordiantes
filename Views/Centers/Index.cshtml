@@ -29,8 +29,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DeletedDate)
             </th>
-          
-         
+       
             <th>
                 @Html.DisplayNameFor(model => model.CreateDate)
             </th>
@@ -42,49 +41,49 @@
             </th>
             <th>
 
-                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Marker</a>
+                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Center</a>
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.CenterName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CenterNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CenterDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Longitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedDate)
-                </td>
-             
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City.CityDescription)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CenterId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CenterId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CenterId">Delete</a>
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CenterId"><i class="fa fa-marker fa-lg"></i>Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CenterId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CenterId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

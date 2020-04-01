@@ -4,11 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<center><h2 class="text-primary" style="padding-top:100px;"><strong>Add Administrator</strong></h2></center>
+<center><h2 class="text-primary" style="padding-top:100px;"><strong>Assign Roles</strong></h2></center>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -24,7 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Users)
             </th>
-            <th></th>
+            <th>
+                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Assign</a>
+            </th>
         </tr>
     </thead>
     <tbody>

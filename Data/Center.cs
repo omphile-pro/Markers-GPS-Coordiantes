@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Markers_GPS_Coordiantes.Data
 {
@@ -18,25 +13,10 @@ namespace Markers_GPS_Coordiantes.Data
             Users = new HashSet<Users>();
         }
 
-        [Column(TypeName = "int")]
-        [Required(ErrorMessage = "Please Enter Centre Number")]
-        [DisplayName("Center Name")]
         public int CenterId { get; set; }
         public Guid CenterToken { get; set; }
-
-        [Column(TypeName = "varchar(255)")]
-        [Required(ErrorMessage = "Please Enter Centre Number")]
-        [DisplayName("Center Name")]
         public string CenterName { get; set; }
-        [Column(TypeName = "varchar(255)")]
-        [Required(ErrorMessage = "Please Enter Centre Number")]
-        [DisplayName("Center Number")]
-
         public string CenterNumber { get; set; }
-        [Column(TypeName = "varchar(2000)")]
-        [Required(ErrorMessage = "Please Enter Centre Number")]
-        [DisplayName("Center Description")]
-
         public string CenterDescription { get; set; }
         public int CityId { get; set; }
         public decimal? Longitude { get; set; }
