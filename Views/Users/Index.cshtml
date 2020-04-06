@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 class="text-primary" style="padding-top:100px;"><strong>Users Logins</strong></h2>
+<h2 class="text-primary" style="padding-top:100px;"><strong>Users Login</strong></h2>
 <form method="get" asp-action="Index">
 
     <p>
-        <input type="search" placeholder="Enter Marker Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
+        <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
         <input type="submit" value="Search" class="btn btn-primary" />
         <a asp-action="Index">Retrieve all Users</a>
     </p>

@@ -20,10 +20,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             var dbsMarkersContext = _context.VMarkersGpscoordinates.OrderBy(g => g.CenterName);
             return View(await dbsMarkersContext.ToListAsync());
         }
-        public async Task<IActionResult> UsersReport()
-        {
-            var dbsMarkersContext = _context.Vreport.OrderBy(g => g.Loginname);
-            return View(await dbsMarkersContext.ToListAsync());
-        }
     }
 }
+       

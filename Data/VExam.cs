@@ -11,7 +11,7 @@ namespace Markers_GPS_Coordiantes.Data
         public Guid ExamToken { get; set; }
         public Guid? SubjectToken { get; set; }
         public Guid? CenterToken { get; set; }
-        public int PaperNumber { get; set; }
+        public string PaperNumber { get; set; }
         public string SubjectName { get; set; }
         public string CenterName { get; set; }
         public string CenterNumber { get; set; }

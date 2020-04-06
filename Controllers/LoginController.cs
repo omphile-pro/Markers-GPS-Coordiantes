@@ -21,11 +21,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
 
 
-        public async Task<IActionResult> Login() 
-        {
-            return View();
-        }
-
+      
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model) 
         {
@@ -75,10 +71,10 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
                             HttpContext.Session.SetString("markerID", Convert.ToString(marker.MarkerId));
-                            return RedirectToAction("Index", "Marker");
+                            return RedirectToAction("Index", "Admin");
                         }
 
-                        //  ADMINISTRATOR
+                        //CenterManager
                         else if (usersRole.RoleId == (int)RoleIDs.CenterManager)
                         {
                             return RedirectToAction("Index", "Admin");
@@ -97,7 +93,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                     }
 
 
-                    //  RESCAFFOLD, I HAVE TO GO, WILL BE BACK IN 30 MIN
 
 
                 }

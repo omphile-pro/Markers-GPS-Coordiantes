@@ -22,12 +22,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
 
         // GET: Markers
-        public async Task<IActionResult> Index()
-        {
-            var dbsMarkersContext = _context.VMarker.OrderBy(g => g.Displayname);
-            return View(await dbsMarkersContext.ToListAsync());
-        }
-
+    
 
         // GET: Markers/Details/5
         public async Task<IActionResult> Details(int? id)

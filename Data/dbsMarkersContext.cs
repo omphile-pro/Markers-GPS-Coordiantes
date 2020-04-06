@@ -34,13 +34,7 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<UsersRole> UsersRole { get; set; }
         public virtual DbSet<VCenter> VCenter { get; set; }
         public virtual DbSet<VExam> VExam { get; set; }
-        public virtual DbSet<VMarker> VMarker { get; set; }
-        public virtual DbSet<VMarkerExam> VMarkerExam { get; set; }
-        public virtual DbSet<VMarkerSubjectCenter> VMarkerSubjectCenter { get; set; }
         public virtual DbSet<VMarkersGpscoordinates> VMarkersGpscoordinates { get; set; }
-        public virtual DbSet<VUsers> VUsers { get; set; }
-        public virtual DbSet<VUsersRole> VUsersRole { get; set; }
-        public virtual DbSet<Vreport> Vreport { get; set; }
         public virtual DbSet<Vsubject> Vsubject { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,7 +42,7 @@ namespace Markers_GPS_Coordiantes.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-NHLANHLA\\SQLEXPRESS;Database=dbsMarkers;User Id=sa;Password=Password1; Trusted_Connection=True; Integrated Security=false;");
+                optionsBuilder.UseSqlServer("Server=197.242.147.140,1433;Database=dbsMarkers;User Id=markers_user;Password=S3rv3R_ErR0R; Trusted_Connection=True; Integrated Security=false;");
             }
         }
 
@@ -468,10 +462,11 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.CenterName)
                     .IsRequired()
-                    .HasMaxLength(555)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CenterNumber)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -685,10 +680,11 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.CenterName)
                     .IsRequired()
-                    .HasMaxLength(555)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CenterNumber)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -735,272 +731,16 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
 
-                entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
-
-                entity.Property(e => e.SubjectName)
+                entity.Property(e => e.PaperNumber)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<VMarker>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("vMarker");
-
-                entity.Property(e => e.CenterDescription)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterId).HasColumnName("CenterID");
-
-                entity.Property(e => e.CenterLatitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.CenterLongitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.CenterName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterNumber)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CityDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CityId).HasColumnName("CityID");
-
-                entity.Property(e => e.CreateDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Displayname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmailAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Firstname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderId).HasColumnName("GenderID");
-
-                entity.Property(e => e.LastModifiedDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Lastname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Latitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.MarkerId).HasColumnName("MarkerID");
-
-                entity.Property(e => e.MobileNo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhysicalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionId).HasColumnName("PositionID");
-
-                entity.Property(e => e.PostalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceId).HasColumnName("RaceID");
-
-                entity.Property(e => e.Telephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
-            });
-
-            modelBuilder.Entity<VMarkerExam>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("vMarkerExam");
-
-                entity.Property(e => e.CenterDescription)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterId).HasColumnName("CenterID");
-
-                entity.Property(e => e.CenterLatitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.CenterLongitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.CenterName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterNumber)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CityDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CityId).HasColumnName("CityID");
-
-                entity.Property(e => e.CreateDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Displayname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmailAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ExamId).HasColumnName("ExamID");
-
-                entity.Property(e => e.MarkerExamId).HasColumnName("MarkerExamID");
-
-                entity.Property(e => e.MarkerId).HasColumnName("MarkerID");
-
-                entity.Property(e => e.MarkerLatitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.MarkerLongitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.MobileNo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionId).HasColumnName("PositionID");
-
-                entity.Property(e => e.Telephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
-            });
-
-            modelBuilder.Entity<VMarkerSubjectCenter>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("vMarkerSubjectCenter");
-
-                entity.Property(e => e.CenterDescription)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterId).HasColumnName("CenterID");
-
-                entity.Property(e => e.CenterLatitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.CenterLongitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.CenterName)
-                    .HasMaxLength(555)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterNumber)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreateDate).HasColumnType("smalldatetime");
-
-                entity.Property(e => e.Displayname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmailAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Firstname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderId).HasColumnName("GenderID");
-
-                entity.Property(e => e.Lastname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Loginname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.MarkerId).HasColumnName("MarkerID");
-
-                entity.Property(e => e.MarkerLatitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.MarkerLongitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.MarkerSubjectCenterId).HasColumnName("MarkerSubjectCenterID");
-
-                entity.Property(e => e.MobileNo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhysicalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionId).HasColumnName("PositionID");
-
-                entity.Property(e => e.PostalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceId).HasColumnName("RaceID");
 
                 entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
 
                 entity.Property(e => e.SubjectName)
                     .HasMaxLength(255)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Telephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
             });
 
             modelBuilder.Entity<VMarkersGpscoordinates>(entity =>
@@ -1088,237 +828,6 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.WorkTelephone)
                     .HasMaxLength(255)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<VUsers>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("vUsers");
-
-                entity.Property(e => e.CreateDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Displayname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmailAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Firstname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderDescription)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderId).HasColumnName("GenderID");
-
-                entity.Property(e => e.LastModifiedByUsersId).HasColumnName("LastModifiedByUsersID");
-
-                entity.Property(e => e.LastModifiedDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Lastname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Loginname)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.MobileNo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhysicalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PostalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceDescription)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceId).HasColumnName("RaceID");
-
-                entity.Property(e => e.SchoolName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Telephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
-            });
-
-            modelBuilder.Entity<VUsersRole>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("vUsersRole");
-
-                entity.Property(e => e.CreateDate).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedByUsersId).HasColumnName("CreatedByUsersID");
-
-                entity.Property(e => e.Displayname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmailAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Firstname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderId).HasColumnName("GenderID");
-
-                entity.Property(e => e.LastModifiedByUsersId).HasColumnName("LastModifiedByUsersID");
-
-                entity.Property(e => e.LastModifiedDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Lastname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Latitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
-
-                entity.Property(e => e.MobileNo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhysicalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PostalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaceId).HasColumnName("RaceID");
-
-                entity.Property(e => e.RoleDescription)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RoleId).HasColumnName("RoleID");
-
-                entity.Property(e => e.Telephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
-
-                entity.Property(e => e.UsersRoleId).HasColumnName("UsersRoleID");
-            });
-
-            modelBuilder.Entity<Vreport>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VReport");
-
-                entity.Property(e => e.CenterId).HasColumnName("CenterID");
-
-                entity.Property(e => e.CenterName)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CenterNumber)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreateDate).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedByUsersId).HasColumnName("CreatedByUsersID");
-
-                entity.Property(e => e.Displayname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmailAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Expr1).HasColumnType("datetime");
-
-                entity.Property(e => e.Firstname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderDescription)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GenderId).HasColumnName("GenderID");
-
-                entity.Property(e => e.Lastname)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Loginname)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.MobileNo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhysicalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PostalAddress)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RoleDescription)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RoleId).HasColumnName("RoleID");
-
-                entity.Property(e => e.Telephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
             });
 
             modelBuilder.Entity<Vsubject>(entity =>
