@@ -96,7 +96,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             request.AddParameter("application/json", "{ \"siteId\": 1164,\n\"fromDate\": \"2019-11-15\",\n\"toDate\": \"2019-11-15T23:59\" }", ParameterType.RequestBody);
             Response.Headers.Add("content-disposotion", "attachment : filename" + "ExcelReport.xlsx");
             
-
+            Response.CompleteAsync();
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
         }
