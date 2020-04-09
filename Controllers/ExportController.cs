@@ -37,7 +37,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
         public string ExportToExcel()
         {
-            string rootFolder = _hostingEnvironment.WebRootPath;
+            string rootFolder = _IWebHostEnvironment.WebRootPath;
             string fileName = @"ExportMarkers.xlsx";
 
             FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
