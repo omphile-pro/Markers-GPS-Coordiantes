@@ -17,12 +17,12 @@ namespace Markers_GPS_Coordiantes.Controllers
 
     public class ExportController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _IWebHostEnvironment;
         dbsMarkersContext _context = new dbsMarkersContext();
 
-        public ExportController(IHostingEnvironment hostingEnvironment, dbsMarkersContext context)
+        public ExportController(IWebHostEnvironment IWebHostEnvironment, dbsMarkersContext context)
         {
-            _hostingEnvironment = hostingEnvironment;
+            _IWebHostEnvironment = IWebHostEnvironment;
         }
             public IActionResult Index()
         {
