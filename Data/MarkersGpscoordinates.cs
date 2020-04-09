@@ -26,7 +26,6 @@ namespace Markers_GPS_Coordiantes.Data
         public decimal? Longitude { get; set; }
         public DateTime CreatedDate { get; set; }
         public int CreatedByUsersId { get; set; }
-
         public virtual Center Center { get; set; }
         public virtual Exam Exam { get; set; }
         public virtual Gender Gender { get; set; }

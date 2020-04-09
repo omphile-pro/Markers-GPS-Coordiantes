@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Markers_GPS_Coordiantes.Data
 {
-    public partial class Vreport
+    public partial class VusersReport
     {
         public int CenterId { get; set; }
         public Guid UsersToken { get; set; }

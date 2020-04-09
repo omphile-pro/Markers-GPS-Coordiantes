@@ -6,13 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Markers_GPS_Coordiantes.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class UsersRolesController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
-
+        private readonly IHttpContextAccessor _sessionAccessor;
+        public UsersRolesController(IHttpContextAccessor sessionAccessor)
+        {
+            _sessionAccessor = sessionAccessor;     //  DEPENDENCY INJECTION
+        }
         // GET: UsersRoles
         public async Task<IActionResult> Index()
         {
@@ -55,20 +60,35 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsersRoleId,UsersId,RoleId,CreatedByUsersId,CreateDate")] UsersRole usersRole)
+        public async Task<IActionResult> Create(VUsersRole usersRole)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(usersRole);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    //  CREATE A USER FIRST
+                    var newUsersRole = new UsersRole()
+                    {
+                        UsersId = usersRole.UsersId,
+                        RoleId = usersRole.RoleId,
+                        CreatedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("usersID"))
+                    };
+
+                    _context.UsersRole.Add(newUsersRole);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex) 
+                {
+                    //  DO SOMETHING WHEN ERROR OCCURS E.G Send Email
+                    Console.WriteLine(ex.Message);
+                }
             }
-            ViewData["CreatedByUsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", usersRole.CreatedByUsersId);
             ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription", usersRole.RoleId);
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", usersRole.UsersId);
             return View(usersRole);
         }
-
         // GET: UsersRoles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

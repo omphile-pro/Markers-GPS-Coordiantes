@@ -294,7 +294,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                         {
                             CentreNumber = worksheet.Cells[row, 1].Value.ToString().Trim(),
                             FullName = worksheet.Cells[row, 3].Value.ToString().Trim(),
-                            //GenderId = (Convert.ToString(worksheet.Cells[row, 3].Value.ToString().Trim().ToLower()) == "male" ? 1 : 2),
+                            GenderId = (Convert.ToString(worksheet.Cells[row, 3].Value.ToString().Trim().ToLower()) == "male" ? 1 : 2),
                             RaceId = 1,
                             IdNumber = worksheet.Cells[row, 6].Value.ToString().Trim(),
                             SubjectId = 1,
@@ -305,10 +305,10 @@ namespace Markers_GPS_Coordiantes.Controllers
                             WorkTelephone = worksheet.Cells[row, 13].Value.ToString().Trim(),
                             HomeTelephone = worksheet.Cells[row, 14].Value.ToString().Trim(),
                             Cellphone = worksheet.Cells[row, 15].Value.ToString().Trim(),
-                            //Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
-                            //Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
-                            UsersId = 3,
-                            ExamId = 1,
+                            Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
+                            Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
+                            UsersId = 5,
+                            ExamId = 4,
                             CreatedByUsersId = 3,
                             CenterId = 3,
                         });
@@ -318,7 +318,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     {
 
                         _context.MarkersGpscoordinates.AddRange(newMarkers);
-                        //await _context.SaveChangesAsync();
+                        await _context.SaveChangesAsync();
                     }
 
                     return View("ImportedMarkers", newMarkers);
@@ -331,6 +331,12 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             return Ok("Finished");
         }
+
+
+      
+
+
+
         private bool MarkersGpscoordinatesExists(int id)
         {
             return _context.MarkersGpscoordinates.Any(e => e.MarkersId == id);

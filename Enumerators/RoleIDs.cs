@@ -7,7 +7,8 @@ namespace Markers_GPS_Coordiantes.Enumerators
 {
     public enum RoleIDs
     {
-        CenterManager = 1,
+        Marker = 1,
+        CenterManager,
         Administrator,
         SuperAdmin
     }

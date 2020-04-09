@@ -92,9 +92,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                         }
                     }
 
-
-
-
                 }
                 catch (Exception ex) 
                 {
