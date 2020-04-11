@@ -19,13 +19,8 @@ namespace Markers_GPS_Coordiantes.Controllers
     {
         dbsMarkersContext _context = new dbsMarkersContext();
 
-
-
-
         public IActionResult Index()
         {
-
-            Console.WriteLine("Works");
             List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
             {
                 FullName = x.FullName,
@@ -39,8 +34,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             return View(supList);
         }
 
-        public void ExportToExcel()
+        public async Task<IActionResult> ExportToExcel()
         {
+            byte[] result;
+
             List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
             {
                 FullName = x.FullName,
@@ -66,7 +63,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             int rowStart = 2;
             foreach (var item in supList)
             {
-                //ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+               // ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
 
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.FullName;
                 ws.Cells[string.Format("B{0}", rowStart)].Value = item.PhysicalAddress;
@@ -79,27 +76,13 @@ namespace Markers_GPS_Coordiantes.Controllers
                 rowStart++;
             }
 
-            ws.Cells["A:AZ"].AutoFitColumns();
-            Response.Clear();
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-           
-            Console.WriteLine("Works");
+             ws.Cells["A:AZ"].AutoFitColumns();
+            result = pck.GetAsByteArray();
+
+
+            return File(result, "application/vnd.ms-excel", "test.xls");
         }
 
-        public void getGroup()
-        {
-            var client = new RestClient("https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxlYjAxYXBpIiwibmJmIjoxNTg1NzI1MjA1LCJleHAiOjE1ODY5MzQ4MDUsImlhdCI6MTU4NTcyNTIwNX0.Iko52CRCn0SVwwr9_FyXvenNMbBDbm6sUWrkzJH5z2s");
-            request.AddParameter("application/json", "{ \"siteId\": 1164,\n\"fromDate\": \"2019-11-15\",\n\"toDate\": \"2019-11-15T23:59\" }", ParameterType.RequestBody);
-            Response.Headers.Add("content-disposotion", "attachment : filename" + "ExcelReport.xlsx");
-            
-            Response.CompleteAsync();
-            IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
-        }
 
     }
 }
