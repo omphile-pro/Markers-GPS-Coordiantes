@@ -7,12 +7,14 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public Role()
         {
+            Users = new HashSet<Users>();
             UsersRole = new HashSet<UsersRole>();
         }
 
         public int RoleId { get; set; }
         public string RoleDescription { get; set; }
 
+        public virtual ICollection<Users> Users { get; set; }
         public virtual ICollection<UsersRole> UsersRole { get; set; }
     }
 }

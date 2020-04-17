@@ -7,6 +7,7 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public Center()
         {
+            CenterManger = new HashSet<CenterManger>();
             Exam = new HashSet<Exam>();
             Marker = new HashSet<Marker>();
             MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
@@ -30,6 +31,7 @@ namespace Markers_GPS_Coordiantes.Data
         public bool IsDeleted { get; set; }
 
         public virtual City City { get; set; }
+        public virtual ICollection<CenterManger> CenterManger { get; set; }
         public virtual ICollection<Exam> Exam { get; set; }
         public virtual ICollection<Marker> Marker { get; set; }
         public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }

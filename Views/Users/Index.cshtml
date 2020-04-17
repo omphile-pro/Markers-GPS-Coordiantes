@@ -13,15 +13,13 @@
         <a asp-action="Index">Retrieve all Users</a>
     </p>
 </form>
-
-
 <p>
     <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-          
+
             <th>
                 @Html.DisplayNameFor(model => model.Loginname)
             </th>
@@ -33,6 +31,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EmailAddress)
@@ -52,79 +53,98 @@
             <th>
                 @Html.DisplayNameFor(model => model.PhysicalAddress)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.LastModifiedByUsersId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastModifiedDate)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedByUsersId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreateDate)
             </th>
-           
-          
             <th>
-
-             
-
+                @Html.DisplayNameFor(model => model.IsDeleted)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Center)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Loginname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Firstname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmailAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MobileNo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Displayname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostalAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModifiedDate)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDate)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Center.CenterName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender.GenderDescription)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.UsersId"><i class="fa fa-marker fa-lg"></i>Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.UsersId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.UsersId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loginname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.GenderDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Displayname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUsersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center.CenterName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.RoleDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UsersId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UsersId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UsersId">Delete</a>
+            </td>
+        </tr>
+             }
     </tbody>
 </table>

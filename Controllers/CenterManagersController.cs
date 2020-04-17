@@ -11,20 +11,22 @@ using Markers_GPS_Coordiantes.Enumerators;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
-    public class UsersController : Controller
+    public class CenterMangersController : Controller
     {
 
-        
         private readonly IHttpContextAccessor httpContextAccessor;
         public int CenterID = 0;
         public int UsersID = 0;
-        public UsersController (IHttpContextAccessor _httpContextAccessor)
+
+        public CenterMangersController(IHttpContextAccessor _httpContextAccessor) 
         {
             httpContextAccessor = _httpContextAccessor;
         }
 
         dbsMarkersContext _context = new dbsMarkersContext();
-        // GET: Users
+        // GET: CenterMangers
+       
+    
         public async Task<IActionResult> Index()
         {
             int RoleID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -35,30 +37,30 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return null;
             }
+
             CenterID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("centerID"));
             UsersID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("usersID"));
+
             //  make sure the center really exists
             var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
 
-            if (center == null)
+            if (center == null) 
             {
                 return NotFound("The center does not exist");
             }
 
             //  check if the user is registered in the CenterManager-Center join table
-            var Users = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            var centerManager = await _context.CenterManger.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
 
-            if (Users == null)
+            if (centerManager == null) 
             {
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
 
-            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
+            return View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
         }
 
-       
-       
-        // GET: Users/Details/5
+        // GET: CenterMangers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -66,75 +68,70 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
-                .Include(u => u.Center)
-                .Include(u => u.Gender)
-                .Include(u => u.Role)
-                .FirstOrDefaultAsync(m => m.UsersId == id);
-            if (users == null)
+            var centerManger = await _context.CenterManger
+                .Include(c => c.Center)
+                .Include(c => c.Users)
+                .FirstOrDefaultAsync(m => m.CenterManagerId == id);
+            if (centerManger == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(centerManger);
         }
 
-        // GET: Users/Create
+        // GET: CenterMangers/Create
         public IActionResult Create()
         {
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName");
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription");
-            ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription");
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: CenterMangers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsersId,RoleId,CenterId,UsersToken,Loginname,Password,GenderId,Firstname,Lastname,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
+        public async Task<IActionResult> Create([Bind("CenterManagerId,UsersId,CenterId,CreateDate")] CenterManger centerManger)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(users);
+                _context.Add(centerManger);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
-            ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription", users.RoleId);
-            return View(users);
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", centerManger.CenterId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", centerManger.UsersId);
+            return View(centerManger);
         }
 
-        // GET: Users/Edit/5
+        // GET: CenterMangers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
-
             }
 
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var centerManger = await _context.CenterManger.FindAsync(id);
+            if (centerManger == null)
             {
                 return NotFound();
             }
-            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
-            ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription", users.RoleId);
-            return View(users);
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", centerManger.CenterId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", centerManger.UsersId);
+            return View(centerManger);
         }
 
-        // POST: Users/Edit/5
+        // POST: CenterMangers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsersId,RoleId,CenterId,UsersToken,Loginname,Password,GenderId,Firstname,Lastname,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("CenterManagerId,UsersId,CenterId,CreateDate")] CenterManger centerManger)
         {
-            if (id != users.UsersId)
+            if (id != centerManger.CenterManagerId)
             {
                 return NotFound();
             }
@@ -143,12 +140,12 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 try
                 {
-                    _context.Update(users);
+                    _context.Update(centerManger);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsersExists(users.UsersId))
+                    if (!CenterMangerExists(centerManger.CenterManagerId))
                     {
                         return NotFound();
                     }
@@ -159,13 +156,12 @@ namespace Markers_GPS_Coordiantes.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
-            ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
-            ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription", users.RoleId);
-            return View(users);
+            ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", centerManger.CenterId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", centerManger.UsersId);
+            return View(centerManger);
         }
 
-        // GET: Users/Delete/5
+        // GET: CenterMangers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -173,33 +169,32 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
-                .Include(u => u.Center)
-                .Include(u => u.Gender)
-                .Include(u => u.Role)
-                .FirstOrDefaultAsync(m => m.UsersId == id);
-            if (users == null)
+            var centerManger = await _context.CenterManger
+                .Include(c => c.Center)
+                .Include(c => c.Users)
+                .FirstOrDefaultAsync(m => m.CenterManagerId == id);
+            if (centerManger == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(centerManger);
         }
 
-        // POST: Users/Delete/5
+        // POST: CenterMangers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            _context.Users.Remove(users);
+            var centerManger = await _context.CenterManger.FindAsync(id);
+            _context.CenterManger.Remove(centerManger);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsersExists(int id)
+        private bool CenterMangerExists(int id)
         {
-            return _context.Users.Any(e => e.UsersId == id);
+            return _context.CenterManger.Any(e => e.CenterManagerId == id);
         }
     }
 }

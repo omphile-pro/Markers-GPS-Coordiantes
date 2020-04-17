@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.VMarkersGpscoordinates>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<center><h2 class="text-primary" style="padding-top:100px;"><strong>Markers Data</strong></h2></center>
+<table class="table">
+    <thead>
+        <tr>
+
+           
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhysicalAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersalNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cellphone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterLongitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CenterLatitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CentreNumber)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.PaperNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionDescription)
+            </th>
+            <th>
+
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cellphone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterLongitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterLatitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CentreNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionDescription)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

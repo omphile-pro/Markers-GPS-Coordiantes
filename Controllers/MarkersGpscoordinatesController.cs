@@ -29,7 +29,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public async Task<IActionResult> Index()
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
@@ -39,15 +39,22 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
-            var dbsMarkersContext = _context.MarkersGpscoordinates.Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users);
-            return View(await dbsMarkersContext.ToListAsync());
+            try
+            {
+                var dbsMarkersContext = _context.MarkersGpscoordinates.Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users);
+                return View(await dbsMarkersContext.ToListAsync());
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest();
+            }
         }
 
         // GET: MarkersGpscoordinates/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
@@ -57,6 +64,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
+
             if (id == null)
             {
                 return NotFound();
@@ -83,7 +91,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public IActionResult Create()
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
@@ -111,7 +119,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public async Task<IActionResult> Create([Bind("MarkersId,SubjectId,CenterId,UsersId,RaceId,ExamId,GenderId,PositionId,CentreNumber,FullName,IdNumber,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
@@ -121,6 +129,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
+
             if (ModelState.IsValid)
             {
                 _context.Add(markersGpscoordinates);
@@ -140,6 +149,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: MarkersGpscoordinates/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -168,7 +188,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("MarkersId,SubjectId,CenterId,UsersId,RaceId,ExamId,GenderId,PositionId,CentreNumber,FullName,IdNumber,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
@@ -217,7 +237,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("roleID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message

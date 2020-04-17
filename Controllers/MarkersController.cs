@@ -81,8 +81,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                         Loginname = marker.EmailAddress,
                         Password = "Password1",  //  you need to create a password generator
                         
-                        LastModifiedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("usersID")),
-                        CreatedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("usersID")),
+                        LastModifiedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID")),
+                        CreatedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID")),
                         Telephone = (marker.Telephone != null ? marker.Telephone : marker.MobileNo),     //  if telephone is null, use mobile number, which you should make required                
                     };
 
@@ -95,8 +95,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                     {
                         UsersId = newUser.UsersId,
                         PositionId = marker.PositionId,
-                        LastModifiedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("usersID")),
-                        CreatedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetString("usersID")),
+                        LastModifiedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID")),
+                        CreatedByUsersId = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID")),
                     };
 
                     //  add marker to database and save changes

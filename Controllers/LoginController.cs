@@ -20,14 +20,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             return View("Login");
         }
 
-
-      
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model) 
         {
-            //  I ASKED YOU TO BREAK ON THE FIRST LINE OF THE FUNCTION
-
-
             if (ModelState.IsValid) 
             {
                 try 
@@ -39,9 +34,9 @@ namespace Markers_GPS_Coordiantes.Controllers
                         //  if you are here it means the user logged in successfully.
 
                         //  get the role of the user
-                        var usersRole = db.UsersRole.Where(h => h.UsersId == user.UsersId).FirstOrDefault();
+                        var users = db.Users.Where(h => h.UsersId == user.UsersId).FirstOrDefault();
 
-                        if (usersRole == null) 
+                        if (users == null) 
                         {
                             return Content("No role has been configured for this user");
                         }
@@ -49,18 +44,22 @@ namespace Markers_GPS_Coordiantes.Controllers
                         //  set sessions here
                         //  you need to set sessions before you redirect, the corresponding dashboard (Marker / Admin) will read from session
                         HttpContext.Session.SetString("displayname", Convert.ToString(user.Displayname));
-                        HttpContext.Session.SetString("roleID", Convert.ToString(usersRole.RoleId));
-                        HttpContext.Session.SetString("usersID", Convert.ToString(user.UsersId));
+                        HttpContext.Session.SetInt32("roleID", users.RoleId);
+                        HttpContext.Session.SetInt32("usersID", user.UsersId);
+                        HttpContext.Session.SetInt32("centerID", user.CenterId);
+                        
                         HttpContext.Session.SetString("usersToken", Convert.ToString(user.UsersToken));
 
                         //  BASED ON THE ROLES ON THE SERVER REDIRECT TO SPECIFIC PAGE FOR EITHER MARKER OF SUPER ADMIN
                         //  MARKER
-                        if (usersRole.RoleId == (int)RoleIDs.CenterManager)
+                        //  what did you do here
+                        //  i only change the marker to centerManager role 
+                        if (users.RoleId == (int)RoleIDs.CenterManager)
                         {
                             //  get marker record
-                            var marker = db.Marker.Where(u => u.UsersId == user.UsersId).FirstOrDefault();
+                            var CenterManger = db.CenterManger.Where(u => u.UsersId == user.UsersId).FirstOrDefault();
 
-                            if (marker == null) 
+                            if (CenterManger == null) 
                             {
                                 return new ContentResult() {
                                     StatusCode = 404,
@@ -70,27 +69,24 @@ namespace Markers_GPS_Coordiantes.Controllers
                             }
 
 
-                            HttpContext.Session.SetString("markerID", Convert.ToString(marker.MarkerId));
+                            HttpContext.Session.SetString("CenterManagerId", Convert.ToString(CenterManger.CenterManagerId));
                             return RedirectToAction("Index", "Admin");
                         }
 
-                        //CenterManager
-                        else if (usersRole.RoleId == (int)RoleIDs.CenterManager)
-                        {
-                            return RedirectToAction("Index", "Admin");
-                        }
+                      
                         //  ADMINISTRATOR
-                        else if (usersRole.RoleId == (int)RoleIDs.Administrator) 
+                        else if (users.RoleId == (int)RoleIDs.Administrator) 
                         {
                             return RedirectToAction("Index", "Admin");
                         }
 
                         //  SUPERADMIN
-                        else if (usersRole.RoleId == (int)RoleIDs.SuperAdmin)
+                        else if (users.RoleId == (int)RoleIDs.SuperAdmin)
                         {
                             return RedirectToAction("Index", "Admin");
                         }
                     }
+
 
                 }
                 catch (Exception ex) 

@@ -16,6 +16,7 @@ namespace Markers_GPS_Coordiantes.Data
         }
 
         public virtual DbSet<Center> Center { get; set; }
+        public virtual DbSet<CenterManger> CenterManger { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Exam> Exam { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
@@ -37,7 +38,6 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<VMarkersGpscoordinates> VMarkersGpscoordinates { get; set; }
         public virtual DbSet<Vsubject> Vsubject { get; set; }
         public virtual DbSet<VusersReport> VusersReport { get; set; }
-        public object Workbook { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -97,6 +97,33 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Center_City");
+            });
+
+            modelBuilder.Entity<CenterManger>(entity =>
+            {
+                entity.HasKey(e => e.CenterManagerId);
+
+                entity.Property(e => e.CenterManagerId).HasColumnName("CenterManagerID");
+
+                entity.Property(e => e.CenterId).HasColumnName("CenterID");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.UsersId).HasColumnName("UsersID");
+
+                entity.HasOne(d => d.Center)
+                    .WithMany(p => p.CenterManger)
+                    .HasForeignKey(d => d.CenterId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CenterManger_Center");
+
+                entity.HasOne(d => d.Users)
+                    .WithMany(p => p.CenterManger)
+                    .HasForeignKey(d => d.UsersId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CenterManger_Users");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -614,6 +641,8 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(2000)
                     .IsUnicode(false);
 
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
                 entity.Property(e => e.Telephone)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -631,6 +660,12 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasForeignKey(d => d.GenderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users_Gender");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_Role");
             });
 
             modelBuilder.Entity<UsersRole>(entity =>
@@ -794,7 +829,6 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.MarkersId).HasColumnName("MarkersID");
 
                 entity.Property(e => e.PaperNumber)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -808,7 +842,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.PositionDescription)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -821,7 +854,6 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
 
                 entity.Property(e => e.SubjectName)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
