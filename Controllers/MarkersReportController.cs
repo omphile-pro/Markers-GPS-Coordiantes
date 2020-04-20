@@ -11,8 +11,6 @@ using System.IO;
 using OfficeOpenXml;
 using RestSharp;
 using Markers_GPS_Coordiantes.Enumerators;
-
-
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class MarkersReportController : Controller
@@ -50,7 +48,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 PositionDescription = x.PositionDescription,
                 Distance = x.Distance
             }).ToList();
-
             ExcelPackage pck = new ExcelPackage();
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reports");
 
@@ -85,9 +82,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
             return File(result, "application/vnd.ms-excel", "test.xls");
-        }
-
-            public async Task<IActionResult> UsersReport()
+        } public async Task<IActionResult> UsersReport()
             {
             var dbsMarkersContext = _context.VusersReport.OrderBy(g => g.CenterName);
             return View(await dbsMarkersContext.ToListAsync());

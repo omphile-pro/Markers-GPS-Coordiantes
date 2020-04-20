@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-< <center><h2 class="text-primary" style="padding-top:100px;"><strong>Edit User Details</strong></h2></center>>
+ <center><h2 class="text-primary" style="padding-top:30px;"><strong>Edit User Details</strong></h2></center>
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-6">
@@ -21,11 +21,7 @@
                 <select asp-for="CenterId" class="form-control" asp-items="ViewBag.CenterId"></select>
                 <span asp-validation-for="CenterId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UsersToken" class="control-label"></label>
-                <input asp-for="UsersToken" class="form-control" />
-                <span asp-validation-for="UsersToken" class="text-danger"></span>
-            </div>
+          
             <div class="form-group">
                 <label asp-for="Loginname" class="control-label"></label>
                 <input asp-for="Loginname" class="form-control" />
@@ -104,7 +100,7 @@
            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="Index">Back to List</a>
+                <a asp-action="Index" class="btn btn-secondary ">Back to List</a>
             </div>
         </form>
     </div>

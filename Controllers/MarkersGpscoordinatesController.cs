@@ -16,14 +16,18 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class MarkersGpscoordinatesController : Controller
     {
 
+
         dbsMarkersContext _context = new dbsMarkersContext();
-        IHttpContextAccessor _sessionAccessor;
+        private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
+        public int CenterID = 0;
+        public int UsersID = 0;
 
         public MarkersGpscoordinatesController(IHttpContextAccessor sessionAccessor)
         {
             _sessionAccessor = sessionAccessor;
         }
+
 
         // GET: MarkersGpscoordinates
         public async Task<IActionResult> Index()
@@ -39,32 +43,36 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
-            try
+            
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //  filter by role id
+            if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.SuperAdmin)) && (!(RoleID == (int)RoleIDs.Administrator)))
             {
-                var dbsMarkersContext = _context.MarkersGpscoordinates.Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users);
-                return View(await dbsMarkersContext.ToListAsync());
+                return null;
             }
-            catch (Exception ex) 
-            {
-                return BadRequest();
-            }
-        }
 
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            //  make sure the center really exists
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.CenterManger.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users).ToListAsync());
+        }
         // GET: MarkersGpscoordinates/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
-
             if (id == null)
             {
                 return NotFound();
@@ -327,8 +335,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                             Cellphone = worksheet.Cells[row, 15].Value.ToString().Trim(),
                             Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
                             Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
-                            UsersId = 5,
-                            ExamId = 4,
+                            UsersId = 3,
+                            ExamId = 1,
                             CreatedByUsersId = 3,
                             CenterId = 3,
                         });
@@ -338,7 +346,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     {
 
                         _context.MarkersGpscoordinates.AddRange(newMarkers);
-                        await _context.SaveChangesAsync();
+                        //await _context.SaveChangesAsync();
                     }
 
                     return View("ImportedMarkers", newMarkers);
@@ -351,13 +359,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             return Ok("Finished");
         }
-
-
-      
-
-
-
-        private bool MarkersGpscoordinatesExists(int id)
+            private bool MarkersGpscoordinatesExists(int id)
         {
             return _context.MarkersGpscoordinates.Any(e => e.MarkersId == id);
         }

@@ -57,7 +57,7 @@ namespace Markers_GPS_Coordiantes.Data
         [Required(ErrorMessage = "Persal Number Required")]
         public string PersalNumber { get; set; }
         [Column(TypeName = "varchar(255)")]
-        [DisplayName("Persal Number")]
+        [DisplayName("Work Telephone")]
         [Required(ErrorMessage = "Work Telephone Number Required")]
 
         public string WorkTelephone { get; set; }

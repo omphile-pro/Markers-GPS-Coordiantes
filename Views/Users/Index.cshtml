@@ -4,37 +4,34 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 class="text-primary" style="padding-top:100px;"><strong>Users Login</strong></h2>
+<h2 class="text-primary" style="padding-top:50px;"><strong>Users Login</strong></h2>
 <form method="get" asp-action="Index">
 
     <p>
-        <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
+        <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
         <input type="submit" value="Search" class="btn btn-primary" />
         <a asp-action="Index">Retrieve all Users</a>
     </p>
 </form>
+<h2 class="text-primary" style="padding-top:15px;"><strong></strong></h2>
 <p>
-    <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
+
 </p>
 <table class="table">
-    <thead>
+    <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
         <tr>
 
-            <th>
+            <th >
                 @Html.DisplayNameFor(model => model.Loginname)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Firstname)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Lastname)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.EmailAddress)
             </th>
@@ -44,40 +41,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.Telephone)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Displayname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalAddress)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.PhysicalAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastModifiedByUsersId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastModifiedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedByUsersId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Center)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Role)
             </th>
-            <th></th>
+            <th>
+                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -86,18 +63,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Loginname)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Firstname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Lastname)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender.GenderDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EmailAddress)
@@ -109,41 +80,21 @@
                 @Html.DisplayFor(modelItem => item.Telephone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Displayname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalAddress)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.PhysicalAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModifiedByUsersId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModifiedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedByUsersId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
+            </td>    
             <td>
                 @Html.DisplayFor(modelItem => item.Center.CenterName)
             </td>
-
             <td>
                 @Html.DisplayFor(modelItem => item.Role.RoleDescription)
             </td>
+         
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UsersId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UsersId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UsersId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.UsersId"><i class="fa fa-marker fa-lg" title="Edit" ></i></a> |
+                <a asp-action="Details" asp-route-id="@item.UsersId" class="text-dark ml-1"><i class="fa fa-info-circle fa-lg" title="Details"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.UsersId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg" title="Delete"></i></a> |
             </td>
+           
         </tr>
              }
     </tbody>

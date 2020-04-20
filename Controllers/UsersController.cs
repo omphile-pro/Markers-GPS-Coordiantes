@@ -6,58 +6,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Markers_GPS_Coordiantes.Data;
-using Microsoft.AspNetCore.Http;
-using Markers_GPS_Coordiantes.Enumerators;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class UsersController : Controller
     {
-
-        
-        private readonly IHttpContextAccessor httpContextAccessor;
-        public int CenterID = 0;
-        public int UsersID = 0;
-        public UsersController (IHttpContextAccessor _httpContextAccessor)
-        {
-            httpContextAccessor = _httpContextAccessor;
-        }
-
         dbsMarkersContext _context = new dbsMarkersContext();
+
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            int RoleID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("roleID"));
-
-
-            //  filter by role id
-            if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.SuperAdmin)) && (!(RoleID == (int)RoleIDs.Administrator)))
-            {
-                return null;
-            }
-            CenterID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("centerID"));
-            UsersID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("usersID"));
-            //  make sure the center really exists
-            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
-
-            if (center == null)
-            {
-                return NotFound("The center does not exist");
-            }
-
-            //  check if the user is registered in the CenterManager-Center join table
-            var Users = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
-
-            if (Users == null)
-            {
-                return NotFound("You are not configured as center manager, please consult your system administrator.");
-            }
-
-            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
+            var dbsMarkersContext = _context.Users.Include(u => u.Center).Include(u => u.Gender).Include(u => u.Role);
+            return View(await dbsMarkersContext.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
 
-       
-       
+        {
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.Users.Include(u => u.Center).Include(u => u.Gender).Include(u => u.Role) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+        }
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -113,7 +87,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             if (id == null)
             {
                 return NotFound();
-
             }
 
             var users = await _context.Users.FindAsync(id);

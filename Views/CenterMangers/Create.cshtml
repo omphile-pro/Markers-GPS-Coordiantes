@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-<center><h2 class="text-primary" style="padding-top:100px;"><strong>Assign Center</strong></h2></center>
+<center><h2 class="text-primary" style="padding-top:50px;"><strong>Assign Center</strong></h2></center>
 <hr />
 <div class="row justify-content-lg-center">
     <div class="col-md-6">
@@ -18,13 +18,14 @@
                 <select asp-for="CenterId" class ="form-control" asp-items="ViewBag.CenterId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Assign" class="btn btn-primary "/>
+                <a asp-action="Index"  class="btn btn-secondary ">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+  
 </div>
 

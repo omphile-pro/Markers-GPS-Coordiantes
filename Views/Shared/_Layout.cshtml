@@ -1,27 +1,16 @@
-﻿@using Microsoft.AspNetCore.Http;
-@inject IHttpContextAccessor sessionAccessor;
-@{
-    int roleID = 0;             //  assume 0 in case of guest (before users has logged in)
-
-    if (Convert.ToInt32(sessionAccessor.HttpContext.Session.GetInt32("roleID")) > 0) 
-    {
-        roleID = Convert.ToInt32(sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-    }
- }
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Markers GPS Coordiantes</title>
+    <title>@ViewData["Title"] |  GDE Markers Coordiantes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
     <link href="~/HomeTheme/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="~/HomeTheme/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="~/HomeTheme/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/HomeTheme/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
     <link rel="stylesheet" href="~/js/tableexport.min.js" />
@@ -30,85 +19,10 @@
     <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <!-- nav -->
-            <nav class="py-3 d-lg-flex fixed-top" style="color: rgba(255,255,255,0.9); background-color: #008B8B;">
-                <div id="logo">
-                    <h3> <a href="~/Home/"><img src="~/Content/HomeTheme/images/s2.png" alt=""><strong> MARKERS GPS COORDINATES</strong></a></h3>
-                </div>
-                <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-                <input type="checkbox" id="drop" />
-                <ul class="menu ml-auto mt-1">
-                    @if (roleID == 2)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Markers Panel</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Create">Add New Marker</a>
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Index">Markers List</a>
-              
-
-                            </div>
-                        </li>
-                    }
-
-                    @if (roleID == 3)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Setup</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="Users" asp-action="Create">Create Administrator</a>
-                                <a class="dropdown-item " asp-controller="Users" asp-action="Index">Administrator Logins</a>
-                                <a class="dropdown-item " asp-controller="Centers" asp-action="Index">Marking Centers</a>
-                                <a class="dropdown-item " asp-controller="CenterMangers" asp-action="Create">Assign Center</a>
-                                <a class="dropdown-item " asp-controller="CenterMangers" asp-action="Index">Centers</a>
-                            </div>
-                        </li>     
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Markers Panel</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Index">Markers List</a>
-                                <a class="dropdown-item " asp-controller="MarkersReport" asp-action="Index">Distance Report</a>
-                                <a class="dropdown-item " asp-controller="MarkersReport" asp-action="UsersReport">Users Report</a>
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Import">import</a>
-
-                                <a class="dropdown-item " asp-controller="MarkersReport" asp-action="UsersReport">Users Report</a>
-                            </div> 
-                        </li>
-                    }
-
-                    @if (roleID == 1)
-                    {
-                      
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Markers Panel</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-
-
-                                <a class="dropdown-item " asp-controller="MarkersReport" asp-action="Index">Distance Report</a>
-
-                            </div>
-                        </li>
-                        }
-                        @if (roleID == 0)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="~/Login/"></a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="~/Login/SignOut/">Sign Out</a>
-                            </li>
-                        }
-                    </ul>
-                </nav>
-    </header>
     <div class="container-fullwidth">
 
-            @RenderBody()
-       
+        @RenderBody()
+
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

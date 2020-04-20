@@ -13,7 +13,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class CenterMangersController : Controller
     {
-
+        dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor httpContextAccessor;
         public int CenterID = 0;
         public int UsersID = 0;
@@ -23,7 +23,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             httpContextAccessor = _httpContextAccessor;
         }
 
-        dbsMarkersContext _context = new dbsMarkersContext();
+      
         // GET: CenterMangers
        
     
