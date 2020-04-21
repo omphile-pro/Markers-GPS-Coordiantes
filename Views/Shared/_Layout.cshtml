@@ -14,9 +14,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Markers GPS Coordiantes</title>
+    <link href="~/Images/logo.svg" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
+    <link rel="stylesheet" href="~/css/reports.css" />
     <link href="~/HomeTheme/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="~/HomeTheme/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="~/HomeTheme/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
@@ -53,254 +54,124 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-
-            @if (roleID == 0)
-            {
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="~/Login/SignIn/" class="nav-link">Sign Out</a>
-                </li>
-            }
-            else
-            { 
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="~/Login/SignOut/" class="nav-link">Sign Out</a>
-                </li>
-                }
-        </ul>
+<body >
+    <nav>
+        <div class="logo">
+            <img class="logo" src="~/Images/logo.svg"></a>
+        </div>
     </nav>
-    <!-- /.navbar -->
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
-            <img src="~/Images/logo.svg" alt="AdminLTE Logo" class="brand-image"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light" >GPS Coordinates</span>
-        </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-               
-                    <a class="fa fa-user-alt" alt="User Image"></a>
-                
-                <div class="info">
-                    <a href="#" class="d-block">Admin@gde.co.za</a>
+ 
+        <div class="row body-margin-top">
+            <div class="col-2 side-nav-container no-padding">
+                <div class="side-nav-details">
+                    <P class="bolder bigger-font">GDE-ADMIN</P>
+                    <P class="small-text">admin@example.com</P>
                 </div>
+                
+                @if (roleID == 0)
+                {
+
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+                            <li class="list-item"><a href="~/Login/SignIn/">Sign in</a></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+                            <li class="list-item"><a href="~/Login/SignOut/"><i class="fas fa-md fa-user "></i> <strong>Sign Out</strong></a></li>
+                        </ul>
+                    </div>
+                }
+                @if (roleID == 3)
+                {
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+
+                            <li class="list-item"><a href="home.html">Dashboard</a></li>
+                            <li class="list-item"><a href="~/Users/Index/">Accounts</a></li>
+                            <li class="list-item"><a href="~/CenterMangers/Create">Assign Manager</a></li>
+                            <li class="list-item"><a href="~/Centers/Index/">Marking Center</a></li>
+                            <li class="list-item"><a href="~/MarkersReport/Index">Export Data</a></li>
+                        </ul>
+                    </div>
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+                            <li class="list-item"><a href="~/MarkersGpscoordinates/Index/">Markers List</a></li>
+                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
+                            <li class="list-item"><a href="~/MarkersGpscoordinates/import/">import Data</a></li>
+                        </ul>
+                    </div>
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
+                        </ul>
+                    </div>
+
+                }
+                @if (roleID == 2)
+                {
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+                            <li class="list-item"><a href="~/MarkersGpscoordinates/Index/">Markers List</a></li>
+                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
+                            <li class="list-item"><a href="~/MarkersGpscoordinates/import/">import Data</a></li>
+                        </ul>
+                    </div>
+                }
+                @if (roleID == 1)
+                {
+                    <div class="side-nav">
+                        <ul class="side-nav-list">
+                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
+
+
+                        </ul>
+                    </div>
+                }
             </div>
 
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                            </li>
-
-
-                      
-
-                    @if (roleID == 3)
-                    {
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-sign-in-alt"></i>
-                                <p>
-                                    Setup
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/Users/Index/" class="nav-link">
-
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Accounts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/CenterMangers/Create/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Assign Manager</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/Centers/Index/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Marking Center</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/MarkersReport/Index/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Export Data</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        //Markers Panel Admin
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-user"></i>
-                                <p>
-                                    Markers Panel
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/MarkersGpscoordinates/Index/" class="nav-link">
-
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Markers List</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/CenterMangers/Index/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Marker Data</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/MarkersGpscoordinates/import/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>import Data</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    }
-                    @if (roleID == 2)
-                    {
-                        //Markers Panel Admin
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Marking Center
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/MarkersGpscoordinates/Index/" class="nav-link">
-
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Markers List</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/CenterMangers/Index/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Marker Data</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/MarkersGpscoordinates/import/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>import Data</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    }
-
-                    @if (roleID == 1)
-                    {
-                        //Markers Panel Admin
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Marking Center
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                </li>
-                                <li class="nav-item">
-                                    <a href="~/CenterMangers/Index/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Marker Data</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    }
-</nav>
         </div>
-    </aside>
-<header>
-</header>
-<div class="container-fullwidth">
-
-    @RenderBody()
-
-</div>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<!-- Content Header (Page header) -->
-<!-- /.content-header -->
-<!-- Main content -->
-<!-- Small boxes (Stat box) -->
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>$.widget.bridge('uibutton', $.ui.button)</script>
-<!-- Bootstrap 4 -->
-<script src="Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="Admin/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="Admin/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="Admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="Admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="Admin/plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="Admin/plugins/moment/moment.min.js"></script>
-<script src="Admin/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="Admin/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="Admin/dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="Admin/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="Admin/dist/js/demo.js"></script>
-@RenderSection("Scripts", required: false)
+        <div class="container-fullwidth">
+            @RenderBody()
+        </div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Content Header (Page header) -->
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <!-- Small boxes (Stat box) -->
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>$.widget.bridge('uibutton', $.ui.button)</script>
+        <!-- Bootstrap 4 -->
+        <script src="Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="Admin/plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="Admin/plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="Admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="Admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="Admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="Admin/plugins/moment/moment.min.js"></script>
+        <script src="Admin/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="Admin/plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="Admin/dist/js/adminlte.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="Admin/dist/js/pages/dashboard.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="Admin/dist/js/demo.js"></script>
+        @RenderSection("Scripts", required: false)
 </body>
 </html>
