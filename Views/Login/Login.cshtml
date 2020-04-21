@@ -1,7 +1,7 @@
-﻿
+﻿@{Layout = null;}
 @model Markers_GPS_Coordiantes.LoginViewModel
 @{
-    ViewData["Title"] = "Home";
+ViewData["Title"] = "Home";
 }
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 
         <div class="col-5 right">
             <div class="logo-container">
-                <img class="logo" src="~/HomeTheme/images/logo.svg">
+                <img class="logo" src="~/images/logo.svg">
             </div>
             <hr class="line">
             <form asp-action="Login" class="form-container">
@@ -49,26 +49,16 @@
 
 
                         <input class="input-tag" placeholder="Username" name="Username" type="text" required="">
-
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-
-
                         <input class="input-tag margin-top" asp-for="Password" name="Password" placeholder="Enter Password" type="text" required="" id="myInput" />
                         <center><button type="submit" class="submit btn btn-lg" style="border-bottom-color: rgba(255,255,255,0.6); background-color: #0054A6;"><strong>Sign In</strong> <i class="fa fa-sign-in-alt "></i></button></center>
-
                     </div>
                 </div>
-           
-                  
-
             </form>
-
-
-
         </div>
-        </div>
+    </div>
 </body>
 </html>
 

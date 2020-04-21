@@ -5,10 +5,10 @@
 }
 
 <center><h2 class="text-primary" style="padding-top:50px;"><strong>Marking Centers</strong></h2></center>
-
+<hr class="title-lines" />
 
 <table class="table">
-    <thead>
+    <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
         <tr>
 
             <th>
@@ -26,12 +26,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Latitude)
             </th>
-           
-       
+
+
             <th>
                 @Html.DisplayNameFor(model => model.CreateDate)
             </th>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.City)
             </th>
@@ -44,38 +44,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.CenterName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CenterNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CenterDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-          
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.City.CityDescription)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CenterId"><i class="fa fa-marker fa-md"title="Edit"></i></a> |
-                <a asp-action="Details" asp-route-id="@item.CenterId" class="text-dark ml-1"><i class="fa fa-info-circle fa-md"title="Details"></i></a> |
-                <a asp-action="Delete" asp-route-id="@item.CenterId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-md"title="Delete"></i></a>
-            </td>
-        </tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.CityDescription)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CenterId"><i class="fa fa-marker fa-md" title="Edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.CenterId" class="text-dark ml-1"><i class="fa fa-info-circle fa-md" title="Details"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.CenterId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-md" title="Delete"></i></a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
