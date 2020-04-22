@@ -86,6 +86,13 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\SuperAdmin\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 
 
 </Project>

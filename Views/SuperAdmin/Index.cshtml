@@ -1,0 +1,153 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.MarkersGpscoordinates>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+<h2 class="text-primary" style="padding-top:100px;"><strong>Markers</strong></h2>
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Enter Markers Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index">Retrieve all Markers</a>
+    </p>
+</form>
+<p>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Marker</a>
+</p>
+<table class="table">
+    <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CentreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhysicalAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersalNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkTelephone)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cellphone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Center)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentreNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersalNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkTelephone)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTelephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cellphone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Exam.PaperNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.GenderDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.PositionDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Race.RaceDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Loginname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MarkersId"><i class="fa fa-marker fa-lg" title="Edit"></i></a>
+                <a asp-action="Details" asp-route-id="@item.MarkersId" class="text-dark ml-1"><i class="fa fa-info-circle fa-lg" title="Details"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.MarkersId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg" title="Delete"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
