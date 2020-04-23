@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Models.groups>
+
+@{
+    ViewData["Title"] = "Access Track Infomation";
+}
+
+    <div class="col-10 table-content">
+
+        <div class="">
+            <table class="table start-hidden no-border-top">
+                <thead class="thead-dark no-border-top">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.scanGroupId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.deviceId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.displayName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.licenceNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.timestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.departure)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.scanCount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.hourCount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.showWarning)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.hasBlacklist)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.expiryDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sadlExpiryDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fieldValues)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="no-border-top">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.scanGroupId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.deviceId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.displayName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.licenceNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.timestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.departure)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.scanCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hourCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.showWarning)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hasBlacklist)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.expiryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sadlExpiryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fieldValues)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
