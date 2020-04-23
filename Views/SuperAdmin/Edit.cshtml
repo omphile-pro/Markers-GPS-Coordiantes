@@ -1,42 +1,49 @@
 ﻿@model Markers_GPS_Coordiantes.Data.MarkersGpscoordinates
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
-    <center><h2 class="text-primary" style="padding-top:100px;"><strong>Add New Marker</strong></h2></center>
-
+    <h2 class="text-primary" style="padding-top:50px;"><strong>Edit</strong></h2>
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MarkersId" />
             <div class="form-group">
                 <label asp-for="SubjectId" class="control-label"></label>
-                <select asp-for="SubjectId" class ="form-control" asp-items="ViewBag.SubjectId"></select>
+                <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.SubjectId"></select>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CenterId" class="control-label"></label>
-                <select asp-for="CenterId" class ="form-control" asp-items="ViewBag.CenterId"></select>
+                <select asp-for="CenterId" class="form-control" asp-items="ViewBag.CenterId"></select>
+                <span asp-validation-for="CenterId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UsersId" class="control-label"></label>
-                <select asp-for="UsersId" class ="form-control" asp-items="ViewBag.UsersId"></select>
+                <select asp-for="UsersId" class="form-control" asp-items="ViewBag.UsersId"></select>
+                <span asp-validation-for="UsersId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RaceId" class="control-label"></label>
-                <select asp-for="RaceId" class ="form-control" asp-items="ViewBag.RaceId"></select>
+                <select asp-for="RaceId" class="form-control" asp-items="ViewBag.RaceId"></select>
+                <span asp-validation-for="RaceId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ExamId" class="control-label"></label>
-                <select asp-for="ExamId" class ="form-control" asp-items="ViewBag.ExamId"></select>
+                <select asp-for="ExamId" class="form-control" asp-items="ViewBag.ExamId"></select>
+                <span asp-validation-for="ExamId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GenderId" class="control-label"></label>
-                <select asp-for="GenderId" class ="form-control" asp-items="ViewBag.GenderId"></select>
+                <select asp-for="GenderId" class="form-control" asp-items="ViewBag.GenderId"></select>
+                <span asp-validation-for="GenderId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PositionId" class="control-label"></label>
-                <select asp-for="PositionId" class ="form-control" asp-items="ViewBag.PositionId"></select>
+                <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionId"></select>
+                <span asp-validation-for="PositionId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CentreNumber" class="control-label"></label>
@@ -93,10 +100,15 @@
                 <input asp-for="Longitude" class="form-control" />
                 <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
-           
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary ">Back to List</a>
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+        
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>

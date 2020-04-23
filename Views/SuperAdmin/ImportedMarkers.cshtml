@@ -1,22 +1,16 @@
 ﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.MarkersGpscoordinates>
 
 @{
-    ViewData["Title"] = "Index";
-
+    ViewData["Title"] = "ImportedMarkers";
 }
-<h2 class="text-primary" style="padding-top:100px;"><strong>Markers</strong></h2>
-<form method="get" asp-action="Index">
-    <p>
-        <input type="search" placeholder="Enter Markers Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <a asp-action="Index">Retrieve all Markers</a>
-    </p>
-</form>
+
+    <h2 class="text-primary" style="padding-top:100px;"><strong>Markers</strong></h2>
+
 <p>
-    <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Marker</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CentreNumber)
@@ -39,7 +33,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.WorkTelephone)
             </th>
-            
             <th>
                 @Html.DisplayNameFor(model => model.HomeTelephone)
             </th>
@@ -55,7 +48,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedByUsersId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Center)
             </th>
@@ -81,8 +76,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CentreNumber)
@@ -105,7 +99,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.WorkTelephone)
             </td>
-           
             <td>
                 @Html.DisplayFor(modelItem => item.HomeTelephone)
             </td>
@@ -120,6 +113,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUsersId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Center.CenterName)
@@ -143,11 +139,11 @@
                 @Html.DisplayFor(modelItem => item.Users.Loginname)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MarkersId"><i class="fa fa-marker fa-lg" title="Edit"></i></a>
-                <a asp-action="Details" asp-route-id="@item.MarkersId" class="text-dark ml-1"><i class="fa fa-info-circle fa-lg" title="Details"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.MarkersId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg" title="Delete"></i></a>
+                <a asp-action="Edit" asp-route-id="@item.MarkersId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MarkersId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MarkersId">Delete</a>
             </td>
         </tr>
-        }
+}
     </tbody>
 </table>
