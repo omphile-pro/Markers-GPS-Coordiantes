@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Markers_GPS_Coordiantes.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
@@ -173,6 +174,13 @@ namespace Markers_GPS_Coordiantes.Controllers
         private bool UsersExists(int id)
         {
             return _context.Users.Any(e => e.UsersId == id);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
         }
     }
 }

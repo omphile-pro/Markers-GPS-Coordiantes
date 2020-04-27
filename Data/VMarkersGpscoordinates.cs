@@ -17,7 +17,7 @@ namespace Markers_GPS_Coordiantes.Data
         [DisplayName(" Marker Name")]
         [Required(ErrorMessage = "Marker FullName Required")]
         public string FullName { get; set; }
-        [Column(TypeName = "nvarchar(255)")]
+
         [DisplayName(" identity number")]
         [Required(ErrorMessage = " identity number Required")]
         public string IdNumber { get; set; }

@@ -22,6 +22,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
             {
                 FullName = x.FullName,
+                IdNumber = x.IdNumber,
                 PhysicalAddress = x.PhysicalAddress,
                 CentreNumber = x.CentreNumber,
                 CenterName = x.CenterName,
@@ -40,6 +41,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
             {
                 FullName = x.FullName,
+                IdNumber = x.IdNumber,
                 PhysicalAddress = x.PhysicalAddress,
                 CentreNumber = x.CentreNumber,
                 CenterName = x.CenterName,
@@ -52,13 +54,14 @@ namespace Markers_GPS_Coordiantes.Controllers
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reports");
 
             ws.Cells["A1"].Value = "FullName";
-            ws.Cells["B1"].Value = "PhysicalAddress";
-            ws.Cells["C1"].Value = "CentreNumber";
-            ws.Cells["D1"].Value = "CenterName";
-            ws.Cells["E1"].Value = "SubjectName";
-            ws.Cells["F1"].Value = "PaperNumber";
-            ws.Cells["G1"].Value = "PositionDescription";
-            ws.Cells["H1"].Value = "Distance";
+            ws.Cells["B1"].Value = "IdNumber";
+            ws.Cells["C1"].Value = "PhysicalAddress";
+            ws.Cells["D1"].Value = "CentreNumber";
+            ws.Cells["E1"].Value = "CenterName";
+            ws.Cells["F1"].Value = "SubjectName";
+            ws.Cells["G1"].Value = "PaperNumber";
+            ws.Cells["H1"].Value = "PositionDescription";
+            ws.Cells["I1"].Value = "Distance";
 
             int rowStart = 2;
             foreach (var item in supList)
@@ -66,13 +69,14 @@ namespace Markers_GPS_Coordiantes.Controllers
                 // ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
 
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.FullName;
-                ws.Cells[string.Format("B{0}", rowStart)].Value = item.PhysicalAddress;
-                ws.Cells[string.Format("C{0}", rowStart)].Value = item.CentreNumber;
-                ws.Cells[string.Format("D{0}", rowStart)].Value = item.CenterName;
-                ws.Cells[string.Format("E{0}", rowStart)].Value = item.SubjectName;
-                ws.Cells[string.Format("F{0}", rowStart)].Value = item.PaperNumber;
-                ws.Cells[string.Format("G{0}", rowStart)].Value = item.PositionDescription;
-                ws.Cells[string.Format("H{0}", rowStart)].Value = item.Distance;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.IdNumber;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.PhysicalAddress;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.CentreNumber;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.CenterName;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.SubjectName;
+                ws.Cells[string.Format("G{0}", rowStart)].Value = item.PaperNumber;
+                ws.Cells[string.Format("H{0}", rowStart)].Value = item.PositionDescription;
+                ws.Cells[string.Format("I{0}", rowStart)].Value = item.Distance;
 
                 rowStart++;
             }

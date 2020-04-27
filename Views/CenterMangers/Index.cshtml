@@ -13,6 +13,9 @@
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.IdNumber)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PhysicalAddress)
             </th>
             <th>
@@ -46,35 +49,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CentreNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CenterName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SubjectName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PaperNumber)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentreNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperNumber)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.PositionDescription)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionDescription)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Distance)+
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)+
+            </td>
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>
