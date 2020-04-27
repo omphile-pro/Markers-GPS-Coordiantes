@@ -14,12 +14,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Markers GPS Coordiantes</title>
-    <link href="~/Images/logo.svg" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/reports.css" />
+
     <link href="~/HomeTheme/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="~/HomeTheme/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="~/HomeTheme/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/HomeTheme/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 
@@ -29,6 +27,13 @@
     <link rel="stylesheet" href="~/css/tableexport.css" />
     <link rel="stylesheet" href="~/css/tableexport.min.css" />
     <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/css/main2.css">
+    <link rel="stylesheet" type="text/css" href="~/css/cards.css">
+    <link rel="stylesheet" type="text/css" href="~/css/reports.css">
 
 
     <script src="Admin/plugins/jquery/jquery.min.js"></script>
@@ -54,89 +59,50 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body >
+<body class="hold-transition sidebar-mini layout-fixed">
     <nav>
         <div class="logo">
-            <img class="logo" src="~/Images/logo.svg"></a>
+            <a href="index.html"><img class="logo" src="~/Images/logo.svg"></a>
+        </div>
+       
+        <div class="header-title ">
+            <p class="blu-title text-center bold" style="
+                float: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            ">@ViewData["Title"]</p>
         </div>
     </nav>
- 
-        <div class="row body-margin-top">
-            <div class="col-2 side-nav-container no-padding">
-                <div class="side-nav-details">
-                    <P class="bolder bigger-font">GDE-ADMIN</P>
-                    <P class="small-text">admin@example.com</P>
-                </div>
-                
-                @if (roleID == 0)
-                {
 
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
-                            <li class="list-item"><a href="~/Login/SignIn/">Sign in</a></li>
-                        </ul>
-                    </div>
-                }
-                else
-                {
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
-                            <li class="list-item"><a href="~/Login/SignOut/"><i class="fas fa-md fa-user "></i> <strong>Sign Out</strong></a></li>
-                        </ul>
-                    </div>
-                }
-                @if (roleID == 3)
-                {
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
+    <div class="row">
 
-                            <li class="list-item"><a href="home.html">Dashboard</a></li>
-                            <li class="list-item"><a href="~/Users/Index/">Accounts</a></li>
-                            <li class="list-item"><a href="~/CenterMangers/Create">Assign Manager</a></li>
-                            <li class="list-item"><a href="~/Centers/Index/">Marking Center</a></li>
-                            <li class="list-item"><a href="~/MarkersReport/Index">Export Data</a></li>
-                        </ul>
-                    </div>
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
-                            <li class="list-item"><a href="~/SuperAdmin/Index/">Markers List</a></li>
-                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
-                            <li class="list-item"><a href="~/MarkersGpscoordinates/import/">import Data</a></li>
-                        </ul>
-                    </div>
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
-                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
-                        </ul>
-                    </div>
-
-                }
-                @if (roleID == 2)
-                {
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
-                            <li class="list-item"><a href="~/MarkersGpscoordinates/Index/">Markers List</a></li>
-                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
-                            <li class="list-item"><a href="~/MarkersGpscoordinates/import/">import Data</a></li>
-                        </ul>
-                    </div>
-                }
-                @if (roleID == 1)
-                {
-                    <div class="side-nav">
-                        <ul class="side-nav-list">
-                            <li class="list-item"><a href="~/CenterMangers/Index/">Marker Data</a></li>
-
-
-                        </ul>
-                    </div>
-                }
+        <!---------------------------------Side Nav-------------------------------------->
+        <div class="col-2 side-nav-container no-padding">
+            <div class="side-nav-details">
+                <P class="bolder bigger-font">GDE-ADMIN</P>
+                <P class="small-text">admin@example.com</P>
             </div>
+            <div class="side-nav">
+                <ul class="side-nav-list">
+                    <li class="list-item"><a  asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+                    <li class="list-item"><a  asp-controller="Users" asp-action="Index">Accounts</a></li>
+                    <li class="list-item"><a  asp-controller="MarkersGpscoordinates" asp-action="Index">Distance Report</a></li>
+                    <li class="list-item"><a  asp-controller="group" asp-action="Index">Access Infomation</a></li>
+                </ul>
+            </div>
+        </div>
 
-        </div>
-        <div class="container-fullwidth">
-            @RenderBody()
-        </div>
+
+        @RenderBody()
+
+    </div>
+
+        @*<div class="container-fullwidth">
+
+
+        </div>*@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

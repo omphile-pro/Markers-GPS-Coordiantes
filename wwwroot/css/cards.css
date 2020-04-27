@@ -1,0 +1,32 @@
+body{
+    font-family: 'Raleway', Helvetica;
+}
+
+.stats-card{
+    color: white;
+    width: 250px;
+    height: 200px;
+    text-align: center;
+    padding: 60px 30px;
+    border-radius: 3px;
+    background-color: #0054A6;
+    -webkit-box-shadow: 4px 3px 5px 0px rgba(153,145,153,1);
+    -moz-box-shadow: 4px 3px 5px 0px rgba(153,145,153,1);
+    box-shadow: 4px 3px 5px 0px rgba(153,145,153,1);
+}
+
+.stats-cards-holder{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5%;
+}
+
+.stats-font{
+    font-weight: 700;
+    font-size: 2.3rem;
+    font-family: 'Raleway', Helvetica;
+}
+
+.light-text{
+    font-weight: 100;
+}
