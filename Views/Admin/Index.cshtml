@@ -1,19 +1,19 @@
 ﻿
 @{
-    ViewData["Title"] = "Stats";
+    ViewData["Title"] = "Dashboard";
 }
 <!---------------------------------Stats----------------------------------------->
 
 <div class="col-10 table-content">
     <div class="stats-cards-holder">
         <div class="stats-card center">
-            <p class="stats-font num">23454</p>
-            <p class="light-text">Markers</p>
+            <p class="stats-font num">@ViewData["NumberofScans"]</p>
+            <p class="light-text">Number of Scans</p>
         </div>
 
         <div class="stats-card">
-            <p class="stats-font num">454</p>
-            <p class="light-text">Admin Accounts</p>
+            <p class="stats-font num">@ViewData["NumberofCars"]</p>
+            <p class="light-text">Number of Cars</p>
         </div>
 
         <div class="stats-card">
