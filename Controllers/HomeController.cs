@@ -35,6 +35,8 @@ namespace Markers_GPS_Coordiantes.Controllers
         public IActionResult Index([Bind]Ad_login ad)
         {
             int res = dbop.LoginCheck(ad);
+
+
             if (res== 1)
             {
                 return View("Dashbord");

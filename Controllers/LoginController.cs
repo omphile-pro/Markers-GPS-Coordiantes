@@ -39,9 +39,12 @@ namespace Markers_GPS_Coordiantes.Controllers
                 {
                     var user = await db.Users.Where(k => k.Loginname == model.Username && k.Password == model.Password).FirstOrDefaultAsync();
 
+
                     if (user != null)
                     {
                         //  if you are here it means the user logged in successfully.
+                        TempData["Username"] = user.Loginname ;
+                        TempData["Email"] = user.EmailAddress;
 
                         //  get the role of the user
                         var users = db.Users.Where(h => h.UsersId == user.UsersId).FirstOrDefault();
@@ -56,6 +59,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                         HttpContext.Session.SetInt32("roleID", users.RoleId);
                         HttpContext.Session.SetInt32("usersID", user.UsersId);
                         HttpContext.Session.SetInt32("centerID", user.CenterId);
+                        HttpContext.Session.SetString("email", Convert.ToString(user.EmailAddress));
                         HttpContext.Session.SetString("usersToken", Convert.ToString(user.UsersToken));
 
 

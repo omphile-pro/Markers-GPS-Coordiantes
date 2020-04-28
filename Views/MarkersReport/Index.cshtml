@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.VMarkersGpscoordinates>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Distance Report";
 }
 
 
@@ -11,73 +11,90 @@
     left: 91%;
     z-index: 1;
 " role="button">Download @*<i class='fas fa-file-download'>*@ </a>
-<div class="col-10">
-    <table class="table">
-        <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhysicalAddress)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CentreNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CenterName)
-                </th>
+    <div class="col-10">
 
-                <th>
-                    @Html.DisplayNameFor(model => model.SubjectName)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.PaperNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PositionDescription)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Distance)
-                </th>
-                <th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <div style="margin-bottom: 2.5%;">
+            <select name="Center" class="edit-input-tag short ">
+                <option value="" disabled selected>Gender</option>
+            </select>
+            <select name="Subject" class="edit-input-tag shorter left">
+                <option value="" disabled selected>Race</option>
+            </select>
+            <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+                <input placeholder="Select date" type="text" id="example" class="form-control">
+                <label for="example">Try me...</label>
+                <i class="fas fa-calendar input-prefix" tabindex=0></i>
+            </div>
+            <script>
+                $('.datepicker').datepicker();
+            </script>
+        </div>
+        <table class="table">
+            <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CentreNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CenterName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubjectName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaperNumber)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhysicalAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CentreNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CenterName)
+                    </th>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PositionDescription)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubjectName)
+                    </th>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Distance)+
-                    </td>
-
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaperNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PositionDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Distance)
+                    </th>
+                    <th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CentreNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaperNumber)
+                        </td>
 
-</div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionDescription)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Distance)+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>

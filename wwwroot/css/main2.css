@@ -10,7 +10,7 @@ body{
 }
 
 .space {
-    margin: 5.7% auto;
+    margin-top: 5.7%;
 }
 
 .blu-title{
@@ -260,7 +260,7 @@ nav{
 .graph {
     width: inherit;
     height: inherit;
-    background-image: url('./Images/graph.svg');
+    background-image: url('../Images/graph.svg');
     background-repeat: no-repeat;
     margin-left: 23%;
 }
