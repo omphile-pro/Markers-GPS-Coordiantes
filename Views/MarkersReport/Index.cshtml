@@ -4,87 +4,80 @@
     ViewData["Title"] = "Index";
 }
 
-<center><h2 class="text-primary" style="padding-top:100px;"><strong>Distance Report</strong></h2></center>
 
+    <a class="btn btn-dark" href="@Url.Action("ExportToExcel","MarkersReport")" style="
+    position: absolute;
+    top: 70%;
+    left: 91%;
+    z-index: 1;
+" role="button">Download @*<i class='fas fa-file-download'>*@ </a>
+<div class="col-10">
+    <table class="table">
+        <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhysicalAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CentreNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterName)
+                </th>
 
+                <th>
+                    @Html.DisplayNameFor(model => model.SubjectName)
+                </th>
 
+                <th>
+                    @Html.DisplayNameFor(model => model.PaperNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PositionDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Distance)
+                </th>
+                <th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentreNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaperNumber)
+                    </td>
 
-<table class="table">
-    <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhysicalAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CentreNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CenterName)
-            </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PositionDescription)
+                    </td>
 
-            <th>
-                @Html.DisplayNameFor(model => model.SubjectName)
-            </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Distance)+
+                    </td>
 
-            <th>
-                @Html.DisplayNameFor(model => model.PaperNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PositionDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Distance)
-            </th>
-            <th>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-            <th>
-
-                <a href="@Url.Action("ExportToExcel","MarkersReport")">Export Excel</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-            @Html.DisplayFor(modelItem => item.IdNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhysicalAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CentreNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CenterName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaperNumber)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.PositionDescription)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Distance)+
-            </td>
-
-        </tr>
-        }
-    </tbody>
-</table>
-<a href="@Url.Action("ExportToExcel","MarkersReport")">Export Excel</a>
+</div>

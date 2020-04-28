@@ -60,7 +60,7 @@
     <link href="/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-    <nav>
+    <nav class="sticky">
         <div class="logo">
             <a href="index.html"><img class="logo" src="~/Images/logo.svg"></a>
         </div>
@@ -76,20 +76,27 @@
         </div>
     </nav>
 
-    <div class="row">
+    <div class="row space">
 
         <!---------------------------------Side Nav-------------------------------------->
-        <div class="col-2 side-nav-container no-padding">
+        @*<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>*@
+        <div id="wrapper" class="col-2 side-nav-container no-padding toggled">
             <div class="side-nav-details">
                 <P class="bolder bigger-font">GDE-ADMIN</P>
                 <P class="small-text">admin@example.com</P>
+                <div id="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </div>
             </div>
             <div class="side-nav">
                 <ul class="side-nav-list">
-                    <li class="list-item"><a  asp-controller="Admin" asp-action="Index">Dashboard</a></li>
-                    <li class="list-item"><a  asp-controller="Users" asp-action="Index">Accounts</a></li>
-                    <li class="list-item"><a  asp-controller="MarkersGpscoordinates" asp-action="Index">Distance Report</a></li>
-                    <li class="list-item"><a  asp-controller="group" asp-action="Index">Access Infomation</a></li>
+                    <li class="list-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+                    <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
+                    <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Distance Report</a></li>
+                    <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Markers Report</a></li>
+                    <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
                 </ul>
             </div>
         </div>
