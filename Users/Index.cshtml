@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Users>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="col-10 table-content"style="padding-top:20px">
+
+    <form method="get" asp-action="Index">
+
+        <p>
+            <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
+            <a asp-action="Index">Retrieve all Users</a>
+
+        </p>
+    </form>
+    <div class="">
+        <table class="table start-hidden no-border-top">
+            <thead class="thead-dark no-border-top">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Loginname)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Firstname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastname)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telephone)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhysicalAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Center)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role)
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Loginname)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Firstname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lastname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Center.CenterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role.RoleDescription)
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.UsersId"><i class="fa fa-marker fa-lg" title="Edit"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.UsersId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg" title="Delete"></i></a> |
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

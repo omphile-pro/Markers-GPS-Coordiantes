@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Markers_GPS_Coordiantes.Data
@@ -21,38 +18,19 @@ namespace Markers_GPS_Coordiantes.Data
         }
 
         public int UsersId { get; set; }
-        [Column(TypeName = "int")]
-        [DisplayName("User Role")]
         public int RoleId { get; set; }
-        [Column(TypeName = "int")]
-        [DisplayName("Center")]
         public int CenterId { get; set; }
         public Guid UsersToken { get; set; }
         public string Loginname { get; set; }
         public string Password { get; set; }
-        [Column(TypeName = "int")]
-        [DisplayName("Gender")]
         public int GenderId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        [Column(TypeName = "varchar(255)")]
-        [DisplayName("Email Address")]
-        [Required(ErrorMessage = "Email Address Required")]
         public string EmailAddress { get; set; }
-        [Column(TypeName = "varchar(255)")]
-        [DisplayName("Mobile Number")]
-        [Required(ErrorMessage = "Mobile Number Address Required")]
         public string MobileNo { get; set; }
-       
         public string Telephone { get; set; }
         public string Displayname { get; set; }
-        [Column(TypeName = "varchar(2000)")]
-        [DisplayName("Postal Address")]
-        [Required(ErrorMessage = "Postal Address Required")]
         public string PostalAddress { get; set; }
-        [Column(TypeName = "varchar(2000)")]
-        [DisplayName("Physical Addresss")]
-        [Required(ErrorMessage = "Postal Address Required")]
         public string PhysicalAddress { get; set; }
         public int? LastModifiedByUsersId { get; set; }
         public DateTime LastModifiedDate { get; set; }

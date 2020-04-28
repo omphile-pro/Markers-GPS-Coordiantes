@@ -159,17 +159,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: MarkersGpscoordinates/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
+           
             if (id == null)
             {
                 return NotFound();

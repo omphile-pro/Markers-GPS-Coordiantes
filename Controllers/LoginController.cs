@@ -140,6 +140,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                                 {
                                     MailMessage msz = new MailMessage();
                                     msz.From = new MailAddress(model.EmailAddress);//Email which you are getting 
+
+                                  
                                     msz.To.Add("gavenomojahi@gmail.com");//Where mail will be sent 
 
                                     SmtpClient smtp = new SmtpClient();

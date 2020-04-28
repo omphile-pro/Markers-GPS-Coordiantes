@@ -6,33 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Markers_GPS_Coordiantes.Data;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class UsersController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
-
         // GET: Users
         public async Task<IActionResult> Index()
         {
             var dbsMarkersContext = _context.Users.Include(u => u.Center).Include(u => u.Gender).Include(u => u.Role);
             return View(await dbsMarkersContext.ToListAsync());
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string markerssearch)
 
-        {
-            ViewData["GetMarkersDetails"] = markerssearch;
-
-            var markerquery = from x in _context.Users.Include(u => u.Center).Include(u => u.Gender).Include(u => u.Role) select x;
-            if (!String.IsNullOrEmpty(markerssearch))
-            {
-                markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
-            }
-            return View(await markerquery.AsNoTracking().ToListAsync());
-        }
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -64,8 +50,8 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UsersId,RoleId,CenterId,UsersToken,Loginname,Password,GenderId,Firstname,Lastname,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
@@ -102,8 +88,8 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UsersId,RoleId,CenterId,UsersToken,Loginname,Password,GenderId,Firstname,Lastname,EmailAddress,MobileNo,Telephone,Displayname,PostalAddress,PhysicalAddress,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Users users)
@@ -174,13 +160,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         private bool UsersExists(int id)
         {
             return _context.Users.Any(e => e.UsersId == id);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult ForgotPassword()
-        {
-            return View();
         }
     }
 }

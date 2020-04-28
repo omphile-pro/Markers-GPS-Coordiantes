@@ -90,7 +90,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 PaperNumber = x.PaperNumber,
                 PositionDescription = x.PositionDescription,
                 Distance = x.Distance,
-                IdNumber = x.IdNumber
+
             }).ToList();
 
             List<VMarkersGpscoordinates> viewList = new List<VMarkersGpscoordinates>();

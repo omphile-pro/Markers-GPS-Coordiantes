@@ -1,25 +1,25 @@
 ﻿@model Markers_GPS_Coordiantes.Data.Users
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
 
-<h4>Users</h4>
+<center><h2 class="text-primary" style="padding-top:100px;"><strong>Edit User</strong></h2></center>
+
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RoleId" class="control-label"></label>
-                <select asp-for="RoleId" class ="form-control" asp-items="ViewBag.RoleId"></select>
-            </div>
+            <input type="hidden" asp-for="UsersId" />
             <div class="form-group">
                 <label asp-for="CenterId" class="control-label"></label>
-                <select asp-for="CenterId" class ="form-control" asp-items="ViewBag.CenterId"></select>
+                <select asp-for="CenterId" class="form-control" asp-items="ViewBag.CenterId"></select>
+                <span asp-validation-for="CenterId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Loginname" class="control-label"></label>
                 <input asp-for="Loginname" class="form-control" />
@@ -32,7 +32,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="GenderId" class="control-label"></label>
-                <select asp-for="GenderId" class ="form-control" asp-items="ViewBag.GenderId"></select>
+                <select asp-for="GenderId" class="form-control" asp-items="ViewBag.GenderId"></select>
+                <span asp-validation-for="GenderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoleId" class="control-label"></label>
+                <select asp-for="RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
+                <span asp-validation-for="RoleId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Firstname" class="control-label"></label>
@@ -80,9 +86,19 @@
                 <span asp-validation-for="LastModifiedByUsersId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="LastModifiedDate" class="control-label"></label>
+                <input asp-for="LastModifiedDate" class="form-control" />
+                <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CreatedByUsersId" class="control-label"></label>
                 <input asp-for="CreatedByUsersId" class="form-control" />
                 <span asp-validation-for="CreatedByUsersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -90,13 +106,10 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

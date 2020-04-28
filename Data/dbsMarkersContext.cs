@@ -54,10 +54,6 @@ namespace Markers_GPS_Coordiantes.Data
             {
                 entity.Property(e => e.CenterId).HasColumnName("CenterID");
 
-                entity.Property(e => e.CenterDescription)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.CenterName)
                     .IsRequired()
                     .HasMaxLength(255)
