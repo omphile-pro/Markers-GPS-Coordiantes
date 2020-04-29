@@ -18,7 +18,19 @@ namespace Markers_GPS_Coordiantes.Controllers
             var dbsMarkersContext = _context.Users.Include(u => u.Center).Include(u => u.Gender).Include(u => u.Role);
             return View(await dbsMarkersContext.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
 
+        {
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.Users.Include(u => u.Center).Include(u => u.Gender).Include(u => u.Role) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+        }
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -9,7 +9,7 @@ namespace Markers_GPS_Coordiantes.Data
         public Guid CenterToken { get; set; }
         public string CenterName { get; set; }
         public string CenterNumber { get; set; }
-        public string CenterDescription { get; set; }
+
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public int LastModifiedByUsersId { get; set; }

@@ -49,7 +49,6 @@
     <None Include="Views\MarkerDashboard\Index.cshtml" />
     <None Include="Views\MarkersGpscoordinates\Create.cshtml" />
     <None Include="Views\MarkersGpscoordinates\Delete.cshtml" />
-    <None Include="Views\MarkersGpscoordinates\Details.cshtml" />
     <None Include="Views\MarkersGpscoordinates\Edit.cshtml" />
     <None Include="Views\MarkersGpscoordinates\Index.cshtml" />
     <None Include="Views\MarkersReport\Index.cshtml" />

@@ -703,9 +703,7 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.ToView("vCenter");
 
-                entity.Property(e => e.CenterDescription)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
+             
 
                 entity.Property(e => e.CenterId)
                     .HasColumnName("CenterID")
