@@ -1,29 +1,27 @@
 ﻿@model Markers_GPS_Coordiantes.Data.CenterManger
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Assign User to Center";
 }
-<center><h2 class="text-primary" style="padding-top:50px;"><strong>Assign Center</strong></h2></center>
-<hr />
-<div class="row justify-content-lg-center">
-    <div class="col-md-6">
+
+
+    <div class="col-10"style="padding-top:20px">
         <form asp-action="Create">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UsersId" class="control-label"></label>
-                <select asp-for="UsersId" class ="form-control" asp-items="ViewBag.UsersId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CenterId" class="control-label"></label>
-                <select asp-for="CenterId" class ="form-control" asp-items="ViewBag.CenterId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Assign" class="btn btn-primary "/>
-                <a asp-action="Index"  class="btn btn-secondary ">Back to List</a>
+            <select asp-for="UsersId" class="edit-input-tag short" asp-items="ViewBag.UsersId">
+                <option value="" disabled selected>Select Center Manager</option>
+            </select>
+            <select asp-for="CenterId" class="edit-input-tag short left" asp-items="ViewBag.CenterId">
+                <option value="" disabled selected>Center</option>
+            </select>
+            <div class="form-group" style="padding-top:20px">
+                <input type="submit" value="Assign" class="btn btn-primary " />
+                
             </div>
         </form>
     </div>
-</div>
+
 
 <div>
   

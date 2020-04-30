@@ -1,49 +1,28 @@
 ﻿@model Markers_GPS_Coordiantes.Data.Center
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Marking Center";
 }
 
-<center><h2 class="text-primary" style="padding-top:100px;"><strong>Add Marking Center</strong></h2></center>
-<hr />
-<div class="row justify-content-center">
-    <div class="col-md-6">
+
+    <div class="col-10"style="padding-top:20px">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CenterName" class="control-label"></label>
-                <input asp-for="CenterName" class="form-control" />
-                <span asp-validation-for="CenterName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CenterNumber" class="control-label"></label>
-                <input asp-for="CenterNumber" class="form-control" />
-                <span asp-validation-for="CenterNumber" class="text-danger"></span>
-            </div>
-          
-            <div class="form-group">
-                <label asp-for="CityId" class="control-label"></label>
-                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Longitude" class="control-label"></label>
-                <input asp-for="Longitude" class="form-control" />
-                <span asp-validation-for="Longitude" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Latitude" class="control-label"></label>
-                <input asp-for="Latitude" class="form-control" />
-                <span asp-validation-for="Latitude" class="text-danger"></span>
-            </div>
-            
-        
-          
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <input class="edit-input-tag short " type="text" asp-for="CenterName" placeholder="Center Name"><br>
+            <input class="edit-input-tag short " type="text" asp-for="CenterNumber" placeholder="Center Number"><br>
+            <select asp-for="CityId" class="edit-input-tag short" asp-items="ViewBag.CityId">
+                <option value="" disabled selected>City</option>
+            </select><br>
+
+            <input class="edit-input-tag short " type="text" asp-for="Longitude" placeholder="Longitude"><br>
+            <input class="edit-input-tag short " type="text" asp-for="Latitude" placeholder="Latitude"><br>
+
+            <div class="form-group"style="padding-top:20px">
+                <input type="submit" value="Save" class="btn btn-primary" />
                 <a asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
-</div>
 
 

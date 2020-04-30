@@ -99,7 +99,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 _context.Add(centerManger);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", centerManger.CenterId);
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", centerManger.UsersId);
