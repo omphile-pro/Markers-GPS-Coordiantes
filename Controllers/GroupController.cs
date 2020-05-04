@@ -8,14 +8,35 @@ using System.Threading.Tasks;
 using Markers_GPS_Coordiantes.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Markers_GPS_Coordiantes.Data;
+using Markers_GPS_Coordiantes.Enumerators;
+using Microsoft.AspNetCore.Http;
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class GroupController : Controller
     {
+        dbsMarkersContext _context = new dbsMarkersContext();
+        private readonly IHttpContextAccessor _sessionAccessor;
+        int roleID = 0;
+
+        public GroupController(IHttpContextAccessor sessionAccessor)
+        {
+            _sessionAccessor = sessionAccessor;
+        }
         public async Task<IActionResult> Index()
         {
-
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
             List<groups> reservationList = new List<groups>();
 
             string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";

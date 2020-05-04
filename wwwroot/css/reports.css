@@ -80,7 +80,6 @@ a{
 }
 
 .list-item:hover, .list-item:active{
-    font-weight: 500;
     background-color: #f4f4f4;
 }
 
