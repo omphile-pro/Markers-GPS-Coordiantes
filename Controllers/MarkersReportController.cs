@@ -19,9 +19,40 @@ using Markers_GPS_Coordiantes.Models;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
+
     public class MarkersReportController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
+        private readonly IHttpContextAccessor _sessionAccessor;
+      
+        public MarkersReportController(IHttpContextAccessor sessionAccessor)
+        {
+            _sessionAccessor = sessionAccessor;
+        }
+        //[HttpGet]
+        //public async Task<IActionResult> Index(string markerssearch)
+        //    //_____________________________________________________________________
+        //{
+        //    //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+        //    roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+        //    if (roleID <= 0)
+        //    {
+        //        return Unauthorized("You are not signed in.");          //  write better message
+        //    }
+        //    if (roleID != (int)RoleIDs.SuperAdmin)
+        //    {
+        //        return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+        //    }
+        //    ViewData["GetMarkersDetails"] = markerssearch;
+
+        //    var markerquery = from x in _context..Include(u => u.CenterName).Include(u => u.).Include(u => u.Role) select x;
+        //    if (!String.IsNullOrEmpty(markerssearch))
+        //    {
+        //        markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
+        //    }
+        //    return View(await markerquery.AsNoTracking().ToListAsync());
+        //}
+        ////------------------------------------------------
 
         public async Task<IActionResult> IndexAsync()
         {
@@ -31,8 +62,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             var toDate = DateTime.Now.ToString("yyyy-MM-dd");
             var toDateTime = DateTime.Now.ToString("HH:mm");
             // toDate+"T"+toDateTime
-
-                List<groups> reservationList = new List<groups>();
+            ViewBag.value = DateTime.Now;
+           
+            List<groups> reservationList = new List<groups>();
             // Get access track data
             string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";
             var values = new Dictionary<string, string>
@@ -83,13 +115,16 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 FullName = x.FullName,
                 IdNumber = x.IdNumber,
+             
                 PhysicalAddress = x.PhysicalAddress,
                 CentreNumber = x.CentreNumber,
                 CenterName = x.CenterName,
                 SubjectName = x.SubjectName,
                 PaperNumber = x.PaperNumber,
                 PositionDescription = x.PositionDescription,
+                CreatedDate = x.CreatedDate,
                 Distance = x.Distance,
+              
 
             }).ToList();
 
@@ -146,6 +181,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 SubjectName = x.SubjectName,
                 PaperNumber = x.PaperNumber,
                 PositionDescription = x.PositionDescription,
+                CreatedDate = x.CreatedDate,
                 Distance = x.Distance
             }).ToList();
             ExcelPackage pck = new ExcelPackage();
@@ -160,7 +196,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             ws.Cells["G1"].Value = "PaperNumber";
             ws.Cells["H1"].Value = "PositionDescription";
             ws.Cells["I1"].Value = "Distance";
-
+            ws.Cells["H1"].Value = "PositionDescription";
             int rowStart = 2;
             foreach (var item in supList)
             {

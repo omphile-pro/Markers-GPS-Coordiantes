@@ -31,7 +31,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         // GET: MarkersGpscoordinates
         public async Task<IActionResult> Index()
-        {            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+        {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
@@ -69,29 +70,8 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users).ToListAsync());
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string markerssearch)
-        {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
-            ViewData["GetMarkersDetails"] = markerssearch;
 
-            var markerquery = from x in _context.MarkersGpscoordinates.Include(u => u.Center).Include(u => u.Gender) select x;
-            if (!String.IsNullOrEmpty(markerssearch))
-            {
-                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch) || x.PersalNumber.Contains(markerssearch));
-            }
-            return View(await markerquery.AsNoTracking().ToListAsync());
-        }
+
         // GET: MarkersGpscoordinates/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -179,7 +159,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: MarkersGpscoordinates/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-           
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -347,8 +337,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                             Cellphone = worksheet.Cells[row, 15].Value.ToString().Trim(),
                             Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
                             Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
-                            UsersId = 5,
-                            ExamId = 4,
+                            UsersId = 3,
+                            ExamId = 1,
                             CreatedByUsersId = 3,
                             CenterId = 3,
                         });

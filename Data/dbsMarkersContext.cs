@@ -703,8 +703,6 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.ToView("vCenter");
 
-             
-
                 entity.Property(e => e.CenterId)
                     .HasColumnName("CenterID")
                     .ValueGeneratedOnAdd();
@@ -799,6 +797,8 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.CentreNumber).HasMaxLength(255);
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Distance)
                     .HasMaxLength(12)

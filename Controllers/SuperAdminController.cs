@@ -247,7 +247,29 @@ namespace SuperAdmin.Controllers
 
             return View(markersGpscoordinates);
         }
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
+        {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+            ViewData["GetMarkersDetails"] = markerssearch;
 
+            var markerquery = from x in _context.MarkersGpscoordinates.Include(u => u.Center).Include(u => u.Gender) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch) || x.PersalNumber.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+        }
         // POST: MarkersGpscoordinates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

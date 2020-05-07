@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <PackageReference Include="Bootstrap.Datepicker" Version="1.8.0.1" />
     <PackageReference Include="ClosedXML" Version="0.94.2" />
     <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
@@ -65,11 +66,6 @@
     <None Include="Views\Subjects\Details.cshtml" />
     <None Include="Views\Subjects\Edit.cshtml" />
     <None Include="Views\Subjects\Index.cshtml" />
-    <None Include="Views\UsersRoles\Create.cshtml" />
-    <None Include="Views\UsersRoles\Delete.cshtml" />
-    <None Include="Views\UsersRoles\Details.cshtml" />
-    <None Include="Views\UsersRoles\Edit.cshtml" />
-    <None Include="Views\UsersRoles\Index.cshtml" />
     <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
     <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
     <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />

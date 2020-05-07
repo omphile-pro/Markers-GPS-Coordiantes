@@ -131,7 +131,7 @@
                             </ul>
                         </li>
                     }
-                    <hr>
+                    <hr>   
                     @if (roleID == 3 || roleID == 2)
                     {
                         <li class="fc-list-heading" data-toggle="collapse" data-target="#Report">
@@ -141,7 +141,7 @@
                                 <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
                             </a>
                             <ul class=" nav side-nav-list collapse" id="Report">
-                                <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
+                                <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Makers List</a></li>
                                 <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
                             </ul>
@@ -150,28 +150,28 @@
 
 
                     @*<li class="list-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
-                    @if (roleID == 3)
-                    {
-                        <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
-                        <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
-                        <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
-                        <li class="list-item"><a asp-controller="Centers" asp-action="Index">Centers</a></li>
-                        <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Import">Import Markers</a></li>
-                        <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
-                        <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
-                    }
+        @if (roleID == 3)
+        {
+            <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
+            <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
+            <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
+            <li class="list-item"><a asp-controller="Centers" asp-action="Index">Centers</a></li>
+            <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Import">Import Markers</a></li>
+            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
+            <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
+        }
 
-                    @if (roleID == 2)
-                    {
-                        <li class="list-item"><a asp-controller="MarkersGpscoordinate" asp-action="Index">Makers List</a></li>
-                        <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
-                    }
+        @if (roleID == 2)
+        {
+            <li class="list-item"><a asp-controller="MarkersGpscoordinate" asp-action="Index">Makers List</a></li>
+            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
+        }
 
-                    @if (roleID == 1)
-                    {
-                        <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
+        @if (roleID == 1)
+        {
+            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
 
-                    }*@
+        }*@
                 </ul>
             </div>
         </div>
