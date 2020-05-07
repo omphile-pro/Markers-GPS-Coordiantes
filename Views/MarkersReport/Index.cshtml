@@ -26,19 +26,20 @@
         <input class="edit-input-tag short " type="date" id="timeOfArrival" name="markerssearch">
         <label for="birthday">To:</label>
         <input class="edit-input-tag short " type="date" id="To" name="markerssearch">*@
+
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">
-
-
-
-
-
     <label for="from">From:</label>
     <input class="edit-input-tag short" id="date" name="from">
     <label for="from">To:</label>
     <input class="edit-input-tag short " id="to" name="from">
+    <label for="from">Subjcet</label>
+
+
+    <input type="text" id="txtName" name="name" />         
 
 
     <script>
+
         $('#date').on('change', function () {
             var dateToday = $("#date").val();
             var $j = jQuery.noConflict();
@@ -53,9 +54,6 @@
                 }
             });
         });
-
-
-
         var dates = $("#date,#to").datepicker({
             defaultDate: "+1w",
             numberOfMonths: 1

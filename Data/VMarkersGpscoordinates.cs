@@ -28,6 +28,7 @@ namespace Markers_GPS_Coordiantes.Data
         public int PositionId { get; set; }
         public string PaperNumber { get; set; }
         public string SubjectName { get; set; }
+     
         public string PositionDescription { get; set; }
         public DateTime CreatedDate { get; set; }
     }
