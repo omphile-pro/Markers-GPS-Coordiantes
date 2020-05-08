@@ -15,7 +15,7 @@ namespace Markers_GPS_Coordiantes.Data
         public string CenterName { get; set; }
         public Guid? CenterToken { get; set; }
         public string CenterNumber { get; set; }
-        public string CenterDescription { get; set; }
+   
         public decimal? CenterLongitude { get; set; }
         public decimal? CenterLatitude { get; set; }
         public int? CityId { get; set; }

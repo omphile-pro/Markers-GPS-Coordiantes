@@ -16,132 +16,123 @@
 
 <div class="col-10" style="padding-top:20px">
 
-    @*<select asp-items="ViewBag.SubjectName">
-            <option value="" disabled selected>Center</option>
-        </select>
+    <form method="post">
+        <label for="from">From:</label>
+        <input class="edit-input-tag shorter" id="date" name="from">
+        <label for="from">To:</label>
+        <input class="edit-input-tag shorter " id="to" name="to">
 
-        <label for="birthday">From:</label>
-        <input class="edit-input-tag short " type="date" id="timeOfArrival" name="markerssearch">
-        <label for="birthday">To:</label>
-        <input class="edit-input-tag short " type="date" id="To" name="markerssearch">*@
+        <label for="from" style="padding-bottom:20px">Subject:</label>
+        @*<select type="search" class="edit-input-tag shorter " placeholder="Enter Markers Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />*@
 
-
-
-
-
-    <label for="from">From:</label>
-    <input class="edit-input-tag short" id="date" name="from">
-    <label for="from">To:</label>
-    <input class="edit-input-tag short " id="to" name="from">
-
-
-
-    <script>
-        $('#date').on('change', function () {
-            var $j = jQuery.noConflict();
-            var dateToday = $j("#date").datepicker('getDate')
-            var dateToday2 = new Date();
-            console.log(dateToday);
-            console.log(dateToday2);
-            $j('#to').datepicker('destroy');
-            var dates = $j("#to").datepicker({
-                defaultDate: "+1w",
-                numberOfMonths: 1,
-                minDate: dateToday,
-                onSelect: function (selectedDate) {
-                    var option = this.id == "date" ? "minDate" : "maxDate",
-                        date = $j.datepicker.parseDate(selectedDate);
-                    dates.not(this).datepicker("option", option, date);
-                }
-            });
-            //$('#date').datepicker('destroy');
-
-
-        });
-
-
-        var $j = jQuery.noConflict();
-        var dates = $j("#date").datepicker({
-            defaultDate: "+1w",
-            numberOfMonths: 1
-        });
-
-
-    </script>
-
-
-
-
-    <table class="table">
-        <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhysicalAddress)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CentreNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CenterName)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.SubjectName)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.PaperNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PositionDescription)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Distance)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+        <select class="edit-input-tag shorter" asp-items="ViewBag.SubjectName">
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CentreNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CenterName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubjectName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaperNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PositionDescription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Distance)+
-                    </td>
-
-                </tr>
+                <option>@Html.DisplayFor(modelItem => item.SubjectName)</option>
             }
-        </tbody>
-    </table>
+        </select>
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index">Retrieve all Markers</a>
 
+        <script>
+            $('#date').on('change', function () {
+                var $j = jQuery.noConflict();
+                var dateToday = $j("#date").datepicker('getDate')
+                var dateToday2 = new Date();
+                console.log(dateToday);
+                console.log(dateToday2);
+                $j('#to').datepicker('destroy');
+                var dates = $j("#to").datepicker({
+                    defaultDate: "+1w",
+                    numberOfMonths: 1,
+                    minDate: dateToday,
+                    maxDate: dateToday2,
+                    onSelect: function (selectedDate) {
+                        var option = this.id == "date" ? "minDate" : "maxDate",
+                            date = $j.datepicker.parseDate(selectedDate);
+                        dates.not(this).datepicker("option", option, date);
+                    }
+                });
+                //$('#dat').datepicker('destroy');
+
+            });
+            var $j = jQuery.noConflict();
+            var dates = $j("#date").datepicker({
+                defaultDate: "+1w",
+                numberOfMonths: 1
+            });
+
+        </script>
+        <table class="table">
+            <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhysicalAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CentreNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CenterName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubjectName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaperNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PositionDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Distance)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CentreNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaperNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Distance)+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
 </div>

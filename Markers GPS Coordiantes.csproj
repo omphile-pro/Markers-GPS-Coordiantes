@@ -36,6 +36,10 @@
 
   <ItemGroup>
     <None Include="Views\AdminDashboad\Index.cshtml" />
+    <None Include="Views\CenterMangers\Create.cshtml" />
+    <None Include="Views\CenterMangers\Delete.cshtml" />
+    <None Include="Views\CenterMangers\Edit.cshtml" />
+    <None Include="Views\CenterMangers\Index.cshtml" />
     <None Include="Views\Exams\Create.cshtml" />
     <None Include="Views\Exams\Delete.cshtml" />
     <None Include="Views\Exams\Details.cshtml" />

@@ -30,7 +30,7 @@ namespace Markers_GPS_Coordiantes.Data
         public int? CenterId { get; set; }
         public string CenterName { get; set; }
         public string CenterNumber { get; set; }
-        public string CenterDescription { get; set; }
+  
         public string CityDescription { get; set; }
         public int? CityId { get; set; }
         public decimal? CenterLongitude { get; set; }

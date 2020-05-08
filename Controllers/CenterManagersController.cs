@@ -14,14 +14,24 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class CenterMangersController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
-        private readonly IHttpContextAccessor _sessionAccessor;
-        int roleID = 0;
+        private readonly IHttpContextAccessor httpContextAccessor;
         public int CenterID = 0;
         public int UsersID = 0;
 
-        public CenterMangersController (IHttpContextAccessor sessionAccessor)
+        public CenterMangersController(IHttpContextAccessor _httpContextAccessor) 
         {
-            _sessionAccessor = sessionAccessor;
+            httpContextAccessor = _httpContextAccessor;
+        }
+        public IEnumerable<VMarkersGpscoordinates> results { get; set; }
+
+        public void OnGet()
+        {
+            results = _context.VMarkersGpscoordinates.ToList();
+        }
+        public void OnPost(DateTime from, DateTime To)
+        {
+            results = (from x in _context.VMarkersGpscoordinates where (x.CreatedDate <= @from) && (x.CreatedDate > To) select x).ToList();
+
         }
 
 
@@ -30,61 +40,40 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
+            int RoleID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("roleID"));
 
-            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+
             //  filter by role id
             if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.SuperAdmin)) && (!(RoleID == (int)RoleIDs.Administrator)))
             {
                 return null;
             }
 
-            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
-            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+            CenterID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(httpContextAccessor.HttpContext.Session.GetInt32("usersID"));
 
             //  make sure the center really exists
             var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
 
-            if (center == null)
+            if (center == null) 
             {
                 return NotFound("The center does not exist");
             }
 
             //  check if the user is registered in the CenterManager-Center join table
-            var MarkersGpscoordinates = await _context.CenterManger.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
-            if (MarkersGpscoordinates == null)
+            var centerManager = await _context.CenterManger.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+
+            if (centerManager == null) 
             {
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
-            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users).ToListAsync());
+
+            return View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
         }
-
-
 
         // GET: CenterMangers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -105,17 +94,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: CenterMangers/Create
         public IActionResult Create()
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName");
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname");
             return View();
@@ -132,7 +110,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 _context.Add(centerManger);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(Index));
             }
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", centerManger.CenterId);
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Loginname", centerManger.UsersId);
@@ -142,17 +120,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: CenterMangers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -208,17 +175,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: CenterMangers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();

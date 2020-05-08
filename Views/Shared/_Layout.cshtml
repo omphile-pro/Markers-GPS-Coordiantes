@@ -16,14 +16,13 @@
     <title>@ViewData["Title"] Markers GPS Coordiantes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
-
-
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
-
     <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
- 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
 
@@ -126,8 +125,8 @@
                             </ul>
                         </li>
                     }
-                    <hr>   
-                    @if (roleID == 3 || roleID == 2)
+                    <hr>
+                    @if (roleID == 3 || roleID == 2 ||roleID == 1)
                     {
                         <li class="fc-list-heading" data-toggle="collapse" data-target="#Report">
                             <a style="padding-left: 5.2%;font-size: x-large;">
@@ -139,11 +138,12 @@
                                 <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Makers List</a></li>
                                 <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
+                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
                             </ul>
                         </li>
                     }
 
-
+                  
                     @*<li class="list-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         @if (roleID == 3)
         {

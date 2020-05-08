@@ -23,39 +23,21 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class MarkersReportController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
-        private readonly IHttpContextAccessor _sessionAccessor;
-      
-        public MarkersReportController(IHttpContextAccessor sessionAccessor)
+        public IEnumerable<VMarkersGpscoordinates> results { get; set; }
+
+        public void OnGet()
         {
-            _sessionAccessor = sessionAccessor;
+            results = _context.VMarkersGpscoordinates.ToList();
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Index(string markerssearch)
-        //    //_____________________________________________________________________
-        //{
-        //    //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-        //    roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-        //    if (roleID <= 0)
-        //    {
-        //        return Unauthorized("You are not signed in.");          //  write better message
-        //    }
-        //    if (roleID != (int)RoleIDs.SuperAdmin)
-        //    {
-        //        return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-        //    }
-        //    ViewData["GetMarkersDetails"] = markerssearch;
-
-        //    var markerquery = from x in _context..Include(u => u.CenterName).Include(u => u.).Include(u => u.Role) select x;
-        //    if (!String.IsNullOrEmpty(markerssearch))
-        //    {
-        //        markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
-        //    }
-        //    return View(await markerquery.AsNoTracking().ToListAsync());
-        //}
-        ////------------------------------------------------
-
-        public async Task<IActionResult> IndexAsync()
+        public void OnPost( DateTime from, DateTime To)
         {
+            results = (from x in _context.VMarkersGpscoordinates where (x.CreatedDate <= @from) && (x.CreatedDate > To) select x).ToList();
+
+        }
+
+    public async Task<IActionResult> IndexAsync()
+        {
+
             //Get Data API
             //Get current date and time
             var fromDate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -166,6 +148,25 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             
         }
+
+        //[HttpGet]
+
+        //public async Task<IActionResult> Index(string markerssearch)
+
+        //{
+
+
+        //    ViewData["GetMarkersDetails"] = markerssearch;
+
+        //    var markerquery = from x in _context.VMarkersGpscoordinates.Include(u => u.SubjectName).Include(u => u.Distance).Include(u => u.FullName) select x;
+        //    if (!String.IsNullOrEmpty(markerssearch))
+        //    {
+        //        markerquery = markerquery.Where(x => x.SubjectName.Contains(markerssearch));
+        //    }
+        //    return View(await markerquery.AsNoTracking().ToListAsync());
+        //}
+
+
 
         public async Task<IActionResult> ExportToExcel()
         {

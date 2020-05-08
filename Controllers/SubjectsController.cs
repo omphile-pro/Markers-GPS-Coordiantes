@@ -17,6 +17,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: Subjects
         public async Task<IActionResult> Index()
         {
+            ViewData["Subject"] = new SelectList(_context.Subject.ToList(), "SubjectID", "SubjectName", 3);
             return View(await _context.Subject.ToListAsync());
         }
 
