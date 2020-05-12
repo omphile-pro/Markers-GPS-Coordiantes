@@ -16,7 +16,6 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class MarkersGpscoordinatesController : Controller
     {
 
-
         dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
@@ -38,7 +37,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin && roleID != (int)RoleIDs.CenterManager)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
@@ -337,8 +336,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                             Cellphone = worksheet.Cells[row, 15].Value.ToString().Trim(),
                             Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
                             Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
-                            UsersId = 3,
-                            ExamId = 1,
+                            UsersId = 5,
+                            ExamId = 4,
                             CreatedByUsersId = 3,
                             CenterId = 3,
                         });
@@ -348,7 +347,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     {
 
                         _context.MarkersGpscoordinates.AddRange(newMarkers);
-                        //await _context.SaveChangesAsync();
+                        await _context.SaveChangesAsync();
                     }
 
                     return View("ImportedMarkers", newMarkers);
@@ -361,6 +360,10 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             return Ok("Finished");
         }
+
+
+
+
         private bool MarkersGpscoordinatesExists(int id)
         {
             return _context.MarkersGpscoordinates.Any(e => e.MarkersId == id);

@@ -121,13 +121,38 @@
                                 <li class="list-item"><a asp-controller="Centers" asp-action="Index">Centers</a></li>
                                 <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Import">Import Markers</a></li>
                                 <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
+                            </ul>
+                        </li>
+                        <hr>
+
+                        <li class="fc-list-heading" data-toggle="collapse" data-target="#Report">
+                            <a style="padding-left: 5.2%;font-size: x-large;">
+                                <span class="fas fa-folder"></span>
+                                <span>Reports </span>
+                                <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
+                            </a>
+                            <ul class=" nav side-nav-list collapse" id="Report">
+                               
+                                <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
+                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
                             </ul>
                         </li>
                     }
-                    <hr>
-                    @if (roleID == 3 || roleID == 2 ||roleID == 1)
+                    @if (roleID == 2)
                     {
+                        <li class="fc-list-heading " data-toggle="collapse" data-target="#Admin">
+                            <a style="padding-left: 5.2%;font-size: x-large;">
+                                <span class="fas fa-user-cog"></span>
+                                <span> Administrator </span>
+                                <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
+                            </a>
+
+                            <ul class=" nav side-nav-list" id="Admin">
+                                <li class="list-item"><a asp-controller="Accounts" asp-action="Index">Accounts</a></li>
+                            </ul>
+                        </li>
+                        <hr>
                         <li class="fc-list-heading" data-toggle="collapse" data-target="#Report">
                             <a style="padding-left: 5.2%;font-size: x-large;">
                                 <span class="fas fa-folder"></span>
@@ -142,8 +167,22 @@
                             </ul>
                         </li>
                     }
+                    @if (roleID == 1)
+                    {
+                        <li class="fc-list-heading" data-toggle="collapse" data-target="#Report">
+                            <a style="padding-left: 5.2%;font-size: x-large;">
+                                <span class="fas fa-folder"></span>
+                                <span>Reports </span>
+                                <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
+                            </a>
+                            <ul class=" nav side-nav-list collapse" id="Report">
+                                <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Makers List</a></li>
+                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Distance Report</a></li>
+                                <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
+                            </ul>
+                        </li>
+                    }
 
-                  
                     @*<li class="list-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         @if (roleID == 3)
         {

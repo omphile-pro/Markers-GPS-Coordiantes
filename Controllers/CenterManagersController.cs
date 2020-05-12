@@ -22,18 +22,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         {
             httpContextAccessor = _httpContextAccessor;
         }
-        public IEnumerable<VMarkersGpscoordinates> results { get; set; }
-
-        public void OnGet()
-        {
-            results = _context.VMarkersGpscoordinates.ToList();
-        }
-        public void OnPost(DateTime from, DateTime To)
-        {
-            results = (from x in _context.VMarkersGpscoordinates where (x.CreatedDate <= @from) && (x.CreatedDate > To) select x).ToList();
-
-        }
-
+        
 
         // GET: CenterMangers
 

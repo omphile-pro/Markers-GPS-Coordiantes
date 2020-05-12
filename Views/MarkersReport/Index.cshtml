@@ -15,15 +15,16 @@
 " role="button">Download @*<i class='fas fa-file-download'>*@ </a>
 
 <div class="col-10" style="padding-top:20px">
+    <form method="get" asp-action="Index">
 
-    <form method="post">
         <label for="from">From:</label>
-        <input class="edit-input-tag shorter" id="date" name="from">
+        <input class="edit-input-tag shorter" id="date" name="markerssearch">
         <label for="from">To:</label>
         <input class="edit-input-tag shorter " id="to" name="to">
 
         <label for="from" style="padding-bottom:20px">Subject:</label>
-        @*<select type="search" class="edit-input-tag shorter " placeholder="Enter Markers Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />*@
+
+
 
         <select class="edit-input-tag shorter" asp-items="ViewBag.SubjectName">
             @foreach (var item in Model)
@@ -31,8 +32,13 @@
                 <option>@Html.DisplayFor(modelItem => item.SubjectName)</option>
             }
         </select>
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <a asp-action="Index">Retrieve all Markers</a>
+
+        <p>
+
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="Index">Retrieve all Users</a>
+
+        </p>
 
         <script>
             $('#date').on('change', function () {
@@ -61,7 +67,6 @@
                 defaultDate: "+1w",
                 numberOfMonths: 1
             });
-
         </script>
         <table class="table">
             <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
@@ -132,7 +137,17 @@
 
                     </tr>
                 }
+
             </tbody>
         </table>
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+                 window.onload = function() {
+                 alert("@ViewBag.Message");
+             };
+
+            </script>
+        }
     </form>
 </div>

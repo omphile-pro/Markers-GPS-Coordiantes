@@ -1,42 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Markers_GPS_Coordiantes.Data;
+﻿using Markers_GPS_Coordiantes.Data;
+using Markers_GPS_Coordiantes.Models;
 using Microsoft.AspNetCore.Http;
-using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using OfficeOpenXml;
-using RestSharp;
-using Markers_GPS_Coordiantes.Enumerators;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
-using Markers_GPS_Coordiantes.Models;
+using System.Threading.Tasks;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
 
     public class MarkersReportController : Controller
     {
+        public static readonly System.Data.SqlTypes.SqlDateTime MinValue;
         dbsMarkersContext _context = new dbsMarkersContext();
-        public IEnumerable<VMarkersGpscoordinates> results { get; set; }
-
-        public void OnGet()
+        private readonly IHttpContextAccessor _sessionAccessor;
+        int roleID = 0;
+        public MarkersReportController(IHttpContextAccessor sessionAccessor)
         {
-            results = _context.VMarkersGpscoordinates.ToList();
+            _sessionAccessor = sessionAccessor;
         }
-        public void OnPost( DateTime from, DateTime To)
-        {
-            results = (from x in _context.VMarkersGpscoordinates where (x.CreatedDate <= @from) && (x.CreatedDate > To) select x).ToList();
+        
+        public IEnumerable<VMarkersGpscoordinates> markerquery { get; set; }
 
-        }
 
-    public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string markerssearch, string to)
         {
+            //Retrive Date from to__
+            ViewData["GetMarkersDetails"] = markerssearch;
+            var markerquery = _context.VMarkersGpscoordinates.ToList();
+            ViewBag.Message = String.Format("Hello you have seleted makers records for the following dates ", markerssearch + "random" +  to);
 
             //Get Data API
             //Get current date and time
@@ -45,7 +44,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             var toDateTime = DateTime.Now.ToString("HH:mm");
             // toDate+"T"+toDateTime
             ViewBag.value = DateTime.Now;
-           
+
             List<groups> reservationList = new List<groups>();
             // Get access track data
             string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";
@@ -72,7 +71,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     string outputJson = await responseString;
 
                     Debug.WriteLine(outputJson);
-                     reservationList = JsonConvert.DeserializeObject<List<groups>>(outputJson);
+                    reservationList = JsonConvert.DeserializeObject<List<groups>>(outputJson);
                     int numberOfScans = reservationList.Count();
 
                     int numberOfCars = 0;
@@ -97,7 +96,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 FullName = x.FullName,
                 IdNumber = x.IdNumber,
-             
+
                 PhysicalAddress = x.PhysicalAddress,
                 CentreNumber = x.CentreNumber,
                 CenterName = x.CenterName,
@@ -106,7 +105,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 PositionDescription = x.PositionDescription,
                 CreatedDate = x.CreatedDate,
                 Distance = x.Distance,
-              
+
 
             }).ToList();
 
@@ -115,17 +114,17 @@ namespace Markers_GPS_Coordiantes.Controllers
             for (int i = 0; i < supList.Count; i++)
             { // Loop through List with for
                 //Debug.WriteLine(supList[i].IdNumber);
-                for(int j = 0;j < reservationList.Count; j++)
+                for (int j = 0; j < reservationList.Count; j++)
                 {
                     //if (supList[i].IdNumber.Any(x => reservationList[j].idNumber.Any(y => y == x)))
                     //{
                     //    Debug.WriteLine(y"There are equal elements");
                     //}
 
-                    if(supList[i].IdNumber == reservationList[j].idNumber)
+                    if (supList[i].IdNumber == reservationList[j].idNumber)
                     {
                         Debug.WriteLine(supList[i].IdNumber + "is equal to " + reservationList[j].idNumber);
-                        viewList.Add(new VMarkersGpscoordinates 
+                        viewList.Add(new VMarkersGpscoordinates
                         {
                             FullName = supList[i].FullName,
                             PhysicalAddress = supList[i].PhysicalAddress,
@@ -142,31 +141,32 @@ namespace Markers_GPS_Coordiantes.Controllers
                     }
                 }
 
-               
+
             }
             return View(viewList);
 
-            
+
+        }
+       
+
+        [HttpGet]
+
+        public async Task<IActionResult> Index(string markerssearch , string to)
+
+        {
+            //Retrive Date from to__
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = _context.VMarkersGpscoordinates.ToList();
+            Debug.WriteLine(markerssearch + to);
+            ViewBag.Message = String.Format("Hello you have seleted makers records for the following dates{0}.", markerssearch + to);
+
+            return View(markerquery);
         }
 
-        //[HttpGet]
-
-        //public async Task<IActionResult> Index(string markerssearch)
-
-        //{
 
 
-        //    ViewData["GetMarkersDetails"] = markerssearch;
-
-        //    var markerquery = from x in _context.VMarkersGpscoordinates.Include(u => u.SubjectName).Include(u => u.Distance).Include(u => u.FullName) select x;
-        //    if (!String.IsNullOrEmpty(markerssearch))
-        //    {
-        //        markerquery = markerquery.Where(x => x.SubjectName.Contains(markerssearch));
-        //    }
-        //    return View(await markerquery.AsNoTracking().ToListAsync());
-        //}
-
-
+        
 
         public async Task<IActionResult> ExportToExcel()
         {
@@ -223,11 +223,12 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
             return File(result, "application/vnd.ms-excel", now + ".xls");
-        } public async Task<IActionResult> UsersReport()
-            {
+        }
+        public async Task<IActionResult> UsersReport()
+        {
             var dbsMarkersContext = _context.VusersReport.OrderBy(g => g.CenterName);
             return View(await dbsMarkersContext.ToListAsync());
         }
 
-        }
     }
+}
