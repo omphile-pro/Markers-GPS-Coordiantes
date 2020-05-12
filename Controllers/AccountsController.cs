@@ -27,47 +27,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             _sessionAccessor = sessionAccessor;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-
-        //    //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-        //    roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-        //    if (roleID <= 0)
-        //    {
-        //        return Unauthorized("You are not signed in.");          //  write better message
-        //    }
-        //    if (roleID != (int)RoleIDs.Administrator)
-        //    {
-        //        return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-        //    }
-        //    //  END OF SECURITY CHECK
-
-        //    int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-        //    //  filter by role id
-        //    if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.SuperAdmin)) && (!(RoleID == (int)RoleIDs.Administrator)))
-        //    {
-        //        return null;
-        //    }
-
-        //    CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
-        //    UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
-
-        //    //  make sure the center really exists
-        //    var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
-
-        //    if (center == null)
-        //    {
-        //        return NotFound("The center does not exist");
-        //    }
-
-        //    //  check if the user is registered in the CenterManager-Center join table
-        //    var Accounts = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
-        //    if (Accounts == null)
-        //    {
-        //        return NotFound("You are not configured as center manager, please consult your system administrator.");
-        //    }
-        //    return View(await _context.Users.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.Loginname).ToListAsync());
-        //}
+        
 
         [HttpGet]
         public async Task<IActionResult> Index(string markerssearch)
@@ -86,7 +46,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             //  END OF SECURITY CHECK
             int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             //  filter by role id
-            if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.SuperAdmin)) && (!(RoleID == (int)RoleIDs.Administrator)))
+            if  (!(RoleID == (int)RoleIDs.Administrator))
             {
                 return null;
             }
@@ -106,7 +66,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             var Accounts = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
             if (Accounts == null)
             {
-                return NotFound("You are not configured as center manager, please consult your system administrator.");
+                return RedirectToAction("Index", "Admin");
             }
            
             ViewData["GetMarkersDetails"] = markerssearch;

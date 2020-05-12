@@ -118,8 +118,8 @@
                             <ul class=" nav side-nav-list" id="Admin">
                                 <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
                                 <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
-                                <li class="list-item"><a asp-controller="Centers" asp-action="Index">Centers</a></li>
-                                <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Import">Import Markers</a></li>
+                                <li class="list-item"><a asp-controller="Centers" asp-action="Index">Marking Centers</a></li>
+                             
                                 <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
                             </ul>
                         </li>
@@ -135,7 +135,7 @@
                                
                                 <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
-                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
+                              
                             </ul>
                         </li>
                     }
@@ -150,6 +150,7 @@
 
                             <ul class=" nav side-nav-list" id="Admin">
                                 <li class="list-item"><a asp-controller="Accounts" asp-action="Index">Accounts</a></li>
+                                <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Makers List</a></li>
                             </ul>
                         </li>
                         <hr>
@@ -160,10 +161,10 @@
                                 <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
                             </a>
                             <ul class=" nav side-nav-list collapse" id="Report">
-                                <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Makers List</a></li>
+                                
                                 <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
-                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
+                                
                             </ul>
                         </li>
                     }
@@ -176,8 +177,8 @@
                                 <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
                             </a>
                             <ul class=" nav side-nav-list collapse" id="Report">
-                                <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Index">Makers List</a></li>
-                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Distance Report</a></li>
+                                <li class="list-item"><a asp-controller="MarkersGpscoordinates" asp-action="Markers">Makers List</a></li>
+                                <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
                             </ul>
                         </li>

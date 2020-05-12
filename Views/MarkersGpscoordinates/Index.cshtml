@@ -15,6 +15,10 @@
         </form>
         <p>
             <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Marker</a>
+            <a asp-action="Import" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Import</a>
+            <a class="btn btn-dark" href="@Url.Action("ExportToExcel","MarkersGpscoordinates")" style="
+   
+" role="button">Download @*<i class='fas fa-file-download'>*@ </a>
         </p>
         <table class="table">
             <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">

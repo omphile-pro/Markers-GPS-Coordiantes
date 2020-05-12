@@ -264,10 +264,10 @@ namespace Markers_GPS_Coordiantes.Controllers
                         newMarkers.Add(new Center()
                         {
                             CenterName = worksheet.Cells[row, 1].Value.ToString().Trim(),
-                            CenterNumber = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                            CenterNumber = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                            Longitude = Convert.ToDecimal(worksheet.Cells[row, 3].Value.ToString().Trim()),
+                            Latitude = Convert.ToDecimal(worksheet.Cells[row, 4].Value.ToString().Trim()),
                             CityId = 1,
-                            Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
-                            Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
                             CreatedByUsersId = 5,
                         });
                     }
@@ -276,7 +276,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     {
 
                         _context.Center.AddRange(newMarkers);
-                        //await _context.SaveChangesAsync();
+                        await _context.SaveChangesAsync();
                     }
 
                     return View("ImportedMarkers", newMarkers);

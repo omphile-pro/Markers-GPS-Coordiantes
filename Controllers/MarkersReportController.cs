@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using System;
+using Markers_GPS_Coordiantes.Enumerators;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace Markers_GPS_Coordiantes.Controllers
         dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
+        public int CenterID = 0;
+        public int UsersID = 0;
+
         public MarkersReportController(IHttpContextAccessor sessionAccessor)
         {
             _sessionAccessor = sessionAccessor;
@@ -29,11 +33,49 @@ namespace Markers_GPS_Coordiantes.Controllers
         
         public IEnumerable<VMarkersGpscoordinates> markerquery { get; set; }
 
-
         public async Task<IActionResult> IndexAsync(string markerssearch, string to)
         {
-            //Retrive Date from to__
-            ViewData["GetMarkersDetails"] = markerssearch;
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.CenterManager)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //  filter by role id
+            if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.Administrator)))
+            {
+                return null;
+            }
+
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            //  make sure the center really exists
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+        //    return View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
+        //}
+
+        //Retrive Date from to__
+        ViewData["GetMarkersDetails"] = markerssearch;
             var markerquery = _context.VMarkersGpscoordinates.ToList();
             ViewBag.Message = String.Format("Hello you have seleted makers records for the following dates ", markerssearch + "random" +  to);
 
@@ -94,6 +136,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
             {
+
                 FullName = x.FullName,
                 IdNumber = x.IdNumber,
 
@@ -147,26 +190,6 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
         }
-       
-
-        [HttpGet]
-
-        public async Task<IActionResult> Index(string markerssearch , string to)
-
-        {
-            //Retrive Date from to__
-            ViewData["GetMarkersDetails"] = markerssearch;
-
-            var markerquery = _context.VMarkersGpscoordinates.ToList();
-            Debug.WriteLine(markerssearch + to);
-            ViewBag.Message = String.Format("Hello you have seleted makers records for the following dates{0}.", markerssearch + to);
-
-            return View(markerquery);
-        }
-
-
-
-        
 
         public async Task<IActionResult> ExportToExcel()
         {
