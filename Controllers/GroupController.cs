@@ -33,7 +33,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.SuperAdmin && roleID != (int)RoleIDs.CenterManager)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }

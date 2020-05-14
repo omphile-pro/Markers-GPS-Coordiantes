@@ -3,22 +3,8 @@
 @{
     ViewData["Title"] = "Marking Centers";
 }
+
 <div class="col-10 table-content" style="padding-top:20px">
-   
-        <form method="get" asp-action="Index">
-            <p>
-                <input type="search" placeholder="Enter Markers Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
-                <input type="submit" value="Search" class="btn btn-primary" />
-                <a asp-action="Index">Retrieve all Marking Centers</a>
-            </p>
-        </form>
-        <p>
-            <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Center</a>
-            <a asp-action="Import" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Import</a>
-            <a class="btn btn-dark" href="@Url.Action("ExportToExcel","Centers")" style="
-   
-" role="button">Download @*<i class='fas fa-file-download'>*@ </a>
-        </p>
 
     <table class="table">
         <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
@@ -48,8 +34,6 @@
                 </th>
                 <th>
 
-                
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -88,4 +72,4 @@
             }
         </tbody>
     </table>
-    </div>
+</div>

@@ -12,17 +12,14 @@ body{
     top: 0;
     z-index: 10;
 }
-
 .space {
     margin: 5.7% auto;
 }
-
 .blu-title{
     color: #0054A6; 
     font-family: 'Raleway', Helvetica;
     font-weight: 600;
 }
-
 .white{
     color: #fff !important;
 }
@@ -32,7 +29,6 @@ body{
     color: #686868;
     font-weight: 300;
 }
-
 .title{
     color:#fff;
     font-weight: 600;
@@ -49,12 +45,10 @@ body{
     font-weight: 100;
     border: 2px solid #0054A6;
 }
-
 .sign-in-form{
     padding: 3% 2%;
     margin: auto !important;
 }
-
 .submit{
     background-color: #0054A6;
     width: 120px;
@@ -67,15 +61,12 @@ body{
     cursor: pointer;
     font-size: 0.8rem;
 }
-
 .margin-top{
     margin-top: 5% !important;
 }
-
 .title-margin-top{
     margin-top: 5% !important;
 }
-
 .header-text{
     margin-top: 8%;
     margin-left: 5%;

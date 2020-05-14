@@ -13,17 +13,21 @@ using OfficeOpenXml;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
-    public class UsersController : Controller
+   
+    public class AccountsController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
         public int CenterID = 0;
         public int UsersID = 0;
-        public UsersController(IHttpContextAccessor sessionAccessor)
+
+        public AccountsController (IHttpContextAccessor sessionAccessor)
         {
             _sessionAccessor = sessionAccessor;
         }
+
+        
 
         [HttpGet]
         public async Task<IActionResult> Index(string markerssearch)
@@ -35,11 +39,35 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //  filter by role id
+            if  (!(RoleID == (int)RoleIDs.Administrator))
+            {
+                return null;
+            }
+
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            //  make sure the center really exists
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var Accounts = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (Accounts == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
            
             ViewData["GetMarkersDetails"] = markerssearch;
 
@@ -48,11 +76,11 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
             }
-            return View(await markerquery.AsNoTracking().ToListAsync());
+            return View(await markerquery.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.Loginname).ToListAsync());
 
 
         }
-
+    
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -62,11 +90,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -88,19 +115,16 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
-
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
-
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName");
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription");
             ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription");
@@ -120,11 +144,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
             if (ModelState.IsValid)
             {
                 _context.Add(users);
@@ -136,9 +159,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleDescription", users.RoleId);
             return View(users);
         }
-      
-    // GET: Users/Edit/5
-    public async Task<IActionResult> Edit(int? id)
+
+        // GET: Users/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -146,11 +169,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -180,11 +202,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -209,7 +230,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-
             }
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName", users.CenterId);
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription", users.GenderId);
@@ -226,11 +246,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -254,17 +273,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //  END OF SECURITY CHECK
             var users = await _context.Users.FindAsync(id);
             _context.Users.Remove(users);
             await _context.SaveChangesAsync();
@@ -273,7 +281,6 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         private bool UsersExists(int id)
         {
-
             return _context.Users.Any(e => e.UsersId == id);
         }
     }

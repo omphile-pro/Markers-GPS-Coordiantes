@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Markers_GPS_Coordiantes.Data;
-using Markers_GPS_Coordiantes.Enumerators;
 using Microsoft.AspNetCore.Http;
+using Markers_GPS_Coordiantes.Enumerators;
+using System.IO;
+using OfficeOpenXml;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
@@ -228,7 +230,66 @@ namespace Markers_GPS_Coordiantes.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        private bool CenterExists(int id)
+        public IActionResult Import()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Import(IFormFile formFile)
+        {
+            if (formFile == null || formFile.Length <= 0)
+            {
+                return Ok("No spreadsheet uploaded");
+            }
+
+            if (!Path.GetExtension(formFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                return Ok("Spreadsheet uploaded is not of type .xlsx");
+            }
+
+            var newMarkers = new List<Center>();
+
+            using (var stream = new MemoryStream())
+            {
+                await formFile.CopyToAsync(stream);
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    var rowCount = worksheet.Dimension.Rows;
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        newMarkers.Add(new Center()
+                        {
+                            CenterName = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                            CenterNumber = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                            Longitude = Convert.ToDecimal(worksheet.Cells[row, 3].Value.ToString().Trim()),
+                            Latitude = Convert.ToDecimal(worksheet.Cells[row, 4].Value.ToString().Trim()),
+                            CityId = 1,
+                            CreatedByUsersId = 5,
+                        });
+                    }
+
+                    if (newMarkers.Count() > 0)
+                    {
+
+                        _context.Center.AddRange(newMarkers);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    return View("ImportedMarkers", newMarkers);
+
+                }
+            }
+
+            // add list to db ..  
+            // here just read and return  
+
+            return Ok("Finished");
+        }
+            private bool CenterExists(int id)
         {
             return _context.Center.Any(e => e.CenterId == id);
         }
