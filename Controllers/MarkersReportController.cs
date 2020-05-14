@@ -16,6 +16,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Markers_GPS_Coordiantes.Models;
+using DocumentFormat.OpenXml.InkML;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
@@ -29,49 +30,41 @@ namespace Markers_GPS_Coordiantes.Controllers
         {
             _sessionAccessor = sessionAccessor;
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Index(string markerssearch)
-        //    //_____________________________________________________________________
-        //{
-        //    //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-        //    roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-        //    if (roleID <= 0)
-        //    {
-        //        return Unauthorized("You are not signed in.");          //  write better message
-        //    }
-        //    if (roleID != (int)RoleIDs.SuperAdmin)
-        //    {
-        //        return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-        //    }
-        //    ViewData["GetMarkersDetails"] = markerssearch;
 
-        //    var markerquery = from x in _context..Include(u => u.CenterName).Include(u => u.).Include(u => u.Role) select x;
-        //    if (!String.IsNullOrEmpty(markerssearch))
-        //    {
-        //        markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
-        //    }
-        //    return View(await markerquery.AsNoTracking().ToListAsync());
-        //}
-        ////------------------------------------------------
-
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string tDate,string fDate)
         {
+            var fromDate = "";
+            var toDate = "";
+            var toDateTime = "";
+            //
+            Debug.WriteLine(tDate);
             //Get Data API
             //Get current date and time
-            var fromDate = DateTime.Now.ToString("yyyy-MM-dd");
-            var toDate = DateTime.Now.ToString("yyyy-MM-dd");
-            var toDateTime = DateTime.Now.ToString("HH:mm");
-            // toDate+"T"+toDateTime
-            ViewBag.value = DateTime.Now;
            
+            if(tDate == null)
+            {
+                 fromDate = DateTime.Now.ToString("yyyy-MM-dd");
+                 toDate = DateTime.Now.ToString("yyyy-MM-dd");
+                 toDateTime = DateTime.Now.ToString("HH:mm");
+                // toDate+"T"+toDateTime
+                ViewBag.value = DateTime.Now;
+
+            }
+            else
+            {
+                fromDate = tDate;
+                toDate = fDate;
+                toDateTime ="23:00";
+            }
+
             List<groups> reservationList = new List<groups>();
             // Get access track data
             string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";
             var values = new Dictionary<string, string>
                                {
                 { "siteId", "1164" },
-                { "fromDate", "2019-11-15" },
-                { "toDate", "2019-11-15T06:00" }
+                { "fromDate", fromDate },
+                { "toDate", toDate + "T" + toDateTime}
                 };
 
             using (var client = new HttpClient())
@@ -115,7 +108,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 FullName = x.FullName,
                 IdNumber = x.IdNumber,
-             
                 PhysicalAddress = x.PhysicalAddress,
                 CentreNumber = x.CentreNumber,
                 CenterName = x.CenterName,
@@ -166,6 +158,20 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             
         }
+
+
+        //[HttpPost]
+        //public IActionResult Filter()
+        //{
+        //    string principle = Convert.ToString(this.Request.Form["fromDate"].ToString());
+        //    string rate = Convert.ToString(this.Request.Form["toDate"].ToString());
+
+        //    Debug.WriteLine(principle);
+        //    Debug.WriteLine(rate);
+
+        //    return RedirectToAction(nameof(IndexAsync));
+
+        //}
 
         public async Task<IActionResult> ExportToExcel()
         {
@@ -222,7 +228,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
             return File(result, "application/vnd.ms-excel", now + ".xls");
-        } public async Task<IActionResult> UsersReport()
+        }
+        public async Task<IActionResult> UsersReport()
             {
             var dbsMarkersContext = _context.VusersReport.OrderBy(g => g.CenterName);
             return View(await dbsMarkersContext.ToListAsync());
