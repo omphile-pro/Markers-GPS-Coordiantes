@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.VMarkersGpscoordinates>
 
+
 @{
     ViewData["Title"] = "Distance Report";
 }
@@ -8,13 +9,13 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <a class="btn btn-dark" href="@Url.Action("ExportToExcel","MarkersReport")" style="
-    position: absolute;
-    top: 70%;
+    position: fixed;
+    top: 90%;
     left: 91%;
     z-index: 1;
 " role="button">Download @*<i class='fas fa-file-download'>*@ </a>
 
-<div class="col-10" style="padding-top:20px">
+<div class="col-10">
 
     @*<select asp-items="ViewBag.SubjectName">
             <option value="" disabled selected>Center</option>
@@ -26,15 +27,36 @@
         <input class="edit-input-tag short " type="date" id="To" name="markerssearch">*@
 
 
+    @*<form asp-action="Filter">
+            <div id="divInterestDeatils"></div>
+            <ol>
+                <li>
+                    @Html.Label("Amount")
+                    @Html.TextBox("fromDate")
+                </li>
+                <li>
+                    @Html.Label("Rate")
+                    @Html.TextBox("toDate")
+                </li>
+                <li>
+                    @Html.Label("Year")
+                    @Html.TextBox("txtYear")
+                </li>
+            </ol>
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </form>*@
 
 
-
-    <label for="from">From:</label>
-    <input class="edit-input-tag short" id="date" name="from">
-    <label for="from">To:</label>
-    <input class="edit-input-tag short " id="to" name="from">
-
-
+    <form asp-action="Index" method="get">
+        <label for="from">From:</label>
+        <input class="edit-input-tag short " id="date" name="tDate">
+        <label for="from">To:</label>
+        <input class="edit-input-tag short " id="to" name="fDate">
+        <select name="subject" class="edit-input-tag short" asp-items="@(new SelectList(ViewBag.viewList,"SubjectName"))">
+            <option value="" disabled selected>Subject</option>
+        </select>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </form>
 
     <script>
         $('#date').on('change', function () {
@@ -47,6 +69,7 @@
             var dates = $j("#to").datepicker({
                 defaultDate: "+1w",
                 numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
                 minDate: dateToday,
                 onSelect: function (selectedDate) {
                     var option = this.id == "date" ? "minDate" : "maxDate",
@@ -60,14 +83,12 @@
         var $j = jQuery.noConflict();
         var dates = $j("#date").datepicker({
             defaultDate: "+1w",
+            dateFormat: 'yy-mm-dd',
             numberOfMonths: 1
         });
 
 
     </script>
-
-
-
 
     <table class="table">
         <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
