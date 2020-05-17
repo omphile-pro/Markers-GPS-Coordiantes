@@ -22,17 +22,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
-
     <link rel="stylesheet" type="text/css" href="~/css/main2.css">
     <link rel="stylesheet" type="text/css" href="~/css/cards.css">
     <link rel="stylesheet" type="text/css" href="~/css/reports.css">
-
-
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="Admin/plugins/fontawesome-free/css/all.min.css">
@@ -57,7 +51,7 @@
     <div class="bg-container">
         <nav class="sticky">
             <div class="logo">
-                <a href="index.html"><img class="logo" src="~/Images/logo.svg"></a>
+                <a asp-controller="Admin" asp-action="Index"><img class="logo" src="~/Images/logo.svg"></a>
             </div>
 
             <div class="header-title ">
@@ -81,9 +75,7 @@
         </div>
 
     </nav>
-
     <div class="row space">
-
         <!---------------------------------Side Nav-------------------------------------->
         @*<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
             <i class="fas fa-bars"></i>
@@ -119,8 +111,6 @@
                                 <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
                                 <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
                                 <li class="list-item"><a asp-controller="Centers" asp-action="Index">Marking Centers</a></li>
-                             
-                                <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
                             </ul>
                         </li>
                         <hr>

@@ -318,7 +318,6 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             return View(markersGpscoordinates);
         }
-
         // POST: MarkersGpscoordinates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -329,21 +328,44 @@ namespace Markers_GPS_Coordiantes.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult Import()
-        {//  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+        public async Task<IActionResult> ImportAsync()
+        {
+            //CHECK PERMISSIONS  --ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.CenterManager)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
-            //  END OF SECURITY CHECK
+            //END OF SECURITY CHECK
 
-            return View();
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //filter by role id
+            if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.Administrator)))
+            {
+                return null;
+            }
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+            //make sure the center really exists and User is assigned to that center
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+            //check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile formFile)
@@ -385,28 +407,31 @@ namespace Markers_GPS_Coordiantes.Controllers
                         newMarkers.Add(new MarkersGpscoordinates()
                         {
                             CentreNumber = worksheet.Cells[row, 1].Value.ToString().Trim(),
-                            FullName = worksheet.Cells[row, 3].Value.ToString().Trim(),
-                            GenderId = (Convert.ToString(worksheet.Cells[row, 3].Value.ToString().Trim().ToLower()) == "male" ? 1 : 2),
+                            FullName = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                            IdNumber = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                            GenderId = (Convert.ToString(worksheet.Cells[row, 3].Value.ToString().Trim().ToLower()) == "male" ? 1 : 3),
+
+                            PhysicalAddress = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                            PostalCode = worksheet.Cells[row, 5].Value.ToString().Trim(),
+                            PersalNumber = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                            WorkTelephone = worksheet.Cells[row, 7].Value.ToString().Trim(),
+                            HomeTelephone = worksheet.Cells[row, 8].Value.ToString().Trim(),
+                            Cellphone = worksheet.Cells[row, 9].Value.ToString().Trim(),
+                            Latitude = Convert.ToDecimal(worksheet.Cells[row, 10].Value.ToString().Trim()),
+                            Longitude = Convert.ToDecimal(worksheet.Cells[row, 11].Value.ToString().Trim()),
                             RaceId = 1,
-                            IdNumber = worksheet.Cells[row, 6].Value.ToString().Trim(),
                             SubjectId = 1,
                             PositionId = 1,
-                            PhysicalAddress = worksheet.Cells[row, 10].Value.ToString().Trim(),
-                            PostalCode = worksheet.Cells[row, 11].Value.ToString().Trim(),
-                            PersalNumber = worksheet.Cells[row, 12].Value.ToString().Trim(),
-                            WorkTelephone = worksheet.Cells[row, 13].Value.ToString().Trim(),
-                            HomeTelephone = worksheet.Cells[row, 14].Value.ToString().Trim(),
-                            Cellphone = worksheet.Cells[row, 15].Value.ToString().Trim(),
-                            Latitude = Convert.ToDecimal(worksheet.Cells[row, 16].Value.ToString().Trim()),
-                            Longitude = Convert.ToDecimal(worksheet.Cells[row, 17].Value.ToString().Trim()),
                             UsersId = 5,
                             ExamId = 4,
                             CreatedByUsersId = 3,
-                            CenterId = 3,
+
+                            CenterId = 0
                         });
                     }
+                   
 
-                    if (newMarkers.Count() > 0)
+                if (newMarkers.Count() > 0)
                     {
 
                         _context.MarkersGpscoordinates.AddRange(newMarkers);
@@ -427,10 +452,13 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public async Task<IActionResult> ExportToExcel()
         {
+
             byte[] result;
 
             List<MarkersGpscoordinates> supList = _context.MarkersGpscoordinates.Select(x => new MarkersGpscoordinates
+
             {
+
                 FullName = x.FullName,
                 IdNumber = x.IdNumber,
                 PhysicalAddress = x.PhysicalAddress,
