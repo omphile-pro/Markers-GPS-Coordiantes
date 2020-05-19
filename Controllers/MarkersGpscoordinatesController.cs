@@ -457,11 +457,21 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             List<MarkersGpscoordinates> supList = _context.MarkersGpscoordinates.Select(x => new MarkersGpscoordinates
 
+
             {
 
                 FullName = x.FullName,
                 IdNumber = x.IdNumber,
                 PhysicalAddress = x.PhysicalAddress,
+                PostalCode = x.PostalCode,
+                PersalNumber = x.PersalNumber,
+                WorkTelephone= x.WorkTelephone,
+                HomeTelephone = x.HomeTelephone,
+                 Cellphone = x.Cellphone,
+                Latitude = x.Latitude,
+                Longitude = x.Longitude,
+
+
                 
             }).ToList();
             ExcelPackage pck = new ExcelPackage();
@@ -470,7 +480,13 @@ namespace Markers_GPS_Coordiantes.Controllers
             ws.Cells["A1"].Value = "FullName";
             ws.Cells["B1"].Value = "IdNumber";
             ws.Cells["C1"].Value = "PhysicalAddress";
-            
+            ws.Cells["D1"].Value = "PostalCode";
+            ws.Cells["E1"].Value = "PersalNumber";
+            ws.Cells["F1"].Value = "WorkTelephone";
+            ws.Cells["G1"].Value = "HomeTelephone";
+            ws.Cells["H1"].Value = "Cellphone";
+            ws.Cells["I1"].Value = "Latitude";
+            ws.Cells["J1"].Value = "Longitude";
             int rowStart = 2;
             foreach (var item in supList)
             {
@@ -479,8 +495,13 @@ namespace Markers_GPS_Coordiantes.Controllers
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.FullName;
                 ws.Cells[string.Format("B{0}", rowStart)].Value = item.IdNumber;
                 ws.Cells[string.Format("C{0}", rowStart)].Value = item.PhysicalAddress;
-
-
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.PostalCode;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.PersalNumber;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.WorkTelephone;
+                ws.Cells[string.Format("G{0}", rowStart)].Value = item.HomeTelephone;
+                ws.Cells[string.Format("H{0}", rowStart)].Value = item.Cellphone;
+                ws.Cells[string.Format("I{0}", rowStart)].Value = item.Latitude;
+                ws.Cells[string.Format("J{0}", rowStart)].Value = item.Longitude;
                 rowStart++;
             }
 
@@ -496,6 +517,9 @@ namespace Markers_GPS_Coordiantes.Controllers
         private bool MarkersGpscoordinatesExists(int id)
         {
             return _context.MarkersGpscoordinates.Any(e => e.MarkersId == id);
-        }
+     }
     }
 }
+
+
+
