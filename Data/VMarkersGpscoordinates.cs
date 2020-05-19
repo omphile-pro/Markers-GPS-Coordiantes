@@ -74,5 +74,11 @@ namespace Markers_GPS_Coordiantes.Data
         [DisplayName("Position")]
         public string PositionDescription { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public string toDate { get; set; }
+
+        public string FromDate { get; set; }
     }
+
+
 }
