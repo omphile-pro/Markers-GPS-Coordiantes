@@ -71,7 +71,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 try
                 {
-                    string auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxlYjAxYXBpIiwibmJmIjoxNTg4NzQ4MTcyLCJleHAiOjE1ODk5NTc3NzIsImlhdCI6MTU4ODc0ODE3Mn0.bHGhbxqXzjzsPqrLDhCkuFAkcWMPa0KozDXFxgtIlAM";
+                    string auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxlYjAxYXBpIiwibmJmIjoxNTkwMTMxNDM4LCJleHAiOjE1OTEzNDEwMzgsImlhdCI6MTU5MDEzMTQzOH0.idVCy8Oxl76zd2M8AjcoxRPcXjZofJedT72cTscoIZ8";
 
 
                     client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", auth);
@@ -127,12 +127,11 @@ namespace Markers_GPS_Coordiantes.Controllers
                 //Debug.WriteLine(supList[i].IdNumber);
                 for(int j = 0;j < reservationList.Count; j++)
                 {
-                    //if (supList[i].IdNumber.Any(x => reservationList[j].idNumber.Any(y => y == x)))
-                    //{
-                    //    Debug.WriteLine(y"There are equal elements");
-                    //}
 
-                    if(supList[i].IdNumber == reservationList[j].idNumber)
+                    Debug.WriteLine("Database:" + supList[i].IdNumber);
+                    Debug.WriteLine("API:" + reservationList[j]);
+                    Debug.WriteLine("API:" + j);
+                    if (supList[i].IdNumber == reservationList[j].idNumber)
                     {
                         Debug.WriteLine(supList[i].IdNumber + "is equal to " + reservationList[j].idNumber);
                         viewList.Add(new VMarkersGpscoordinates 
