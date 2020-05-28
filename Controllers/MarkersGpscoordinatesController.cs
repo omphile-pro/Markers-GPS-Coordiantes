@@ -426,7 +426,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                             ExamId = 4,
                             CreatedByUsersId = 3,
 
-                            CenterId = 0
+                            CenterId = 3,
                         });
                     }
                    

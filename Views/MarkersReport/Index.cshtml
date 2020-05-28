@@ -52,9 +52,9 @@
         <input class="edit-input-tag short " id="date" name="tDate">
         <label for="from">To:</label>
         <input class="edit-input-tag short " id="to" name="fDate">
-        <select name="subject" class="edit-input-tag short" asp-items="@(new SelectList(ViewBag.viewList,"SubjectName"))">
+        @*<select name="subject" class="edit-input-tag short" asp-items="@(new SelectList(ViewBag.viewList,"SubjectName"))">
             <option value="" disabled selected>Subject</option>
-        </select>
+        </select>*@
         <input type="submit" value="Search" class="btn btn-primary" />
     </form>
 
@@ -120,44 +120,51 @@
                     @Html.DisplayNameFor(model => model.CreatedDate)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Vehicle)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Distance)
                 </th>
+
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CentreNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CenterName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubjectName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaperNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PositionDescription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Distance)+
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CentreNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vehicle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)+
+                </td>
 
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
