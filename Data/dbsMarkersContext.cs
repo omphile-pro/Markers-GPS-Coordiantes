@@ -364,12 +364,13 @@ namespace Markers_GPS_Coordiantes.Data
 
             modelBuilder.Entity<MarkersGpscoordinates>(entity =>
             {
-                entity.HasKey(e => e.MarkersId)
-                    .HasName("PK_MarkersGPSCoordinates ");
+                entity.HasKey(e => e.MarkersId);
 
                 entity.ToTable("MarkersGPSCoordinates");
 
-                entity.Property(e => e.MarkersId).HasColumnName("MarkersID");
+                entity.Property(e => e.MarkersId)
+                    .HasColumnName("MarkersID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Cellphone)
                     .HasMaxLength(255)
@@ -479,7 +480,10 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.ToView("MarkersReport");
 
-               
+                entity.Property(e => e.CenterDescription)
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CenterId).HasColumnName("CenterID");
 
                 entity.Property(e => e.CenterName)
@@ -805,6 +809,8 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+              
+
                 entity.Property(e => e.HomeTelephone)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -823,6 +829,10 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.PayOut)
+                    .HasMaxLength(12)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.PersalNumber)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -833,10 +843,9 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.PositionDescription)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
-
-                entity.Property(e => e.PositionId).HasColumnName("PositionID");
 
                 entity.Property(e => e.PostalCode)
                     .HasMaxLength(255)

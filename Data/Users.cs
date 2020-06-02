@@ -52,11 +52,11 @@ namespace Markers_GPS_Coordiantes.Data
         public string MobileNo { get; set; }
         public string Telephone { get; set; }
         public string Displayname { get; set; }
-      
+
         public string PostalAddress { get; set; }
         [Column(TypeName = "varchar(2000)")]
         [DisplayName("Physical Address")]
-        
+
         public string PhysicalAddress { get; set; }
         public int? LastModifiedByUsersId { get; set; }
         public DateTime LastModifiedDate { get; set; }

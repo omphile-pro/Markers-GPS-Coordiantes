@@ -27,7 +27,7 @@ namespace Markers_GPS_Coordiantes.Data
         [DisplayName("Center Number ")]
         [Required(ErrorMessage = "Center Number Required")]
         public string CenterNumber { get; set; }
-        
+
         [Column(TypeName = "int")]
         [DisplayName("City")]
         public int CityId { get; set; }

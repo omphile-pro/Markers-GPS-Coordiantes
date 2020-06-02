@@ -106,6 +106,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 PositionDescription = x.PositionDescription,
                 CreatedDate = x.CreatedDate,
                 Distance = x.Distance,
+                PayOut  = x.PayOut
 
 
             }).ToList();
@@ -135,6 +136,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                             PaperNumber = supList[i].PaperNumber,
                             PositionDescription = supList[i].PositionDescription,
                             Distance = supList[i].Distance,
+                            PayOut = supList[i].PayOut,
                             IdNumber = reservationList[j].idNumber,
                             Vehicle = reservationList[j].licenceNumber
                         });
@@ -184,7 +186,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                 PaperNumber = x.PaperNumber,
                 PositionDescription = x.PositionDescription,
                 CreatedDate = x.CreatedDate,
-                Distance = x.Distance
+                Distance = x.Distance,
+                PayOut = x.PayOut
             }).ToList();
             ExcelPackage pck = new ExcelPackage();
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reports");
@@ -198,7 +201,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             ws.Cells["G1"].Value = "PaperNumber";
             ws.Cells["H1"].Value = "PositionDescription";
             ws.Cells["I1"].Value = "Distance";
-            ws.Cells["H1"].Value = "PositionDescription";
+            ws.Cells["J1"].Value = "PayOut";
             int rowStart = 2;
             foreach (var item in supList)
             {
@@ -213,7 +216,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 ws.Cells[string.Format("G{0}", rowStart)].Value = item.PaperNumber;
                 ws.Cells[string.Format("H{0}", rowStart)].Value = item.PositionDescription;
                 ws.Cells[string.Format("I{0}", rowStart)].Value = item.Distance;
-
+                ws.Cells[string.Format("I{0}", rowStart)].Value = item.PayOut;
                 rowStart++;
             }
 
