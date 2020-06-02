@@ -63,8 +63,6 @@
             var $j = jQuery.noConflict();
             var dateToday = $j("#date").datepicker('getDate')
             var dateToday2 = new Date();
-            console.log(dateToday);
-            console.log(dateToday2);
             $j('#to').datepicker('destroy');
             var dates = $j("#to").datepicker({
                 defaultDate: "+1w",
