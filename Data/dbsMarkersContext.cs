@@ -457,13 +457,13 @@ namespace Markers_GPS_Coordiantes.Data
                     .WithMany(p => p.MarkersGpscoordinates)
                     .HasForeignKey(d => d.PositionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MarkersGPSCoordinates_Position");
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Position1");
 
                 entity.HasOne(d => d.Race)
                     .WithMany(p => p.MarkersGpscoordinates)
                     .HasForeignKey(d => d.RaceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MarkersGPSCoordinates_Race");
+                    .HasConstraintName("FK_MarkersGPSCoordinates_Race1");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.MarkersGpscoordinates)

@@ -31,10 +31,7 @@ namespace Markers_GPS_Coordiantes.Data
         public string GenderDescription { get; set; }
         public string PayOut { get; set; }
         public string PositionDescription { get; set; }
-        public string toDate { get; set; }
 
-        public string FromDate { get; set; }
-
-        public string Vehicle { get; set; }
+      
     }
 }

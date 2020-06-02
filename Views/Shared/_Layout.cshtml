@@ -79,8 +79,8 @@
     <div class="row space">
         <!---------------------------------Side Nav-------------------------------------->
         @*<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-            <i class="fas fa-bars"></i>
-        </a>*@
+                <i class="fas fa-bars"></i>
+            </a>*@
         <div id="wrapper" class="col-2 side-nav-container no-padding toggled">
             <div class="side-nav-details">
                 <P class="bolder bigger-font">@Context.Session.GetString("displayname")</P>
@@ -123,10 +123,10 @@
                                 <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
                             </a>
                             <ul class=" nav side-nav-list collapse" id="Report">
-                               
+
                                 <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
-                              
+
                             </ul>
                         </li>
                     }
@@ -152,10 +152,10 @@
                                 <i style="float: right;line-height: 42px;padding-right: 4.2%;" class="fas fa-angle-double-down"></i>
                             </a>
                             <ul class=" nav side-nav-list collapse" id="Report">
-                                
+
                                 <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
                                 <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
-                                
+
                             </ul>
                         </li>
                     }
@@ -176,28 +176,28 @@
                     }
 
                     @*<li class="list-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
-        @if (roleID == 3)
-        {
-            <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
-            <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
-            <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
-            <li class="list-item"><a asp-controller="Centers" asp-action="Index">Centers</a></li>
-            <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Import">Import Markers</a></li>
-            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
-            <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
-        }
+                        @if (roleID == 3)
+                        {
+                            <li class="list-item"><a asp-controller="Users" asp-action="Index">Accounts</a></li>
+                            <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Index">Makers List</a></li>
+                            <li class="list-item"><a asp-controller="MarkersReport" asp-action="Index">Distance Report</a></li>
+                            <li class="list-item"><a asp-controller="Centers" asp-action="Index">Centers</a></li>
+                            <li class="list-item"><a asp-controller="SuperAdmin" asp-action="Import">Import Markers</a></li>
+                            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Create">Assign Center</a></li>
+                            <li class="list-item"><a asp-controller="group" asp-action="Index">Access Infomation</a></li>
+                        }
 
-        @if (roleID == 2)
-        {
-            <li class="list-item"><a asp-controller="MarkersGpscoordinate" asp-action="Index">Makers List</a></li>
-            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
-        }
+                        @if (roleID == 2)
+                        {
+                            <li class="list-item"><a asp-controller="MarkersGpscoordinate" asp-action="Index">Makers List</a></li>
+                            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
+                        }
 
-        @if (roleID == 1)
-        {
-            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
+                        @if (roleID == 1)
+                        {
+                            <li class="list-item"><a asp-controller="CenterMangers" asp-action="Index">Marking Centers</a></li>
 
-        }*@
+                        }*@
                 </ul>
             </div>
         </div>
@@ -206,45 +206,51 @@
         @RenderBody()
 
     </div>
-    </div>
+</div>
 
-        @*<div class="container-fullwidth">
+@*<div class="container-fullwidth">
 
 
-        </div>*@
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <!-- Content Header (Page header) -->
-        <!-- /.content-header -->
-        <!-- Main content -->
-        <!-- Small boxes (Stat box) -->
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <!-- Bootstrap 4 -->
-        <script src="Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- ChartJS -->
-        <script src="Admin/plugins/chart.js/Chart.min.js"></script>
-        <!-- Sparkline -->
-        <script src="Admin/plugins/sparklines/sparkline.js"></script>
-        <!-- JQVMap -->
-        <script src="Admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-        <script src="Admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="Admin/plugins/jquery-knob/jquery.knob.min.js"></script>
-        <!-- daterangepicker -->
-        <script src="Admin/plugins/moment/moment.min.js"></script>
-        <script src="Admin/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script src="Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-        <!-- Summernote -->
-        <script src="Admin/plugins/summernote/summernote-bs4.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script src="Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="Admin/dist/js/adminlte.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="Admin/dist/js/pages/dashboard.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="Admin/dist/js/demo.js"></script>
-        @RenderSection("Scripts", required: false)
+    </div>*@
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<!-- Content Header (Page header) -->
+<!-- /.content-header -->
+<!-- Main content -->
+<!-- Small boxes (Stat box) -->
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- Bootstrap 4 -->
+<script src="Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="Admin/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="Admin/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="Admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="Admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="Admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="Admin/plugins/moment/moment.min.js"></script>
+<script src="Admin/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="Admin/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="Admin/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="Admin/dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="Admin/dist/js/demo.js"></script>
+@RenderSection("Scripts", required: false)
+
+<script>
+    function scrollWin() {
+        window.scrollTo(500, 0);
+    }
+</script>
 </body>
 </html>

@@ -132,12 +132,15 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
-             //View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).
-             //   OrderBy(r => r.FullName).Include(m => m.CenterName).Include(m => m.PaperNumber).Include(m => m.PositionDescription).Include(m => m.SubjectName).
-             //   ToListAsync());
-            List<VMarkersGpscoordinates> supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).
-                OrderBy(r => r.FullName).Include(m => m.CenterName).Include(m => m.PaperNumber).
-                ToListAsync();
+            //View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).
+            //   OrderBy(r => r.FullName).Include(m => m.CenterName).Include(m => m.PaperNumber).Include(m => m.PositionDescription).Include(m => m.SubjectName).
+            //   ToListAsync());
+
+
+            List<VMarkersGpscoordinates> supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).ToListAsync();
+
+
+
 
             List<VMarkersGpscoordinates> viewList = new List<VMarkersGpscoordinates>();
 
@@ -165,8 +168,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                             PositionDescription = supList[i].PositionDescription,
                             Distance = supList[i].Distance,
                             PayOut = supList[i].PayOut,
-                            IdNumber = reservationList[j].idNumber,
-                            Vehicle = reservationList[j].licenceNumber
+                          
                         });
 
 
@@ -244,7 +246,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 ws.Cells[string.Format("G{0}", rowStart)].Value = item.PaperNumber;
                 ws.Cells[string.Format("H{0}", rowStart)].Value = item.PositionDescription;
                 ws.Cells[string.Format("I{0}", rowStart)].Value = item.Distance;
-                ws.Cells[string.Format("I{0}", rowStart)].Value = item.PayOut;
+                ws.Cells[string.Format("J{0}", rowStart)].Value = item.PayOut;
                 rowStart++;
             }
 
