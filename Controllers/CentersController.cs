@@ -95,7 +95,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CenterId,CenterToken,CenterName,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
+        public async Task<IActionResult> Create([Bind("CenterId,CenterToken,CenterName,Scanner,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -150,7 +150,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CenterId,CenterToken,CenterName,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
+        public async Task<IActionResult> Edit(int id, [Bind("CenterId,CenterToken,CenterName,Scanner,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));

@@ -88,6 +88,10 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
 
+                entity.Property(e => e.Scanner)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.Center)
                     .HasForeignKey(d => d.CityId)
@@ -809,7 +813,10 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-              
+                entity.Property(e => e.GenderDescription)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.HomeTelephone)
                     .HasMaxLength(255)

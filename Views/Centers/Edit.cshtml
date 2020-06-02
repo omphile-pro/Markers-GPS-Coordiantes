@@ -15,38 +15,51 @@
             <select asp-for="CityId" class="edit-input-tag short" asp-items="ViewBag.CityId">
                 <option value="" disabled selected>City</option>
             </select><br>
-
+          
+            <select asp-for="Scanner" class="edit-input-tag short" type="text">
+                <option value="" disabled selected>Select Scanner</option>
+                <option value="Education Roaming 1">Education Roaming 1</option>
+                <option value="Education Roaming 2">Education Roaming 2</option>
+                <option value="Education Roaming 3">Education Roaming 3</option>
+                <option value="Education Roaming 4">Education Roaming 4</option>
+                <option value="Education Roaming 5">Education Roaming 5</option>
+                <option value="Education Roaming 6">Education Roaming 6</option>
+                <option value="Education Roaming 7">Education Roaming 7</option>
+                <option value="Education Roaming 8">Education Roaming 8</option>
+                <option value="Education Roaming 9">Education Roaming 9</option>
+                <option value="Education Roaming 10">Education Roaming 10</option>
+            </select><br>
             <input class="edit-input-tag short " type="text" asp-for="Longitude" placeholder="Longitude"><br>
             <input class="edit-input-tag short " type="text" asp-for="Latitude" placeholder="Latitude"><br>
 
             <div class="form-group">
 
-                <input asp-for="DeletedDate" type="hidden"class="form-control" />
+                <input asp-for="DeletedDate" type="hidden" class="form-control" />
                 <span asp-validation-for="DeletedDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-          
-                <input asp-for="DeletedByUsersId"type="hidden" class="form-control" />
+
+                <input asp-for="DeletedByUsersId" type="hidden" class="form-control" />
                 <span asp-validation-for="DeletedByUsersId" class="text-danger"></span>
             </div>
             <div class="form-group">
-        
-                <input asp-for="LastModifiedByUsersId" type="hidden"class="form-control" />
+
+                <input asp-for="LastModifiedByUsersId" type="hidden" class="form-control" />
                 <span asp-validation-for="LastModifiedByUsersId" class="text-danger"></span>
             </div>
             <div class="form-group">
-          
-                <input asp-for="LastModifiedDate" type="hidden"class="form-control" />
+
+                <input asp-for="LastModifiedDate" type="hidden" class="form-control" />
                 <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-         
-                <input asp-for="CreatedByUsersId" type="hidden"class="form-control" />
+
+                <input asp-for="CreatedByUsersId" type="hidden" class="form-control" />
                 <span asp-validation-for="CreatedByUsersId" class="text-danger"></span>
             </div>
             <div class="form-group">
-           
-                <input asp-for="CreateDate"type="hidden" class="form-control" />
+
+                <input asp-for="CreateDate" type="hidden" class="form-control" />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
 

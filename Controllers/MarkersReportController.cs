@@ -23,6 +23,16 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class MarkersReportController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
+        private readonly IHttpContextAccessor _sessionAccessor;
+        int roleID = 0;
+        public int CenterID = 0;
+        public int UsersID = 0;
+
+        public MarkersReportController(IHttpContextAccessor sessionAccessor)
+        {
+            _sessionAccessor = sessionAccessor;
+        }
+
         public IEnumerable<VMarkersGpscoordinates> results { get; set; }
 
         public void OnGet()
@@ -93,23 +103,41 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
 
 
-            List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
+            //List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
+            //{
+            //    FullName = x.FullName,
+            //    IdNumber = x.IdNumber,
+
+            //    PhysicalAddress = x.PhysicalAddress,
+            //    CentreNumber = x.CentreNumber,
+            //    CenterName = x.CenterName,
+            //    SubjectName = x.SubjectName,
+            //    PaperNumber = x.PaperNumber,
+            //    PositionDescription = x.PositionDescription,
+            //    CreatedDate = x.CreatedDate,
+            //    Distance = x.Distance,
+            //    PayOut = x.PayOut
+
+
+            //}).ToList();
+
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
             {
-                FullName = x.FullName,
-                IdNumber = x.IdNumber,
-
-                PhysicalAddress = x.PhysicalAddress,
-                CentreNumber = x.CentreNumber,
-                CenterName = x.CenterName,
-                SubjectName = x.SubjectName,
-                PaperNumber = x.PaperNumber,
-                PositionDescription = x.PositionDescription,
-                CreatedDate = x.CreatedDate,
-                Distance = x.Distance,
-                PayOut  = x.PayOut
-
-
-            }).ToList();
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+             //View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).
+             //   OrderBy(r => r.FullName).Include(m => m.CenterName).Include(m => m.PaperNumber).Include(m => m.PositionDescription).Include(m => m.SubjectName).
+             //   ToListAsync());
+            List<VMarkersGpscoordinates> supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).
+                OrderBy(r => r.FullName).Include(m => m.CenterName).Include(m => m.PaperNumber).
+                ToListAsync();
 
             List<VMarkersGpscoordinates> viewList = new List<VMarkersGpscoordinates>();
 
