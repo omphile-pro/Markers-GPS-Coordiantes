@@ -29,6 +29,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+
             if (roleID <= 0)
             {
                 return Unauthorized("You are not signed in.");          //  write better message

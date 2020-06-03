@@ -20,6 +20,8 @@ namespace Markers_GPS_Coordiantes.Controllers
         dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
+        public int CenterID = 0;
+        public int UsersID = 0;
 
         public GroupController(IHttpContextAccessor sessionAccessor)
         {
@@ -33,11 +35,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin && roleID != (int)RoleIDs.CenterManager)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
+
             List<groups> reservationList = new List<groups>();
+            List<groups> viewList = new List<groups>();
 
             string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";
             var values = new Dictionary<string, string>
@@ -61,9 +61,61 @@ namespace Markers_GPS_Coordiantes.Controllers
                     var response = await client.PostAsync(url, content);
                     Task<string> responseString = response.Content.ReadAsStringAsync();
                     string outputJson = await responseString;
-                    Debug.WriteLine("Its working");
-                    Debug.WriteLine(outputJson);
                     reservationList = JsonConvert.DeserializeObject<List<groups>>(outputJson);
+
+                    CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+                    UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+                    roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+
+                    var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+
+                    List<Center> scannerCenter = new List<Center>();
+
+                    if (roleID == (int)RoleIDs.SuperAdmin)
+                    {
+                        scannerCenter = _context.Center.Select(x => new Center
+                        {
+                            Scanner = x.Scanner,
+                            CenterName = x.CenterName
+                        }).ToList();
+
+                    }
+                    else
+                    {
+                        scannerCenter = await _context.Center.Where(b => b.CenterId == center.CenterId).ToListAsync();
+                    }
+
+
+                    
+
+                    for (int i = 0; i < scannerCenter.Count; i++)
+                    {
+                        Debug.WriteLine(scannerCenter.Count);
+                        for (int j = 0; j < reservationList.Count; j++)
+                        {
+                            if (scannerCenter[i].Scanner == reservationList[j].displayName)
+                            {
+                                Debug.WriteLine(reservationList[j].licenceNumber);
+                                Debug.WriteLine(scannerCenter[i].Scanner + "is equal to " + reservationList[j].displayName);
+                                viewList.Add(new groups
+                                {
+                                    CenterName = scannerCenter[i].CenterName,
+                                    displayName = scannerCenter[i].Scanner,
+                                    idNumber = reservationList[j].idNumber,
+                                    licenceNumber = reservationList[j].licenceNumber,
+                                    timestamp = reservationList[j].timestamp,
+                                    hasBlacklist = reservationList[j].hasBlacklist,
+                                    expiryDate = reservationList[j].expiryDate,
+                                    sadlExpiryDate = reservationList[j].sadlExpiryDate
+                                });
+
+
+                            }
+                        }
+
+
+                    }
 
                 }
                 catch (Exception ex)
@@ -71,7 +123,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     Debug.WriteLine(ex.ToString()); //"Invalid URI: The Uri string is too long."
                 }
             }
-            return View(reservationList);
+            return View(viewList);
         }
     }
 }

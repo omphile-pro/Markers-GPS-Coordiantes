@@ -107,7 +107,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
             roleID  = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
 
-            var adminRoleID = 3;
 
             var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
 
@@ -119,7 +118,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             List<VMarkersGpscoordinates> supList = new List<VMarkersGpscoordinates>();
 
-            if(roleID == 3)
+            if(roleID == (int)RoleIDs.SuperAdmin)
             {
                  supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
                 {
@@ -132,6 +131,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     PaperNumber = x.PaperNumber,
                     PositionDescription = x.PositionDescription,
                     Distance = x.Distance,
+                    PayOut = x.PayOut
 
                 }).ToList();
 
@@ -208,19 +208,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                     Task<string> responseString = response.Content.ReadAsStringAsync();
                     string outputJson = await responseString;
 
-                    Debug.WriteLine(outputJson);
                     reservationList = JsonConvert.DeserializeObject<List<groups>>(outputJson);
-                    int numberOfScans = reservationList.Count();
-
-                    int numberOfCars = 0;
-
-                    for (int x = 0; x < numberOfScans; x++)
-                    {
-                        if (reservationList[x].licenceNumber != null)
-                        {
-                            numberOfCars++;
-                        }
-                    }
 
                 }
                 catch (Exception ex)
@@ -254,8 +242,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 for (int j = 0; j < reservationList.Count; j++)
                 {
-
-
                     if (supList[i].IdNumber == reservationList[j].idNumber)
                     {
                         Debug.WriteLine(reservationList[j].licenceNumber);
