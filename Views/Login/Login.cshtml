@@ -43,7 +43,21 @@ ViewData["Title"] = "Home";
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input class="input-tag margin-top" asp-for="Password" name="Password" placeholder="Enter Password" type="text" required="" id="myInput" />
+                        <input class="input-tag margin-top" asp-for="Password" name="Password" placeholder="Enter Password" type="password" required="" id="myInput" />
+                     
+                        <br>
+                        <input type="checkbox" onclick="myFunction()">Show Password
+                        <script>
+                            function myFunction() {
+                                var x = document.getElementById("myInput");
+                                if (x.type === "password") {
+                                    x.type = "text";
+                                } else {
+                                    x.type = "password";
+                                }
+                            }
+                        </script>
+
                         <center><button type="submit" class="submit btn btn-lg" style="border-bottom-color: rgba(255,255,255,0.6); background-color: #0054A6;"><strong>Sign In</strong> <i class="fa fa-sign-in-alt "></i></button></center>
                     </div>
                     <div>

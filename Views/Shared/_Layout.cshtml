@@ -53,7 +53,7 @@
 
                 <!-- Side Navigation List -->
                 <div class="nav-list">
-                    <a class="nav-list-item active" href="~/Admin/Index"><img class="icon active" src="./images/dash-icon.svg">Dashboard</a>
+                    <a class="nav-list-item active"  asp-controller="Admin" asp-action="Index"><img class="icon active" src="./images/dash-icon.svg">Dashboard</a>
 
                     <div class="drop-down-parent-container">
 
@@ -77,9 +77,10 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
-                               
+
                                 <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Marking Centers</strong></a>
-                                <a class="nav-list-item" href="/group/Index/">Access Track</a>
+                              
+                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
                             </div>
 
                         }
@@ -92,8 +93,9 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
-                                <a class="nav-list-item" href="/Accounts/Index/">Accounts</a>
-                                <a class="nav-list-item" href="/MarkersGpscoordinates/Index/">Markers List</a>
+                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Access Track</strong></a>
+                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Access Track</strong></a>
+                               
 
                             </div>
                             <button class="dropdown-btn">
@@ -102,8 +104,8 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
-                                <a class="nav-list-item" href="/MarkersReport/Index/">Distance Report</a>
-                                <a class="nav-list-item" href="/group/Index/">Access Track</a>
+                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
                             </div>
 
                         }
@@ -116,9 +118,11 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
-                                <a class="nav-list-item" href="/MarkersGpscoordinates/Markers/">Marker List</a>
-                                <a class="nav-list-item" href="/MarkersReport/Index/">Distance Report</a>
-                                <a class="nav-list-item" href="/group/Index/">Access Track</a>
+            
+                               
+                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Markers"><strong>Access Track</strong></a>
+                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
                             </div>
 
                         }
@@ -260,11 +264,7 @@
         </div>
 
     </div>
-
-
     }
-
-
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
