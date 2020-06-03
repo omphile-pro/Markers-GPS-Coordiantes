@@ -142,7 +142,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
 
-            List<VMarkersGpscoordinates> viewList = new List<VMarkersGpscoordinates>();
+            List<viewModel> viewList = new List<viewModel>();
 
             for (int i = 0; i < supList.Count; i++)
             { // Loop through List with for
@@ -156,10 +156,12 @@ namespace Markers_GPS_Coordiantes.Controllers
 
                     if (supList[i].IdNumber == reservationList[j].idNumber)
                     {
+                        Debug.WriteLine(reservationList[j].licenceNumber);
                         Debug.WriteLine(supList[i].IdNumber + "is equal to " + reservationList[j].idNumber);
-                        viewList.Add(new VMarkersGpscoordinates
+                        viewList.Add(new viewModel
                         {
                             FullName = supList[i].FullName,
+                            IdNumber = reservationList[j].idNumber,
                             PhysicalAddress = supList[i].PhysicalAddress,
                             CentreNumber = supList[i].CentreNumber,
                             CenterName = supList[i].CenterName,
@@ -168,7 +170,8 @@ namespace Markers_GPS_Coordiantes.Controllers
                             PositionDescription = supList[i].PositionDescription,
                             Distance = supList[i].Distance,
                             PayOut = supList[i].PayOut,
-                          
+                            licenceNumber = reservationList[j].licenceNumber
+
                         });
 
 

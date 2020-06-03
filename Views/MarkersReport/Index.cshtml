@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.VMarkersGpscoordinates>
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.viewModel>
 
 
 @{
@@ -93,6 +93,9 @@
                     @Html.DisplayNameFor(model => model.PhysicalAddress)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.licenceNumber)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.CentreNumber)
                 </th>
                 <th>
@@ -110,56 +113,52 @@
                     @Html.DisplayNameFor(model => model.PositionDescription)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CreatedDate)
-                </th>
-              
-                <th>
                     @Html.DisplayNameFor(model => model.Distance)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PayOut)
                 </th>
+
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CentreNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CenterName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubjectName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaperNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PositionDescription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedDate)
-                    </td>
-                    
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Distance)+
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.licenceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CentreNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)+
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PayOut)
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PayOut)
+                </td>
 
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
