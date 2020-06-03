@@ -103,26 +103,11 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
 
 
-            //List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
-            //{
-            //    FullName = x.FullName,
-            //    IdNumber = x.IdNumber,
-
-            //    PhysicalAddress = x.PhysicalAddress,
-            //    CentreNumber = x.CentreNumber,
-            //    CenterName = x.CenterName,
-            //    SubjectName = x.SubjectName,
-            //    PaperNumber = x.PaperNumber,
-            //    PositionDescription = x.PositionDescription,
-            //    CreatedDate = x.CreatedDate,
-            //    Distance = x.Distance,
-            //    PayOut = x.PayOut
-
-
-            //}).ToList();
-
             CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
             UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+            roleID  = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+
+            var adminRoleID = 3;
 
             var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
 
@@ -132,27 +117,37 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
-            //View(await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).
-            //   OrderBy(r => r.FullName).Include(m => m.CenterName).Include(m => m.PaperNumber).Include(m => m.PositionDescription).Include(m => m.SubjectName).
-            //   ToListAsync());
+            List<VMarkersGpscoordinates> supList = new List<VMarkersGpscoordinates>();
 
+            if(roleID == 3)
+            {
+                 supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
+                {
+                    FullName = x.FullName,
+                    IdNumber = x.IdNumber,
+                    PhysicalAddress = x.PhysicalAddress,
+                    CentreNumber = x.CentreNumber,
+                    CenterName = x.CenterName,
+                    SubjectName = x.SubjectName,
+                    PaperNumber = x.PaperNumber,
+                    PositionDescription = x.PositionDescription,
+                    Distance = x.Distance,
 
-            List<VMarkersGpscoordinates> supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).ToListAsync();
+                }).ToList();
 
-
-
+            }
+            else
+            {
+                supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).ToListAsync();
+            }
 
             List<viewModel> viewList = new List<viewModel>();
 
             for (int i = 0; i < supList.Count; i++)
-            { // Loop through List with for
-                //Debug.WriteLine(supList[i].IdNumber);
+            { 
                 for (int j = 0; j < reservationList.Count; j++)
                 {
-                    //if (supList[i].IdNumber.Any(x => reservationList[j].idNumber.Any(y => y == x)))
-                    //{
-                    //    Debug.WriteLine(y"There are equal elements");
-                    //}
+ 
 
                     if (supList[i].IdNumber == reservationList[j].idNumber)
                     {
@@ -185,43 +180,110 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         }
 
-        //[HttpGet]
-
-        //public async Task<IActionResult> Index(string markerssearch)
-
-        //{
-
-
-        //    ViewData["GetMarkersDetails"] = markerssearch;
-
-        //    var markerquery = from x in _context.VMarkersGpscoordinates.Include(u => u.SubjectName).Include(u => u.Distance).Include(u => u.FullName) select x;
-        //    if (!String.IsNullOrEmpty(markerssearch))
-        //    {
-        //        markerquery = markerquery.Where(x => x.SubjectName.Contains(markerssearch));
-        //    }
-        //    return View(await markerquery.AsNoTracking().ToListAsync());
-        //}
-
-
-
-        public async Task<IActionResult> ExportToExcel()
+        public async Task<IActionResult> ExportToExcel(List<viewModel> model)
         {
             byte[] result;
+            List<groups> reservationList = new List<groups>();
+            // Get access track data
+            string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";
+            var values = new Dictionary<string, string>
+                               {
+                { "siteId", "1164" },
+                { "fromDate", "2019-11-15" },
+                { "toDate", "2019-11-15T06:00" }
+                };
 
-            List<VMarkersGpscoordinates> supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
+            using (var client = new HttpClient())
             {
-                FullName = x.FullName,
-                IdNumber = x.IdNumber,
-                PhysicalAddress = x.PhysicalAddress,
-                CentreNumber = x.CentreNumber,
-                CenterName = x.CenterName,
-                SubjectName = x.SubjectName,
-                PaperNumber = x.PaperNumber,
-                PositionDescription = x.PositionDescription,
-                CreatedDate = x.CreatedDate,
-                Distance = x.Distance,
-                PayOut = x.PayOut
-            }).ToList();
+                try
+                {
+                    string auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxlYjAxYXBpIiwibmJmIjoxNTkwMTMxNDM4LCJleHAiOjE1OTEzNDEwMzgsImlhdCI6MTU5MDEzMTQzOH0.idVCy8Oxl76zd2M8AjcoxRPcXjZofJedT72cTscoIZ8";
+
+
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", auth);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var content = new FormUrlEncodedContent(values);
+                    var response = await client.PostAsync(url, content);
+                    Task<string> responseString = response.Content.ReadAsStringAsync();
+                    string outputJson = await responseString;
+
+                    Debug.WriteLine(outputJson);
+                    reservationList = JsonConvert.DeserializeObject<List<groups>>(outputJson);
+                    int numberOfScans = reservationList.Count();
+
+                    int numberOfCars = 0;
+
+                    for (int x = 0; x < numberOfScans; x++)
+                    {
+                        if (reservationList[x].licenceNumber != null)
+                        {
+                            numberOfCars++;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString()); //"Invalid URI: The Uri string is too long."
+                }
+            }
+
+
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+
+
+            List<VMarkersGpscoordinates> supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).ToListAsync();
+
+
+
+
+            List<viewModel> viewList = new List<viewModel>();
+
+            for (int i = 0; i < supList.Count; i++)
+            {
+                for (int j = 0; j < reservationList.Count; j++)
+                {
+
+
+                    if (supList[i].IdNumber == reservationList[j].idNumber)
+                    {
+                        Debug.WriteLine(reservationList[j].licenceNumber);
+                        Debug.WriteLine(supList[i].IdNumber + "is equal to " + reservationList[j].idNumber);
+                        viewList.Add(new viewModel
+                        {
+                            FullName = supList[i].FullName,
+                            IdNumber = reservationList[j].idNumber,
+                            PhysicalAddress = supList[i].PhysicalAddress,
+                            CentreNumber = supList[i].CentreNumber,
+                            CenterName = supList[i].CenterName,
+                            SubjectName = supList[i].SubjectName,
+                            PaperNumber = supList[i].PaperNumber,
+                            PositionDescription = supList[i].PositionDescription,
+                            Distance = supList[i].Distance,
+                            PayOut = supList[i].PayOut,
+                            licenceNumber = reservationList[j].licenceNumber
+
+                        });
+
+
+                    }
+                }
+
+
+            }
+
+
             ExcelPackage pck = new ExcelPackage();
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reports");
 
@@ -236,7 +298,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             ws.Cells["I1"].Value = "Distance";
             ws.Cells["J1"].Value = "PayOut";
             int rowStart = 2;
-            foreach (var item in supList)
+            foreach (var item in viewList)
             {
                 // ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
 
