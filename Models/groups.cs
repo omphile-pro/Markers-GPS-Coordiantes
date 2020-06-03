@@ -22,5 +22,7 @@ namespace Markers_GPS_Coordiantes.Models
         public DateTime? expiryDate { get; set; }
         public DateTime? sadlExpiryDate { get; set; }
         public string fieldValues { get; set; }
+
+        public string CenterName{ get; set; }
     }
 }

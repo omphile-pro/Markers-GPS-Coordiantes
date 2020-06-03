@@ -3,29 +3,147 @@
     ViewData["Title"] = "Dashboard";
 }
 <!---------------------------------Stats----------------------------------------->
-
-<div class="col-10 table-content">
-    <div class="stats-cards-holder">
-        <div class="stats-card center">
-            <p class="stats-font num">@ViewData["NumberofScans"]</p>
-            <p class="light-text">Number of Scans</p>
+<!-- middle Content Container -->
+<div class="col-8">
+    <!-- Search bar and title section -->
+    <div class="content-top">
+        <div class="main-title-container">
+            <p class="main-title">Dashboard</p>
         </div>
 
-        <div class="stats-card">
-            <p class="stats-font num">@ViewData["NumberofCars"]</p>
-            <p class="light-text">Number of Cars</p>
-        </div>
-
-        <div class="stats-card">
-            <p class="stats-font num">454</p>
-            <p class="light-text">KM Travelled</p>
+        <div class="search-bar-container">
+            <input class="search-bar" type="text" placeholder="Search">
+            <div class="search-icon-container">
+                <img class="search-icon" src="./images/searc-icon.svg">
+            </div>
         </div>
     </div>
-
-    <div class="graph-container">
-        <div class="graph">
-
+    <!-- End Search bar and title section -->
+    <!-- stats div container-->
+    <div class="stats-div">
+        <!-- stats block -->
+        <div class="stats-container">
+            <div class="dots">
+                <img src="./images/dots.svg">
+            </div>
+            <div class="stats-container-content">
+                <div class="stats-icon-holder">
+                    <img class="stats-icon" src="./images/stats-icon.svg">
+                </div>
+                <div class="stats-figure-holder">
+                    <p class="value">@ViewData["NumberofScans"]</p>
+                    <p class="units">Number of Scans</p>
+                </div>
+            </div>
         </div>
+        <!-- End stats block -->
+        <!-- stats block -->
+        <div class="stats-container">
+            <div class="dots">
+                <img src="./images/dots.svg">
+            </div>
+            <div class="stats-container-content">
+                <div class="stats-icon-holder">
+                    <img class="stats-icon" src="./images/stats-icon.svg">
+                </div>
+                <div class="stats-figure-holder">
+                    <p class="value">@ViewData["NumberofCars"]</p>
+                    <p class="units">Number of Cars</p>
+                </div>
+            </div>
+        </div>
+        <!-- End stats block -->
+        <!-- stats block -->
+        <div class="stats-container">
+            <div class="dots">
+                <img src="./images/dots.svg">
+            </div>
+            <div class="stats-container-content">
+                <div class="stats-icon-holder">
+                    <img class="stats-icon" src="./images/stats-icon.svg">
+                </div>
+                <div class="stats-figure-holder">
+                    <p class="value">671</p>
+                    <p class="units">Total Markers</p>
+                </div>
+            </div>
+        </div>
+        <!-- End stats block -->
     </div>
+    <!-- End stats div container -->
+    <!-- graph div -->
+    <div class="row graph-section-container">
+        <div class="col-8 main-graph-container">
+            <div class="main-graph">
+            </div>
+        </div>
+
+        <div class="col-4 pie-chart-holder">
+            <div class="pie-chart">
+            </div>
+        </div>
+
+    </div>
+    <!-- End graph div -->
+    <!-- graph div -->
+    <div class="row history-section-container">
+        <div class="col-8 history-chart-container">
+            <div class="history-chart">
+                <p class="history-main-title">History</p>
+                <!-- history line -->
+                <div class="history-detail-section grey">
+                    <p class="history-time">15:43</p>
+                    <p class="history-task-desc">Added Jane Doe as Marker</p>
+                    <p class="history-role">Admin User</p>
+                    <div class="history-change-container">
+                        <img class="history-icon" src="./images/stats-icon.svg">
+                        <p class="history-change"> Markers</p>
+                    </div>
+                </div>
+                <!-- history line -->
+                <!-- history line -->
+                <div class="history-detail-section">
+                    <p class="history-time">15:43</p>
+                    <p class="history-task-desc">Added Jane Doe as Marker</p>
+                    <p class="history-role">Admin User</p>
+                    <div class="history-change-container">
+                        <img class="history-icon" src="./images/stats-icon.svg">
+                        <p class="history-change"> Markers</p>
+                    </div>
+                </div>
+                <!-- history line -->
+                <!-- history line -->
+                <div class="history-detail-section grey">
+                    <p class="history-time">15:43</p>
+                    <p class="history-task-desc">Added Jane Doe as Marker</p>
+                    <p class="history-role">Admin User</p>
+                    <div class="history-change-container">
+                        <img class="history-icon" src="./images/stats-icon.svg">
+                        <p class="history-change"> Markers</p>
+                    </div>
+                </div>
+                <!-- history line -->
+                <!-- history line -->
+                <div class="history-detail-section">
+                    <p class="history-time">15:43</p>
+                    <p class="history-task-desc">Added Jane Doe as Marker</p>
+                    <p class="history-role">Admin User</p>
+                    <div class="history-change-container">
+                        <img class="history-icon" src="./images/stats-icon.svg">
+                        <p class="history-change"> Markers</p>
+                    </div>
+                </div>
+                <!-- history line -->
+            </div>
+        </div>
+
+        <div class="col-4 history-stats-contaner">
+            <div class="history-stats">
+            </div>
+        </div>
+
+    </div>
+    <!-- End graph div -->
+
 </div>
-
+<!-- End middle Content Container -->

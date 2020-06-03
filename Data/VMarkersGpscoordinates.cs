@@ -32,6 +32,22 @@ namespace Markers_GPS_Coordiantes.Data
         public string PayOut { get; set; }
         public string PositionDescription { get; set; }
 
-      
+
+    }
+
+    public class viewModel
+    {
+        public string FullName { get; set; }
+        public string IdNumber { get; set; }
+        public string PhysicalAddress { get; set; }
+        public string CenterName { get; set; }
+        public string CenterNumber { get; set; }
+        public string Distance { get; set; }
+        public string CentreNumber { get; set; }
+        public string PaperNumber { get; set; }
+        public string SubjectName { get; set; }
+        public string PayOut { get; set; }
+        public string PositionDescription { get; set; }
+        public string licenceNumber { get; set; }
     }
 }

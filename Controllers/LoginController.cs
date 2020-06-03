@@ -54,6 +54,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                         //  you need to set sessions before you redirect, the corresponding dashboard (Marker / Admin) will read from session
                         HttpContext.Session.SetString("displayname", Convert.ToString(user.Displayname));
                         HttpContext.Session.SetString("Email", Convert.ToString(user.EmailAddress));
+                      
                         HttpContext.Session.SetInt32("roleID", users.RoleId);
                         HttpContext.Session.SetInt32("usersID", user.UsersId);
                         HttpContext.Session.SetInt32("centerID", user.CenterId);
@@ -77,6 +78,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                                 };
                             }
                             HttpContext.Session.SetString("CenterManagerId", Convert.ToString(CenterManger.CenterManagerId));
+                           
                             return RedirectToAction("Index", "Admin");
                         }
                         //  ADMINISTRATOR
