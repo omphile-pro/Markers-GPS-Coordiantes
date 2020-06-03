@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Dashboard";
 }
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor sessionAccessor;
 <!---------------------------------Stats----------------------------------------->
 <!-- middle Content Container -->
 <div class="col-8">
@@ -147,3 +149,118 @@
 
 </div>
 <!-- End middle Content Container -->
+<div class="col-4">
+    <!-- main Profile Container -->
+    <div class="profile-section">
+        <!-- Profile Container -->
+        <div class="profile">
+            <div class="log-out">
+
+
+                @*@if (roleID == 0)
+                    {
+                        <a class="list-item fa fa- fa-power-off" href="~/Login">Login</a>
+                    }
+                    else
+                    {
+                        <a class="list-item fa fa- fa-power-off" href="~/Login/SignOut/"> Sign Out</a>
+                    }*@
+
+                <a href="~/Login/SignOut/">Logout</a>
+            </div>
+
+            <div class="person-container">
+                <div class="person-img-container">
+                    <img class="person-img">
+                </div>
+
+                <div class="person-details">
+                    <p class="person-name">@Context.Session.GetString("displayname")</p>
+                    <p class="person-role">@Context.Session.GetString("Email")</p>
+
+                </div>
+
+                <div class="profile-summary">
+                    <div class="profile-summary-item">
+                        <div class="summ-icon-holder">
+                            <img class="summ-icon" src="./images/pro-icon-edit.svg">
+                        </div>
+                        <p class="summ-name">Edits</p>
+                    </div>
+                    <div class="profile-summary-item">
+                        <div class="summ-icon-holder">
+                            <img class="summ-icon" src="./images/profile-task-icon.svg">
+                        </div>
+                        <p class="summ-name">Tasks</p>
+                    </div>
+                    <div class="profile-summary-item">
+                        <div class="summ-icon-holder">
+                            <img class="summ-icon" src="./images/profile-mess-icon.svg">
+                        </div>
+                        <p class="summ-name">Messages</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Profile Container -->
+        <!-- Tasks Container -->
+        <div class="task-container">
+            <div class="main-title-container">
+                <p class="task-main-title">Tasks</p>
+                <p class="view-all">View All</p>
+            </div>
+
+            <!-- Task -->
+            <div class="task-holder">
+                <div class="task">
+                    <div class="task-icon">
+                        <img src="./images/pro-icon.svg">
+                    </div>
+                    <div class="task-content">
+                        <p class="task-title">Zi-Ipsums ezi</p>
+                        <p class="task-desc">Laboris nisi ut aliquip ex ea commodo consequat</p>
+                    </div>
+                </div>
+                <div class="time-stamp">
+                    <p class="time">24 Feb 2020</p>
+                </div>
+            </div>
+            <!-- End Task -->
+            <!-- Task -->
+            <div class="task-holder">
+                <div class="task">
+                    <div class="task-icon">
+                        <img src="./images/prof-icon.svg">
+                    </div>
+                    <div class="task-content">
+                        <p class="task-title">Zi-Ipsums ezi</p>
+                        <p class="task-desc">Laboris nisi ut aliquip ex ea commodo consequat</p>
+                    </div>
+                </div>
+                <div class="time-stamp">
+                    <p class="time">24 Feb 2020</p>
+                </div>
+            </div>
+            <!-- End Task -->
+            <!-- Task -->
+            <div class="task-holder">
+                <div class="task">
+                    <div class="task-icon">
+                        <img src="./images/pro-icon.svg">
+                    </div>
+                    <div class="task-content">
+                        <p class="task-title">Zi-Ipsums ezi</p>
+                        <p class="task-desc">Laboris nisi ut aliquip ex ea commodo consequat</p>
+                    </div>
+                </div>
+                <div class="time-stamp">
+                    <p class="time">24 Feb 2020</p>
+                </div>
+            </div>
+            <!-- End Task -->
+        </div>
+        <!-- End Tasks Container -->
+    </div>
+    <!-- main Profile Container -->
+</div>

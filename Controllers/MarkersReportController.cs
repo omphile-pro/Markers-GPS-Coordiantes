@@ -220,6 +220,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
             UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+
 
             var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
 
@@ -230,9 +232,30 @@ namespace Markers_GPS_Coordiantes.Controllers
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
 
+            List<VMarkersGpscoordinates> supList = new List<VMarkersGpscoordinates>();
 
-            List<VMarkersGpscoordinates> supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).ToListAsync();
+            if (roleID == (int)RoleIDs.SuperAdmin)
+            {
+                supList = _context.VMarkersGpscoordinates.Select(x => new VMarkersGpscoordinates
+                {
+                    FullName = x.FullName,
+                    IdNumber = x.IdNumber,
+                    PhysicalAddress = x.PhysicalAddress,
+                    CentreNumber = x.CentreNumber,
+                    CenterName = x.CenterName,
+                    SubjectName = x.SubjectName,
+                    PaperNumber = x.PaperNumber,
+                    PositionDescription = x.PositionDescription,
+                    Distance = x.Distance,
+                    PayOut = x.PayOut
 
+                }).ToList();
+
+            }
+            else
+            {
+                supList = await _context.VMarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).ToListAsync();
+            }
 
 
 
@@ -307,7 +330,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             var now = DateTime.Now.ToString("yyyy-MM-dd");
 
 
-            return File(result, "application/vnd.ms-excel", now + ".xls");
+            return File(result, "application/vnd.excel", now + ".xlsx");
         }
         public async Task<IActionResult> UsersReport()
         {
