@@ -24,7 +24,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         public int UsersID = 0;
 
         public GroupController(IHttpContextAccessor sessionAccessor)
-        {
+        {   
             _sessionAccessor = sessionAccessor;
         }
         public async Task<IActionResult> Index()
