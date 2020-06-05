@@ -11,17 +11,16 @@
         <p>
             <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
             <input type="submit" value="Search" class="btn btn-primary" />
-            <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
-            <a asp-action="Index">Retrieve all Users</a>
-
+            <a asp-action="Create" class="butt-primary"><i class="far fa-plus-square"></i>Create User</a>
+            <a asp-action="Index" class="butt-secondary">Retrieve All Users</a>
+        
         </p>
     </form>
-
-    <div class="">
-        <table class="table start-hidden no-border-top">
-            <thead class="thead-dark no-border-top">
+    
+    <div style="padding-top:20px">
+        <table class="table start-hidden no-border-top "style="padding-top:20px">
+            <thead class="table-head-container">
                 <tr>
-
                     <th>
                         @Html.DisplayNameFor(model => model.Loginname)
                     </th>
@@ -88,8 +87,8 @@
                         </td>
 
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.UsersId"><i class="fa fa-marker fa-md" title="Edit"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.UsersId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-md" title="Delete"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.UsersId"><i class="table-icon" src="images/edit.svg" title="Edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.UsersId" class="text-danger ml-1"><i class="table-icon" src="images/edit.svg" title="Delete"></i></a>
                         </td>
 
                     </tr>

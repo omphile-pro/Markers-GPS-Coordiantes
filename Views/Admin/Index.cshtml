@@ -4,6 +4,14 @@
 }
 @using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor sessionAccessor;
+@{
+    int roleID = 0;             //  assume 0 in case of guest (before users has logged in)
+
+    if (Convert.ToInt32(sessionAccessor.HttpContext.Session.GetInt32("roleID")) > 0)
+    {
+        roleID = Convert.ToInt32(sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+    }
+}
 <!---------------------------------Stats----------------------------------------->
 <!-- middle Content Container -->
 <div class="col-8">
@@ -158,15 +166,23 @@
 
 
                 @*@if (roleID == 0)
-                    {
-                        <a class="list-item fa fa- fa-power-off" href="~/Login">Login</a>
-                    }
-                    else
-                    {
-                        <a class="list-item fa fa- fa-power-off" href="~/Login/SignOut/"> Sign Out</a>
-                    }*@
+        {
+            <a class="list-item fa fa- fa-power-off" href="~/Login">Login</a>
+        }
+        else
+        {
+            <a class="list-item fa fa- fa-power-off" href="~/Login/SignOut/"> Sign Out</a>
+        }*@
 
-                <a href="~/Login/SignOut/">Logout</a>
+
+                @if (roleID == 0)
+                {
+                    <a href="~/Login">Login</a>
+                }
+                else
+                {
+                    <a href="~/Login/SignOut/">Logout</a>
+                }
             </div>
 
             <div class="person-container">

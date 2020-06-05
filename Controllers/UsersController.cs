@@ -49,8 +49,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
             }
             return View(await markerquery.AsNoTracking().ToListAsync());
-
-
         }
 
         // GET: Users/Details/5

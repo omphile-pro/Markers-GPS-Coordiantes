@@ -4,21 +4,22 @@
     ViewData["Title"] = "User Accounts";
 }
 
-<div class="col-10 table-content" style="padding-top:20px">
+<div class="col-10 table-content" style="padding-top:50px">
 
     <form method="get" asp-action="Index">
 
         <p>
             <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
             <input type="submit" value="Search" class="btn btn-primary" />
-            <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
+            <a asp-action="Create" class="butt-primary"><i class="far fa-plus-square"></i>Create User</a>
             <a asp-action="Index">Retrieve all Users</a>
 
+            <a asp-action="Index">Retrieve all Users</a>
         </p>
     </form>
-
+    <hr>
     <div class="">
-        <table class="table start-hidden no-border-top">
+        <table class="table start-hidden no-border-top"style="padding-top:20px ">
             <thead class="thead-dark no-border-top">
                 <tr>
 

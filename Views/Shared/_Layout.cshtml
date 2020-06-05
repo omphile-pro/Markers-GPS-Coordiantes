@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
     <link rel="stylesheet" type="text/css" href="~/css/main2.css">
@@ -28,19 +28,52 @@
     <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
     <link rel="stylesheet" type="text/css" href="~/css/reports.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-            <!-- Favicon -->
-        <link rel="shortcut icon" type="image/icon" href="color-logo.png"/>
-        <!-- Custom styling -->
-        <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- Google Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/main2.css">
+    <link rel="stylesheet" type="text/css" href="~/css/cards.css">
+    <link rel="stylesheet" type="text/css" href="~/css/reports.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="Admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="Admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="Admin/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="Admin/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="Admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="Admin/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="Admin/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="color-logo.png" />
+    <!-- Custom styling -->
+    <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
+    <link rel="stylesheet" type="text/css" href="~/css/TableLayoutStyle.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -93,9 +126,11 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
-                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Access Track</strong></a>
-                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Access Track</strong></a>
-                               
+                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Account</strong></a>
+                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Markers List</strong></a>
+                                <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
+
+
 
                             </div>
                             <button class="dropdown-btn">
