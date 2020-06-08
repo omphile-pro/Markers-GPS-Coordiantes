@@ -67,8 +67,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         // GET: MarkersGpscoordinates
 
-
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -106,12 +106,18 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
-            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users).ToListAsync());
-        }
+         
+        ViewData["GetMarkersDetails"] = markerssearch;
 
-
-        // GET: MarkersGpscoordinates/Details/5
-        public async Task<IActionResult> Details(int? id)
+            var markerquery = from x in _context.MarkersGpscoordinates.OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.PersalNumber.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+}
+// GET: MarkersGpscoordinates/Details/5
+public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

@@ -90,13 +90,14 @@
 
                     <div class="drop-down-parent-container">
 
-                        <img class="icon" src="./images/admIcon.svg">
+                        
                         @if (roleID == 3)
                         {
-                            <button class="dropdown-btn">
-                                <a class="nav-list-item">Administration</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
-                            </button>
+                        <button class="dropdown-btn">
+                            <img class="icon" src="./images/admIcon.svg">
+                            <a class="nav-list-item">Administration</a>
+                            <img class="chevron" src="./images/chevron-down.svg">
+                        </button>
 
                             <div class="dropdown-container">
                                 <a class="nav-list-item" asp-controller="Users" asp-action="Index"><strong>Accounts</strong></a>
@@ -111,7 +112,7 @@
                             </button>
                             <div class="dropdown-container">
 
-                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Marking Centers</strong></a>
+                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
                               
                                 <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
                             </div>

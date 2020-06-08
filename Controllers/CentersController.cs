@@ -42,6 +42,33 @@ namespace Markers_GPS_Coordiantes.Controllers
             return View(await dbsMarkersContext.ToListAsync());
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
+        {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+
+  
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.Center.Include(c => c.City) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.CenterName.Contains(markerssearch) || x.Scanner.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+        }
+        // GET: MarkersGpscoordinates/Details/5
         // GET: Centers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -95,7 +122,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CenterId,CenterToken,CenterName,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
+        public async Task<IActionResult> Create([Bind("CenterId,CenterToken,CenterName,Scanner,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -150,7 +177,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CenterId,CenterToken,CenterName,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
+        public async Task<IActionResult> Edit(int id, [Bind("CenterId,CenterToken,CenterName,Scanner,CenterNumber,CenterDescription,CityId,Longitude,Latitude,DeletedDate,DeletedByUsersId,LastModifiedByUsersId,LastModifiedDate,CreatedByUsersId,CreateDate,IsDeleted")] Center center)
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -234,45 +261,9 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
 
 
-        public async Task<IActionResult> ImportAsync()
+        public async Task<IActionResult> Import()
         {
-            //CHECK PERMISSIONS  --ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
-            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            if (roleID <= 0)
-            {
-                return Unauthorized("You are not signed in.");          //  write better message
-            }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
-            }
-            //END OF SECURITY CHECK
-
-            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
-            //filter by role id
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.SuperAdmin)
-            {
-                return null;
-            }
-
-            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
-            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
-
-            //make sure the center really exists and User is assigned to that center
-            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
-
-            if (center == null)
-            {
-                return NotFound("The center does not exist");
-            }
-
-            //check if the user is registered in the CenterManager-Center join table
-            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
-            if (MarkersGpscoordinates == null)
-            {
-                return NotFound("You are not configured as center manager, please consult your system administrator.");
-            }
-            return View(await _context.Center.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.CenterName).ToListAsync());
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile formFile)
@@ -306,27 +297,13 @@ namespace Markers_GPS_Coordiantes.Controllers
                             CenterNumber = worksheet.Cells[row, 2].Value.ToString().Trim(),
                             Longitude = Convert.ToDecimal(worksheet.Cells[row, 3].Value.ToString().Trim()),
                             Latitude = Convert.ToDecimal(worksheet.Cells[row, 4].Value.ToString().Trim()),
+                            Scanner = worksheet.Cells[row, 5].Value.ToString().Trim(),
                             CityId = 1,
                             CreatedByUsersId = 5,
                         });
                     }
 
-                    //make sure the center really exists and User is assigned to that center
-                    var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
-
-                    if (center == null)
-                    {
-                        return NotFound("The center does not exist");
-                    }
-
-                    //check if the user is registered in the CenterManager-Center join table
-                    var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
-                    if (MarkersGpscoordinates == null)
-                    {
-                        return NotFound("You are not configured as center manager, please consult your system administrator.");
-                    }
-
-
+              
 
                     if (newMarkers.Count() > 0)
                     {

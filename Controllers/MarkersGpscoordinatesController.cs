@@ -76,7 +76,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.CenterManager)
+            if (roleID != (int)RoleIDs.Administrator)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
@@ -99,23 +99,26 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound("The center does not exist");
             }
-            ViewData["GetMarkersDetails"] = markerssearch;
-            var markerquery = from x in _context.MarkersGpscoordinates.Include(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users) select x;
-            if (!String.IsNullOrEmpty(markerssearch))
-            {
-                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch) || x.PersalNumber.Contains(markerssearch));
-            }
+
             //  check if the user is registered in the CenterManager-Center join table
             var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
             if (MarkersGpscoordinates == null)
             {
                 return NotFound("You are not configured as center manager, please consult your system administrator.");
             }
-            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users).ToListAsync());
+
+            ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.MarkersGpscoordinates.OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.PersalNumber.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
         }
-
-
         // GET: MarkersGpscoordinates/Details/5
+
+      
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -358,8 +361,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
         }
-
-
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile formFile)
         {
@@ -403,7 +404,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                             FullName = worksheet.Cells[row, 2].Value.ToString().Trim(),
                             IdNumber = worksheet.Cells[row, 3].Value.ToString().Trim(),
                             GenderId = (Convert.ToString(worksheet.Cells[row, 3].Value.ToString().Trim().ToLower()) == "male" ? 1 : 3),
-
                             PhysicalAddress = worksheet.Cells[row, 4].Value.ToString().Trim(),
                             PostalCode = worksheet.Cells[row, 5].Value.ToString().Trim(),
                             PersalNumber = worksheet.Cells[row, 6].Value.ToString().Trim(),
@@ -418,7 +418,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                             UsersId = 5,
                             ExamId = 4,
                             CreatedByUsersId = 3,
-
                             CenterId = 3,
                         });
                     }

@@ -69,7 +69,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound();
             }
-
             var users = await _context.Users
                 .Include(u => u.Center)
                 .Include(u => u.Gender)
@@ -79,7 +78,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound();
             }
-
             return View(users);
         }
 

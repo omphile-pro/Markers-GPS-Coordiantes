@@ -36,7 +36,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 try
                 {
-                    string auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxlYjAxYXBpIiwibmJmIjoxNTkwMTMxNDM4LCJleHAiOjE1OTEzNDEwMzgsImlhdCI6MTU5MDEzMTQzOH0.idVCy8Oxl76zd2M8AjcoxRPcXjZofJedT72cTscoIZ8";
+                    string auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxlYjAxYXBpIiwibmJmIjoxNTkxNjAwMzE1LCJleHAiOjE1OTI4MDk5MTUsImlhdCI6MTU5MTYwMDMxNX0.HDqcbqO2r2Yf-83yvBVQmOlZwfo_ziZky81iIVOIFRk";
 
 
                     client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", auth);
