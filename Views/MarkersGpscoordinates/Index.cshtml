@@ -4,7 +4,7 @@
     ViewData["Title"] = "Markers Information";
 
 }
-    <div class="col-10 table-content" style="padding-top:20px">
+    <div class="col-12 table-content" style="padding-top:20px">
         <div id="myDIV" onscroll="myFunction()">
             <div id="content">Scroll inside me!</div>
         </div>
@@ -25,8 +25,8 @@
             </p>
         </form>
         <p>
-            <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Marker</a>
-            <a asp-action="Import" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Import</a>
+            <a asp-controller="MarkersGpscoordinates" asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Marker</a>
+            <a asp-controller="MarkersGpscoordinates" asp-action="Import" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Import</a>
             <a class="btn btn-dark" href="@Url.Action("ExportToExcel","MarkersGpscoordinates")" style="
 
 " role="button">Download @*<i class='fas fa-file-download'>*@ </a>
