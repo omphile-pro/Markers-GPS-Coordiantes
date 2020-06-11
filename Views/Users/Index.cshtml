@@ -8,47 +8,68 @@
 
     <form method="get" asp-action="Index">
 
-        <p>
-            <input type="search" placeholder="Enter Loginname" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
-            <input type="submit" value="Search" class="btn btn-primary" />
-            <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create User</a>
-            <a asp-action="Index">Retrieve all Users</a>
+        @*<p>
+            <div>
+                <input type="search" placeholder="Enter Loginname " class="edit-input-tag short" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
+                <img classs="search-icon" src="~/Images/searc-icon.svg" />
+            </div>
 
-        </p>
+
+            <a asp-action="Create" class="butt-primary white-text margin-right">Create User +</a>
+            <a asp-action="Index" class="butt-secondary grey-text">Retrieve All Users</a>
+        </p>*@
+
+        <div class="acc-top">
+            <div class="search-bar-container margin-right">
+                <input class="search-bar" type="text" placeholder="Search" value="@ViewData["GetMarkersDetails"]" name="markerssearch" />
+                <input type="submit" value="Search" class="btn btn-primary" />
+                <div class="search-icon-container acc-search-bar">
+                    <img class="search-icon" src="./images/searc-icon.svg">
+                </div>
+            </div>
+
+            <div class="create margin-right">
+                <button class="butt-primary" asp-action="Create">Create User +</button>
+            </div>
+            
+            <div class="retrieve">
+                <a asp-action="Index">Retrieve all Markers</a>
+                <button class="butt-secondary" asp-action="Index">Retrieve All Users</button>
+            </div>
+        </div>
     </form>
-
-    <div class="">
-        <table class="table start-hidden no-border-top">
-            <thead class="thead-dark no-border-top">
+    
+    <div style="padding-top:20px">
+        <table class="table start-hidden no-border-top" style="padding-top:20px">
+            <thead class="table-head-container">
                 <tr>
-
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.Loginname)
                     </th>
 
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.Firstname)
                     </th>
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.Lastname)
                     </th>
 
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.EmailAddress)
                     </th>
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.MobileNo)
                     </th>
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.Telephone)
                     </th>
 
                   
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.Center)
                     </th>
 
-                    <th>
+                    <th class="table-head">
                         @Html.DisplayNameFor(model => model.Role)
                     </th>
                     <th>
@@ -59,40 +80,39 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Loginname)
-                        </td>
+                <tr >
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.Loginname)
+                    </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Firstname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Lastname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmailAddress)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MobileNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Telephone)
-                        </td>
-                    
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Center.CenterName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Role.RoleDescription)
-                        </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.Firstname)
+                    </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.Lastname)
+                    </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                    </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.MobileNo)
+                    </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.Telephone)
+                    </td>
 
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.UsersId"><i class="fa fa-marker fa-md" title="Edit"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.UsersId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-md" title="Delete"></i></a>
-                        </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.Center.CenterName)
+                    </td>
+                    <td class="table-data">
+                        @Html.DisplayFor(modelItem => item.Role.RoleDescription)
+                    </td>
 
-                    </tr>
+                    <td class="table-data td-icon">
+                        <a asp-action="Edit" asp-route-id="@item.UsersId"><img class="table-icon" title="Edit" src="~/Images/edit.svg"/></a>
+                        <a asp-action="Delete" asp-route-id="@item.UsersId" class="text-danger ml-1"title="Delete"><img class="table-icon" src="~/Images/trash.svg"/></a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

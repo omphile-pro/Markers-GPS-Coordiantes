@@ -49,8 +49,6 @@ namespace Markers_GPS_Coordiantes.Controllers
                 markerquery = markerquery.Where(x => x.Loginname.Contains(markerssearch) || x.Firstname.Contains(markerssearch) || x.Lastname.Contains(markerssearch));
             }
             return View(await markerquery.AsNoTracking().ToListAsync());
-
-
         }
 
         // GET: Users/Details/5
@@ -71,7 +69,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound();
             }
-
             var users = await _context.Users
                 .Include(u => u.Center)
                 .Include(u => u.Gender)
@@ -81,7 +78,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return NotFound();
             }
-
             return View(users);
         }
 

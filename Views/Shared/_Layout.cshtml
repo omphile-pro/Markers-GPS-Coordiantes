@@ -28,20 +28,11 @@
     <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
     <link rel="stylesheet" type="text/css" href="~/css/reports.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/icon" href="color-logo.png" />
-    <!-- Custom styling -->
-    <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="Admin/plugins/jquery/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
@@ -70,6 +61,19 @@
     <!-- summernote -->
     <link rel="stylesheet" href="Admin/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="color-logo.png" />
+    <!-- Custom styling -->
+    <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
+    <link rel="stylesheet" type="text/css" href="~/css/TableLayoutStyle.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -86,13 +90,14 @@
 
                     <div class="drop-down-parent-container">
 
-                        <img class="icon" src="./images/admIcon.svg">
+                        
                         @if (roleID == 3)
                         {
-                            <button class="dropdown-btn">
-                                <a class="nav-list-item">Administration</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
-                            </button>
+                        <button class="dropdown-btn">
+                            <img class="icon" src="./images/admIcon.svg">
+                            <a class="nav-list-item">Administration</a>
+                            <img class="chevron" src="./images/chevron-down.svg">
+                        </button>
 
                             <div class="dropdown-container">
                                 <a class="nav-list-item" asp-controller="Users" asp-action="Index"><strong>Accounts</strong></a>
@@ -122,9 +127,11 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
-                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>User Accounts</strong></a>
-                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Makers</strong></a>
-                               
+                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Account</strong></a>
+                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Markers List</strong></a>
+                                <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
+
+
 
                             </div>
                             <button class="dropdown-btn">
@@ -147,6 +154,7 @@
                                 <img class="chevron" src="./images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
+            
                                
                                 <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Markers"><strong>Access Track</strong></a>
                                 <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>

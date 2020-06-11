@@ -12,21 +12,19 @@ using System.IO;
 using OfficeOpenXml;
 namespace Markers_GPS_Coordiantes.Controllers
 {
-    public class SuperAdmin : Controller
+    public class SuperAdminController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
         public int CenterID = 0;
         public int UsersID = 0;
-
-        public SuperAdmin(IHttpContextAccessor sessionAccessor)
+        // GET: MarkersGpscoordinates
+        public SuperAdminController (IHttpContextAccessor sessionAccessor)
         {
             _sessionAccessor = sessionAccessor;
         }
-
-        // GET: MarkersGpscoordinates
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Markers()
         {
             //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
             roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
@@ -34,17 +32,92 @@ namespace Markers_GPS_Coordiantes.Controllers
             {
                 return Unauthorized("You are not signed in.");          //  write better message
             }
-            if (roleID != (int)RoleIDs.SuperAdmin)
+            if (roleID != (int)RoleIDs.Administrator && roleID != (int)RoleIDs.CenterManager)
             {
                 return Unauthorized("You don't have permission to perform this operation.");  //  write better message
             }
             //  END OF SECURITY CHECK
-            var dbsMarkersContext = _context.MarkersGpscoordinates.Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users);
-            return View(await dbsMarkersContext.ToListAsync());
+
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //  filter by role id
+            if ((!(RoleID == (int)RoleIDs.CenterManager)) && (!(RoleID == (int)RoleIDs.Administrator)))
+            {
+                return null;
+            }
+
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            //  make sure the center really exists
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users).ToListAsync());
         }
 
-        // GET: MarkersGpscoordinates/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: MarkersGpscoordinates
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string markerssearch)
+        {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin )
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //  filter by role id
+            if ((!(RoleID == (int)RoleIDs.SuperAdmin)))
+            {
+                return null;
+            }
+
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
+            //  make sure the center really exists
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+
+            //  check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+         
+        ViewData["GetMarkersDetails"] = markerssearch;
+
+            var markerquery = from x in _context.MarkersGpscoordinates.OrderBy(r => r.FullName).Include(m => m.Center).Include(m => m.Exam).Include(m => m.Gender).Include(m => m.Position).Include(m => m.Race).Include(m => m.Subject).Include(m => m.Users) select x;
+            if (!String.IsNullOrEmpty(markerssearch))
+            {
+                markerquery = markerquery.Where(x => x.FullName.Contains(markerssearch) || x.PersalNumber.Contains(markerssearch) || x.CentreNumber.Contains(markerssearch));
+            }
+            return View(await markerquery.AsNoTracking().ToListAsync());
+}
+// GET: MarkersGpscoordinates/Details/5
+public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -71,6 +144,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: MarkersGpscoordinates/Create
         public IActionResult Create()
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             ViewData["CenterId"] = new SelectList(_context.Center, "CenterId", "CenterName");
             ViewData["ExamId"] = new SelectList(_context.Exam, "ExamId", "PaperNumber");
             ViewData["GenderId"] = new SelectList(_context.Gender, "GenderId", "GenderDescription");
@@ -88,6 +172,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MarkersId,SubjectId,CenterId,UsersId,RaceId,ExamId,GenderId,PositionId,CentreNumber,FullName,IdNumber,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             if (ModelState.IsValid)
             {
                 _context.Add(markersGpscoordinates);
@@ -107,6 +202,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: MarkersGpscoordinates/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -134,6 +240,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MarkersId,SubjectId,CenterId,UsersId,RaceId,ExamId,GenderId,PositionId,CentreNumber,FullName,IdNumber,PhysicalAddress,PostalCode,PersalNumber,WorkTelephone,HomeTelephone,Cellphone,Latitude,Longitude,CreatedDate,CreatedByUsersId")] MarkersGpscoordinates markersGpscoordinates)
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             if (id != markersGpscoordinates.MarkersId)
             {
                 return NotFound();
@@ -172,6 +289,17 @@ namespace Markers_GPS_Coordiantes.Controllers
         // GET: MarkersGpscoordinates/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
             if (id == null)
             {
                 return NotFound();
@@ -203,6 +331,44 @@ namespace Markers_GPS_Coordiantes.Controllers
             _context.MarkersGpscoordinates.Remove(markersGpscoordinates);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> ImportAsync()
+        {
+            //  CHECK PERMISSIONS  -- ADD THIS CODE TO ALL YOUR PROTECTED ACTIONS
+            roleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            if (roleID <= 0)
+            {
+                return Unauthorized("You are not signed in.");          //  write better message
+            }
+            if (roleID != (int)RoleIDs.SuperAdmin)
+            {
+                return Unauthorized("You don't have permission to perform this operation.");  //  write better message
+            }
+            //  END OF SECURITY CHECK
+
+            int RoleID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("roleID"));
+            //filter by role id
+            if ((!(RoleID == (int)RoleIDs.SuperAdmin)))
+            {
+                return null;
+            }
+            CenterID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("centerID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+            //make sure the center really exists and User is assigned to that center
+            var center = await _context.VCenter.Where(b => b.CenterId == CenterID).FirstOrDefaultAsync();
+
+            if (center == null)
+            {
+                return NotFound("The center does not exist");
+            }
+            //check if the user is registered in the CenterManager-Center join table
+            var MarkersGpscoordinates = await _context.Users.Where(b => b.UsersId == UsersID && b.CenterId == center.CenterId).FirstOrDefaultAsync();
+            if (MarkersGpscoordinates == null)
+            {
+                return NotFound("You are not configured as center manager, please consult your system administrator.");
+            }
+            return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
         }
 
 
@@ -359,3 +525,5 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
     }
 }
+
+
