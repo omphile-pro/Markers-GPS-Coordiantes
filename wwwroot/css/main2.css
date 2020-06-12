@@ -201,7 +201,14 @@ a{
     height: 100%;
 }
 
+#ui-datepicker-div {
+    z-index: 10 !important;
+}
 
+.col-12 {
+    overflow: auto;
+    white-space: nowrap;
+}
 
 
 .topnav-centered a {

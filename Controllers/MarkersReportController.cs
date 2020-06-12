@@ -56,6 +56,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             // toDate+"T"+toDateTime
             ViewBag.value = DateTime.Now;
 
+
             List<groups> reservationList = new List<groups>();
             // Get access track data
             string url = "https://portal.accesstrack.co.za/integri/api/scanGroup/scanGroups";
