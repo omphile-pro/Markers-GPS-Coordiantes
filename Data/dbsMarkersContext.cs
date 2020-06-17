@@ -245,9 +245,7 @@ namespace Markers_GPS_Coordiantes.Data
 
             modelBuilder.Entity<Contact>(entity =>
             {
-                entity.Property(e => e.ContactId)
-                    .HasColumnName("ContactID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ContactId).HasColumnName("ContactID");
 
                 entity.Property(e => e.CellphoneNo)
                     .IsRequired()
@@ -264,8 +262,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IdentityNo).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.TelephoneNo)
                     .IsRequired()
                     .HasMaxLength(10);
@@ -277,8 +273,7 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.HasOne(d => d.IdentityNoNavigation)
                     .WithMany(p => p.Contact)
                     .HasForeignKey(d => d.IdentityNo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contact_Marker1");
+                    .HasConstraintName("FK_Contact_Marker");
             });
 
             modelBuilder.Entity<CurrentEmployment>(entity =>

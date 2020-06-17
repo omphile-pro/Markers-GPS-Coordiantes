@@ -430,7 +430,45 @@
             <input asp-for="MotivationDescription" placeholder="Motivation Description" class="form-control " />
             <span asp-validation-for="MotivationDescription" class="text-danger"></span>
         </div>
+        <div class="section-title margin-top flex" style="padding-bottom:15px">
+            <div class="flex">
+                <p class="blu-title bold">DECLARATION BY APPLICANT</p>
 
+            </div>
+        </div><br>
+        <div class="form-check-inline">
+
+            <label class="" style="color:black;padding-top:20px">
+                <strong>
+                    Pass percentage of Grade 12 learners taught by applicat FOR SUBJECT (NOT SCHOOL AVERAGE)
+                </strong>
+            </label>
+        </div><br>
+        <input asp-for="Year" class="col-sm-3 edit-input-tag " />
+        <input class=" edit-input-tag short left " type="text" asp-for="AveragebyYear" placeholder="Average by year"><br>
+
+        <div class="form-check-inline">
+
+            <label class="" style="color:black;padding-top:20px">
+                <strong>
+                    Pass percentage of Grade 12 candidates in the district, for subject
+                </strong>
+            </label>
+        </div><br>
+        <input asp-for="Year" class="col-sm-3 edit-input-tag " />
+        <input class=" edit-input-tag short left " type="text" asp-for="PercentageYear" placeholder="Taught By Average">
+        
+        <div class="form-check-inline">
+
+            <label class="" style="color:black;padding-top:20px">
+                <strong>
+                    Pass percentage of Grade 12 candidates in the province, for subject
+                </strong>
+            </label>
+        </div><br>
+        <input asp-for="Year" class="col-sm-3 edit-input-tag " />
+        <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average">
+        <br>
         <div class="form-group" style="padding-top:20px">
             <input type="submit" value="Save" class="btn btn-primary" />
             <a asp-action="Index">Back to List</a>

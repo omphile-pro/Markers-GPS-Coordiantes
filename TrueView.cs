@@ -98,6 +98,16 @@ namespace Markers_GPS_Coordiantes
         //MOTIVATION
 
         public string MotivationDescription { get; set; }
+        //DECLARATRIONBY APPLICANT
+
+        public bool Declaration { get; set; }
+     
+        public string TaughtByAverage { get; set; }
+        public DateTime AveragebyYear { get; set; }
+        public string CandidatesByDescriptionPercentage { get; set; }
+        public DateTime PercentageYear { get; set; }
+        public string ProvincePercentage { get; set; }
+
 
     }
 }
