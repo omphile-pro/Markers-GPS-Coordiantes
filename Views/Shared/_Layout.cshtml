@@ -16,6 +16,7 @@
     <title>@ViewData["Title"]  | Pay Marker</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+ 
     <script src="Admin/plugins/jquery/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -23,10 +24,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/css/main2.css">
+    @*<link rel="stylesheet" type="text/css" href="~/css/main2.css">
     <link rel="stylesheet" type="text/css" href="~/css/cards.css">
     <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
-    <link rel="stylesheet" type="text/css" href="~/css/reports.css">
+    <link rel="stylesheet" type="text/css" href="~/css/reports.css">*@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -39,9 +40,9 @@
     <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/css/main2.css">
+    @*<link rel="stylesheet" type="text/css" href="~/css/main2.css">
     <link rel="stylesheet" type="text/css" href="~/css/cards.css">
-    <link rel="stylesheet" type="text/css" href="~/css/reports.css">
+    <link rel="stylesheet" type="text/css" href="~/css/reports.css">*@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="Admin/plugins/fontawesome-free/css/all.min.css">
@@ -103,7 +104,7 @@
                                 <a class="nav-list-item" asp-controller="Users" asp-action="Index"><strong>Accounts</strong></a>
                                 <a class="nav-list-item" asp-controller="SuperAdmin" asp-action="Index"><strong>Markers List</strong></a>
                                 <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
-                               
+                                <a class="nav-list-item" asp-controller="Markers" asp-action="Index"><strong>Marking </strong></a>
                             </div>
                             <button class="dropdown-btn">
                                 <img class="icon" src="./images/Reports.svg">

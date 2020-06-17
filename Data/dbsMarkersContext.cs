@@ -15,21 +15,33 @@ namespace Markers_GPS_Coordiantes.Data
         {
         }
 
+        public virtual DbSet<Application> Application { get; set; }
+        public virtual DbSet<ApplicationDetails> ApplicationDetails { get; set; }
         public virtual DbSet<Center> Center { get; set; }
         public virtual DbSet<CenterManger> CenterManger { get; set; }
         public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<CurrentEmployment> CurrentEmployment { get; set; }
+        public virtual DbSet<DeclerationByApplicant> DeclerationByApplicant { get; set; }
         public virtual DbSet<Exam> Exam { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<LanguagePreference> LanguagePreference { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Marker> Marker { get; set; }
         public virtual DbSet<MarkerExam> MarkerExam { get; set; }
         public virtual DbSet<MarkerSubjectCenter> MarkerSubjectCenter { get; set; }
         public virtual DbSet<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
         public virtual DbSet<MarkersReport> MarkersReport { get; set; }
+        public virtual DbSet<MarkingExperience> MarkingExperience { get; set; }
+        public virtual DbSet<Motivation> Motivation { get; set; }
         public virtual DbSet<Position> Position { get; set; }
+        public virtual DbSet<PrescribedWorks> PrescribedWorks { get; set; }
+        public virtual DbSet<Qualification> Qualification { get; set; }
         public virtual DbSet<Race> Race { get; set; }
+        public virtual DbSet<Resident> Resident { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
+        public virtual DbSet<TeachingExperience> TeachingExperience { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersRole> UsersRole { get; set; }
@@ -50,6 +62,97 @@ namespace Markers_GPS_Coordiantes.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Application>(entity =>
+            {
+                entity.HasKey(e => e.AppliactionId);
+
+                entity.Property(e => e.AppliactionId).HasColumnName("AppliactionID");
+
+                entity.Property(e => e.CurrentPosition)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdentityNo).HasColumnName("identityNo");
+
+                entity.Property(e => e.Langauge)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LiteraturePaper)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Paper)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Position)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PracticalExamination)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.PracticalSubject)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PrescribedBook)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.Application)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SubjectApplication_Marker");
+            });
+
+            modelBuilder.Entity<ApplicationDetails>(entity =>
+            {
+                entity.Property(e => e.ApplicationDetailsId).HasColumnName("ApplicationDetailsID");
+
+                entity.Property(e => e.ApplicationId).HasColumnName("ApplicationID");
+
+                entity.Property(e => e.Language)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Paper)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.ApplicationDetails)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ApplicationDetails_Application");
+
+                entity.HasOne(d => d.ApplicationNavigation)
+                    .WithMany(p => p.ApplicationDetails)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ApplicationDetails_PrescribedWorks");
+            });
+
             modelBuilder.Entity<Center>(entity =>
             {
                 entity.Property(e => e.CenterId).HasColumnName("CenterID");
@@ -140,6 +243,115 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasDefaultValueSql("(getdate())");
             });
 
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.Property(e => e.ContactId)
+                    .HasColumnName("ContactID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CellphoneNo)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.EmailAddress)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FaxNo).HasMaxLength(10);
+
+                entity.Property(e => e.HomeTelephoneNo)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.IdentityNo).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.TelephoneNo)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.WorkSchool)
+                    .HasColumnName("Work/School")
+                    .HasMaxLength(10);
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.Contact)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Contact_Marker1");
+            });
+
+            modelBuilder.Entity<CurrentEmployment>(entity =>
+            {
+                entity.Property(e => e.CurrentEmploymentId).HasColumnName("CurrentEmploymentID");
+
+                entity.Property(e => e.CentreNumber)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CurrentPosition)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.District)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EmploymentType)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdentityNo).HasColumnName("identityNo");
+
+                entity.Property(e => e.NameOftheSchoolOffice)
+                    .HasColumnName("NameOftheSchool/Office")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Retiring)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.CurrentEmployment)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .HasConstraintName("FK_CurrentEmployment_Marker");
+            });
+
+            modelBuilder.Entity<DeclerationByApplicant>(entity =>
+            {
+                entity.HasKey(e => e.DeclareationId);
+
+                entity.Property(e => e.DeclareationId).HasColumnName("DeclareationID");
+
+                entity.Property(e => e.AveragebyYear).HasColumnType("datetime");
+
+                entity.Property(e => e.CandidatesByDescriptionPercentage)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PercentageYear).HasColumnType("datetime");
+
+                entity.Property(e => e.ProvincePercentage)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TaughtByAverage)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Year).HasColumnType("datetime");
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.DeclerationByApplicant)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DeclerationByApplicant_Marker");
+            });
+
             modelBuilder.Entity<Exam>(entity =>
             {
                 entity.Property(e => e.ExamId).HasColumnName("ExamID");
@@ -194,6 +406,16 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<LanguagePreference>(entity =>
+            {
+                entity.Property(e => e.LanguagePreferenceId).HasColumnName("LanguagePreferenceID");
+
+                entity.Property(e => e.LanguageDescription)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Login>(entity =>
             {
                 entity.HasNoKey();
@@ -241,11 +463,7 @@ namespace Markers_GPS_Coordiantes.Data
 
             modelBuilder.Entity<Marker>(entity =>
             {
-                entity.Property(e => e.MarkerId)
-                    .HasColumnName("MarkerID")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.CenterId).HasColumnName("CenterID");
+                entity.HasKey(e => e.IdentityNo);
 
                 entity.Property(e => e.CreateDate)
                     .HasColumnType("datetime")
@@ -257,51 +475,45 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.DeletedDate).HasColumnType("datetime");
 
+                entity.Property(e => e.Gender)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Initials)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.LastModifiedByUsersId).HasColumnName("LastModifiedByUsersID");
 
                 entity.Property(e => e.LastModifiedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.MaidenName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.MarkerToken).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.PositionId).HasColumnName("PositionID");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.UsersId).HasColumnName("UsersID");
+                entity.Property(e => e.Nationality)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.Center)
-                    .WithMany(p => p.Marker)
-                    .HasForeignKey(d => d.CenterId)
-                    .HasConstraintName("FK_Marker_Center");
+                entity.Property(e => e.Persal)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.CreatedByUsers)
-                    .WithMany(p => p.MarkerCreatedByUsers)
-                    .HasForeignKey(d => d.CreatedByUsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Marker_CreatedByUsers");
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.DeletedByUsers)
-                    .WithMany(p => p.MarkerDeletedByUsers)
-                    .HasForeignKey(d => d.DeletedByUsersId)
-                    .HasConstraintName("FK_Marker_DeletedByUsers");
-
-                entity.HasOne(d => d.LastModifiedByUsers)
-                    .WithMany(p => p.MarkerLastModifiedByUsers)
-                    .HasForeignKey(d => d.LastModifiedByUsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Marker_LastModifiedByUsers");
-
-                entity.HasOne(d => d.Position)
-                    .WithMany(p => p.Marker)
-                    .HasForeignKey(d => d.PositionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Marker_Position");
-
-                entity.HasOne(d => d.Users)
-                    .WithMany(p => p.MarkerUsers)
-                    .HasForeignKey(d => d.UsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Marker_Users");
+                entity.Property(e => e.Title)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<MarkerExam>(entity =>
@@ -509,6 +721,42 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<MarkingExperience>(entity =>
+            {
+                entity.Property(e => e.MarkingExperienceid).ValueGeneratedNever();
+
+                entity.Property(e => e.Language)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PositionHeld)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Motivation>(entity =>
+            {
+                entity.Property(e => e.MotivationId).HasColumnName("MotivationID");
+
+                entity.Property(e => e.MotivationDescription)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.Motivation)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Motivation_Marker");
+            });
+
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.Property(e => e.PositionId).HasColumnName("PositionID");
@@ -519,6 +767,69 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<PrescribedWorks>(entity =>
+            {
+                entity.Property(e => e.PrescribedWorksId)
+                    .HasColumnName("PrescribedWorksID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ApplicationId)
+                    .HasColumnName("ApplicationID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Drama)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Novel)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Poetry)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShortStories)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Qualification>(entity =>
+            {
+                entity.Property(e => e.QualificationId).HasColumnName("QualificationID");
+
+                entity.Property(e => e.CourseLevel)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LevelOfDegree)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LevelOfDiploma)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MojarSubjects)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QualificationDescription)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Year).HasColumnType("date");
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.Qualification)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .HasConstraintName("FK_Qualification_Marker");
+            });
+
             modelBuilder.Entity<Race>(entity =>
             {
                 entity.Property(e => e.RaceId).HasColumnName("RaceID");
@@ -527,6 +838,29 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Resident>(entity =>
+            {
+                entity.Property(e => e.ResidentId)
+                    .HasColumnName("ResidentID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.PostalCode)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ResidentialAddress)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.Resident)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Resident_Marker");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -553,6 +887,68 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.SubjectToken).HasDefaultValueSql("(newid())");
+            });
+
+            modelBuilder.Entity<TeachingExperience>(entity =>
+            {
+                entity.Property(e => e.TeachingExperienceId).HasColumnName("TeachingExperienceID");
+
+                entity.Property(e => e.ExperienceInNcsCaps)
+                    .IsRequired()
+                    .HasColumnName("ExperienceInNCS/CAPS")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fetexperience)
+                    .IsRequired()
+                    .HasColumnName("FETExperience")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Grade)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Language)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameofschooIInstitution)
+                    .IsRequired()
+                    .HasColumnName("NameofschooI/Institution")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PercentageofLearners)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SubjectExperience)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TeachingExperience1)
+                    .IsRequired()
+                    .HasColumnName("TeachingExperience")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Year).HasColumnType("datetime");
+
+                entity.HasOne(d => d.IdentityNoNavigation)
+                    .WithMany(p => p.TeachingExperience)
+                    .HasForeignKey(d => d.IdentityNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TeachingExperience_Marker");
             });
 
             modelBuilder.Entity<UserRole>(entity =>
