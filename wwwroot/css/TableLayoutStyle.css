@@ -3,6 +3,10 @@
     width: 79% !important;
 }
 
+.col-10{
+    overflow:auto;
+} 
+
 .acc-top {
     display: flex;
     /* justify-content: space-between; */

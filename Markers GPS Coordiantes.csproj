@@ -54,11 +54,6 @@
     <None Include="Views\Login\Login.cshtml" />
     <None Include="Views\MarkerDashboard\Index.cshtml" />
     <None Include="Views\MarkersReport\Index.cshtml" />
-    <None Include="Views\Markers\Create.cshtml" />
-    <None Include="Views\Markers\Delete.cshtml" />
-    <None Include="Views\Markers\Details.cshtml" />
-    <None Include="Views\Markers\Edit.cshtml" />
-    <None Include="Views\Markers\Index.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />

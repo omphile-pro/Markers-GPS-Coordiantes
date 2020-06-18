@@ -1,0 +1,441 @@
+﻿@model Markers_GPS_Coordiantes.TrueView
+
+@{
+    ViewData["Title"] = "Add Marking Center";
+}
+
+
+<div class="col-10" style="padding-top:20px">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="section-title flex">
+            <div class="flex">
+                <p class="blu-title bold">APPLICATION</p>
+            </div>
+        </div>
+        <br>
+
+
+        <select asp-for="Subject" class="edit-input-tag short" type="text">
+            <option value="" disabled selected>Select Subject</option>
+
+            <option value="English First Additional Language">English First Additional Language</option>
+            <option value="English Home Language">English Home Language</option>
+            <option value="Geography">Geography</option>
+            <option value="Economics">Economics</option>
+            <option value="Business Studies">Business Studies</option>
+            <option value="Agricultural Sciences">Agricultural Sciences</option>
+            <option value=">Life Sciences">Life Sciences</option>
+            <option value="Mathematical Literacy">Mathematical Literacy</option>
+
+        </select>
+        <!-- Default inline 1-->
+        <div class="custom-control custom-radio custom-control-inline left">
+            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+            <label class="custom-control-label" for="defaultInline1">P1</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+            <label class="custom-control-label" for="defaultInline2">P2</label>
+        </div>
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample">
+            <label class="custom-control-label" for="defaultInline3">P3</label>
+        </div>
+        <select asp-for="Langauge" class="edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select language</option>
+
+            <option value="HL">HL</option>
+            <option value="FAL">FAL</option>
+            <option value="SAL">SAL</option>
+        </select>
+        <br>
+
+        <select asp-for="Position" class="edit-input-tag short" type="text">
+            <option value="" disabled selected>Select Position</option>
+
+            <option value="Marker">Marker</option>
+            <option value="Senior Marker">Senior Marker</option>
+            <option value="Deputy Chief Marker">Deputy Chief Marker</option>
+
+
+        </select>
+
+
+        <select asp-for="CurrentPosition" class="edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Current Position</option>
+
+            <option value="Chief Marker">Chief Marker (GDE)</option>
+            <option value="Internal Moderator (GDE)">Internal Moderator (GDE)</option>
+            <option value="National Examination Pane/Umalusi">National Examination Pane/Umalusi</option>
+            <option value="Position at DBE/Umalusi">Position at DBE/Umalusi</option>
+
+        </select><br>
+
+        <select asp-for="PracticalSubject" class="edit-input-tag short" type="text">
+            <option value="" disabled selected>Select Practical Subject</option>
+
+            <option value="Dance Studies">Dance Studies</option>
+            <option value="Music Practical">Music Practical</option>
+            <option value="Technical Subjects">Technical Subjects</option>
+
+        </select><br>
+
+
+        <div class="section-title margin-top flex">
+            <div class="flex">
+                <p class="blu-title bold">
+                    PERSONAL PARTICULARS
+                </p>
+
+            </div>
+        </div><br>
+
+        <input class="edit-input-tag short" type="text" asp-for="IdentityNo" placeholder="Identity Number">
+        <input class="edit-input-tag short left" type="text" asp-for="Persal" placeholder="Persal"><br>
+        <input class="edit-input-tag short " type="text" asp-for="Surname" placeholder="Surname">
+        <input class="edit-input-tag short left" type="text" asp-for="Initials" placeholder="Initials"><br>
+        <!-- Default inline 1-->
+        <select asp-for="Title" class="edit-input-tag short" type="text">
+            <option value="" disabled selected>Select Title</option>
+
+            <option value="Mrs">Mrs</option>
+            <option value="Mr">Mr</option>
+            <option value="Ms">Ms</option>
+
+        </select>
+        <input class="edit-input-tag short left" type="text" asp-for="MaidenName" placeholder="Maiden Name">
+        <br>
+        <label for="disabledInput" class="col-sm-1 edit-input-tag short">Gender</label>
+        <div class="custom-control custom-radio custom-control-inline left">
+            <input type="radio" class="custom-control-input" id="Inline1" name="inlineDefaultRadio">
+            <label class="custom-control-label" for="Inline1">Male</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="Inline2" name="inlineDefaultRadio">
+            <label class="custom-control-label" for="Inline2">Female</label>
+        </div>
+        <select asp-for="Race" class="edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Race</option>
+
+            <option value="African">African</option>
+            <option value="White">White</option>
+            <option value="Colored">Colored</option>
+            <option value="Indian">Indian</option>
+            <option value="Indian">Asian</option>
+        </select>
+
+        <select asp-for="Nationality" class="col-sm-3 edit-input-tag short" type="text">
+            <option value="" disabled selected>Select Nationality</option>
+
+            <option value="African">African</option>
+            <option value="White">White</option>
+            <option value="Colored">Colored</option>
+            <option value="Indian">Indian</option>
+            <option value="Indian">Asian</option>
+        </select>
+
+        <input class="edit-input-tag short" type="text" asp-for="EmailAddress" placeholder="Email Address">
+        <input class="edit-input-tag short left" type="text" asp-for="TelephoneNo" placeholder="Telephone Number">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="HomeTelephoneNo" placeholder="HomeTelephoneNo">
+        <input class="col-sm-3 edit-input-tag short" type="text" asp-for="CellphoneNo" placeholder="CellphoneNo">
+        <br>
+        <input class=" edit-input-tag short" type="text" asp-for="FaxNo" placeholder="Fax Number">
+        <input class="edit-input-tag short left" type="text" asp-for="ResidentialAddress" placeholder="Residential Address">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode">
+
+        <div class="section-title margin-top flex">
+            <div class="flex">
+                <p class="blu-title bold">CURRENT EMPLOYMENT DETAILS</p>
+
+            </div>
+        </div><br>
+        <input class=" edit-input-tag short" type="text" asp-for="NameOftheSchoolOffice" placeholder="Name of the School/Office">
+        <input class=" edit-input-tag short left" type="text" asp-for="CentreNumber" placeholder="Centre Number">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="District" placeholder="District"><br>
+        <select asp-for="EmploymentType" class="edit-input-tag short " type="text">
+            <option value="" disabled selected>Select Employment Type</option>
+
+            <option value="GDE Permanent">GDE Permanent</option>
+            <option value="GDE Temporary">GDE Temporary</option>
+            <option value="Independent School">Independent School</option>
+            <option value="SGB Post">SGB Post</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <select asp-for="CurrentPosition" class=" edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Job Position</option>
+
+            <option value="GDE Permanent">Current Position</option>
+            <option value="Educator">Educator</option>
+            <option value="Head of Department">Head of Department</option>
+            <option value="Deputy Principal">Deputy Principal</option>
+            <option value="District Official">District Official</option>
+        </select><br>
+
+
+        <label for="disabledInput" class="col-sm-1 edit-input-tag "><strong>Retiring?</strong></label>
+        <div class="custom-control custom-radio custom-control-inline left">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Iline1" name="DefaultRadio">
+            <label class=" col-sm-1 custom-control-label" for="Iline1">Yes</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Iline2" name="DefaultRadio">
+            <label class="col-sm-1 custom-control-label" for="Iline2">No</label>
+        </div>
+        <br>
+        <div class="section-title margin-top flex">
+            <div class="flex">
+                <p class="blu-title bold">QUALIFICATION</p>
+
+            </div>
+        </div><br>
+
+        <select asp-for="QualificationDescription" class="col-sm-2  edit-input-tag short " type="text">
+            <option value="" disabled selected>Qualification</option>
+            <option value="Degree">Degree</option>
+            <option value="Diploma">Diploma</option>
+            <option value="Additional Single Subject">Additional Single Subject</option>
+        </select>
+
+        <input asp-for="Year" class="col-sm-2 edit-input-tag left" />
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="MojarSubjects" placeholder="Mojar Subjects">
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="CourseLevel" placeholder="Course Level"><br>
+        <input class="col-md-4  edit-input-tag short " type="text" asp-for="HighestQualification" placeholder="Highest Qualification relevent to the subject that you are applying for ">
+        <br>
+
+        <label for="disabledInput" class="col-sm-1 edit-input-tag  "><strong>Level of Degree Qualification </strong></label>
+
+        <div class="custom-control custom-radio custom-control-inline left">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="line1" name="DefaultRadio1">
+            <label class=" col-sm-1 custom-control-label" for="line1">Yes</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="line2" name="DefaultRadio1">
+            <label class="col-sm-1 custom-control-label" for="line2">No</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline ">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="line3" name="DefaultRadio1">
+            <label class=" col-sm-1 custom-control-label" for="line3">Yes</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="line4" name="DefaultRadio1">
+            <label class="col-sm-1 custom-control-label" for="line4">No</label>
+        </div>
+
+
+
+        <!--Diploma-->
+        <label for="disabledInput" class="col-sm-1 edit-input-tag  "><strong>Level of Diploma  Qualification </strong></label>
+        <div class="custom-control custom-radio custom-control-inline left">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Diplomaline1" name="DefaultRadioDiploma">
+            <label class=" col-sm-1 custom-control-label" for="Diplomaline1">1</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Diplomaline2" name="DefaultRadioDiploma">
+            <label class="col-sm-1 custom-control-label" for="Diplomaline2">2</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline ">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Diplomaline3" name="DefaultRadioDiploma">
+            <label class=" col-sm-1 custom-control-label" for="Diplomaline3">3</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Diplomaline4" name="DefaultRadioDiploma">
+            <label class="col-sm-1 custom-control-label" for="Diplomaline4">4</label>
+        </div>
+
+
+        <div class="section-title margin-top flex">
+            <div class="flex">
+                <p class="blu-title bold">TEACHING EXPERIENCE</p>
+
+            </div>
+        </div><br>
+        <input class=" edit-input-tag short" type="text" asp-for="TeachingExperience1" placeholder="Teaching Experience"><br>
+        <input class=" edit-input-tag short" type="text" asp-for="ExperienceInNcsCaps" placeholder="Experience in NCS/CAPS"><br>
+        <input class=" edit-input-tag short" type="text" asp-for="SubjectExperience" placeholder="Teaching Subject Experience "><br>
+        <input class=" edit-input-tag short" type="text" asp-for="Fetexperience" placeholder="Experience as FET advisor in subject applied for"><br>
+        <input asp-for="Year" class="col-sm-2 edit-input-tag " />
+        <input class=" col-sm-2  edit-input-tag short left" type="text" asp-for="Subject" placeholder="Subject">
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Language" placeholder="Language">
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Grade" placeholder="Grade">
+        <input class=" edit-input-tag short" type="text" asp-for="NameofschooIInstitution" placeholder="Name of School/Institution">
+        <input class=" edit-input-tag short left" type="text" asp-for="PercentageofLearners" placeholder="Percentage pass of Learners">
+        <br>
+        <div class="section-title margin-top flex">
+            <div class="flex">
+                <p class="blu-title bold">MARKING EXPERIENCE</p>
+
+            </div>
+        </div><br>
+        <input asp-for="Year" class="col-sm-3 edit-input-tag " />
+        <select asp-for="Subject" class="col-sm-3 edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Subject</option>
+
+            <option value="English First Additional Language">English First Additional Language</option>
+            <option value="English Home Language">English Home Language</option>
+            <option value="Geography">Geography</option>
+            <option value="Economics">Economics</option>
+            <option value="Business Studies">Business Studies</option>
+            <option value="Agricultural Sciences">Agricultural Sciences</option>
+            <option value=">Life Sciences">Life Sciences</option>
+            <option value="Mathematical Literacy">Mathematical Literacy</option>
+
+        </select>
+
+        <select asp-for="PositionHeld" class="col-sm-3 edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Position Held</option>
+
+            <option value="Internal Moderator">Internal Moderator</option>
+            <option value="Chief Marker">Chief Marker</option>
+            <option value="Deputy Chief Marker">Deputy Chief Marker</option>
+            <option value="Senior Marker">Senior Marker</option>
+            <option value=" Marker">Marker</option>
+            <option value=" Marker">Novice Marker</option>
+        </select>
+        <div class="section-title margin-top flex">
+            <div class="flex">
+                <p class="blu-title bold">APPLICATION DETAILS</p>
+
+            </div>
+        </div><br>
+
+        <select asp-for="Subject" class="col-sm-3 edit-input-tag short" type="text">
+            <option value="" disabled selected>Select Subject</option>
+
+            <option value="English First Additional Language">English First Additional Language</option>
+            <option value="English Home Language">English Home Language</option>
+            <option value="Geography">Geography</option>
+            <option value="Economics">Economics</option>
+            <option value="Business Studies">Business Studies</option>
+            <option value="Agricultural Sciences">Agricultural Sciences</option>
+            <option value=">Life Sciences">Life Sciences</option>
+            <option value="Mathematical Literacy">Mathematical Literacy</option>
+
+        </select>
+
+        <!--Diploma-->
+        <label for="disabledInput" class="col-sm-1 edit-input-tag left "><strong>Language Levels</strong></label>
+        <div class="custom-control custom-radio custom-control-inline left">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Language1" name="Radio">
+            <label class=" col-sm-1 custom-control-label" for="Language1">HL</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Language2" name="Radio">
+            <label class="col-sm-1 custom-control-label" for="Language2">FAL</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline ">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Language3" name="Radio">
+            <label class=" col-sm-1 custom-control-label" for="Language3">SAL</label>
+        </div>
+
+        <select asp-for="Paper" class="  col-sm-2 edit-input-tag short" type="text">
+            <option value="" disabled selected>Paper</option>
+
+            <option value="Paper">Paper 1</option>
+            <option value="Paper">Paper 2</option>
+            <option value="Paper">Paper 3</option>
+        </select>
+
+        <br>
+
+        <div class="form-check-inline" style="padding-top:20px">
+
+            <label class="" style="margin-bottom:20px;color:black">
+                <strong>
+                    if you are applying to mark a literature paper, please name the
+                    <br>prescribed works being taught to Grade 12 learners at your school
+                </strong>
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" asp-for="Drama" value="Drama">Drama
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" asp-for="Novel" value="Novel">Novel
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" asp-for="ShortStories" value="Short Stories">Short Stories
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" asp-for="Poetry" value="Poetry">Poetry
+            </label>
+        </div>
+        <br>
+        <div class="section-title margin-top flex" style="padding-bottom:10px">
+            <div class="flex">
+                <p class="blu-title bold">LANGUAGE PREFERENCE</p>
+
+            </div>
+        </div><br>
+
+        <div class="form-check-inline">
+
+            <label class="" style="color:black">
+                Please indicate the language in which you wish to mark
+
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="">English
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="">Afrikaans
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="">Both
+            </label>
+        </div>
+
+        <div class="section-title margin-top flex" style="padding-bottom:15px">
+            <div class="flex">
+                <p class="blu-title bold">MOTIVATION BY PRINCIPAL/DIRECTOR</p>
+
+            </div>
+        </div><br>
+        <div class="form-group">
+
+            <input asp-for="MotivationDescription" placeholder="Motivation Description" class="form-control " />
+            <span asp-validation-for="MotivationDescription" class="text-danger"></span>
+        </div>
+
+        <div class="form-group" style="padding-top:20px">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
+
+

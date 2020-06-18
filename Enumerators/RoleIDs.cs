@@ -10,6 +10,6 @@ namespace Markers_GPS_Coordiantes.Enumerators
         CenterManager = 1,
         Administrator,
         SuperAdmin,
-        PasswordValidate
+        DataCapture
     }
 }

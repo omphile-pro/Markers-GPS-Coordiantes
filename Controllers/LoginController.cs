@@ -92,6 +92,11 @@ namespace Markers_GPS_Coordiantes.Controllers
                         {
                             return RedirectToAction("Index", "Admin");
                         }
+                        //DataCapture
+                        else if (users.RoleId == (int)RoleIDs.DataCapture)
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
                     }
                 }
                 catch (Exception ex)

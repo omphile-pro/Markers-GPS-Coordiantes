@@ -17,6 +17,54 @@
             @Html.DisplayFor(model => model.MarkerToken)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Initials)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Initials)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Persal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Persal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaidenName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaidenName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nationality)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DeletedDate)
         </dt>
         <dd class = "col-sm-10">
@@ -58,21 +106,9 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IsDeleted)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Position.PositionDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Users)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Users.Loginname)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.MarkerId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.IdentityNo">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
