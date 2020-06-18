@@ -42,6 +42,7 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
         public virtual DbSet<TeachingExperience> TeachingExperience { get; set; }
+      
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersRole> UsersRole { get; set; }
@@ -409,6 +410,7 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
+
             });
 
             modelBuilder.Entity<Login>(entity =>
@@ -946,6 +948,8 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasConstraintName("FK_TeachingExperience_Marker");
             });
 
+           
+
             modelBuilder.Entity<UserRole>(entity =>
             {
                 entity.HasNoKey();
@@ -1073,24 +1077,6 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
                 entity.Property(e => e.UsersId).HasColumnName("UsersID");
-
-                entity.HasOne(d => d.CreatedByUsers)
-                    .WithMany(p => p.UsersRoleCreatedByUsers)
-                    .HasForeignKey(d => d.CreatedByUsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersRole_CreatedByUsers");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.UsersRole)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersRole_Role");
-
-                entity.HasOne(d => d.Users)
-                    .WithMany(p => p.UsersRoleUsers)
-                    .HasForeignKey(d => d.UsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersRole_Users");
             });
 
             modelBuilder.Entity<VCenter>(entity =>

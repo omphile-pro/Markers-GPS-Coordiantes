@@ -8,7 +8,8 @@ namespace Markers_GPS_Coordiantes
 {
     public class TrueView
     {
-
+        public string Test { get; set; }
+        public string LanguageDescription { get; set; }
         //Application
 
         public int AppliactionId { get; set; }

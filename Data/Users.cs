@@ -9,8 +9,6 @@ namespace Markers_GPS_Coordiantes.Data
         {
             CenterManger = new HashSet<CenterManger>();
             MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
-            UsersRoleCreatedByUsers = new HashSet<UsersRole>();
-            UsersRoleUsers = new HashSet<UsersRole>();
         }
 
         public int UsersId { get; set; }
@@ -39,7 +37,5 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual Role Role { get; set; }
         public virtual ICollection<CenterManger> CenterManger { get; set; }
         public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
-        public virtual ICollection<UsersRole> UsersRoleCreatedByUsers { get; set; }
-        public virtual ICollection<UsersRole> UsersRoleUsers { get; set; }
     }
 }

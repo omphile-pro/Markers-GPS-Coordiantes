@@ -52,27 +52,31 @@ namespace Markers_GPS_Coordiantes.Controllers
             List<Marker> list = db.Marker.ToList();
 
             ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
-           
-            Marker marker = new Marker();
-            marker.Name = model.Name;
-            marker.Surname = model.Surname;
-            marker.Initials = model.Initials;
-            marker.Title = model.Title;
-            marker.MaidenName = model.MaidenName;
-            marker.Gender = model.Gender;
-            marker.Nationality = model.Nationality;
-            db.Marker.Add(marker);
+          
+            LanguagePreference languagePreference = new LanguagePreference();
+            languagePreference.LanguageDescription = model.LanguageDescription;
+            db.LanguagePreference.Add(languagePreference);
             db.SaveChanges();
-            //Contact
-            Contact contact = new Contact();
-            contact.EmailAddress = model.EmailAddress;
-            contact.TelephoneNo = model.TelephoneNo;
-            contact.WorkSchool = model.WorkSchool;
-            contact.HomeTelephoneNo = model.HomeTelephoneNo;
-            contact.CellphoneNo = model.CellphoneNo;
-            contact.FaxNo= model.FaxNo;
-            db.Contact.Add(contact);
-            db.SaveChanges();
+            // Marker marker = new Marker();
+            //marker.Name = model.Name;
+            //marker.Surname = model.Surname;
+            //marker.Initials = model.Initials;
+            //marker.Title = model.Title;
+            //marker.MaidenName = model.MaidenName;
+            //marker.Gender = model.Gender;
+            //marker.Nationality = model.Nationality;
+            //db.Marker.Add(marker);
+            //db.SaveChanges();
+            ////Contact
+            //Contact contact = new Contact();
+            //contact.EmailAddress = model.EmailAddress;
+            //contact.TelephoneNo = model.TelephoneNo;
+            //contact.WorkSchool = model.WorkSchool;
+            //contact.HomeTelephoneNo = model.HomeTelephoneNo;
+            //contact.CellphoneNo = model.CellphoneNo;
+            //contact.FaxNo= model.FaxNo;
+            //db.Contact.Add(contact);
+            //db.SaveChanges();
             //Resindent
             //Resident resident = new Resident();
             //resident.ResidentialAddress = model.ResidentialAddress;
@@ -109,7 +113,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             //teachingExperience.Fetexperience= model.Fetexperience;
             //db.Qualification.Add(qualification);
             //db.SaveChanges();
-          
+
             //teachingExperience.Subject = model.Subject;
             //teachingExperience.Language = model.Language;
             //teachingExperience.Grade = model.Grade;
