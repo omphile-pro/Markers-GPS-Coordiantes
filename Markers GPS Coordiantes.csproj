@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Markers_GPS_Coordiantes</RootNamespace>
+    <UserSecretsId>a2e90166-ad01-4e1b-809f-6ada7b3e3075</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
