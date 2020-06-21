@@ -267,6 +267,17 @@ body {
     padding-bottom: 5px !important;
 }
 
+.FocusText {
+    margin-top: 3% !important;
+    font-size: 1.1rem !important;
+    border: none;
+    border-radius: 0px;
+    padding-bottom: 5px !important;
+    color: #0054A6;
+    font-family: 'Raleway', Helvetica;
+    font-weight: 100;
+}
+
 .shorter {
     width: 20% !important;
 }

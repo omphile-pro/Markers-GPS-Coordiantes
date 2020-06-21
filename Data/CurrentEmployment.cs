@@ -6,7 +6,7 @@ namespace Markers_GPS_Coordiantes.Data
     public partial class CurrentEmployment
     {
         public int CurrentEmploymentId { get; set; }
-        public int? IdentityNo { get; set; }
+        public string IdentityNo { get; set; }
         public string NameOftheSchoolOffice { get; set; }
         public string CentreNumber { get; set; }
         public string District { get; set; }

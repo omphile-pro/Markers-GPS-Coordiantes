@@ -9,7 +9,7 @@ namespace Markers_GPS_Coordiantes.Data
         public int SubjectId { get; set; }
         public int CenterId { get; set; }
         public int UsersId { get; set; }
-        public int RaceId { get; set; }
+        public string RaceId { get; set; }
         public int ExamId { get; set; }
         public int GenderId { get; set; }
         public int PositionId { get; set; }

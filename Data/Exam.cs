@@ -7,7 +7,6 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public Exam()
         {
-            MarkerExam = new HashSet<MarkerExam>();
             MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
         }
 
@@ -26,7 +25,6 @@ namespace Markers_GPS_Coordiantes.Data
 
         public virtual Center Center { get; set; }
         public virtual Subject Subject { get; set; }
-        public virtual ICollection<MarkerExam> MarkerExam { get; set; }
         public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
     }
 }

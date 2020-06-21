@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic;
+
 
 namespace Markers_GPS_Coordiantes
 {
     public class TrueView
     {
-        public string Test { get; set; }
+        public string IdentityNo { get; set; }
         public string LanguageDescription { get; set; }
         //Application
 
         public int AppliactionId { get; set; }
-        public int IdentityNo { get; set; }
+        
         public string Subject { get; set; }
         public string Langauge { get; set; }
         public string Paper { get; set; }
-        public string Race { get; set; }
+       
         public string LiteraturePaper { get; set; }
         public string Position { get; set; }
       
@@ -26,13 +27,41 @@ namespace Markers_GPS_Coordiantes
         public string PrescribedBook { get; set; }
         //Marker
         public Guid MarkerToken { get; set; }
-        public string Name { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Surname")]
+        [Required(ErrorMessage = "Marker Surname Required")]
         public string Surname { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Initials")]
+        [Required(ErrorMessage = "Initials Required")]
         public string Initials { get; set; }
+
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Gender")]
+        [Required(ErrorMessage = "Marker Gender is  Required")]
         public string Gender { get; set; }
+
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Race")]
+        [Required(ErrorMessage = "Marker Race is Required")]
+        public string Race { get; set; }
+
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Title")]
+        [Required(ErrorMessage = "Title Is Required")]
         public string Title { get; set; }
+
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Persal")]
+        [Required(ErrorMessage = "Persal Number Is Required")]
         public string Persal { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Maiden Name")]
+        [Required(ErrorMessage = "Maiden Name is Required")]
         public string MaidenName { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        [DisplayName("Nationality")]
+        [Required(ErrorMessage = "Nationality is Required")]
         public string Nationality { get; set; }
 
         public DateTime? DeletedDate { get; set; }
@@ -67,7 +96,7 @@ namespace Markers_GPS_Coordiantes
 
         //Qualification
 
-        public DateTime? Year { get; set; }
+        public DateTime QualificationYear { get; set; }
         public string QualificationDescription { get; set; }
         public string MojarSubjects { get; set; }
         public string CourseLevel { get; set; }
@@ -81,7 +110,7 @@ namespace Markers_GPS_Coordiantes
         public string ExperienceInNcsCaps { get; set; }
         public string SubjectExperience { get; set; }
         public string Fetexperience { get; set; }
-  
+        public DateTime Year { get; set; }
         public string Language { get; set; }
         public string Grade { get; set; }
         public string NameofschooIInstitution { get; set; }
@@ -109,6 +138,6 @@ namespace Markers_GPS_Coordiantes
         public DateTime PercentageYear { get; set; }
         public string ProvincePercentage { get; set; }
 
-
+     
     }
 }

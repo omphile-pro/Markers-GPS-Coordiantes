@@ -10,7 +10,7 @@ namespace Markers_GPS_Coordiantes.Data
             MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
         }
 
-        public int RaceId { get; set; }
+        public string RaceId { get; set; }
         public string RaceDescription { get; set; }
 
         public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }

@@ -6,7 +6,7 @@ namespace Markers_GPS_Coordiantes.Data
     public partial class TeachingExperience
     {
         public int TeachingExperienceId { get; set; }
-        public int IdentityNo { get; set; }
+        public string IdentityNo { get; set; }
         public string TeachingExperience1 { get; set; }
         public string ExperienceInNcsCaps { get; set; }
         public string SubjectExperience { get; set; }

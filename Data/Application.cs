@@ -11,7 +11,7 @@ namespace Markers_GPS_Coordiantes.Data
         }
 
         public int AppliactionId { get; set; }
-        public int IdentityNo { get; set; }
+        public string IdentityNo { get; set; }
         public string Subject { get; set; }
         public string Langauge { get; set; }
         public string Paper { get; set; }

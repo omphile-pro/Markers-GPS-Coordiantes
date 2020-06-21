@@ -3,15 +3,11 @@
 @{
     ViewData["Title"] = "Add Marking Center";
 }
-
-
 <style>
-.hide {
-
-display:none;
-
-}
-    </style>
+    .hide {
+        display: none;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <div class="col-10" style="padding-top: 20px">
     <form asp-action="Create">
@@ -23,7 +19,7 @@ display:none;
         </div>
         <br>
         <div>
-            <select class="edit-input-tag short ">
+            <select class="edit-input-tag short " id="select1">
                 <option>Select Subject</option>
                 <option value="English">English</option>
                 <option value="Geography">Geography</option>
@@ -41,12 +37,14 @@ display:none;
                 <option value="Paper 3">Paper 3</option>
             </select>
             <br>
+
             <div class="hide English box col" style="padding-top:20px">
                 <input type="radio" name="tab" asp-for="Langauge" value="HL"> HL
                 <input type="radio" name="tab" asp-for="Langauge" value="FAL"> FAL
                 <input type="radio" name="tab" asp-for="Langauge" value="HL"> HL
             </div>
         </div>
+
         <select asp-for="Position" class="edit-input-tag short" type="text">
             <option value="" disabled selected>Select Position</option>
             <option value="Marker">Marker</option>
@@ -60,7 +58,6 @@ display:none;
             <option value="Internal Moderator (GDE)">Internal Moderator (GDE)</option>
             <option value="National Examination Pane/Umalusi">National Examination Pane/Umalusi</option>
             <option value="Position at DBE/Umalusi">Position at DBE/Umalusi</option>
-
         </select><br>
 
         <select asp-for="PracticalSubject" class="edit-input-tag short" type="text">
@@ -86,10 +83,10 @@ display:none;
             </div>
         </div><br>
 
-        <input class="edit-input-tag short" type="text" asp-for="IdentityNo" placeholder="Identity Number" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
-        <input class="edit-input-tag short left" type="text" asp-for="Persal" placeholder="Persal" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar"><br>
-        <input class="edit-input-tag short " type="text" asp-for="Surname" placeholder="Surname">
-        <input class="edit-input-tag short left" type="text" asp-for="Initials" placeholder="Initials">
+        <input class="edit-input-tag short" type="text" asp-for="IdentityNo" placeholder="Identity Number">
+        <input class="edit-input-tag short left" type="text" asp-for="Persal" placeholder="Persal" id="txtChar" onkeypress="return isNumberKey(event)"><br>
+        <input class="edit-input-tag short " type="text" asp-for="Surname" placeholder="Surname" onkeypress="return onlyAlphabets(event,this);" required">
+        <input class="edit-input-tag short left" type="text" asp-for="Initials" placeholder="Initials" onkeypress="return onlyAlphabets(event,this);">
         <!-- Default inline 1-->
         @*<select asp-for="Title" class="edit-input-tag short" type="text">
             <option value="" disabled selected>Select Title</option>
@@ -103,31 +100,25 @@ display:none;
         <div class="form-check-inline left">
 
             <p>Title</p>
-            <input type="radio" name="tab" asp-for="Title" value="Mrs" onclick="show2();" />
-            Mrs
-            <input type="radio" name="tab" asp-for="Title" value="Mr" onclick="show1();" />
-            Mr
-            <input type="radio" name="tab" asp-for="Title" value="Ms" onclick="show1();" />
-            Ms
+            Mrs <input id="Title" name="Title" type="radio" value="Mrs" onclick="show2();" />
+            Mr <input id="Title" name="Title" type="radio" value="Mr" onclick="show1();" />
+            Ms <input id="Title" name="Title" type="radio" value="Ms" onclick="show1();" />
             <div id="div1" class="hide">
-                <input class="edit-input-tag" type="text" asp-for="MaidenName" placeholder="Maiden Name">
+                <input class="edit-input-tag short left" type="text" asp-for="MaidenName" placeholder="Maiden Name" id="my-field">
             </div>
-
         </div>
-
         <br>
-        <label for="disabledInput" class="col-sm-1 edit-input-tag short">Gender</label>
-        <div class="custom-control custom-radio custom-control-inline left">
-            <input type="radio" class="custom-control-input" id="Inline1" name="inlineDefaultRadio">
-            <label class="custom-control-label" for="Inline1">Male</label>
-        </div>
 
-        <!-- Default inline 2-->
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="Inline2" name="inlineDefaultRadio">
-            <label class="custom-control-label" for="Inline2">Female</label>
-        </div>
-        <select asp-for="Race" class="edit-input-tag short left" type="text">
+        `
+        <p>Gender</p>
+        Male: <input id="Gender" name="Gender" type="radio" value="Male" />
+
+        Female: <input id="Gender" name="Gender" type="radio" value="Female" />
+
+
+
+
+        <select asp-for="Race" class=" edit-input-tag short left" type="text">
             <option value="" disabled selected>Select Race</option>
 
             <option value="African">African</option>
@@ -147,26 +138,26 @@ display:none;
             <option value="Indian">Asian</option>
         </select>
         <br>
-        <input class="edit-input-tag " type="text" asp-for="EmailAddress" placeholder="Email Address"><br>
-        <input class="edit-input-tag short " type="text" asp-for="TelephoneNo" placeholder="Telephone Number" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
-        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="HomeTelephoneNo" placeholder="HomeTelephoneNo" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
-        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="CellphoneNo" placeholder="CellphoneNo" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input class="edit-input-tag " type="text" asp-for="EmailAddress" placeholder="Email Address" onkeypress="return onlyAlphabets(event,this);"><br>
+        <input class="edit-input-tag short " type="text" asp-for="WorkSchool" placeholder="Work/School Number" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="edit-input-tag short left" type="text" asp-for="TelephoneNo" placeholder="Telephone Number" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="HomeTelephoneNo" placeholder="HomeTelephoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="col-sm-3 edit-input-tag short " type="text" asp-for="CellphoneNo" placeholder="CellphoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
-        <input class=" edit-input-tag short" type="text" asp-for="FaxNo" placeholder="Fax Number" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input class=" edit-input-tag short" type="text" asp-for="FaxNo" placeholder="Fax Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="ResidentialAddress" placeholder="Residential Address">
-        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <div class="section-title margin-top flex">
             <div class="flex">
                 <p class="blu-title bold">CURRENT EMPLOYMENT DETAILS</p>
-
             </div>
         </div><br>
-        <input class=" edit-input-tag short" type="text" asp-for="NameOftheSchoolOffice" placeholder="Name of the School/Office">
-        <input class=" edit-input-tag short left" type="text" asp-for="CentreNumber" placeholder="Centre Number" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
-        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="District" placeholder="District"><br>
+        <input class=" edit-input-tag short" type="text" asp-for="NameOftheSchoolOffice" placeholder="Name of the School/Office" onkeypress="return onlyAlphabets(event,this);">
+        <input class=" edit-input-tag short left" type="text" asp-for="CentreNumber" placeholder="Centre Number" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="District" placeholder="District" onkeypress="return onlyAlphabets(event,this);"><br>
         <select asp-for="EmploymentType" class="edit-input-tag short " type="text">
-            <option value="" disabled selected>Select Employment Type</option>
+            <option value="" disabled selected>Select Employment Type</option>s
 
             <option value="GDE Permanent">GDE Permanent</option>
             <option value="GDE Temporary">GDE Temporary</option>
@@ -188,14 +179,14 @@ display:none;
 
         <label for="disabledInput" class="col-sm-1 edit-input-tag "><strong>Retiring?</strong></label>
         <div class="custom-control custom-radio custom-control-inline left">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="Iline1" name="DefaultRadio">
-            <label class=" col-sm-1 custom-control-label" for="Iline1">Yes</label>
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Retiring1" name="Retiring" value="Yes">
+            <label class=" col-sm-1 custom-control-label" for="Retiring1">Yes</label>
         </div>
 
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="col-sm-1 custom-control-input" id="Iline2" name="DefaultRadio">
-            <label class="col-sm-1 custom-control-label" for="Iline2">No</label>
+            <input type="radio" class="col-sm-1 custom-control-input" id="Retiring2" name="Retiring" value="No">
+            <label class="col-sm-1 custom-control-label" for="Retiring2">No</label>
         </div>
         <br>
         <div class="section-title margin-top flex">
@@ -212,62 +203,72 @@ display:none;
             <option value="Additional Single Subject">Additional Single Subject</option>
         </select>
 
-        <input asp-for="Year" class="col-sm-2 edit-input-tag left" />
-        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="MojarSubjects" placeholder="Mojar Subjects">
+        <input asp-for="QualificationYear " class="col-sm-2 edit-input-tag left" />
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="MojarSubjects" placeholder="Mojar Subjects" id="my-field">
         <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="CourseLevel" placeholder="Course Level"><br>
-        <input class="col-md-4  edit-input-tag short " type="text" asp-for="HighestQualification" placeholder="Highest Qualification relevent to the subject that you are applying for ">
+        <input class="col-md-4  edit-input-tag  " type="text" asp-for="HighestQualification" placeholder="Highest Qualification relevent to the subject that you are applying for " onkeypress="return onlyAlphabets(event,this);">
         <br>
 
-        <label for="disabledInput" class="col-sm-1 edit-input-tag  "><strong>Level of Degree Qualification </strong></label>
+        <label for="disabledInput" class="col-sm-1 FocusText  "><strong>Level of Degree Qualification </strong></label>
 
         <div class="custom-control custom-radio custom-control-inline left">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="line1" name="DefaultRadio1">
-            <label class=" col-sm-1 custom-control-label" for="line1">Yes</label>
+            <input type="radio" class=" col-sm-1 custom-control-input" id="line1" name="LevelOfDegree" value="l">
+            <label class=" col-sm-1 custom-control-label" for="line1">
+                l
+            </label>
         </div>
 
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="col-sm-1 custom-control-input" id="line2" name="DefaultRadio1">
-            <label class="col-sm-1 custom-control-label" for="line2">No</label>
+            <input type="radio" class="col-sm-1 custom-control-input" id="line2" name="LevelOfDegree" value="ll">
+            <label class="col-sm-1 custom-control-label" for="line2">ll</label>
         </div>
 
         <div class="custom-control custom-radio custom-control-inline ">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="line3" name="DefaultRadio1">
-            <label class=" col-sm-1 custom-control-label" for="line3">Yes</label>
+            <input type="radio" class=" col-sm-1 custom-control-input" id="line3" name="LevelOfDegree" value="ll">
+            <label class=" col-sm-1 custom-control-label" for="line3">lll</label>
         </div>
 
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="col-sm-1 custom-control-input" id="line4" name="DefaultRadio1">
-            <label class="col-sm-1 custom-control-label" for="line4">No</label>
+            <input type="radio" class="col-sm-1 custom-control-input" id="line4" name="LevelOfDegree" value="Hon">
+            <label class="col-sm-1 custom-control-label" for="line4">Hon</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="line5" name="LevelOfDegree" value="M">
+            <label class="col-sm-1 custom-control-label" for="line5">M</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="line6" name="LevelOfDegree" value="M">
+            <label class="col-sm-1 custom-control-label" for="line6">M</label>
         </div>
 
 
-
         <!--Diploma-->
-        <label for="disabledInput" class="col-sm-1 edit-input-tag  "><strong>Level of Diploma  Qualification </strong></label>
+        <label for="disabledInput" class="col-sm-1 FocusText "><strong>Level of Diploma  Qualification </strong></label>
         <div class="custom-control custom-radio custom-control-inline left">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="Diplomaline1" name="DefaultRadioDiploma">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Diplomaline1" name="LevelOfDiploma" value="1">
             <label class=" col-sm-1 custom-control-label" for="Diplomaline1">1</label>
         </div>
 
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="col-sm-1 custom-control-input" id="Diplomaline2" name="DefaultRadioDiploma">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Diplomaline2" name="LevelOfDiploma"value="2">
             <label class="col-sm-1 custom-control-label" for="Diplomaline2">2</label>
         </div>
 
         <div class="custom-control custom-radio custom-control-inline ">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="Diplomaline3" name="DefaultRadioDiploma">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Diplomaline3" name="LevelOfDiploma"value="3">
             <label class=" col-sm-1 custom-control-label" for="Diplomaline3">3</label>
         </div>
 
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="col-sm-1 custom-control-input" id="Diplomaline4" name="DefaultRadioDiploma">
-            <label class="col-sm-1 custom-control-label" for="Diplomaline4">4</label>
+            <input type="radio" class="col-sm-1 custom-control-input" id="Diplomaline4" name="LevelOfDiploma"value="4">
+            <label class="col-sm-1 custom-control-label" for="Diplomaline4">5</label>
         </div>
-
+        <br>
 
         <div class="section-title margin-top flex">
             <div class="flex">
@@ -275,15 +276,26 @@ display:none;
 
             </div>
         </div><br>
-        <input class=" edit-input-tag short" type="text" asp-for="TeachingExperience1" placeholder="Teaching Experience"><br>
-        <input class=" edit-input-tag short" type="text" asp-for="ExperienceInNcsCaps" placeholder="Experience in NCS/CAPS"><br>
-        <input class=" edit-input-tag short" type="text" asp-for="SubjectExperience" placeholder="Teaching Subject Experience "><br>
-        <input class=" edit-input-tag short" type="text" asp-for="Fetexperience" placeholder="Experience as FET advisor in subject applied for"><br>
+        <input class=" edit-input-tag short" type="text" asp-for="TeachingExperience1" placeholder="Teaching Experience" id="txtChar" onkeypress="return isNumberKey(event)" ><br>
+        <input class=" edit-input-tag short" type="text" asp-for="ExperienceInNcsCaps" placeholder="Experience in NCS/CAPS" id="txtChar" onkeypress="return isNumberKey(event)" ><br>
+        <input class=" edit-input-tag short" type="text" asp-for="SubjectExperience" placeholder="Teaching Subject Experience" id="txtChar" onkeypress="return isNumberKey(event)" ><br>
+        <input class=" edit-input-tag short" type="text" asp-for="Fetexperience" placeholder="Experience as FET advisor in subject applied for" id="txtChar" onkeypress="return isNumberKey(event)"><br>
         <input asp-for="Year" class="col-sm-2 edit-input-tag " />
-        <input class=" col-sm-2  edit-input-tag short left" type="text" asp-for="Subject" placeholder="Subject">
-        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Language" placeholder="Language">
-        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Grade" placeholder="Grade">
-        <input class=" edit-input-tag short" type="text" asp-for="NameofschooIInstitution" placeholder="Name of School/Institution">
+        <select asp-for="Subject" class="col-sm-2 edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Subject</option>
+
+            <option value="English ">English</option>
+            <option value="Geography">Geography</option>
+            <option value="Economics">Economics</option>
+            <option value="Business Studies">Business Studies</option>
+            <option value="Agricultural Sciences">Agricultural Sciences</option>
+            <option value=">Life Sciences">Life Sciences</option>
+            <option value="Mathematical Literacy">Mathematical Literacy</option>
+
+        </select>
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Language" placeholder="Language" id="my-field">
+        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Grade" placeholder="Grade" id="my-field">
+        <input class=" edit-input-tag short" type="text" asp-for="NameofschooIInstitution" placeholder="Name of School/Institution" onkeypress="return onlyAlphabets(event,this);">
         <input class=" edit-input-tag short left" type="text" asp-for="PercentageofLearners" placeholder="Percentage pass of Learners">
         <br>
         <div class="section-title margin-top flex">
@@ -293,19 +305,18 @@ display:none;
             </div>
         </div><br>
         <input asp-for="Year" class="col-sm-3 edit-input-tag " />
-        <select asp-for="Subject" class="col-sm-3 edit-input-tag short left" type="text">
-            <option value="" disabled selected>Select Subject</option>
 
-            <option value="English First Additional Language">English First Additional Language</option>
-            <option value="English Home Language">English Home Language</option>
+        <select class="edit-input-tag short left " id="select2">
+            <option>Select Subject</option>
+            <option value="English1">English</option>
             <option value="Geography">Geography</option>
             <option value="Economics">Economics</option>
             <option value="Business Studies">Business Studies</option>
             <option value="Agricultural Sciences">Agricultural Sciences</option>
             <option value=">Life Sciences">Life Sciences</option>
             <option value="Mathematical Literacy">Mathematical Literacy</option>
-
         </select>
+
 
         <select asp-for="PositionHeld" class="col-sm-3 edit-input-tag short left" type="text">
             <option value="" disabled selected>Select Position Held</option>
@@ -317,12 +328,21 @@ display:none;
             <option value=" Marker">Marker</option>
             <option value=" Marker">Novice Marker</option>
         </select>
+
+        <div class="hide English1 box col" style="padding-top:20px">
+            <input type="radio" name="tab" asp-for="Langauge" value="HL"> HL
+            <input type="radio" name="tab" asp-for="Langauge" value="FAL"> FAL
+            <input type="radio" name="tab" asp-for="Langauge" value="HL"> HL
+        </div>
+
+        <br >
         <div class="section-title margin-top flex">
             <div class="flex">
                 <p class="blu-title bold">APPLICATION DETAILS</p>
 
             </div>
-        </div><br>
+        </div>
+        <br>
 
         <select asp-for="Subject" class="col-sm-3 edit-input-tag short" type="text">
             <option value="" disabled selected>Select Subject</option>
@@ -339,20 +359,20 @@ display:none;
         </select>
 
         <!--Diploma-->
-        <label for="disabledInput" class="col-sm-1 edit-input-tag left "><strong>Language Levels</strong></label>
+        <label for="disabledInput" class="col-sm-1 FocusText left "><strong>Language Levels</strong></label>
         <div class="custom-control custom-radio custom-control-inline left">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="Language1" name="Radio">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Language1" name="Language" value="HL">
             <label class=" col-sm-1 custom-control-label" for="Language1">HL</label>
         </div>
 
         <!-- Default inline 2-->
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="col-sm-1 custom-control-input" id="Language2" name="Radio">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Language2" name="Language"value="FAL">
             <label class="col-sm-1 custom-control-label" for="Language2">FAL</label>
         </div>
 
         <div class="custom-control custom-radio custom-control-inline ">
-            <input type="radio" class=" col-sm-1 custom-control-input" id="Language3" name="Radio">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Language3" name="Language"value="SAL">
             <label class=" col-sm-1 custom-control-label" for="Language3">SAL</label>
         </div>
 
@@ -401,7 +421,8 @@ display:none;
                 <p class="blu-title bold">LANGUAGE PREFERENCE</p>
 
             </div>
-        </div><br>
+        </div>
+        <br>
 
         <div class="form-check-inline">
 
@@ -412,17 +433,17 @@ display:none;
         </div>
         <div class="form-check-inline">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">English
+                <input type="checkbox" class="form-check-input" id="LanguageDescription"name="LanguageDescription" value="English">English
             </label>
         </div>
         <div class="form-check-inline">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">Afrikaans
+                <input type="checkbox" class="form-check-input" id="LanguageDescription" name="LanguageDescription" value="Afrikaans">Afrikaans
             </label>
         </div>
         <div class="form-check-inline">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">Both
+                <input type="checkbox" class="form-check-input" id="LanguageDescription "name="LanguageDescription" value="Both">Both
             </label>
         </div>
 
@@ -431,10 +452,11 @@ display:none;
                 <p class="blu-title bold">MOTIVATION BY PRINCIPAL/DIRECTOR</p>
 
             </div>
-        </div><br>
+        </div>
+        <br>
         <div class="form-group">
 
-            <input asp-for="MotivationDescription" placeholder="Motivation Description" class="form-control " />
+            <input asp-for="MotivationDescription" placeholder="Motivation Description" class="form-control " onkeypress="return onlyAlphabets(event,this);">
             <span asp-validation-for="MotivationDescription" class="text-danger"></span>
         </div>
         <div class="section-title margin-top flex" style="padding-bottom:15px">
@@ -442,7 +464,8 @@ display:none;
                 <p class="blu-title bold">DECLARATION BY APPLICANT</p>
 
             </div>
-        </div><br>
+        </div>
+        <br>
         <div class="form-check-inline">
 
             <label class="" style="color:black;padding-top:20px">
@@ -450,9 +473,11 @@ display:none;
                     Pass percentage of Grade 12 learners taught by applicat FOR SUBJECT (NOT SCHOOL AVERAGE)
                 </strong>
             </label>
-        </div><br>
+        </div>
+        <br>
         <input asp-for="Year" class="col-sm-3 edit-input-tag " />
-        <input class=" edit-input-tag short left " type="text" asp-for="AveragebyYear" placeholder="Average by year" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar"><br>
+        <input class=" edit-input-tag short left " type="text" asp-for="AveragebyYear" placeholder="Average by year" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <br>
 
         <div class="form-check-inline">
 
@@ -461,7 +486,8 @@ display:none;
                     Pass percentage of Grade 12 candidates in the district, for subject
                 </strong>
             </label>
-        </div><br>
+        </div>
+        <br>
         <input asp-for="Year" class="col-sm-3 edit-input-tag " />
         <input class=" edit-input-tag short left " type="text" asp-for="PercentageYear" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
 
@@ -472,7 +498,8 @@ display:none;
                     Pass percentage of Grade 12 candidates in the province, for subject
                 </strong>
             </label>
-        </div><br>
+        </div>
+        <br>
         <input asp-for="Year" class="col-sm-3 edit-input-tag " />
         <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
         <br>
@@ -482,8 +509,6 @@ display:none;
         </div>
     </form>
 </div>
-
-
 <SCRIPT language=Javascript>
       <!--
     function isNumberKey(evt) {
@@ -495,7 +520,7 @@ display:none;
     }
     //Drowpdown
     $(document).ready(function () {
-        $("select").change(function () {
+        $("#select1,#select2").change(function () {
             $(this).find("option:selected").each(function () {
                 var optionValue = $(this).attr("value");
                 if (optionValue) {
@@ -513,11 +538,26 @@ display:none;
     function show2() {
         document.getElementById('div1').style.display = 'block';
     }
-    function testInput(event) {
-   var value = String.fromCharCode(event.which);
-   var pattern = new RegExp(/[a-zåäö ]/i);
-   return pattern.test(value);
-}
 
-$('#my-field').bind('keypress', testInput);
+
+    function onlyAlphabets(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            }
+            else if (e) {
+                var charCode = e.which;
+            }
+            else { return true; }
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                return true;
+            else
+                return false;
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+
+
 </SCRIPT>

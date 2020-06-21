@@ -412,7 +412,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                             Cellphone = worksheet.Cells[row, 9].Value.ToString().Trim(),
                             Latitude = Convert.ToDecimal(worksheet.Cells[row, 10].Value.ToString().Trim()),
                             Longitude = Convert.ToDecimal(worksheet.Cells[row, 11].Value.ToString().Trim()),
-                            RaceId = 1,
+                           
                             SubjectId = 1,
                             PositionId = 1,
                             UsersId = 5,
