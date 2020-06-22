@@ -1,21 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-
-//namespace Markers_GPS_Coordiantes.Controllers
-//{
-//    public class TrueController : Controller
-//    {
-//        public IActionResult Index()
-//        {
-//            return View();
-//        }
-//    }
-//}
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,7 +27,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             return View();
         }
-    [HttpPost]
+        [HttpPost]
         public IActionResult Create(TrueView model)
         {
             List<Marker> list = db.Marker.ToList();
@@ -62,7 +45,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             application.PracticalSubject = model.PracticalSubject;
             application.PracticalExamination = model.PracticalExamination;
             db.Application.Add(application);
-
+            db.SaveChanges();
             //Marker
 
             Marker marker = new Marker();
@@ -76,132 +59,132 @@ namespace Markers_GPS_Coordiantes.Controllers
             marker.MaidenName = model.MaidenName;
             marker.Nationality = model.Nationality;
             db.Marker.Add(marker);
-            //db.SaveChanges();
+            db.SaveChanges();
 
-            ////LanguageContact
-            //LanguagePreference languagePreference = new LanguagePreference();
-            //languagePreference.IdentityNo = model.IdentityNo;
-            //languagePreference.LanguageDescription = model.LanguageDescription;
-            //db.LanguagePreference.Add(languagePreference);
-            ////db.SaveChanges();
+            //LanguageContact
+            LanguagePreference languagePreference = new LanguagePreference();
+            languagePreference.IdentityNo = model.IdentityNo;
+            languagePreference.LanguageDescription = model.LanguageDescription;
+            db.LanguagePreference.Add(languagePreference);
+            db.SaveChanges();
 
-            ////Save contact
+            //Save contact
 
-            //Contact contact = new Contact();
-            //contact.IdentityNo = model.IdentityNo;
-            //contact.TelephoneNo = model.TelephoneNo;
-            //contact.WorkSchool = model.WorkSchool;
-            //contact.HomeTelephoneNo = model.HomeTelephoneNo;
-            //contact.CellphoneNo = model.CellphoneNo;
-            //contact.FaxNo = model.FaxNo;
-            //contact.EmailAddress = model.EmailAddress;
-            //db.Contact.Add(contact);
-            ////db.SaveChanges();
+            Contact contact = new Contact();
+            contact.IdentityNo = model.IdentityNo;
+            contact.TelephoneNo = model.TelephoneNo;
+            contact.WorkSchool = model.WorkSchool;
+            contact.HomeTelephoneNo = model.HomeTelephoneNo;
+            contact.CellphoneNo = model.CellphoneNo;
+            contact.FaxNo = model.FaxNo;
+            contact.EmailAddress = model.EmailAddress;
+            db.Contact.Add(contact);
+            db.SaveChanges();
 
-            ////Resindent
-            //Resident resident = new Resident();
-            //resident.IdentityNo = model.IdentityNo;
-            //resident.ResidentialAddress = model.ResidentialAddress;
-            //resident.PostalCode = model.PostalCode;
-            //db.Resident.Add(resident);
-            ////db.SaveChanges();
-            ////currentEmployment
-            //CurrentEmployment currentEmployment = new CurrentEmployment();
-            //currentEmployment.IdentityNo = model.IdentityNo;
-            //currentEmployment.NameOftheSchoolOffice = model.NameOftheSchoolOffice;
-            //currentEmployment.CentreNumber = model.CentreNumber;
-            //currentEmployment.District = model.District;
-            //currentEmployment.CurrentPosition = model.CurrentPosition;
-            //currentEmployment.EmploymentType = model.EmploymentType;
-            //currentEmployment.Retiring = model.Retiring;
-            //db.CurrentEmployment.Add(currentEmployment);
-            ////db.SaveChanges();
+            //Resindent
+            Resident resident = new Resident();
+            resident.IdentityNo = model.IdentityNo;
+            resident.ResidentialAddress = model.ResidentialAddress;
+            resident.PostalCode = model.PostalCode;
+            db.Resident.Add(resident);
+            db.SaveChanges();
+            //currentEmployment
+            CurrentEmployment currentEmployment = new CurrentEmployment();
+            currentEmployment.IdentityNo = model.IdentityNo;
+            currentEmployment.NameOftheSchoolOffice = model.NameOftheSchoolOffice;
+            currentEmployment.CentreNumber = model.CentreNumber;
+            currentEmployment.District = model.District;
+            currentEmployment.CurrentPosition = model.CurrentPosition;
+            currentEmployment.EmploymentType = model.EmploymentType;
+            currentEmployment.Retiring = model.Retiring;
+            db.CurrentEmployment.Add(currentEmployment);
+            db.SaveChanges();
 
-            ////Qualification
+            //Qualification
 
-            //Qualification qualification = new Qualification();
-            //qualification.IdentityNo = model.IdentityNo;
-            //qualification.QualificationYear = model.QualificationYear;
-            //qualification.QualificationDescription = model.QualificationDescription;
-            //qualification.MojarSubjects = model.MojarSubjects;
-            //qualification.CourseLevel = model.CourseLevel;
-            //qualification.LevelOfDegree = model.LevelOfDegree;
-            //qualification.LevelOfDiploma = model.LevelOfDiploma;
-            //db.Qualification.Add(qualification);
-            ////db.SaveChanges();
+            Qualification qualification = new Qualification();
+            qualification.IdentityNo = model.IdentityNo;
+            qualification.QualificationYear = model.QualificationYear;
+            qualification.QualificationDescription = model.QualificationDescription;
+            qualification.MojarSubjects = model.MojarSubjects;
+            qualification.CourseLevel = model.CourseLevel;
+            qualification.LevelOfDegree = model.LevelOfDegree;
+            qualification.LevelOfDiploma = model.LevelOfDiploma;
+            db.Qualification.Add(qualification);
+            db.SaveChanges();
 
-            ////Teaching Experience
-                
-            //TeachingExperience teachingExperience = new TeachingExperience();
-            //teachingExperience.IdentityNo = model.IdentityNo;
-            //teachingExperience.TeachingExperience1 = model.TeachingExperience1;
-            //teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
-            //teachingExperience.SubjectExperience = model.SubjectExperience;
-            //teachingExperience.Fetexperience = model.Fetexperience;
-            //teachingExperience.Year = model.Year;
-            //teachingExperience.Subject = model.Subject;
-            //teachingExperience.Language = model.Language;
-            //teachingExperience.Grade = model.Grade;
-            //teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
-            //teachingExperience.PercentageofLearners = model.PercentageofLearners;
-            //db.TeachingExperience.Add(teachingExperience);
-            ////db.SaveChanges();
+            //Teaching Experience
 
-            ////Marking Experience
-            //MarkingExperience markingExperience = new MarkingExperience();
-            //markingExperience.IdentityNo = model.IdentityNo;
-            //markingExperience.Subject = model.Subject;
-            //markingExperience.Language = model.Language;
-            //markingExperience.PositionHeld = model.PositionHeld;
-            //db.MarkingExperience.Add(markingExperience);
-            ////db.SaveChanges();
+            TeachingExperience teachingExperience = new TeachingExperience();
+            teachingExperience.IdentityNo = model.IdentityNo;
+            teachingExperience.TeachingExperience1 = model.TeachingExperience1;
+            teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
+            teachingExperience.SubjectExperience = model.SubjectExperience;
+            teachingExperience.Fetexperience = model.Fetexperience;
+            teachingExperience.Year = model.Year;
+            teachingExperience.Subject = model.Subject;
+            teachingExperience.Language = model.Language;
+            teachingExperience.Grade = model.Grade;
+            teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
+            teachingExperience.PercentageofLearners = model.PercentageofLearners;
+            db.TeachingExperience.Add(teachingExperience);
+            db.SaveChanges();
+
+            //Marking Experience
+            MarkingExperience markingExperience = new MarkingExperience();
+            markingExperience.IdentityNo = model.IdentityNo;
+            markingExperience.Subject = model.Subject;
+            markingExperience.Language = model.Language;
+            markingExperience.PositionHeld = model.PositionHeld;
+            db.MarkingExperience.Add(markingExperience);
+             db.SaveChanges();
 
             ApplicationDetails applicationDetails = new ApplicationDetails();
             applicationDetails.Subject = model.Subject;
             applicationDetails.Language = model.Language;
             applicationDetails.Paper = model.Paper;
             db.ApplicationDetails.Add(applicationDetails);
-            //db.SaveChanges();
+            db.SaveChanges();
 
 
 
-            ////Prescribe
-            //PrescribedWorks prescribedWorks = new PrescribedWorks();
-            //prescribedWorks.Drama = model.Drama;
-            //prescribedWorks.Novel = model.Novel;
-            //prescribedWorks.ShortStories = model.ShortStories;
-            //prescribedWorks.Poetry = model.Poetry;
-            //db.PrescribedWorks.Add(prescribedWorks);
+            //Prescribe
+            PrescribedWorks prescribedWorks = new PrescribedWorks();
+            prescribedWorks.Drama = model.Drama;
+            prescribedWorks.Novel = model.Novel;
+            prescribedWorks.ShortStories = model.ShortStories;
+            prescribedWorks.Poetry = model.Poetry;
+            db.PrescribedWorks.Add(prescribedWorks);
+            db.SaveChanges();
+            //Declaration
+            DeclerationByApplicant declerationByApplicant = new DeclerationByApplicant();
+            declerationByApplicant.IdentityNo = model.IdentityNo;
+            declerationByApplicant.Declaration = model.Declaration;
+            declerationByApplicant.YearAvg = model.YearAvg;
+            declerationByApplicant.YearDistrict = model.YearDistrict;
+            declerationByApplicant.YearProvince = model.YearProvince;
+            declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
+            declerationByApplicant.AveragebyYear = model.AveragebyYear;
+            db.SaveChanges();
+            declerationByApplicant.CandidatesByDescriptionPercentage = model.CandidatesByDescriptionPercentage;
+            declerationByApplicant.PercentageYear = model.PercentageYear;
+            declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
+            db.DeclerationByApplicant.Add(declerationByApplicant);
+            db.SaveChanges();
+            //Motivation
+            Motivation motivation = new Motivation();
+            motivation.IdentityNo = model.IdentityNo;
+            motivation.MotivationDescription = model.MotivationDescription;
+            db.Motivation.Add(motivation);
+            db.SaveChanges();
 
-            ////Declaration
-            //DeclerationByApplicant declerationByApplicant = new DeclerationByApplicant();
-            //declerationByApplicant.IdentityNo = model.IdentityNo;
-            //declerationByApplicant.Declaration = model.Declaration;
-            //declerationByApplicant.YearAvg = model.YearAvg;
-            //declerationByApplicant.YearDistrict = model.YearDistrict;
-            //declerationByApplicant.YearProvince = model.YearProvince;
-            //declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
-            //declerationByApplicant.AveragebyYear = model.AveragebyYear;
-
-            //declerationByApplicant.CandidatesByDescriptionPercentage = model.CandidatesByDescriptionPercentage;
-            //declerationByApplicant.PercentageYear = model.PercentageYear;
-            //declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
-            //db.DeclerationByApplicant.Add(declerationByApplicant);
-            ////db.SaveChanges();
-            ////Motivation
-            //Motivation motivation = new Motivation();
-            //motivation.IdentityNo = model.IdentityNo;
-            //motivation.MotivationDescription = model.MotivationDescription;
-            //db.Motivation.Add(motivation);
-            
-            
-            //Save all the inserted records to database using 
+            // Save all the inserted records to database using
             db.SaveChanges();
             return View(model);
-          
-            //Decareation
+
+            
 
 
         }
-    } 
+    }
 }

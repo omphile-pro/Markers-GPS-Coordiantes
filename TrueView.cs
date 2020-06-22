@@ -122,7 +122,8 @@ namespace Markers_GPS_Coordiantes
         public string PositionHeld { get; set; }
 
         //APPLICATION DETAILS
-        
+        public string Poetry { get; set; }
+
         public string Drama { get; set; }
         public string Novel { get; set; }
         public string ShortStories { get; set; }
