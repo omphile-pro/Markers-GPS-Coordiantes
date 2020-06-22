@@ -13,7 +13,7 @@ namespace Markers_GPS_Coordiantes.Data
         public int AppliactionId { get; set; }
         public string IdentityNo { get; set; }
         public string Subject { get; set; }
-        public string Langauge { get; set; }
+        public string Language { get; set; }
         public string Paper { get; set; }
         public string LiteraturePaper { get; set; }
         public string Position { get; set; }

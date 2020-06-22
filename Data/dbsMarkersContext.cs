@@ -77,7 +77,7 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Langauge)
+                entity.Property(e => e.Language)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -98,8 +98,9 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.PracticalExamination)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PracticalSubject)
                     .IsRequired()
@@ -125,9 +126,13 @@ namespace Markers_GPS_Coordiantes.Data
 
             modelBuilder.Entity<ApplicationDetails>(entity =>
             {
-                entity.Property(e => e.ApplicationDetailsId).HasColumnName("ApplicationDetailsID");
+                entity.Property(e => e.ApplicationDetailsId)
+                    .HasColumnName("ApplicationDetailsID")
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.ApplicationId).HasColumnName("ApplicationID");
+                entity.Property(e => e.ApplicationId)
+                    .HasColumnName("ApplicationID")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Language)
                     .IsRequired()
@@ -354,7 +359,13 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Year).HasColumnType("datetime");
+                entity.Property(e => e.YearAvg)
+                    .HasColumnName("YearAVG")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.YearDistrict).HasColumnType("datetime");
+
+                entity.Property(e => e.YearProvince).HasColumnType("datetime");
 
                 entity.HasOne(d => d.IdentityNoNavigation)
                     .WithMany(p => p.DeclerationByApplicant)

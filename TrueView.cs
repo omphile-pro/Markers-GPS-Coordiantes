@@ -16,7 +16,9 @@ namespace Markers_GPS_Coordiantes
         public int AppliactionId { get; set; }
         
         public string Subject { get; set; }
-        public string Langauge { get; set; }
+        public string Language { get; set; }
+
+      
         public string Paper { get; set; }
        
         public string LiteraturePaper { get; set; }
@@ -111,7 +113,7 @@ namespace Markers_GPS_Coordiantes
         public string SubjectExperience { get; set; }
         public string Fetexperience { get; set; }
         public DateTime Year { get; set; }
-        public string Language { get; set; }
+        
         public string Grade { get; set; }
         public string NameofschooIInstitution { get; set; }
         public string PercentageofLearners { get; set; }
@@ -120,10 +122,11 @@ namespace Markers_GPS_Coordiantes
         public string PositionHeld { get; set; }
 
         //APPLICATION DETAILS
+        
         public string Drama { get; set; }
         public string Novel { get; set; }
         public string ShortStories { get; set; }
-        public string Poetry { get; set; }
+        //public string Poetry { get; set; }
 
         //MOTIVATION
 
@@ -131,13 +134,16 @@ namespace Markers_GPS_Coordiantes
         //DECLARATRIONBY APPLICANT
 
         public bool Declaration { get; set; }
-     
+        public DateTime YearAvg { get; set; }
+        public DateTime YearDistrict { get; set; }
+        public DateTime YearProvince { get; set; }
         public string TaughtByAverage { get; set; }
         public DateTime AveragebyYear { get; set; }
         public string CandidatesByDescriptionPercentage { get; set; }
         public DateTime PercentageYear { get; set; }
         public string ProvincePercentage { get; set; }
-
-     
     }
+
+
 }
+
