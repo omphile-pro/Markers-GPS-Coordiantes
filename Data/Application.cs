@@ -19,9 +19,7 @@ namespace Markers_GPS_Coordiantes.Data
         public string CurrentPosition { get; set; }
         public string PracticalSubject { get; set; }
         public string PracticalExamination { get; set; }
-        public string PrescribedBook { get; set; }
 
-        public virtual Marker IdentityNoNavigation { get; set; }
         public virtual ICollection<ApplicationDetails> ApplicationDetails { get; set; }
     }
 }

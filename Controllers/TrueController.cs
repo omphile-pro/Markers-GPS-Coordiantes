@@ -34,6 +34,19 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
 
+            Marker marker = new Marker();
+            marker.IdentityNo = model.IdentityNo;
+            marker.Surname = model.Surname;
+            marker.Initials = model.Initials;
+            marker.Gender = model.Gender;
+            marker.Race = model.Race;
+            marker.Title = model.Title;
+            marker.Persal = model.Persal;
+            marker.MaidenName = model.MaidenName;
+            marker.Nationality = model.Nationality;
+            db.Marker.Add(marker);
+            db.SaveChanges();
+
             //Application
             Application application = new Application();
             application.IdentityNo = model.IdentityNo;
@@ -47,19 +60,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.Application.Add(application);
             db.SaveChanges();
             //Marker
-
-            Marker marker = new Marker();
-            marker.IdentityNo = model.IdentityNo;
-            marker.Surname = model.Surname;
-            marker.Initials = model.Initials;
-            marker.Gender = model.Gender;
-            marker.Race = model.Race;
-            marker.Title = model.Title;
-            marker.Persal = model.Persal;
-            marker.MaidenName = model.MaidenName;
-            marker.Nationality = model.Nationality;
-            db.Marker.Add(marker);
-            db.SaveChanges();
 
             //LanguageContact
             LanguagePreference languagePreference = new LanguagePreference();
@@ -179,7 +179,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.SaveChanges();
 
             // Save all the inserted records to database using
-            db.SaveChanges();
+          
             return View(model);
 
             

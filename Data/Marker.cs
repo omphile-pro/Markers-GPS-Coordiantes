@@ -7,7 +7,6 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public Marker()
         {
-            Application = new HashSet<Application>();
             Contact = new HashSet<Contact>();
             CurrentEmployment = new HashSet<CurrentEmployment>();
             DeclerationByApplicant = new HashSet<DeclerationByApplicant>();
@@ -32,7 +31,6 @@ namespace Markers_GPS_Coordiantes.Data
         public DateTime LastModifiedDate { get; set; }
         public DateTime CreateDate { get; set; }
 
-        public virtual ICollection<Application> Application { get; set; }
         public virtual ICollection<Contact> Contact { get; set; }
         public virtual ICollection<CurrentEmployment> CurrentEmployment { get; set; }
         public virtual ICollection<DeclerationByApplicant> DeclerationByApplicant { get; set; }
