@@ -321,7 +321,7 @@
 
             </div>
         </div><br>
-        <input asp-for="Year" class="col-sm-3 edit-input-tag " />
+        <input asp-for="MarkingExperienceYear" class="col-sm-3 edit-input-tag " />
 
         <select class="edit-input-tag short left " id="select2">
             <option>Select Subject</option>
@@ -337,7 +337,6 @@
 
         <select asp-for="PositionHeld" class="col-sm-3 edit-input-tag short left" type="text">
             <option value="" disabled selected>Select Position Held</option>
-
             <option value="Internal Moderator">Internal Moderator</option>
             <option value="Chief Marker">Chief Marker</option>
             <option value="Deputy Chief Marker">Deputy Chief Marker</option>
@@ -345,13 +344,11 @@
             <option value=" Marker">Marker</option>
             <option value=" Marker">Novice Marker</option>
         </select>
-
         <div class="hide English1 box col" style="padding-top:20px">
             <input type="radio" name="tab" asp-for="Language" value="HL"> HL
             <input type="radio" name="tab" asp-for="Language" value="FAL"> FAL
             <input type="radio" name="tab" asp-for="Language" value="HL"> HL
         </div>
-
         <br>
         <div class="section-title margin-top flex">
             <div class="flex">
@@ -360,10 +357,8 @@
             </div>
         </div>
         <br>
-
         <select asp-for="Subject" class="col-sm-3 edit-input-tag short" type="text">
             <option value="" disabled selected>Select Subject</option>
-
             <option value="English First Additional Language">English First Additional Language</option>
             <option value="English Home Language">English Home Language</option>
             <option value="Geography">Geography</option>
@@ -374,8 +369,6 @@
             <option value="Mathematical Literacy">Mathematical Literacy</option>
 
         </select>
-
-
 
         <!--Diploma-->
         <label for="disabledInput" class="col-sm-1 FocusText left "><strong>Language Levels</strong></label>
@@ -421,26 +414,28 @@
                 </strong>
             </label>
         </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="Drama" value="Drama">Drama
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="Novel" value="Novel">Novel
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="ShortStories" value="Short Stories">Short Stories
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="Poetry" value="Poetry">Poetry
-            </label>
-        </div>
+        <br>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="Drama" value="Drama">Drama
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="ShortStories" value="ShortStories">Short Stories
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input " name="Novel" value="Novel">Novel
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input " name="Poetry" value="Poetry">Poetry
+                </label>
+            </div>
+        
         <br>
         <div class="section-title margin-top flex" style="padding-bottom:10px">
             <div class="flex">
@@ -492,6 +487,13 @@
             </div>
         </div>
         <br>
+
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="Declaration" value="Yes">Declaration
+            </label>
+        </div>
+        <br>
         <div class="form-check-inline">
 
             <label class="" style="color:black;padding-top:20px">
@@ -502,7 +504,7 @@
         </div>
         <br>
         <input asp-for="YearAvg" class="col-sm-3 edit-input-tag " />
-        <input class=" edit-input-tag short left " type="text" asp-for="TaughtByAverage" placeholder="Average by year" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input class=" edit-input-tag short left " type="text" asp-for="TaughtByAverage" placeholder="Average by year" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
 
         <div class="form-check-inline">
@@ -527,7 +529,7 @@
         </div>
         <br>
         <input asp-for="PercentageYear" class="col-sm-3 edit-input-tag " />
-        <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
         <div class="form-group" style="padding-top:20px">
             <input type="submit" value="Save" class="btn btn-primary" />

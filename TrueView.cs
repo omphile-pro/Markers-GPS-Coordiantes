@@ -120,6 +120,7 @@ namespace Markers_GPS_Coordiantes
 
         //MARKING EXPERIENCE
         public string PositionHeld { get; set; }
+        public DateTime MarkingExperienceYear { get; set; }
 
         //APPLICATION DETAILS
         public string Poetry { get; set; }

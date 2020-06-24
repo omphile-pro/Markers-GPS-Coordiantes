@@ -19,7 +19,6 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<ApplicationDetails> ApplicationDetails { get; set; }
         public virtual DbSet<Center> Center { get; set; }
         public virtual DbSet<CenterManger> CenterManger { get; set; }
-        public virtual DbSet<Child> Child { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<CurrentEmployment> CurrentEmployment { get; set; }
@@ -35,7 +34,6 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<MarkersReport> MarkersReport { get; set; }
         public virtual DbSet<MarkingExperience> MarkingExperience { get; set; }
         public virtual DbSet<Motivation> Motivation { get; set; }
-        public virtual DbSet<Parent> Parent { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<PrescribedWorks> PrescribedWorks { get; set; }
         public virtual DbSet<Qualification> Qualification { get; set; }
@@ -210,21 +208,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasForeignKey(d => d.UsersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CenterManger_Users");
-            });
-
-            modelBuilder.Entity<Child>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("child");
-
-                entity.Property(e => e.RelatedIds).HasColumnName("related_ids");
-
-                entity.HasOne(d => d.Parent)
-                    .WithMany(p => p.Child)
-                    .HasForeignKey(d => d.Parentid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_child_Parent");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -734,6 +717,8 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.MarkingExperienceYear).HasColumnType("date");
+
                 entity.Property(e => e.PositionHeld)
                     .IsRequired()
                     .HasMaxLength(255)
@@ -771,17 +756,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasConstraintName("FK_Motivation_Marker");
             });
 
-            modelBuilder.Entity<Parent>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Data)
-                    .IsRequired()
-                    .HasColumnName("data")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.Property(e => e.PositionId).HasColumnName("PositionID");
@@ -794,9 +768,7 @@ namespace Markers_GPS_Coordiantes.Data
 
             modelBuilder.Entity<PrescribedWorks>(entity =>
             {
-                entity.Property(e => e.PrescribedWorksId)
-                    .HasColumnName("PrescribedWorksID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.PrescribedWorksId).HasColumnName("PrescribedWorksID");
 
                 entity.Property(e => e.ApplicationDetailsId).HasColumnName("ApplicationDetailsID");
 
