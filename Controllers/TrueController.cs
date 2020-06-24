@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using System.Net.Mail;
 using Markers_GPS_Coordiantes.Data;
 using Markers_GPS_Coordiantes.Enumerators;
@@ -161,12 +160,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             declerationByApplicant.IdentityNo = model.IdentityNo;
             declerationByApplicant.Declaration = model.Declaration;
             declerationByApplicant.YearAvg = model.YearAvg;
-            declerationByApplicant.YearDistrict = model.YearDistrict;
-            declerationByApplicant.YearProvince = model.YearProvince;
             declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
-            declerationByApplicant.AveragebyYear = model.AveragebyYear;
-            db.SaveChanges();
-            declerationByApplicant.CandidatesByDescriptionPercentage = model.CandidatesByDescriptionPercentage;
+            declerationByApplicant.DistrictYear = model.DistrictYear;
+            declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
+            declerationByApplicant.CandidatesByDistrictPercentage  = model.CandidatesByDistrictPercentage;
             declerationByApplicant.PercentageYear = model.PercentageYear;
             declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
             db.DeclerationByApplicant.Add(declerationByApplicant);
