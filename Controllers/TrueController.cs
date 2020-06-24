@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using System.Net.Mail;
 using Markers_GPS_Coordiantes.Data;
 using Markers_GPS_Coordiantes.Enumerators;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
@@ -139,9 +141,19 @@ namespace Markers_GPS_Coordiantes.Controllers
              db.SaveChanges();
 
             ApplicationDetails applicationDetails = new ApplicationDetails();
+
+            //Test
+            var applicationMax = db.Application;
+            var applicationDetailsMax = db.ApplicationDetails;
+
+            int max = applicationMax.AsQueryable().Max(pet => pet.AppliactionId);
+            int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
+
+
             applicationDetails.Subject = model.Subject;
             applicationDetails.Language = model.Language;
             applicationDetails.Paper = model.Paper;
+            applicationDetails.ApplicationId = max;
             db.ApplicationDetails.Add(applicationDetails);
             db.SaveChanges();
 
@@ -149,6 +161,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             //Prescribe
             PrescribedWorks prescribedWorks = new PrescribedWorks();
+            prescribedWorks.ApplicationDetailsId = maxD;
             prescribedWorks.Drama = model.Drama;
             prescribedWorks.Novel = model.Novel;
             prescribedWorks.ShortStories = model.ShortStories;
@@ -160,10 +173,12 @@ namespace Markers_GPS_Coordiantes.Controllers
             declerationByApplicant.IdentityNo = model.IdentityNo;
             declerationByApplicant.Declaration = model.Declaration;
             declerationByApplicant.YearAvg = model.YearAvg;
+            declerationByApplicant.YearDistrict = model.YearDistrict;
+            declerationByApplicant.YearProvince = model.YearProvince;
             declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
-            declerationByApplicant.DistrictYear = model.DistrictYear;
-            declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
-            declerationByApplicant.CandidatesByDistrictPercentage  = model.CandidatesByDistrictPercentage;
+            declerationByApplicant.AveragebyYear = model.AveragebyYear;
+            //db.SaveChanges();
+            declerationByApplicant.CandidatesByDescriptionPercentage = model.CandidatesByDescriptionPercentage;
             declerationByApplicant.PercentageYear = model.PercentageYear;
             declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
             db.DeclerationByApplicant.Add(declerationByApplicant);
@@ -178,8 +193,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             // Save all the inserted records to database using
           
             return View(model);
-
-            
 
 
         }
