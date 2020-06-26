@@ -16,6 +16,10 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class TrueController : Controller
     {
+        public IActionResult MarkersReport()
+        {
+            return View();
+        }
 
         dbsMarkersContext db = new dbsMarkersContext();
         public IActionResult Create()
