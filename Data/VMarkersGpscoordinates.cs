@@ -70,10 +70,7 @@ namespace Markers_GPS_Coordiantes.Data
         [Column(TypeName = "varchar(255)")]
         [DisplayName("Position")]
         public string PositionDescription { get; set; }
-
-
     }
-
     public class viewModel
     {
         public string FullName { get; set; }

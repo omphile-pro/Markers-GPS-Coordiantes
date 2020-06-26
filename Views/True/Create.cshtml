@@ -415,27 +415,27 @@
             </label>
         </div>
         <br>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="Drama" value="Drama">Drama
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="ShortStories" value="ShortStories">Short Stories
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input " name="Novel" value="Novel">Novel
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input " name="Poetry" value="Poetry">Poetry
-                </label>
-            </div>
-        
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="Drama" value="Drama">Drama
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="ShortStories" value="ShortStories">Short Stories
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input " name="Novel" value="Novel">Novel
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input " name="Poetry" value="Poetry">Poetry
+            </label>
+        </div>
+
         <br>
         <div class="section-title margin-top flex" style="padding-bottom:10px">
             <div class="flex">
@@ -531,10 +531,64 @@
         <input asp-for="PercentageYear" class="col-sm-3 edit-input-tag " />
         <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
+
+        <div class="section-title margin-top flex" style="padding-bottom:10px">
+            <div class="flex">
+                <p class="blu-title bold">APPLICATIONS COMMITTEE</p>
+
+            </div>
+        </div>
+        <br>
+
+      
+        <div class="form-check-inline">
+            <label class="" style="color:black">
+                Checked by subject advisor
+
+            </label>
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="CheckedBySubjectAdvisor" value="Yes"onclick="show2();">Yes
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="CheckedBySubjectAdvisor" value="No">No
+            </label>
+        </div>
+        <br>
+        <div class="form-check-inline hide" id="div2">
+
+            <label class="" style="color:black">
+                Reccomended by subject advisor
+
+            </label>
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input " name="RecommendedBySubject" value="Yes">Yes
+            </label>
+
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input " name="RecommendedBySubject" value="No"> No
+                </label>
+            </div>
+        </div>
+        <br>
+        <div class="form-check-inline hide" id="div2">
+            <label class="" style="color:black">
+                Seletion Reason
+
+            </label>
+          
+                <input class="edit-input-tag short left  " type="text" asp-for="MaidenName" placeholder="Maiden Name" id="my-field">
+            
+
+        </div>
         <div class="form-group" style="padding-top:20px">
             <input type="submit" value="Save" class="btn btn-primary" />
             <a asp-action="Index">Back to List</a>
         </div>
+
+
     </form>
 </div>
 <SCRIPT language=Javascript>
@@ -566,7 +620,12 @@
     function show2() {
         document.getElementById('div1').style.display = 'block';
     }
-
+   function show1() {
+        document.getElementById('div2').style.display = 'none';
+    }
+    function show2() {
+        document.getElementById('div2').style.display = 'block';
+    }
 
     function onlyAlphabets(e, t) {
         try {

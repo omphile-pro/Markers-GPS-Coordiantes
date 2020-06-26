@@ -69,6 +69,10 @@ namespace Markers_GPS_Coordiantes.Data
 
                 entity.Property(e => e.AppliactionId).HasColumnName("AppliactionID");
 
+                entity.Property(e => e.CheckedBySubjectAdvisor)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CurrentPosition)
                     .IsRequired()
                     .HasMaxLength(255)
@@ -98,6 +102,14 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.PracticalSubject)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RecommendedBySubject)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SelectionReason)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
