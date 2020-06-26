@@ -317,7 +317,24 @@
 
         </select>
         <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Language" placeholder="Language" id="my-field">
-        <input class=" col-sm-2 edit-input-tag short left" type="text" asp-for="Grade" placeholder="Grade" id="my-field">
+
+
+        <select asp-for="Grade" class="col-sm-3 edit-input-tag short left" type="text">
+            <option value="" disabled selected>Select Grade</option>
+
+            <option value="Grade 1">Grade 1</option>
+            <option value="Grade 2">Grade 2</option>
+            <option value="Grade 3">Grade 3</option>
+            <option value="Grade 4">Grade 4</option>
+            <option value="Grade 5">Grade 5</option>
+            <option value="Grade 6">Grade 6</option>
+            <option value="Grade 7">Grade 7</option>
+            <option value="Grade 9">Grade 9</option>
+            <option value="Grade 10">Grade 10</option>
+            <option value="Grade 11">Grade 11</option>
+            <option value="Grade 12">Grade 12</option>
+
+        </select>
         <input class=" edit-input-tag short" type="text" asp-for="NameofschooIInstitution" placeholder="Name of School/Institution" onkeypress="return onlyAlphabets(event,this);">
         <input class=" edit-input-tag short left" type="text" asp-for="PercentageofLearners" placeholder="Percentage pass of Learners">
         <br>
@@ -327,7 +344,7 @@
 
             </div>
         </div><br>
-        <input asp-for="Year" class="col-sm-3 edit-input-tag " />
+        <input asp-for="MarkingExperienceYear" class="col-sm-3 edit-input-tag " />
 
         <select class="edit-input-tag short left " id="select2">
             <option>Select Subject</option>
@@ -343,7 +360,6 @@
 
         <select asp-for="PositionHeld" class="col-sm-3 edit-input-tag short left" type="text">
             <option value="" disabled selected>Select Position Held</option>
-
             <option value="Internal Moderator">Internal Moderator</option>
             <option value="Chief Marker">Chief Marker</option>
             <option value="Deputy Chief Marker">Deputy Chief Marker</option>
@@ -351,13 +367,11 @@
             <option value=" Marker">Marker</option>
             <option value=" Marker">Novice Marker</option>
         </select>
-
         <div class="hide English1 box col" style="padding-top:20px">
             <input type="radio" name="tab" asp-for="Language" value="HL"> HL
             <input type="radio" name="tab" asp-for="Language" value="FAL"> FAL
             <input type="radio" name="tab" asp-for="Language" value="HL"> HL
         </div>
-
         <br>
         <div class="section-title margin-top flex">
             <div class="flex">
@@ -366,10 +380,8 @@
             </div>
         </div>
         <br>
-
         <select asp-for="Subject" class="col-sm-3 edit-input-tag short" type="text">
             <option value="" disabled selected>Select Subject</option>
-
             <option value="English First Additional Language">English First Additional Language</option>
             <option value="English Home Language">English Home Language</option>
             <option value="Geography">Geography</option>
@@ -425,26 +437,28 @@
                 </strong>
             </label>
         </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="Drama" value="Drama">Drama
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="Novel" value="Novel">Novel
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="ShortStories" value="Short Stories">Short Stories
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" asp-for="Poetry" value="Poetry">Poetry
-            </label>
-        </div>
+        <br>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="Drama" value="Drama">Drama
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="ShortStories" value="ShortStories">Short Stories
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input " name="Novel" value="Novel">Novel
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input " name="Poetry" value="Poetry">Poetry
+                </label>
+            </div>
+        
         <br>
         <div class="section-title margin-top flex" style="padding-bottom:10px">
             <div class="flex">
@@ -496,6 +510,13 @@
             </div>
         </div>
         <br>
+
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="Declaration" value="Yes">Declaration
+            </label>
+        </div>
+        <br>
         <div class="form-check-inline">
 
             <label class="" style="color:black;padding-top:20px">
@@ -505,8 +526,8 @@
             </label>
         </div>
         <br>
-        <input asp-for="AveragebyYear" class="col-sm-3 edit-input-tag " />
-        <input class=" edit-input-tag short left " type="text" asp-for="AveragebyYear" placeholder="Average by year" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input asp-for="YearAvg" class="col-sm-3 edit-input-tag " />
+        <input class=" edit-input-tag short left " type="text" asp-for="TaughtByAverage" placeholder="Average by year" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
 
         <div class="form-check-inline">
@@ -518,8 +539,8 @@
             </label>
         </div>
         <br>
-        <input asp-for="AveragebyYear" class="col-sm-3 edit-input-tag " />
-        <input class=" edit-input-tag short left " type="text" asp-for="PercentageYear" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input asp-for="DistrictYear" class="col-sm-3 edit-input-tag " />
+        <input class=" edit-input-tag short left " type="text" asp-for="CandidatesByDistrictPercentage" placeholder="Candidates By District Percentage" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <div class="form-check-inline">
 
@@ -531,7 +552,7 @@
         </div>
         <br>
         <input asp-for="PercentageYear" class="col-sm-3 edit-input-tag " />
-        <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)" name="txtChar">
+        <input class=" edit-input-tag short left " type="text" asp-for="ProvincePercentage" placeholder="Taught By Average" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
         <div class="form-group" style="padding-top:20px">
             <input type="submit" value="Save" class="btn btn-primary" />

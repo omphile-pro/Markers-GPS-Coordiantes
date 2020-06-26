@@ -120,6 +120,7 @@ namespace Markers_GPS_Coordiantes
 
         //MARKING EXPERIENCE
         public string PositionHeld { get; set; }
+        public DateTime MarkingExperienceYear { get; set; }
 
         //APPLICATION DETAILS
         public string Poetry { get; set; }
@@ -136,13 +137,12 @@ namespace Markers_GPS_Coordiantes
 
         public bool Declaration { get; set; }
         public DateTime YearAvg { get; set; }
-        public DateTime YearDistrict { get; set; }
-        public DateTime YearProvince { get; set; }
         public string TaughtByAverage { get; set; }
-        public DateTime AveragebyYear { get; set; }
-        public string CandidatesByDescriptionPercentage { get; set; }
+        public DateTime DistrictYear { get; set; }
+        public string CandidatesByDistrictPercentage { get; set; }
         public DateTime PercentageYear { get; set; }
         public string ProvincePercentage { get; set; }
+
     }
 
 
