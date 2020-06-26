@@ -138,14 +138,44 @@
             <option value="Indian">Asian</option>
         </select>
         <br>
-        <input class="edit-input-tag " type="text" asp-for="EmailAddress" placeholder="Email Address" onkeypress="return onlyAlphabets(event,this);"><br>
-        <input class="edit-input-tag short " type="text" asp-for="WorkSchool" placeholder="Work/School Number" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="edit-input-tag" type="text" asp-for="EmailAddress" placeholder="Email Address" onkeypress="return onlyAlphabets(event,this);"><br>
+        <input class="edit-input-tag short" type="text" asp-for="WorkSchool" placeholder="Work/School Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="edit-input-tag short left" type="text" asp-for="TelephoneNo" placeholder="Telephone Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="HomeTelephoneNo" placeholder="HomeTelephoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
-        <input class="col-sm-3 edit-input-tag short " type="text" asp-for="CellphoneNo" placeholder="CellphoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="col-sm-3 edit-input-tag short" type="text" asp-for="CellphoneNo" placeholder="CellphoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
         <input class=" edit-input-tag short" type="text" asp-for="FaxNo" placeholder="Fax Number" id="txtChar" onkeypress="return isNumberKey(event)">
-        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="ResidentialAddress" placeholder="Residential Address">
+
+        <input class="col-sm-3 edit-input-tag short left" type="text" id="address" onblur="checkAddress()" asp-for="ResidentialAddress" placeholder="Residential Address">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="Latitude" placeholder="Latitude" id="lat">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="Longitude" placeholder="Longitude" id="long">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="FullResidentialAddress" placeholder="Full Resident Address" id="fullAddress">
+        <script>
+            function checkAddress() {
+                var geocoder = new google.maps.Geocoder();
+                var address = document.getElementById('address').value;
+
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    if (status === 'OK') {
+
+                        var lat = results[0].geometry.location.lat();
+                        var long = results[0].geometry.location.lng();
+                        var fullAddress = results[0].formatted_address;
+
+               
+                        document.getElementById("lat").value = lat;
+                        document.getElementById("long").value = long;
+                        document.getElementById("fullAddress").value = fullAddress;
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ8dLRWw3yMzsUdJJR8UfaRzd6YeOrBs">
+        </script>
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <div class="section-title margin-top flex">
@@ -157,8 +187,7 @@
         <input class=" edit-input-tag short left" type="text" asp-for="CentreNumber" placeholder="Centre Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="District" placeholder="District" onkeypress="return onlyAlphabets(event,this);"><br>
         <select asp-for="EmploymentType" class="edit-input-tag short " type="text">
-            <option value="" disabled selected>Select Employment Type</option>s
-
+            <option value="" disabled selected>Select Employment Type</option>
             <option value="GDE Permanent">GDE Permanent</option>
             <option value="GDE Temporary">GDE Temporary</option>
             <option value="Independent School">Independent School</option>
