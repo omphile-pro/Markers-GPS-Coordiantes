@@ -89,13 +89,13 @@
         <input class="edit-input-tag short left" type="text" asp-for="Initials" placeholder="Initials" onkeypress="return onlyAlphabets(event,this);" required>
         <!-- Default inline 1-->
         @*<select asp-for="Title" class="edit-input-tag short" type="text">
-                <option value="" disabled selected>Select Title</option>
+            <option value="" disabled selected>Select Title</option>
 
-                <option value="Mrs">Mrs</option>
-                <option value="Mr">Mr</option>
-                <option value="Ms">Ms</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Mr">Mr</option>
+            <option value="Ms">Ms</option>
 
-            </select>*@
+        </select>*@
 
         <div class="form-check-inline left">
 
@@ -138,14 +138,37 @@
             <option value="Indian">Asian</option>
         </select>
         <br>
-        <input class="edit-input-tag " type="text" asp-for="EmailAddress" placeholder="Email Address" onkeypress="return onlyAlphabets(event,this);"><br>
-        <input class="edit-input-tag short " type="text" asp-for="WorkSchool" placeholder="Work/School Number" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="edit-input-tag" type="text" asp-for="EmailAddress" placeholder="Email Address" onkeypress="return onlyAlphabets(event,this);"><br>
+        <input class="edit-input-tag short" type="text" asp-for="WorkSchool" placeholder="Work/School Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="edit-input-tag short left" type="text" asp-for="TelephoneNo" placeholder="Telephone Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="HomeTelephoneNo" placeholder="HomeTelephoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
-        <input class="col-sm-3 edit-input-tag short " type="text" asp-for="CellphoneNo" placeholder="CellphoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
+        <input class="col-sm-3 edit-input-tag short" type="text" asp-for="CellphoneNo" placeholder="CellphoneNo" id="txtChar" onkeypress="return isNumberKey(event)">
         <br>
         <input class=" edit-input-tag short" type="text" asp-for="FaxNo" placeholder="Fax Number" id="txtChar" onkeypress="return isNumberKey(event)">
-        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="ResidentialAddress" placeholder="Residential Address">
+
+        <input class="col-sm-3 edit-input-tag short left" type="text" id="address" onblur="checkAddress()" asp-for="ResidentialAddress" placeholder="Residential Address">
+        <script>
+            function checkAddress() {
+                var geocoder = new google.maps.Geocoder();
+                var address = document.getElementById('address').value;
+
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    if (status === 'OK') {
+
+                        console.log(results[0]);
+                        console.log(results[0].geometry.location.lat());
+                        console.log(results[0].geometry.location.lng());
+                        alert('Geocode was not successful for the following reason: ' + results[0].formatted_address);
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+                    }
+                            
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ8dLRWw3yMzsUdJJR8UfaRzd6YeOrBs">
+        </script>
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <div class="section-title margin-top flex">
@@ -368,20 +391,20 @@
         SAL <input id="Language" asp-for="Language" type="radio" value="SAL" />
 
         @*<div class="custom-control custom-radio custom-control-inline left">
-                <input type="radio" class=" col-sm-1 custom-control-input" id="Language1" name="Language" value="HL">
-                <label class=" col-sm-1 custom-control-label" for="Language1">HL</label>
-            </div>
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Language1" name="Language" value="HL">
+            <label class=" col-sm-1 custom-control-label" for="Language1">HL</label>
+        </div>
 
-             Default inline 2
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="col-sm-1 custom-control-input" id="Language2" name="Language"value="FAL">
-                <label class="col-sm-1 custom-control-label" for="Language2">FAL</label>
-            </div>
+         Default inline 2
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="col-sm-1 custom-control-input" id="Language2" name="Language"value="FAL">
+            <label class="col-sm-1 custom-control-label" for="Language2">FAL</label>
+        </div>
 
-            <div class="custom-control custom-radio custom-control-inline ">
-                <input type="radio" class=" col-sm-1 custom-control-input" id="Language3" name="Language"value="SAL">
-                <label class=" col-sm-1 custom-control-label" for="Language3">SAL</label>
-            </div>*@
+        <div class="custom-control custom-radio custom-control-inline ">
+            <input type="radio" class=" col-sm-1 custom-control-input" id="Language3" name="Language"value="SAL">
+            <label class=" col-sm-1 custom-control-label" for="Language3">SAL</label>
+        </div>*@
 
         <select asp-for="Paper" class="  col-sm-2 edit-input-tag short" type="text">
             <option value="" disabled selected>Paper</option>
