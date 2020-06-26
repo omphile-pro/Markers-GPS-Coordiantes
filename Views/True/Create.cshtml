@@ -158,17 +158,18 @@
                         console.log(results[0]);
                         console.log(results[0].geometry.location.lat());
                         console.log(results[0].geometry.location.lng());
-                        alert('Geocode was not successful for the following reason: ' + results[0].formatted_address);
+                        alert('Geocode was successful for the following reason: ' + results[0].formatted_address);
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
                 });
-                    }
-                            
+            }
+
         </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ8dLRWw3yMzsUdJJR8UfaRzd6YeOrBs">
         </script>
+        <label asp-for="" class="col-sm-1 edit-input-tag "><strong>Retiring?</strong></label>
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <div class="section-title margin-top flex">
@@ -180,8 +181,7 @@
         <input class=" edit-input-tag short left" type="text" asp-for="CentreNumber" placeholder="Centre Number" id="txtChar" onkeypress="return isNumberKey(event)">
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="District" placeholder="District" onkeypress="return onlyAlphabets(event,this);"><br>
         <select asp-for="EmploymentType" class="edit-input-tag short " type="text">
-            <option value="" disabled selected>Select Employment Type</option>s
-
+            <option value="" disabled selected>Select Employment Type</option>
             <option value="GDE Permanent">GDE Permanent</option>
             <option value="GDE Temporary">GDE Temporary</option>
             <option value="Independent School">Independent School</option>
