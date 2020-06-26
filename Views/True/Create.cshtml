@@ -147,6 +147,9 @@
         <input class=" edit-input-tag short" type="text" asp-for="FaxNo" placeholder="Fax Number" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <input class="col-sm-3 edit-input-tag short left" type="text" id="address" onblur="checkAddress()" asp-for="ResidentialAddress" placeholder="Residential Address">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="Latitude" placeholder="Latitude" id="lat">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="Longitude" placeholder="Longitude" id="long">
+        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="FullResidentialAddress" placeholder="Full Resident Address" id="fullAddress">
         <script>
             function checkAddress() {
                 var geocoder = new google.maps.Geocoder();
@@ -155,10 +158,14 @@
                 geocoder.geocode({ 'address': address }, function (results, status) {
                     if (status === 'OK') {
 
-                        console.log(results[0]);
-                        console.log(results[0].geometry.location.lat());
-                        console.log(results[0].geometry.location.lng());
-                        alert('Geocode was successful for the following reason: ' + results[0].formatted_address);
+                        var lat = results[0].geometry.location.lat();
+                        var long = results[0].geometry.location.lng();
+                        var fullAddress = results[0].formatted_address;
+
+               
+                        document.getElementById("lat").value = lat;
+                        document.getElementById("long").value = long;
+                        document.getElementById("fullAddress").value = fullAddress;
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
@@ -169,7 +176,6 @@
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ8dLRWw3yMzsUdJJR8UfaRzd6YeOrBs">
         </script>
-        <label asp-for="" class="col-sm-1 edit-input-tag "><strong>Retiring?</strong></label>
         <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="PostalCode" placeholder="PostalCode" id="txtChar" onkeypress="return isNumberKey(event)">
 
         <div class="section-title margin-top flex">
@@ -438,27 +444,27 @@
             </label>
         </div>
         <br>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="Drama" value="Drama">Drama
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="ShortStories" value="ShortStories">Short Stories
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input " name="Novel" value="Novel">Novel
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input " name="Poetry" value="Poetry">Poetry
-                </label>
-            </div>
-        
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="Drama" value="Drama">Drama
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="ShortStories" value="ShortStories">Short Stories
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input " name="Novel" value="Novel">Novel
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input " name="Poetry" value="Poetry">Poetry
+            </label>
+        </div>
+
         <br>
         <div class="section-title margin-top flex" style="padding-bottom:10px">
             <div class="flex">

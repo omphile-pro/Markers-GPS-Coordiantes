@@ -86,6 +86,11 @@ namespace Markers_GPS_Coordiantes
         public string ResidentialAddress { get; set; }
         public string PostalCode { get; set; }
 
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
+        public string FullResidentialAddress { get; set; }
+
+
 
         //CurrentEmployement
 

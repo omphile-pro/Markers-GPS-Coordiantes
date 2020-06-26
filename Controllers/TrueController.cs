@@ -30,21 +30,36 @@ namespace Markers_GPS_Coordiantes.Controllers
         public IActionResult Create(TrueView model)
         {
             List<Marker> list = db.Marker.ToList();
+            var applicationMax = db.Application;
+            var applicationDetailsMax = db.ApplicationDetails;
 
             ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
 
-            Marker marker = new Marker();
-            marker.IdentityNo = model.IdentityNo;
-            marker.Surname = model.Surname;
-            marker.Initials = model.Initials;
-            marker.Gender = model.Gender;
-            marker.Race = model.Race;
-            marker.Title = model.Title;
-            marker.Persal = model.Persal;
-            marker.MaidenName = model.MaidenName;
-            marker.Nationality = model.Nationality;
-            db.Marker.Add(marker);
-            //db.SaveChanges();
+            var markerDatabase = db.Marker;
+
+
+            var idNumber = markerDatabase.AsQueryable().Where(idNumber => model.IdentityNo == idNumber.IdentityNo);
+
+            if (idNumber == null)
+            {
+                Marker marker = new Marker();
+                marker.IdentityNo = model.IdentityNo;
+                marker.Surname = model.Surname;
+                marker.Initials = model.Initials;
+                marker.Gender = model.Gender;
+                marker.Race = model.Race;
+                marker.Title = model.Title;
+                marker.Persal = model.Persal;
+                marker.MaidenName = model.MaidenName;
+                marker.Nationality = model.Nationality;
+                db.Marker.Add(marker);
+                db.SaveChanges();
+            }
+            else
+            {
+                
+            };
+
 
             //Application
             Application application = new Application();
@@ -57,7 +72,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             application.PracticalSubject = model.PracticalSubject;
             application.PracticalExamination = model.PracticalExamination;
             db.Application.Add(application);
-            //db.SaveChanges();
+            db.SaveChanges();
             //Marker
 
             //LanguageContact
@@ -65,7 +80,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             languagePreference.IdentityNo = model.IdentityNo;
             languagePreference.LanguageDescription = model.LanguageDescription;
             db.LanguagePreference.Add(languagePreference);
-            //db.SaveChanges();
+            db.SaveChanges();
 
             //Save contact
 
@@ -78,15 +93,19 @@ namespace Markers_GPS_Coordiantes.Controllers
             contact.FaxNo = model.FaxNo;
             contact.EmailAddress = model.EmailAddress;
             db.Contact.Add(contact);
-            //db.SaveChanges();
+            db.SaveChanges();
 
             //Resindent
             Resident resident = new Resident();
             resident.IdentityNo = model.IdentityNo;
             resident.ResidentialAddress = model.ResidentialAddress;
             resident.PostalCode = model.PostalCode;
+            resident.Latitude = model.Latitude;
+            resident.Longitude = model.Longitude;
+            resident.FullResidentialAddress = model.FullResidentialAddress;
+
             db.Resident.Add(resident);
-            //db.SaveChanges();
+            db.SaveChanges();
             //currentEmployment
             CurrentEmployment currentEmployment = new CurrentEmployment();
             currentEmployment.IdentityNo = model.IdentityNo;
@@ -97,7 +116,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             currentEmployment.EmploymentType = model.EmploymentType;
             currentEmployment.Retiring = model.Retiring;
             db.CurrentEmployment.Add(currentEmployment);
-            //db.SaveChanges();
+            db.SaveChanges();
 
             //Qualification
 
@@ -110,7 +129,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             qualification.LevelOfDegree = model.LevelOfDegree;
             qualification.LevelOfDiploma = model.LevelOfDiploma;
             db.Qualification.Add(qualification);
-            //db.SaveChanges();
+            db.SaveChanges();
 
             //Teaching Experience
 
@@ -127,7 +146,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
             teachingExperience.PercentageofLearners = model.PercentageofLearners;
             db.TeachingExperience.Add(teachingExperience);
-            //db.SaveChanges();
+            db.SaveChanges();
 
             //Marking Experience
             MarkingExperience markingExperience = new MarkingExperience();
@@ -137,34 +156,31 @@ namespace Markers_GPS_Coordiantes.Controllers
             markingExperience.Language = model.Language;
             markingExperience.PositionHeld = model.PositionHeld;
             db.MarkingExperience.Add(markingExperience);
-             //db.SaveChanges();
+            db.SaveChanges();
 
             ApplicationDetails applicationDetails = new ApplicationDetails();
 
             //Test
-            var applicationMax = db.Application;
-            var applicationDetailsMax = db.ApplicationDetails;
+
 
             int max = applicationMax.AsQueryable().Max(pet => pet.AppliactionId);
-            int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
-
-
             applicationDetails.Subject = model.Subject;
             applicationDetails.Language = model.Language;
             applicationDetails.Paper = model.Paper;
             applicationDetails.ApplicationId = max;
             db.ApplicationDetails.Add(applicationDetails);
-            //db.SaveChanges();
+            db.SaveChanges();
 
             //Prescribe
             PrescribedWorks prescribedWorks = new PrescribedWorks();
+            int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
             prescribedWorks.ApplicationDetailsId = maxD;
             prescribedWorks.Drama = model.Drama;
             prescribedWorks.Novel = model.Novel;
             prescribedWorks.ShortStories = model.ShortStories;
             prescribedWorks.Poetry = model.Poetry;
             db.PrescribedWorks.Add(prescribedWorks);
-            //db.SaveChanges();
+            db.SaveChanges();
             //Declaration
 
             DeclerationByApplicant declerationByApplicant = new DeclerationByApplicant();
@@ -177,7 +193,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             declerationByApplicant.PercentageYear = model.PercentageYear;
             declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
             db.DeclerationByApplicant.Add(declerationByApplicant);
-            //db.SaveChanges();
+            db.SaveChanges();
 
 
 
