@@ -162,7 +162,7 @@
                         var long = results[0].geometry.location.lng();
                         var fullAddress = results[0].formatted_address;
 
-               
+
                         document.getElementById("lat").value = lat;
                         document.getElementById("long").value = long;
                         document.getElementById("fullAddress").value = fullAddress;
@@ -349,7 +349,10 @@
                 <p class="blu-title bold">MARKING EXPERIENCE</p>
 
             </div>
-        </div><br>
+
+        </div>
+        
+        <br>
         <input asp-for="MarkingExperienceYear" class="col-sm-3 edit-input-tag " />
 
         <select class="edit-input-tag short left " id="select2">
@@ -569,49 +572,41 @@
         </div>
         <br>
 
-      
-        <div class="form-check-inline">
-            <label class="" style="color:black">
-                Checked by subject advisor
 
-            </label>
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="CheckedBySubjectAdvisor" value="Yes"onclick="show2();">Yes
-            </label>
-        </div>
         <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="CheckedBySubjectAdvisor" value="No">No
+
+            <label class="" style="color:black;padding-top:20px">
+                <strong>
+                    Checked by subject advisor
+                </strong>
             </label>
+            Yes <input id="Title" name="Title" type="radio" value="Yes" onclick="show2();" />
+            No <input id="Title" name="Title" type="radio" value="No" onclick="show1();" />
+
+          
         </div>
+
         <br>
         <div class="form-check-inline hide" id="div2">
 
-            <label class="" style="color:black">
-                Reccomended by subject advisor
-
+            <label class="" style="color:black;padding-top:20px">
+                <strong>
+                    Reccomended by subject advisor
+                </strong>
             </label>
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input " name="RecommendedBySubject" value="Yes">Yes
-            </label>
+            Yes <input id="Title" name="Title" type="radio" value="Yes" onclick="sho1();" />
+            No <input id="Title" name="Title" type="radio" value="No" onclick="sho2();" />
 
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input " name="RecommendedBySubject" value="No"> No
-                </label>
+          
+
+            <div class="form-group hide"id="div3" >
+
+                <input asp-for="SelectionReason" placeholder="Selection Reason" class="form-control " onkeypress="return onlyAlphabets(event,this);">
+                <span asp-validation-for="SelectionReason" class="text-danger"></span>
             </div>
         </div>
         <br>
-        <div class="form-check-inline hide" id="div2">
-            <label class="" style="color:black">
-                Seletion Reason
 
-            </label>
-          
-                <input class="edit-input-tag short left  " type="text" asp-for="MaidenName" placeholder="Maiden Name" id="my-field">
-            
-
-        </div>
         <div class="form-group" style="padding-top:20px">
             <input type="submit" value="Save" class="btn btn-primary" />
             <a asp-action="Index">Back to List</a>
@@ -643,18 +638,27 @@
             });
         }).change();
     });
-    function show1() {
-        document.getElementById('div1').style.display = 'none';
-    }
+   
     function show2() {
         document.getElementById('div1').style.display = 'block';
     }
    function show1() {
-        document.getElementById('div2').style.display = 'none';
+        document.getElementById('div1').style.display = 'none';
     }
-    function show2() {
+   function show2() {
         document.getElementById('div2').style.display = 'block';
     }
+   function show1() {
+        document.getElementById('div2').style.display = 'none';
+    }
+
+      function sho2() {
+        document.getElementById('div3').style.display = 'block';
+    }
+   function sho1() {
+        document.getElementById('div3').style.display = 'none';
+    }
+
 
     function onlyAlphabets(e, t) {
         try {

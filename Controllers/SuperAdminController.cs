@@ -10,19 +10,29 @@ using Microsoft.AspNetCore.Http;
 using Markers_GPS_Coordiantes.Enumerators;
 using System.IO;
 using OfficeOpenXml;
+using Markers_GPS_Coordiantes.NotificationSystem;
+using Microsoft.AspNetCore.Hosting;
+
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class SuperAdminController : Controller
     {
         dbsMarkersContext _context = new dbsMarkersContext();
         private readonly IHttpContextAccessor _sessionAccessor;
+        private readonly IHostingEnvironment _env;
+
+        EmailNotificationSystem ns;
+
+
         int roleID = 0;
         public int CenterID = 0;
         public int UsersID = 0;
         // GET: MarkersGpscoordinates
-        public SuperAdminController (IHttpContextAccessor sessionAccessor)
+        public SuperAdminController (IHttpContextAccessor sessionAccessor, IHostingEnvironment env)
         {
             _sessionAccessor = sessionAccessor;
+            _env = env;
+            ns = new EmailNotificationSystem(env);
         }
         public async Task<IActionResult> Markers()
         {
@@ -371,6 +381,17 @@ public async Task<IActionResult> Details(int? id)
             return View(await _context.MarkersGpscoordinates.Where(b => b.CenterId == center.CenterId).OrderBy(r => r.FullName).ToListAsync());
         }
 
+        //  id - UsersID
+        public async Task<IActionResult> EmailPassword(int? id) 
+        {
+            var user = await _context.Users.Where(u => u.UsersId == id).FirstOrDefaultAsync();
+            if (user != null) 
+            {
+                await ns.SendLoginDetails(user.UsersId);
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile formFile)
