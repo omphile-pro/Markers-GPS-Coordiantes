@@ -40,7 +40,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             var idNumber = markerDatabase.AsQueryable().Where(idNumber => model.IdentityNo == idNumber.IdentityNo);
 
-            if (idNumber == null)
+            if (idNumber.Count() <= 0)
             {
                 Marker marker = new Marker();
                 marker.IdentityNo = model.IdentityNo;
