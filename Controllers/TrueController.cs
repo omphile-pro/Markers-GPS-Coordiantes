@@ -16,18 +16,24 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class TrueController : Controller
     {
-        public IActionResult MarkersReport()
-        {
-            return View();
-        }
+       
 
         dbsMarkersContext db = new dbsMarkersContext();
+        private readonly IHttpContextAccessor httpContextAccessor;
+        public string IdentityNO;
+        public string IdNumber;
+
+        public TrueController (IHttpContextAccessor _httpContextAccessor)
+        {
+            httpContextAccessor = _httpContextAccessor;
+        }
+
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(TrueView model)
+        public async Task<IActionResult> CreateAsync(TrueView model)
         {
             List<Marker> list = db.Marker.ToList();
             var applicationMax = db.Application;
@@ -57,10 +63,25 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             else
             {
-                
+              IdentityNO = Convert.ToString(httpContextAccessor.HttpContext.Session.GetInt32("IdentityNo"));
+                IdNumber = Convert.ToString(httpContextAccessor.HttpContext.Session.GetInt32("IdNumber"));
+                var marker = await db.Marker.Where(b => b.IdentityNo == IdentityNO).FirstOrDefaultAsync();
+
+                if (marker == null)
+                {
+                    return NotFound("The Identity number does not exist");
+                }
+                //  check if the user is registered in the CenterManager-Center join table
+                var MarkersGpscoordinates = await db.MarkersGpscoordinates.Where(b => b.IdNumber == IdNumber && b.IdNumber == marker.IdentityNo).FirstOrDefaultAsync();
+
+                if (MarkersGpscoordinates == null)
+                {
+                    return NotFound("You are not configured as center manager, please consult your system administrator.");
+                }
+
+          
             };
-
-
+    
             //Application
             Application application = new Application();
             application.IdentityNo = model.IdentityNo;
@@ -71,6 +92,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             application.CurrentPosition = model.CurrentPosition;
             application.PracticalSubject = model.PracticalSubject;
             application.PracticalExamination = model.PracticalExamination;
+
+            application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
+            application.RecommendedBySubject = model.RecommendedBySubject;
+            application.SelectionReason = model.SelectionReason;
             db.Application.Add(application);
             db.SaveChanges();
             //Marker
@@ -204,6 +229,8 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.Motivation.Add(motivation);
             db.SaveChanges();
 
+
+            //Applicatio
             // Save all the inserted records to database using
           
             return View(model);

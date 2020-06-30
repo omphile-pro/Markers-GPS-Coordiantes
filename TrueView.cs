@@ -27,6 +27,11 @@ namespace Markers_GPS_Coordiantes
         public string PracticalSubject { get; set; }
         public string PracticalExamination { get; set; }
         public string PrescribedBook { get; set; }
+
+        public string CheckedBySubjectAdvisor { get; set; }
+        public string RecommendedBySubject { get; set; }
+        public string SelectionReason { get; set; }
+
         //Marker
         public Guid MarkerToken { get; set; }
         [Column(TypeName = "varchar(255)")]

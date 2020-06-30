@@ -179,6 +179,7 @@
                         <td class="table-data td-icon">
                             <a asp-action="Edit" asp-route-id="@item.MarkersId"><img class="table-icon" title="Edit" src="~/Images/edit.svg" /></a>
                             <a asp-action="Delete" asp-route-id="@item.MarkersId" class="text-danger ml-1" title="Delete"><img class="table-icon" src="~/Images/trash.svg" /></a>
+                            <a asp-action="EmailPassword" asp-route-id="@item.UsersId"><img class="table-icon" title="Email password" src="~/Images/edit.svg" /></a>
                         </td>
                     </tr>
                 }
