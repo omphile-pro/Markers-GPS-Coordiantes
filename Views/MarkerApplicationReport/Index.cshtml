@@ -8,12 +8,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<a class="btn btn-dark" href="@Url.Action("ExportToExcel","MarkerApplicationReport")" style="
-    position: fixed;
-    top: 90%;
-    left: 91%;
-    z-index: 1;
-" role="button">Download @*<i class='fas fa-file-download'>*@ </a>
+
 
 <div class="col-12 table-content">
 
@@ -48,10 +43,10 @@
 
     <form asp-action="Index" method="get"style="padding-bottom:20px">
 
-        <select class="col-sm-2 edit-input-tag short" type="text">
+        <select asp-for="Subject" class="col-sm-2 edit-input-tag short" type="text">
             <option value="" disabled selected>Select Subject</option>
 
-            <option  href="@Url.Action("ExportToExcel","MarkerApplicationReport")">English</option>
+            <option >English</option>
             <option>Geography</option>
             <option>Economics</option>
             <option>Business Studies</option>
@@ -75,7 +70,12 @@
             <option>Position at DBE/Umalusi</option>
         </select>
 
-        <input type="submit" value="Search" class="btn btn-primary" style="margin-left:25px">
+        <a class="btn btn-dark" href="@Url.Action("ExportToExcel","MarkerApplicationReport")" style="
+    position: fixed;
+    top: 90%;
+    left: 91%;
+    z-index: 1;
+" role="button">Download @*<i class='fas fa-file-download'>*@ </a>
     </form>
    
 </div>
