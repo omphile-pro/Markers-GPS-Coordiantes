@@ -67,13 +67,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public async Task<IActionResult> ExportToExcel(VMarkerApplicationReport model)
         {
-            byte[] result;
             List<VMarkerApplicationReport> reportList = new List<VMarkerApplicationReport>();
             List<VMarkerApplicationReport> subjectList = new List<VMarkerApplicationReport>();
-
-
-            var subjectFiles = new Dictionary<string, Byte[]>();
-
 
 
             reportList = _context.VMarkerApplicationReport.ToList();
@@ -158,26 +153,12 @@ namespace Markers_GPS_Coordiantes.Controllers
 
                 }
 
-                var now = DateTime.Now.ToString("yyyy-MM-dd");
                 string filePath = "C:\\Users/Rendani Mulaudzi/Desktop/Files/" + subject + ".xlsx";
 
                 FileInfo fi = new FileInfo(filePath);
                 pck.SaveAs(fi);
-
-
-                //subjectFiles.Add(subject, result);
-
-                //return File(result, "application/vnd.ms-excel", subject + ".xlsx");
             }
-
-
-            //var sheet = pck.Workbook.Worksheets[1];
-
-
-
-            return View("~/Views/True/MarkerApplicationReport.cshtml");
-
-
+            return View("~/Views/True/MarkersReport.cshtml");
         }
 
 
