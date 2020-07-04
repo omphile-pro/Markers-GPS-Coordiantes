@@ -1,0 +1,231 @@
+body{
+    background-color: #f8f9fa;
+}
+.formHolder{
+    border-radius: 30px 0 0 30px;
+    background-color:white;
+}
+.formContent{
+    padding-top: 6%;
+}
+#verticle-line { 
+    margin-top: 80px;
+    border-left: 0.5px solid black;
+    height: 85%;
+    position: absolute;
+    left: 22%;
+}
+
+.sectionHaeder h3{
+    font-weight: bold;
+}
+
+.markerOnList ul{
+    list-style-type: none;
+    padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+.markerOnList a{
+    padding: 5% 0px 15% 0;
+    font-size: 10pt;
+    font-weight: bold;
+    width: 90%
+}
+
+.markerOnList a span{
+    padding-left: 10%;
+    color: #9c9c9c;
+}
+
+.markerOnList a i{
+    color: #e00505;
+}
+
+.markerOnList a.active span{
+    color: #000000 !important;
+}
+.markerOnList a.active i{
+    color: #f1dd66;
+}
+.markerOnList a.done i{
+    color: #13bd13;
+}
+
+#listHeader{
+    padding-bottom: 10%;
+    padding-top: 10px;
+}
+
+.radioGroup label{
+    display: block;
+}
+.radioGroup .custom-radio{
+    display: inline-block;
+}
+.custom-control-label{
+    margin-right: 10px;
+}
+#resAddress{
+    padding-top: 6.5%;
+}
+.form-control {
+    border: 0;
+    border-bottom:1px solid black;
+    box-shadow:none !important;
+    border-radius: 0;
+}
+
+
+  /* Fonts  */
+  .heading1{
+      font-size: 30pt;
+      font-family: 'Inter', sans-serif;
+  }
+
+  html *
+{
+   font-family: 'Inter', sans-serif;
+}
+
+/* .tab-pane{
+    position: absolute;
+} */
+
+
+
+
+
+
+/* Check */
+
+.container {
+    max-width: 960px;
+  }
+  
+  .lh-condensed { line-height: 1.25; }
+  
+
+@media (max-width: 767.98px) {
+    .sidebar {
+      top: 5rem;
+    }
+  }
+
+
+
+  .action-button {
+    width: 100px;
+    background: skyblue;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+.action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+fieldset .form-card {
+    background: white;
+    position: relative
+}
+
+fieldset:not(:first-of-type) {
+    display: none
+}
+
+/* Lwazi */
+/* padding top to for spacing between lines*/
+.line-head{
+    padding-top: 80px;
+}
+
+/* padding top to continue button*/
+.line-head-half{
+  padding-top: 40px;
+}
+
+.info-text{
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 21px;
+}
+.body-text{
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.015em;
+  line-height: 32px;
+}
+
+.h2{
+  font-family: 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0.035em;
+  line-height: 42px;
+}
+
+.h3{
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 0.015em;
+  line-height: 30px;
+}
+
+.link-text{
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  line-height: 32px;
+}
+.flex{
+    display: flex;
+}
+
+.icon-padding-top{
+    padding-top: 5px;
+}
+
+.text-icon-spacing{
+    margin-right: 10px;
+}
+
+.smaller-input{
+    width: 90%;
+}
+
+.subject-input{
+    margin-left: 5%;
+    width: 30%;
+    margin-top: -20px;
+}
