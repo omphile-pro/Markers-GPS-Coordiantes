@@ -13,9 +13,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
     <title>@ViewData["Title"]  | Pay Marker</title>
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
  
@@ -80,7 +78,6 @@
 </head>
 
 <body>
-
     <div class="main-container">
         <div class="">
             <!-- Side Navigation -->
@@ -91,7 +88,6 @@
                 <!-- Side Navigation List -->
                 <div class="nav-list">
                     <a class="nav-list-item active"  asp-controller="Admin" asp-action="Index"><img class="icon active" src="./images/dash-icon.svg">Dashboard</a>
-
 
                     <div class="drop-down-parent-container">
                         @if (roleID == 4)
@@ -123,7 +119,6 @@
                                 <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
                                 <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Marking </strong></a>
                                 <a class="nav-list-item" asp-controller="MarkerApplicationReport" asp-action="Index"><strong>Marker Application Report</strong></a>
-
                             </div>
                             <button class="dropdown-btn">
                                 <img class="icon" src="./images/Reports.svg">
@@ -202,7 +197,6 @@
             </div>
             <!-- End main Content Container -->
         </main>
-
 
     </div>
     }

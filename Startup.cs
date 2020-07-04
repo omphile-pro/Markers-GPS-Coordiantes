@@ -68,7 +68,6 @@ namespace Markers_GPS_Coordiantes
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "");
-
             });
         }  
     }
