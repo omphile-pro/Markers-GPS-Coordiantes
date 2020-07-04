@@ -80,6 +80,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             foreach (string subject in subjects)
             {
                 ExcelPackage pck = new ExcelPackage();
+                Debug.WriteLine(subject);
                 
                 foreach(string posi in positions)
                 {

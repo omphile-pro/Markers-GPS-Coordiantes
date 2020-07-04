@@ -213,7 +213,25 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.SaveChanges();
 
 
-            
+            ////Applicatio
+            //List<string> result = new List<string>();
+
+            //using (SqlConnection con = new SqlConnection("Data Source=197.242.147.140,1433;User ID=markers_user;Password=********;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            //{
+            //    using (SqlCommand cmd = new SqlCommand("select DISTINCT IdentityNo from Marker where IdentityNoLIKE '%'+@IdentityNo+'%'", con))
+            //    {
+            //        con.Open();
+            //        cmd.Parameters.AddWithValue("@IdentityNo", IdentityNo);
+            //        SqlDataReader dr = cmd.ExecuteReader();
+            //        while (dr.Read())
+
+            //        {
+            //            result.Add(dr["IdentityNo"].ToString());
+            //        }
+
+            //        con.Close();
+
+                //}
                 return View(model);
 
 

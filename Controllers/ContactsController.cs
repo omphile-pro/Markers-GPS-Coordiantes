@@ -19,50 +19,25 @@ namespace Markers_GPS_Coordiantes.Controllers
             return View();
         }
 
-        //        public JsonResult Create(string search)
-        //        {
-        //            dbsMarkersContext db = new dbsMarkersContext();
-
-        //            List<Contact> allsearch = db.Contact.Where(x => x.EmailAddress != search).Select(x => new Contact
-        //            {
-        //               ContactId= x.ContactId,
-        //               IdentityNo= x.IdentityNo,
-        //               TelephoneNo = x.TelephoneNo,
-        //               WorkSchool= x.WorkSchool,
-        //               HomeTelephoneNo = x.HomeTelephoneNo,
-        //                EmailAddress = x.EmailAddress
-
-        //            }).ToList();
-        //            Debug.WriteLine(allsearch);
-        //            return Json (allsearch);
-
-        //        }
-        //}
-        //}
-
-        [HttpPost]
-        public JsonResult AutoComplete(string prefix)
-
+        public JsonResult Create(string search)
         {
             dbsMarkersContext db = new dbsMarkersContext();
-            var contact = (from Contact in db.Contact
-                           where Contact.EmailAddress.StartsWith(prefix)
 
-                           select new
+            List<Contact> allsearch = db.Contact.Where(x => x.EmailAddress != search).Select(x => new Contact
+            {
+               ContactId= x.ContactId,
+               IdentityNo= x.IdentityNo,
+               TelephoneNo = x.TelephoneNo,
+               WorkSchool= x.WorkSchool,
+               HomeTelephoneNo = x.HomeTelephoneNo,
+               CellphoneNo = x.CellphoneNo,
+               FaxNo = x.FaxNo,
+                EmailAddress = x.EmailAddress
 
-                           {
-                               label = Contact.EmailAddress,
-                               val = Contact.EmailAddress
-                           }).ToList();
+            }).ToList();
+            Debug.WriteLine(allsearch);
+            return Json (allsearch);
 
-
-
-            return Json(contact);
         }
-        public ActionResult Index(string EmailAddress, string Contactid)
-        {
-            ViewBag.Message = "EmailAddress: " + EmailAddress + " Contactid: " + Contactid;
-            return View();
-        }
-    }
+}
 }

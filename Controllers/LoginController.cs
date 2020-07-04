@@ -33,7 +33,6 @@ namespace Markers_GPS_Coordiantes.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-
             if (ModelState.IsValid)
             {
                 try
@@ -107,7 +106,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             return View(model);
         }
-
         public async Task<IActionResult> SignOut()
         {
             HttpContext.Session.Clear();
