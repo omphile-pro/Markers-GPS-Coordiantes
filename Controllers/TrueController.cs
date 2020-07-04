@@ -25,6 +25,9 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public IActionResult Create()
         {
+            List<Marker> markerIn = db.Marker.ToList();
+
+
             return View();
         }
         [HttpPost]
