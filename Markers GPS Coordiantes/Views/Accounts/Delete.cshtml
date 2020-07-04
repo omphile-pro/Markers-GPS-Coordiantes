@@ -1,0 +1,97 @@
+﻿@model Markers_GPS_Coordiantes.Data.Users
+
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+    <div class="col-10 table-content" style="padding-top:20px">
+
+        <dl class="col-10 row justify-content-center">
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Loginname)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Loginname)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Firstname)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Firstname)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Lastname)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Lastname)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EmailAddress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MobileNo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Telephone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Telephone)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Displayname)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Displayname)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PostalAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PostalAddress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PhysicalAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PhysicalAddress)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Center)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Center.CenterName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Gender.GenderDescription)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Role)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Role.RoleDescription)
+            </dd>
+        </dl>
+        </div>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="UsersId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+

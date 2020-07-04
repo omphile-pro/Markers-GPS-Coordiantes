@@ -13,9 +13,10 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class HomeController : Controller
     {
-        db dbop = new db();
+      
    
         private readonly ILogger<HomeController> _logger;
+        private object db;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -34,7 +35,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         [HttpPost]
         public IActionResult Index([Bind]Ad_login ad)
         {
-            int res = dbop.LoginCheck(ad);
+            int res = db.(ad);
             if (res== 1)
             {
                 return View("Dashbord");

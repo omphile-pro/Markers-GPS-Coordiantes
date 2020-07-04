@@ -1,0 +1,103 @@
+﻿@model Markers_GPS_Coordiantes.Models.ContactViewModel
+@{
+    ViewBag.Title = "Contact ";
+}
+<section class="section_gap_top" style="background-color:ghostwhite">
+    <div class="container text-center">
+        <div class="col-sm-12 text-center py-3">
+            <h2 class="text-center font-weight-bold" style="font-family: 'Titillium Web', sans-serif;color:black ;font-size:50px
+">
+                Find Us
+            </h2>
+            <p class="color" style="color:black; font-size:30px"><strong>Use the map below to find our main office</strong></p>
+        </div>
+
+        <div>
+            @if (ViewBag.Message == null)
+            {
+                <div>
+                    <form method="post">
+                        <div class="form-group">
+
+                            <label asp-for="Name"><strong>Name</strong></label>
+                            <span class="lnr lnr-user"></span>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email"><strong>Email</strong></label>
+                            <span class="lnr lnr-envelope"></span>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Subject">Subject</label>
+
+                            <input asp-for="Subject" class="form-control" />
+                            <span asp-validation-for="Subject"
+                                  class="text-muted"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Message">Message</label>
+                            <textarea rows="5" cols="15"
+                                      asp-for="Message" class="form-control"></textarea>
+                            <span asp-validation-for="Message"
+                                  class="text-muted"></span>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-check mr-2"></i> SEND MESSAGE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <div>
+            @if (ViewBag.Message != null)
+            {
+                <div>@ViewBag.Message</div>
+
+
+            }
+        </div>
+    </div>
+
+    <section class="py-5">
+
+        <div class="col-sm-12">
+            <div id="map-container-google-9" class="z-depth-1-half map-container-5" style="height: 450px">
+                <div id="map" name="map" style="height: 100%; width: 100%; background-color: teal;"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 text-center pt-2">
+            <a class="btn btn-teal btn-lg" href="https://www.google.com/maps/dir/?api=1&destination=-26.259917,28.128667&dir_action=navigate" target="_rebecca"><i class="fas fa-directions mr-2"></i> GET DIRECTIONS</a>
+        </div>
+
+    </section>
+
+    <script>
+            var map;
+            function initMap() {
+
+                var topgroupgeomatics = { lat: -26.259917, lng: 28.128667 };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 15, mapTypeId: 'hybrid', center: topgroupgeomatics });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({ position: topgroupgeomatics, map: map });
+            }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPtNwyCv8RTyEORO1EvFDp3mrPUyv8gFk&callback=initMap" async defer></script>
+</section>
+
+
+

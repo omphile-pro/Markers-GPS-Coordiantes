@@ -1,0 +1,207 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Center>
+
+@{
+    ViewData["Title"] = "Marking Centers";
+}
+@*<div class="col-10 table-content" style="padding-top:20px">
+
+            <form method="get" asp-action="Index">
+                <p>
+                    <input type="search" placeholder="Enter Markers Name" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:300px;" />
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                    <a asp-action="Index">Retrieve all Marking Centers</a>
+                </p>
+            </form>
+            <p>
+                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Center</a>
+                <a asp-action="Import" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Import</a>
+
+
+
+                <a class="btn btn-dark" href="@Url.Action("ExportToExcel","Centers")" style="
+
+    " role="button">Download <i class='fas fa-file-download'> </a>
+            </p>
+
+        <table class="table">
+            <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.CenterName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CenterNumber)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Longitude)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Latitude)
+                    </th>
+
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreateDate)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenterNumber)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Longitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latitude)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City.CityDescription)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CenterId"><i class="fa fa-marker fa-lg" title="Edit"></i></a> |
+
+                            <a asp-action="Delete" asp-route-id="@item.CenterId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg" title="Delete"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>*@
+
+
+
+<div class="col-10 table-content" style="padding-top:20px">
+
+    <form method="get" asp-action="Index">
+
+        @*<p>
+                <div>
+                    <input type="search" placeholder="Enter Loginname " class="edit-input-tag short" value="@ViewData["GetMarkersDetails"]" name="markerssearch" style="width:250px;padding-right:10px;" />
+                    <img classs="search-icon" src="~/Images/searc-icon.svg" />
+                </div>
+
+
+                <a asp-action="Create" class="butt-primary white-text margin-right">Create User +</a>
+                <a asp-action="Index" class="butt-secondary grey-text">Retrieve All Users</a>
+            </p>*@
+
+        <div class="acc-top">
+            <div class="search-bar-container margin-right">
+                <input class="search-bar" type="text" placeholder="Search" value="@ViewData["GetMarkersDetails"]" name="markerssearch" />
+                <input type="submit" value="Search" class="btn btn-primary" />
+                <div class="search-icon-container acc-search-bar">
+                    <img class="search-icon" src="./images/searc-icon.svg">
+                </div>
+            </div>
+
+            <div class="create margin-right">
+                <button class="butt-primary" asp-action="Create">Add Center <strong>+</strong></button>
+                <button class="butt-primary" asp-action="Import">Import</button>
+                <button class="butt-primary" href="@Url.Action("ExportToExcel","Centers")" role="button">Download <i class='fas fa-file-download'></i> </button>
+            </div>
+
+            <div class="retrieve">
+        
+                <button class="butt-secondary" asp-action="Index">Retrieve All Users</button>
+            </div>
+        </div>
+    </form>
+
+    <div style="padding-top:20px">
+        <table class="table start-hidden no-border-top" style="padding-top:20px">
+            <thead class="table-head-container">
+                <tr>
+                    <th class="table-head">
+                        @Html.DisplayNameFor(model => model.CenterName)
+                    </th>
+
+                    <th class="table-head">
+                        @Html.DisplayNameFor(model => model.CenterNumber)
+                    </th>
+                    <th class="table-head">
+                        @Html.DisplayNameFor(model => model.Longitude)
+                    </th>
+
+                    <th class="table-head">
+                        @Html.DisplayNameFor(model => model.Latitude)
+                    </th>
+                    <th class="table-head">
+                        @Html.DisplayNameFor(model => model.CreateDate)
+                    </th>
+                   
+                    <th class="table-head">
+                        @Html.DisplayNameFor(model => model.Scanner)
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="table-data">
+                            @Html.DisplayFor(modelItem => item.CenterName)
+                        </td>
+
+                        <td class="table-data">
+                            @Html.DisplayFor(modelItem => item.CenterNumber)
+                        </td>
+                        <td class="table-data">
+                            @Html.DisplayFor(modelItem => item.Longitude)
+                        </td>
+                        <td class="table-data">
+                            @Html.DisplayFor(modelItem => item.Latitude)
+                        </td>
+                        <td class="table-data">
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+                      
+                        <td class="table-data">
+                            @Html.DisplayFor(modelItem => item.Scanner)
+                        </td>
+                        
+
+                        <td class="table-data td-icon">
+                            <a asp-action="Edit" asp-route-id="@item.CenterId"><img class="table-icon" title="Edit" src="~/Images/edit.svg" /></a>
+                            <a asp-action="Delete" asp-route-id="@item.CenterId" class="text-danger ml-1" title="Delete"><img class="table-icon" src="~/Images/trash.svg" /></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
+<script>function scrollWin() {
+  window.scrollTo(500, 0);
+}</script>

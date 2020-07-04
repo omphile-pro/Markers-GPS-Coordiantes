@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.CurrentEmployment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOftheSchoolOffice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CentreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentPosition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmploymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Retiring)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityNoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameOftheSchoolOffice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentreNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentPosition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmploymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Retiring)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityNoNavigation.IdentityNo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CurrentEmploymentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CurrentEmploymentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CurrentEmploymentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

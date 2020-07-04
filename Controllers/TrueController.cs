@@ -11,29 +11,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
     public class TrueController : Controller
     {
-       
+
 
         dbsMarkersContext db = new dbsMarkersContext();
-        private readonly IHttpContextAccessor httpContextAccessor;
-        public string IdentityNO;
-        public string IdNumber;
-
-        public TrueController (IHttpContextAccessor _httpContextAccessor)
-        {
-            httpContextAccessor = _httpContextAccessor;
-        }
+        
 
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(TrueView model)
+        public async Task<IActionResult> CreateAsync(TrueView model, string search)
         {
             List<Marker> list = db.Marker.ToList();
             var applicationMax = db.Application;
@@ -63,25 +58,13 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             else
             {
-              IdentityNO = Convert.ToString(httpContextAccessor.HttpContext.Session.GetInt32("IdentityNo"));
-                IdNumber = Convert.ToString(httpContextAccessor.HttpContext.Session.GetInt32("IdNumber"));
-                var marker = await db.Marker.Where(b => b.IdentityNo == IdentityNO).FirstOrDefaultAsync();
-
-                if (marker == null)
+                List<Marker> allsearch = db.Marker.Where(x => x.IdentityNo.Contains(search)).Select(x => new Marker
                 {
-                    return NotFound("The Identity number does not exist");
-                }
-                //  check if the user is registered in the CenterManager-Center join table
-                var MarkersGpscoordinates = await db.MarkersGpscoordinates.Where(b => b.IdNumber == IdNumber && b.IdNumber == marker.IdentityNo).FirstOrDefaultAsync();
-
-                if (MarkersGpscoordinates == null)
-                {
-                    return NotFound("You are not configured as center manager, please consult your system administrator.");
-                }
-
-          
+                    IdentityNo = x.IdentityNo,
+                    Surname = x.Surname
+                }).ToList();
             };
-    
+
             //Application
             Application application = new Application();
             application.IdentityNo = model.IdentityNo;
@@ -98,7 +81,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             application.SelectionReason = model.SelectionReason;
             db.Application.Add(application);
             db.SaveChanges();
-            //Marker
+
 
             //LanguageContact
             LanguagePreference languagePreference = new LanguagePreference();
@@ -230,12 +213,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.SaveChanges();
 
 
-            //Applicatio
-            // Save all the inserted records to database using
-          
-            return View(model);
+            
+                return View(model);
 
 
+            }
         }
     }
-}
