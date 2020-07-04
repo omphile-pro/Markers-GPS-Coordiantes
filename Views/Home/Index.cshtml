@@ -1,3 +1,4 @@
+
 ﻿@{
     Layout = null;
 }
@@ -23,3 +24,620 @@
     </div>
 </body>
 </html>
+=======
+﻿@*@model IEnumerable<Markers_GPS_Coordiantes.Data.VCenter>
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+    <!-- banner -->
+    <div class="banner" id="home">
+        <div class="layer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 banner-text-w3pvt">
+                        <!-- banner slider-->
+                        <div class="csslider infinity" id="slider1">
+                            <input type="radio" name="slides" checked="checked" id="slides_1" />
+                            <input type="radio" name="slides" id="slides_2" />
+                            <input type="radio" name="slides" id="slides_3" />
+                            <ul class="banner_slide_bg">
+                                <li>
+                                    <div class="container-fluid">
+                                        <div class="w3ls_banner_txt">
+                                            <h3 class="b-w3ltxt text-capitalize mt-md-4">GPS Coordinates Admin</h3>
+                                            <h4 class="b-w3ltxt text-capitalize mt-md-2">Adaptive Distance Calculations</h4>
+                                            <p class="w3ls_pvt-title my-3">
+                                                Find the fastest route, calculate mileage from city to city, traffic conditions, GPS maps, maps with street views, printable maps and much more
+                                            </p>
+                                            <a href="#about" class="btn btn-banner my-3" style="background-color: #AA00FF;">Read More</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="container-fluid">
+                                        <div class="w3ls_banner_txt">
+                                            <h3 class="b-w3ltxt text-capitalize mt-md-4">Technical Support</h3>
+                                            <h4 class="b-w3ltxt text-capitalize mt-md-2">Daily updates to improve your institution.</h4>
+                                            <p class="w3ls_pvt-title my-3">
+                                                Development and customization of Administration Systems.
+                                            </p>
+                                            <a href="#services" class="btn btn-banner my-3" style="background-color: #AA00FF;">Read More</a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <div class="navigation">
+                                <div>
+                                    <label for="slides_1"></label>
+                                    <label for="slides_2"></label>
+                                    <label for="slides_3"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //banner slider-->
+                    </div>
+                    <div class="col-lg-5 col-md-8 px-lg-3 px-0">
+                        <div class="banner-form-w3 ml-lg-5">
+                            <div class="padding">
+                                <!-- banner form -->
+                                <form action="#" method="post">
+                                    <h5 class="mb-3">Create free account</h5>
+                                    <div class="form-style-w3ls">
+                                        <input placeholder="School Name" name="name" type="text" required="">
+                                        <input placeholder="Email Address" name="email" type="email" required="">
+                                        <input placeholder="EMIS No." name="number" type="text" required="">
+
+                                        <!--<input placeholder="Password" name="password" type="password" required=""> -->
+                                        <button Class="btn">Sign Up</button>
+                                        <span>By registering, you agree to our <a href="#">Terms & Conditions.</a></span>
+                                    </div>
+                                </form>
+                                <!-- //banner form -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    <!-- what we Serve -->
+    <section class="banner-bottom py-5" id="about">
+        <div class="container py-lg-5">
+            <h2 class="heading mb-sm-5 mb-4 text-center" style="color: #1A237E">Start Building Your Career Now</h2>
+            <p class="text-center" style="margin-bottom: 30px;">
+                Building your dream, starts with having a definite plan. Once that plan has been fully, visualized, you need to channel your mind achieving it. This means you need to find the right tools, and sources of information.
+            </p>
+            <div class="row bottom-grids">
+                <div class="col-md-3 col-sm-6">
+                    <div class="three-grids-w3pvt-1 d-flex text-right">
+                        <div class="text-effect-wthree midd-text-w3ls p-3 w-100">
+                            <h5 class="text-capitalize text-bl font-weight-bold">Business, Commerce and Management Studies</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mt-md-0 mt-4">
+                    <div class="three-grids-w3pvt-3 d-flex text-right">
+                        <div class="text-effect-wthree midd-text-w3ls p-3 w-100">
+                            <h5 class="text-capitalize text-bl font-weight-bold">Engineering, Science and Technology</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mt-sm-0 mt-4">
+                    <div class="three-grids-w3pvt-2 d-flex text-right">
+                        <div class="text-effect-wthree midd-text-w3ls p-3 w-100">
+                            <h5 class="text-capitalize font-weight-bold">Media, Social and Communication Studies</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 mt-md-0 mt-4">
+                    <div class="three-grids-w3pvt-4 d-flex text-right">
+                        <div class="text-effect-wthree midd-text-w3ls p-3 w-100">
+                            <h5 class="text-capitalize text-bl font-weight-bold">Physical, Mathematical, Computer and Life Sciences</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-4 col-5 ser-img">
+                    <img src="images/s1.png" class="mt-4" alt="">
+                    <img src="images/s2.png" class="mt-4" alt="">
+                </div>
+                <div class="col-lg-1 col-sm-4 col-5 ser-img">
+                    <img src="images/s3.png" class="mt-4" alt="">
+                    <img src="images/s5.png" class="mt-4" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //what we Serve -->
+    <!-- services -->
+    <!-- //services -->
+    <!-- stats section -->
+    <section class="section-stats" id="stats" style="color: #C2185B;">
+        <div class="py-5">
+            <div class="container py-lg-5">
+                <h3 class="heading mb-sm-5 mb-4 text-center">Our statistics</h3>
+                <div class="row text-center">
+                    <div class="col-lg-3 col-6">
+                        <div class="w3layouts_stats_left w3_counter_grid">
+                            <div class="stats-icon" style="background-color: rgba(255,255,255,0.03);">
+                                <span class="fa fa-building"></span>
+                            </div>
+                            <p class="counter">@Convert.ToInt32(ViewBag.CenterID)</p>
+                            <p class="para-text-w3ls">Schools Registered</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="w3layouts_stats_left w3_counter_grid2">
+                            <div class="stats-icon" style="background-color: rgba(255,255,255,0.03);">
+                                <span class="fa fa-user"></span>
+                            </div>
+                            <p class="counter">@Convert.ToInt32(ViewBag.ProfessionalTeachersEnrolled)</p>
+                            <p class="para-text-w3ls">Professional Teachers</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mt-lg-0 mt-4">
+                        <div class="w3layouts_stats_left w3_counter_grid1">
+                            <div class="stats-icon" style="background-color: rgba(255,255,255,0.03);">
+                                <span class="fa fa-university"></span>
+                            </div>
+                            <p class="counter">@Convert.ToInt32(ViewBag.ClassesManaged)</p>
+                            <p class="para-text-w3ls">Classes Conducted</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mt-lg-0 mt-4">
+                        <div class="w3layouts_stats_left w3_counter_grid1">
+                            <div class="stats-icon" style="background-color: rgba(255,255,255,0.03);">
+                                <span class="fa fa-users"></span>
+                            </div>
+                            <p class="counter">@Convert.ToInt32(ViewBag.LearnersEnrolled)</p>
+                            <p class="para-text-w3ls">Students Enrolled</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //stats section -->
+    <!-- other services -->
+    <section class="other_services py-5" id="why" style="background-color: rgba(0,0,0,0.03);">
+        <div class="container py-lg-5 py-3">
+            <h2 class="heading mb-sm-5 mb-4 text-center" style="color: #1A237E">Why Choose Us</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="grid">
+                        <img src="~/Content/HomeTheme/images/choose1.jpg" alt="" class="img-fluid" />
+                        <div class="info p-4">
+                            <h4 class="h4" style="color: #880E4F;"><img src="images/s1.png" class="img-fluid" alt="" style="color: #880E4F;">Virtual Class Rooms</h4>
+                            <p class="mt-3">Learning takes place when you feel like you're in the class of your great teacher teaching your favorite subject.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                    <div class="grid">
+                        <img src="~/Content/HomeTheme/images/choose2.jpg" alt="" class="img-fluid" />
+                        <div class="info p-4">
+                            <h4 class="h4" style="color: #880E4F;"><img src="images/s3.png" class="img-fluid" alt="">Informative analytics</h4>
+                            <p class="mt-3">Development Tool for measuring your development in order to help you accomplish your tasks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                    <div class="grid">
+                        <img src="~/Content/HomeTheme/images/choose3.jpg" alt="" class="img-fluid" />
+                        <div class="info p-4">
+                            <h4 class="h4" style="color: #880E4F;"><img src="images/s5.png" class="img-fluid" alt="">Resources </h4>
+                            <p class="mt-3">Supply of resources for academic research and practical experiments to help visualize information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //other services -->
+    <!-- testimonials -->
+    <section class="testimonials" id="testi">
+        <div class="layer py-lg-5">
+            <div class="container py-5">
+                <h3 class="heading mb-5 text-center">What Leaders Say</h3>
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="testi-info-text">
+                                <h4>Best Education I have ever seen</h4>
+                                <p>
+                                    <span class="fa fa-quote-left"></span>Artificial Intelligence is our shot a saving civilization. A tool such as Student Portal is crucial for developing skills that will make people smart and better prepared for the future.
+                                    <span class="fa ml-2 fa-quote-right"></span>
+                                </p>
+                            </div>
+                            <div class="testi-pos">
+                                <img src="images/ts1.jpg" alt="" class="img-fluid rounded-circle mb-3" />
+                                <h4> Elon Musk </h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-md-0 mt-5">
+                            <div class="testi-info-text">
+                                <h4>Fun to Imagine</h4>
+                                <p>
+                                    <span class="fa fa-quote-left"></span> I don't why people, especially kids, would say and that science and engineering is hard when there's an educational program such as Student Portal to assist them in understanging the world.
+                                    <span class="fa ml-2 fa-quote-right"></span>
+                                </p>
+                            </div>
+                            <div class="testi-pos">
+                                <img src="images/ts2.jpg" alt="" class="img-fluid rounded-circle mb-3" />
+                                <h4> Richard Feynman</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //testimonials -->
+    <!-- Team  -->
+
+    <!-- //Team -->
+    <!-- subscribe -->
+    <section class="subscribe" id="subscribe">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5 d-flex subscribe-left p-sm-5 py-4" style="background-color: #6A1B9A;">
+                    <div class="image mr-3">
+                        <img src="images/mail.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="text">
+                        <h3>Subscribe To Our Newsletter</h3>
+                    </div>
+                </div>
+                <div class="col-lg-7 subscribe-right p-sm-5 py-3" style="background-color: #00838F;">
+                    <form action="#" method="post">
+                        <input type="email" name="email" placeholder="Enter your email here" required="">
+                        <button class="btn1" style="background-color: #1A237E;"><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
+                    </form>
+                    <p>we never share your email with anyone else</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<section style="background: url('/Content/img/technology-3762547_1920.jpg') no-repeat center center fixed; background-size: cover;">
+            <div style="background-color: rgba(2,136,209,0.90); min-height: 100vh;">
+                <div style="color: rgba(255,255,255,0.93);" class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="pt-5" style="font-weight: 500; font-size: 2.4em;">Introduction</h2>
+                        </div>
+                    </div>
+
+                    <div class="row py-3">
+                        <div class="col-sm-12 col-md-7">
+                            <p class="lead">
+                                Student Portal is an online Learner Management System that (LMS). The system is an extension of the current schooling system, but extends to the internet so in order to increase the community of learners, teachers, school administrators to improve and unify the quality of education. There are everywhere a number of people who are open minded to expanding their knowledge and testing their knowledge of certin fields. Student Portal allows any learner from any school to take part in education.
+                            </p>
+                            <p class="lead">
+                                We support schools from Grade R to 12 and all subjects as stipulated in the <a style="color: rgba(255,255,255,1);" href="https://www.education.gov.za/Curriculum/NationalCurriculumStatementsGradesR-12.aspx" target="_blank"><strong>South African National Schools Curriculum</strong></a>. We have organized all the subject by grade and categories to make it easier for administrators to manage learners, teachers, classes, and timetables to speed up the setup and administration process.
+                            </p>
+
+                            <div class="mt-5">
+                                <h3 class="font-weight-bold">New Features</h3>
+                                <hr />
+                                <div class="row py-2">
+                                    <div class="col-md-1 col-2">
+                                        <i class="fas fa-cubes fa-2x"></i>
+                                    </div>
+                                    <div class="col-md-11 col-10">
+                                        <h5 class="font-weight-bold mb-3">Online Training<sup><span class="badge badge-warning" style="background-color: #C51162; color: rgba(255,255,255,0.9);">New</span></sup></h5>
+                                        <p class="mb-0">
+                                            Learners can access assessments for subjects they are enrolled to at the school from any device, desktop, mobile and web. Teachers can log in to configure assessments, timelines for submissions, which learners can upload on the system. Admistrators are  responsible for configuring the subjectsand permissions for teachers to add activities, quizes and assignments.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-md-1 col-2">
+                                        <i class="fas fa-clock fa-2x"></i>
+                                    </div>
+                                    <div class="col-md-11 col-10">
+                                        <h5 class="font-weight-bold mb-3">Timetable<sup><span class="badge badge-warning" style="background-color: #C51162; color: rgba(255,255,255,0.9);">New</span></sup></h5>
+                                        <p class="mb-0">
+                                            Timetables for grades, subjects, classes, teachers and learners can be autoganerated by using the timetabling feature powered by our new algorithm which optimizes periods from the National Curriculum's stimulated minimum hours per week required for each subject. Learners and teachers are can view the timetable online or notified every school day at a pre-determined time.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-md-1 col-2">
+                                        <i class="fas fa-file-signature fa-2x"></i>
+                                    </div>
+                                    <div class="col-md-11 col-10">
+                                        <h5 class="font-weight-bold mb-3">Reports<sup><span class="badge badge-warning" style="background-color: #FFFF00; color: rgba(0,0,0,0.9);">New</span></sup></h5>
+                                        <p class="mb-0">
+                                            The formulation of Final Marks per school term is done autamically based on the pre-determined formula for Final Marks. Administrator are responsible for how learners recieve their reports, via e-mail or downloadable from the system.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 offset-md-1 col-md-4">
+                            <div class="row text-center">
+                                <div class="col-sm-12 text-center pb-3">
+                                    <h2 class="font-weight-bold pb-3">Supported across major platforms</h2>
+                                </div>
+                                <div class="col-sm-12 col-md-4 text-center">
+                                    <i class="fas fa-mobile fa-5x"></i>
+                                    <h5 class="py-3">Mobile</h5>
+                                </div>
+                                <div class="col-sm-12 col-md-4 text-center">
+                                    <i class="fas fa-laptop fa-5x"></i>
+                                    <h5 class="py-3">Desktop</h5>
+                                </div>
+                                <div class="col-sm-12 col-md-4 text-center">
+                                    <i class="fas fa-globe-africa fa-5x"></i>
+                                    <h5 class="py-3">Web</h5>
+                                </div>
+
+                                <div class="my-3"></div>
+                                <div class="col-sm-12 col-md-6 text-center">
+                                    <a class="btn btn-yellow btn-block" href="~/Login">Login <i class="fa ml-2 fa-arrow-right"></i></a>
+                                </div>
+                                <div class="col-sm-12 col-md-6 text-center">
+                                    <a class="btn btn-warning btn-block disabled" href="#">Register School</a>
+                                </div>
+                                <hr class="divider" />
+
+                                <div class="col-sm-12 pt-md-5">
+                                    <h2>Vision</h2>
+                                    <p class="lead">We visualize a unified studying framework that connects the conscious and subconscious mind, through auto-suggestion superimposed by the rate at which intelligent system improve their knowledge states.</p>
+                                </div>
+                                <div class="col-sm-12 pt-md-5">
+                                    <h2>Mission</h2>
+                                    <p class="lead">Our mission is to build a studying framework that connects information sources to a single point and unify knowledge to give birth to a new consciousness through the Education System.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="font-weight-bold text-center py-2" style="color: rgba(0,0,0,0.45)">
+                            WHAT WE DO
+                        </h3>
+                    </div>
+                </div>
+                <hr class="divider" />
+                <div class="row py-3">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-cubes fa-2x" style="color: #006064;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Content Development</h5>
+                                <p class="grey-text mb-0">
+                                    High quality exercises, quizes and activities that depending on the nature of the training. Content concetrates on the practical value of the application. The ability for training to serve its course requires necessary topics to be finely covered in the content and assessed in a summative manner.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-envelope-open fa-2x" style="color: #FF6F00;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Notifications</h5>
+                                <p class="grey-text mb-0">
+                                    By the use of the expressive form of communication methodologies brougth by technology, messaging is automated. Bulk messaging requires the careful consideration of the language between the training system, trainers and trainees. This is done through scheduled SMSes, E-mails and notifications in the form of popup on the system.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-clock fa-2x deep-purple-text"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Timetable / Workflow</h5>
+                                <p class="grey-text mb-0">
+                                    The power of any software lies on its principle. Depending on the process flow required, Student Portal's program organizational structure is flexible in its strictness. Automating the workflow is key when you want the system to work efficiently. The value of the information is determined by the application of principle if intended habit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-user-graduate fa-2x" style="color: #D500F9;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Online Training</h5>
+                                <p class="grey-text mb-0">
+                                    The Internet has matured itself as an information system which has unlimited resources and with no bounds. Education is a willingness to real. If The spirit of learning is propelled by availability of study and practice material. For this reason, Moodle has develop into a worldwide community with smart ideas contributing to the success of education.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-users-cog fa-2x" style="color: #03A9F4;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Administration</h5>
+                                <p class="grey-text mb-0">
+                                    Managing process workflow is a difficult task administrators. The administrator has keep in mind the past and present states of the process. This includes, support, validation, verification, support, reporting, etc. We catered for all these scenarios with our built-in Administration Interface Dashboard, which is inline with managing, training, studying and statistics.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-lightbulb fa-2x" style="color: #00C853;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Study Techniques</h5>
+                                <p class="grey-text mb-0">
+                                    There are a lot of tricks one can use learn to improve their learning abilities. From studying the habits of the greatest minds such as Richard Feynman, Ludwig Boltzmann, Nikola Tesla, Albert Einstein we can put theory into actual practice by repeating their thinking routines to reach high level thinking. Once obtained, the learning will increase at an expontial, you will be surprised how much information you can grasp.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-chart-line fa-2x" style="color: #EC407A;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Analytics</h5>
+                                <p class="grey-text mb-0">
+                                    Analytics provide useful insights at the administration and management level. Charts are useful in visualization of performance measures. What gets measured gets accomplished. Analytics are a good tool for representing how much needs to be done to achieve targets the have been set objectively and subjected to the rate at which the goal needs to be reached.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-project-diagram fa-2x" style="color: #E65100;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Classification</h5>
+                                <p class="grey-text mb-0">
+                                    Supervised and unsupervised learning plays a bigger role in when solving problems. Understanding a problem is as important as solving the problem. Classification or clustering algorithms yield realizations as quickly as inducting reasoning. It is the watchmen at the gate when you need to improve the process. The result furnishes the reason for the more complex operations of a system.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-4">
+                            <div class="col-md-1 col-2">
+                                <i class="fas fa-gamepad fa-2x" style="color: #01579B;"></i>
+                            </div>
+                            <div class="col-md-11 col-10">
+                                <h5 class="font-weight-bold mb-3">Gamification</h5>
+                                <p class="grey-text mb-0">
+                                    Richard Feynman wrote "<span class="font-italic">If you're not having fun, you're not learning.</span>" If we want to reignite education, we need to make it fun. Students need to know they are accumulating knowledge. We need to adapt to knew technologies, there's is nothing wrong with having fun, in fact, people prefer constructive criticism than plain reprimanding. Gamification can get more people to interested in education.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-5 pt-5 mdb-color darken-3" style="color: rgba(255,255,255,0.93); background-color: #101820;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2 style="font-size: 39px;">HOW WE DO IT</h2>
+                        <p class="pt-4">For more than half a decade, we have been implementing a new system of study. This led us to research on the best tools we could find from around the world. These are best technologies that we think would yield a good solution.</p>
+                    </div>
+                </div>
+                <div class="row pt-5 pb-5">
+                    <div class="col-sm-12 col-md-2">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><i class="fa fa-3x fa-server"></i></div>
+                            <div class="p-2">Microsoft SQL Server (v10+)</div>
+                        </div>
+                        <p>
+                            Microsoft SQL Server is a relational database management system developed by Microsoft. As a database server, it is a software product with the primary function of storing and retrieving data as requested by other software applications—which may run either on the same computer or on another computer across a network. <a target="_sqlServer" style="color: rgba(255,255,255,0.9);" href="https://en.wikipedia.org/wiki/Microsoft_SQL_Server"><i class="fas fa-angle-double-right"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><i class="fab fa-3x fa-windows"></i></div>
+                            <div class="p-2">.Net C# (v7+)</div>
+                        </div>
+                        <p>
+                            C# is a general-purpose, multi-paradigm programming language encompassing strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented, and component-oriented programming disciplines. <a target="_angular" style="color: rgba(255,255,255,0.9);" href="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"><i class="fas fa-angle-double-right"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><i class="fab fa-3x fa-chrome"></i></div>
+                            <div class="p-2">Asp.Net (v3+)</div>
+                        </div>
+                        <p>
+                            Asp.net is a free, cross-platform, Open source framework for building web apps and services with .NET and C#. Asp.net is upported on Windows, Linux, and macOS <a target="_aspnet" style="color: rgba(255,255,255,0.9);" href="https://dotnet.microsoft.com/apps/aspnet"><i class="fas fa-angle-double-right"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><i class="fab fa-3x fa-css3-alt"></i></div>
+                            <div class="p-2">Bootstrap Material Design (v4+)</div>
+                        </div>
+                        <p>
+                            Material Design for Bootstrap is
+                            regarded as the world's most popular framework for building responsive, mobile-first websites and apps <a target="_bootstrap" style="color: rgba(255,255,255,0.9);" href="https://mdbootstrap.com/"><i class="fas fa-angle-double-right"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><i class="fa fa-3x fa-mobile"></i></div>
+                            <div class="p-2">MOODLE (v5+)</div>
+                        </div>
+                        <p>
+                            Moodle is a community driven, globally supported e-learning plaform.
+                            It is a robust open-source learning platform with
+                            powering learning environments worldwide. <a target="_moodle" style="color: rgba(255,255,255,0.9);" href="https://moodle.org/"><i class="fas fa-angle-double-right"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><i class="fab fa-3x fa-angular"></i></div>
+                            <div class="p-2">Angular (v5+)</div>
+                        </div>
+                        <p>
+                            From prototype through global deployment, Angular delivers the productivity and scalable infrastructure that supports Google's largest applications. <a target="_angular" style="color: rgba(255,255,255,0.9);" href="https://angular.io/"><i class="fas fa-angle-double-right"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="font-weight-bold text-center" style="color: rgba(0,0,0,0.45)">
+                            METHOD OF STUDY AND METHOD OF THINKING
+                        </h3>
+                    </div>
+                </div>
+                <hr class="divider" />
+                <div class="row py-3">
+                    <div class="col-sm-12 col-md-4">
+                        <h2 class="text-center">Personal Development</h2>
+                        <hr />
+                        <p class="text-justify">
+                            If you understand that human beings are a product of Natural Selection, you can easily figure out what parts of your being you need to improve on. First, you establish that you know you are very good at. If you know the things you are good at look at, then look for the parts in your being that are destructive to what you're good amd annihilate them completely. The reality is that takes as much effort to develop new skills as it does to destroy bad habits. Second, push yourself out of your comfort and learn to associate yourself with people that share similar sentiments as you. involve yourself in projects that push to extend your intellect on what
+                            you're really good at. This will establish new grounds for your level of thinking. Once you have establish new grounds, study the habits, attitude and styles of those who have attained the status of what you aspire to be. Third, merge the parts of yourself that are determined to succeed with new traits you have learned from studying those who are the beating you at your game. Forth, rise above consistency and progress. Always look for more ways to improve yourself at what you good at. In this way you will be limitless to how much you will grow.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <h2 class="text-center">Think Smart</h2>
+                        <hr />
+                        <p class="text-justify">
+                            To get best out your brain, you need learn to stop being in its way. The subconscious mind is just below the level normal level of awareness, however, it is when you properly mastered, a high level of intellect rises from it. The reasoning faculty of the brain works on a feedback loop that links to both the conscious and subconscious. A person intellect depends on the coordination between these two. The subconscious mind can be credit for what we call <span class="font-italic"><strong>intuition</strong></span> and <span class="font-italic"><strong>instinct</strong></span>. Intuition and instict do not depend on memory, thus the past experiences and defined circumstances do not matter.
+                            Fear is generated from the conscious mind (past experiences or opinion). What determines how smart you are is in the decision making before take action. The time frame is very small, in a timeframe less than a second, the conscious and subconscious mind go into fierce engagement to come with the action. Reasoned thinking is when instict or intuition supports the reasoning faculty of the mind, and Intuitive thinking is when reason is overuled by instinct. Every action taken should one the latter, otherwise, the person is deemed to be confused. Mastering reasoned thinking and intuitive thinking will allow you to take good, well-calculated decisions.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <h2 class="text-center">Thought Improvement</h2>
+                        <hr />
+                        <p class="text-justify">
+                            The use of <span class="font-italic"><strong>Thought Experiments</strong></span> is useful when it comes to being innovative and problem solving. When provided with a problem to solve, the brain needs to comprehenend the nature of problem and the parts which are well understood in the current situation. Turning the problem into a thought experiment will require the problem solver think out of the box. And this cannot be done by considering the same circumstance over and over, instead, try to think about a different problem entirely. This is the approach that many scientist and inventors use to come up with ideas that go beyond the normal way of thinking.
+                            Learning this skill will add to your nature of understanding problems and your ability to split the known to factors of the problem, and use thought experiments to merge possible to solutions of the problem depending based on how a similar problem could have been solved in the past or by another approach. Practicing this skill a couple of times in a day, will make sure that your mind is trained to come up with solutions qquicker than the normal routine, as it gets rid of the limitations of ideas your brain tends to subject its bounds to. The more is cap
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
