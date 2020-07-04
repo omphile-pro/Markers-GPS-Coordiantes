@@ -1,0 +1,794 @@
+﻿@model Markers_GPS_Coordiantes.TrueView
+
+@{
+    ViewData["Title"] = "Add Marker";
+}
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="~/css/markerForm.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 formHolder">
+    <div id="verticle-line"></div>
+    <div class="formContent row">
+        <div class="col-md-3">
+            <div class="markerOnList nav  nav-fill" id="nav-tab" role="tablist">
+                <div id="listHeader">
+                    <h6>MARKER ONBORDING</h6>
+                </div>
+                <!-- <a class="done" id="nav-home-tab">
+                  <i class='fas fa-circle'></i>
+                  <span>Checklist</span>
+                </a> -->
+                <a class="active" id="PersonalList">
+                    <i class='far fa-circle'></i>
+                    <span>Personal Infomation</span>
+                </a>
+                <a id="currentList">
+                    <i class='far fa-circle'></i>
+                    <span>Current Employment</span>
+                </a>
+                <a id="nav-contact-tab">
+                    <i class='far fa-circle'></i>
+                    <span>Qualification</span>
+                </a>
+                <a id="nav-contact-tab">
+                    <i class='far fa-circle'></i>
+                    <span>Teaching Experience</span>
+                </a>
+                <a id="nav-contact-tab">
+                    <i class='far fa-circle'></i>
+                    <span>Marking Experience</span>
+                </a>
+                <a id="nav-contact-tab">
+                    <i class='far fa-circle'></i>
+                    <span>Application Detail</span>
+                </a>
+                <a id="nav-contact-tab">
+                    <i class='far fa-circle'></i>
+                    <span>Language Perference</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <form class="needs-validation" novalidate>
+
+                    <fieldset>
+                        <div class="form-card " id="personal" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="sectionHaeder">
+                                <h3 class="heading1">Personal Particulars</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="identityNo">Identity No</label>
+                                    <input type="text" class="form-control" id="identityNo" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Identity No is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="persal">Persal</label>
+                                    <input type="text" class="form-control" id="persal" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Persal is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="surname">Surname</label>
+                                    <input type="text" class="form-control" id="surname" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid surname is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="initials">Initials</label>
+                                    <input type="text" class="form-control" id="initials" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid initials is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="title">Title</label>
+                                    <select class="custom-select d-block w-100" id="title" required>
+                                        <option value="">Choose...</option>
+                                        <option value="Ms">Ms</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid title.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="maidenName">Maiden Name</label>
+                                    <input type="text" class="form-control" id="maidenName" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Maiden Name is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3 radioGroup">
+                                    <label for="gender">Gender</label>
+                                    <div class="custom-control custom-radio">
+                                        <input id="male" name="Gender" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="male">Male</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="female" name="Gender" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 radioGroup ">
+                                    <label for="gender">Race</label>
+                                    <div class="custom-control custom-radio">
+                                        <input id="Black" name="Race" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="Black">Black</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="White" name="Race" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="White">White</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="Coloured" name="Race" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="Coloured">Coloured</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="Indian" name="Race" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="Indian">Indian</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="nationality">Nationality</label>
+                                    <input type="text" class="form-control" id="nationality" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Nationality is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="mb-3">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email address.
+                                        </div>
+                                    </div>
+                                    <div id="resAddress" class="mb-3">
+                                        <label for="address">Residential Address</label>
+                                        <input type="text" class="form-control" id="address" placeholder="123 Street name, town, 2199" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your Residential address.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email">Telephone</label>
+                                    <div class="form-group row">
+                                        <label for="workSchool" class="col-sm-3 col-form-label">Work/School</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="workSchool">
+                                        </div>
+                                        <label for="home" class="col-sm-3 col-form-label">Home</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="home">
+                                        </div>
+                                        <label for="cell" class="col-sm-3 col-form-label">Cell</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="cell">
+                                        </div>
+                                        <label for="fax" class="col-sm-3 col-form-label">Fax</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="fax">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <input type="button" name="next" class="next action-button" value="Next Step" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card" id="current" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                            <div class="sectionHaeder ">
+                                <h3 class="heading1">Current Employment Details</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3 line-head ">
+                                    <label for="school-name">Name of School/Office</label>
+                                    <input type="text" class="form-control" id="school-name" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid School name is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3 line-head ">
+                                    <label for="centre-number">Centre Number</label>
+                                    <input type="text" class="form-control" id="centre-number" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid centre number is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 line-head ">
+                                    <label for="district">District</label>
+                                    <input type="text" class="form-control" id="district" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid district is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-9 mb-3 radioGroup line-head ">
+                                    <!--changed coloumn width to 9-->
+                                    <label for="Post"></label>
+                                    <div class="custom-control custom-radio">
+                                        <input id="gde-perm" name="post" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="gde-perm">GDE Perm</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="gde-temp" name="post" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="gde-temp">GDE Temp</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="ind-school" name="post" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="ind-school">Independent School</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="sgb-post" name="post" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="sgb-post">SGB Post</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="post-other" name="post" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="post-other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-9 mb-3 radioGroup line-head ">
+                                    <!--changed coloumn width to 9-->
+                                    <label for="current-position">Current Position</label>
+                                    <div class="custom-control custom-radio ">
+                                        <input id="educator" name="current-position" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="educator">Educator</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="hod" name="current-position" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="hod">Head of Department</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="dep-principal" name="current-position" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="dep-principal">Deputy Principal</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="dist-official" name="current-position" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="dist-official">District Official</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-9 mb-3 radioGroup line-head ">
+                                    <!--changed coloumn width to 9-->
+                                    <label for="retiring">Retiring on or before 31 December (Yes/No)</label>
+                                    <div class="custom-control custom-radio">
+                                        <input id="yes" name="current-position" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="yes">Yes</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio">
+                                        <input id="no" name="current-position" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="no">No</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next Step" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card" id="marker" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="sectionHaeder ">
+                                <h3 class="heading1">Qualifications</h3>
+                            </div>
+
+                            <!--Start Qualifiaction Section-->
+                            <div class="row">
+                                <div>
+                                    <!--Start Qualifiaction Form-->
+                                    <div class="qualification-form">
+                                        <p class="info-text line-head-half">Degrees: (Should be Dynamic)</p>
+
+                                        <div class="flex">
+                                            <div>
+                                                <label for="NameOfDegree">Name of Degree</label>
+                                                <input type="text" class="form-control smaller-input" id="NameOfDegree" placeholder="" value="" required>
+                                            </div>
+                                            <div>
+                                                <label for="DegreeYear">Year</label>
+                                                <input type="text" class="form-control smaller-input" id="DegreeYear" placeholder="" value="" required>
+                                            </div>
+                                            <div>
+                                                <label for="DegreeInst">Instittion</label>
+                                                <input type="text" class="form-control" id="DegreeInst" placeholder="" value="" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="line-head-half">
+                                            <label for="MajorSubjects">Major subjects</label>
+                                            <input type="text" class="form-control" id="MajorSubjects" placeholder="" value="" required>
+                                        </div>
+                                    </div>
+                                    <!--End Qualifiaction Form-->
+                                    <!--Start Qualifiaction Header-->
+                                    <div class="row">
+                                        <div class="col-md-9" style="background-color: yelow; height: 20px;">
+
+                                        </div>
+                                        <div class="flex line-head-half col-md-3">
+                                            <p class="text-icon-spacing">Add Qualification </p>
+                                            <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
+                                        </div>
+                                        <!--Start Qualifiaction Drop-down-->
+                                        <div class="qualificcation-drop">
+                                            <!-- <select>
+                                                <optgroup>dsfgh</optgroup>
+                                                <option>Degree</option>
+                                                <option>Diploma</option>
+                                                <option>additional single subject</option>
+                                            </select> -->
+                                        </div>
+                                        <!--End Qualifiaction Drop-down-->
+                                    </div>
+                                    <!--End Qualifiaction Header-->
+                                    <!--Start Marking Subject Details-->
+                                    <div class="line-head-half">
+                                        <p><b>NB</b>: Please indicate the highest qualification relevant to the subject that you are applying for:</p>
+
+                                        <!--Start Select subject-->
+                                        <div class="flex">
+                                            <label for="MarkingSubject">Subject:</label>
+                                            <input type="text" class="form-control subject-input" id="MarkingSubject" placeholder="" value="" required>
+                                        </div>
+                                        <!--End Select subject-->
+                                        <!--Start subject details-->
+                                        <div class="line-head-half">
+                                            <div class="radioGroup ">
+                                                <label for="SubjectDetails">Level of Degree Qualification in subject</label>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" checked required>
+                                                    <label class="custom-control-label" for="Black">l</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="White">ll</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="Coloured">lll</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="Indian">Hon</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="Indian">M</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="Indian">D</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="radioGroup line-head-half">
+                                                <label for="SubjectDetails">Level of Diploma Qualification in subject</label>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" checked required>
+                                                    <label class="custom-control-label" for="Black">1</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="White">2</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="Coloured">3</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id=" " name=" " type="radio" class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="Indian">4</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--End subject details-->
+                                    </div>
+                                    <!--End Marking Subject Details-->
+                                </div>
+
+
+                            </div>
+                            <!--End Qualifiaction Section-->
+
+
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next Step" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card" id="teaching" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                            <div class="sectionHaeder ">
+                                <h3 class="heading1">Teaching Experience</h3>
+                            </div>
+
+
+                            <div class="row line-head-half ">
+                                <div class="col-md-6 mb-3">
+                                    <p class="info-text ">indicate number of years</p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-6 mb-3">
+                                    <p class="body-text">Total teaching experience</p>
+                                </div>
+
+                                <div class="col-md-1 mb-3">
+                                    <input type="number" class="form-control year-input " id="years" placeholder="" value="" required>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <p class="body-text">Years</p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-6 mb-3">
+                                    <p class="body-text">Total teaching experience in <strong>NCS/CAPS</strong></p>
+                                </div>
+
+                                <div class="col-md-1 mb-3">
+                                    <input type="number" class="form-control year-input " id="years" placeholder="" value="" required>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <p class="body-text">Years</p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6 mb-3">
+                                    <p class="body-text">Total teaching experience in <strong>SUBJECT in Gr. 12</strong></p>
+                                </div>
+
+                                <div class="col-md-1 mb-3">
+                                    <input type="number" class="form-control year-input " id="years" placeholder="" value="" required>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <p class="body-text">Years</p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-6 mb-3">
+                                    <p class="body-text">Experience as FET advisor in subject applied for</p>
+                                </div>
+
+                                <div class="col-md-1 mb-3">
+                                    <input type="number" class="form-control year-input " id="years" placeholder="" value="" required>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <p class="body-text">Years</p>
+                                </div>
+                            </div>
+
+                            <div class="row line-head-half">
+                                <div class="col-md-10 mb-3">
+                                    <p class="body-text">
+                                        Please list the institutions where you are teaching/have taught on a <strong>full time</strong> basis for this year and the preceding five years. (Be accurate. Refer to Examination Instruction Paragraph 4 for requirements). Please complete every row. Record all subjects taught even if you are/were not teaching the subject applied for.
+                                        <strong>Use a separate line for each subject taught, per grade, and indicate the pass percentage (not the average percentage). Please write the information in full. Do not use ditto.</strong>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1 mb-3">
+                                    <label for="te-year" class="info-text">Year</label>
+                                    <input type="number" class="form-control" id="te-year" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid year is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="te-subject" class="info-text">Subject</label>
+                                    <input type="text" class="form-control" id="te-subject" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid subject is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1 mb-3">
+                                    <label for="te-grade" class="info-text">Grade</label>
+                                    <input type="number" class="form-control" id="te-grade" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid grade is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="te-school" class="info-text">Name of School/Institution</label>
+                                    <input type="text" class="form-control" id="te-school" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid school is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 mb-3 ">
+                                    <label for="te-percent" class="info-text">Percentage pass of learners  taught by applicant</label>
+                                    <input type="number" class="form-control" id="te-percent" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Percentage pass of learners  taught by applicant is required.
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--Start Qualifiaction Header-->
+                            <div class="flex">
+                                <p>Add Qualification   </p>
+                                <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
+                            </div>
+                            <!--End Qualifiaction Header-->
+
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next Step" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card" id="marking" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="sectionHaeder ">
+                                <h3 class="heading1">Marking Experience</h3>
+                            </div>
+
+                            <div class="row line-head-half ">
+                                <div class="col-md-6 mb-3">
+                                    <p class="info-text ">Please indicate the year and position in which you were appointed national senior certificate examination only</p>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-1 mb-3">
+                                    <label for="me-year">Year</label>
+                                    <input type="number" class="form-control" id="me-year" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Year is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 mb-3">
+                                    <label for="me-subject">Subject/Level(HL/FAL/SAL)/Paper</label>
+                                    <input type="number" class="form-control" id="me-subject" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Subject is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="me-position">Position Held</label>
+                                    <select class="custom-select d-block w-100" id="me-position" required>
+                                        <option value="">Choose...</option>
+                                        <option value="internal-moderator">Internal Moderator</option>
+                                        <option value="chief-marker">Chief</option>
+                                        <option value="deputy-chief-marker">Deputy Chief Marker</option>
+                                        <option value="senior-marker">Senior Marker</option>
+                                        <option value="marker">Marker</option>
+                                        <option value="novice-marker">Novice Marker</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid position.
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <!--Start Qualifiaction Header-->
+                            <div class="row line-head-half ">
+                                <div class="col-md-9 mb-3">
+                                    <div class="flex">
+                                        <p>Add Experience </p>
+                                        <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End Qualifiaction Header-->
+
+                        </div>
+
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next Step" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card" id="application" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="sectionHaeder ">
+                                <h3 class="heading1">Application Detail</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3 line-head ">
+                                    <label for="ad-subject">Subject</label>
+                                    <input type="text" class="form-control" id="ad-subject" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Subject is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 mb-3 line-head ">
+                                    <label for="ad-level">Level(HL/FAL/SAL)</label>
+                                    <input type="text" class="form-control" id="ad-level" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid subject level is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3 radioGroup line-head ">
+                                    <!--changed coloumn width to 9-->
+                                    <label for="paper">paper</label>
+                                    <div class="custom-control custom-radio ">
+                                        <input id="p1" name="paper" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="p1">I</label>
+                                    </div>
+                                    <div class="custom-control custom-radio ">
+                                        <input id="p2" name="paper" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="p2">II</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio ">
+                                        <input id="p3" name="paper" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="p3">III</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--Start Qualifiaction Header-->
+                            <div class="flex">
+                                <p>Add Subject/Paper </p>
+                                <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
+                            </div>
+                            <!--End Qualifiaction Header-->
+
+
+
+                            <div class="row">
+                                <div class="col-md-9 mb-3 radioGroup line-head ">
+                                    <p class="body-text">If you are applying to mark a literature paper,<strong> please name the prescribed works being taught </strong>to the Grade 12 learners at your school. </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3 ">
+                                    <label for="prescribed-work">Prescribed Work</label>
+                                    <input type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Prescribed work is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 mb-3 ">
+                                    <label for="pw-type">Level(HL/FAL/SAL)</label>
+                                    <input type="text" class="form-control" id="pw-type" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid prescribed work type is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Start Qualifiaction Header-->
+                            <div class="flex">
+                                <p>Add Prescribed work </p>
+                                <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
+                            </div>
+                            <!--End Qualifiaction Header-->
+
+
+
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next Step" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card" id="Language" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="sectionHaeder ">
+                                <h3 class="heading1">Language Perference</h3>
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 radioGroup line-head-half ">
+                                    <label for="language"></label>
+                                    <div class="custom-control custom-radio">
+                                        <input id="english" name="language" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="english">English</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="afrikaans" name="language" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="afrikaans">Afrikaans</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="both" name="language" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="both">Both</label>
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</main>
+
+<script src="~/css/jsFile.js"></script>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>

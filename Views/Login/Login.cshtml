@@ -1,3 +1,64 @@
+
+﻿@{Layout = null;}
+@model Markers_GPS_Coordiantes.LoginViewModel
+@{
+ViewData["Title"] = "Home";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pay Marker</title>
+    <meta charset="utf-8">
+    <link href="~/Images/logo.svg" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row">
+        <div class="col-7 bg-container">
+            <div class="layer">
+            </div>
+        </div>
+        <div class="col-5 right">
+            <div class="logo-container">
+                <img class="logo" src="~/images/logo.svg">
+            </div>
+            <hr class="line">
+            <form asp-action="Login" class="form-container">
+                <div class="text-container">
+                   
+                    <div class="landing-par text-center">
+                        <p class="grey-text">
+                            Find the fastest route, Calculate mileage from city to city,
+                            traffic conditions, GPS maps with street views.
+                        </p>
+                    </div>
+                </div>
+                <hr class="line shorter-line">
+                <div class="sign-in-form text-center">
+                    <p class="title title-margin-top blue">Sign In</p>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input class="input-tag" placeholder="Username" name="Username" type="text" required="">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="input-tag margin-top" asp-for="Password" name="Password" placeholder="Enter Password" type="password" required="" id="myInput" />
+                     
+                        <br>
+                        <input type="checkbox" onclick="myFunction()"> Show Password
+                        <script>
+                            function myFunction() {
+                                var x = document.getElementById("myInput");
+                                if (x.type === "password") {
+                                    x.type = "text";
+                                } else {
+                                    x.type = "password";
+                                }
+                            }
+                        </script>
+=======
 ﻿@model Markers_GPS_Coordiantes.LoginViewModel
 @{
     ViewData["Title"] = "Home";

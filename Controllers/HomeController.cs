@@ -13,9 +13,10 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class HomeController : Controller
     {
-        db dbop = new db();
+      
    
         private readonly ILogger<HomeController> _logger;
+        private object db;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -34,7 +35,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         [HttpPost]
         public IActionResult Index([Bind]Ad_login ad)
         {
-            int res = dbop.LoginCheck(ad);
+            int res = db.(ad);
             if (res== 1)
             {
                 return View("Dashbord");
@@ -54,49 +55,49 @@ namespace Markers_GPS_Coordiantes.Controllers
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            return View();
-        }
+        //public IActionResult Contact()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public IActionResult Contact(ContactViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    MailMessage msz = new MailMessage();
-                    msz.From = new MailAddress(vm.Email);//Email which you are getting 
-                                                         //from contact us page 
-                    msz.To.Add("gavenomojahi@gmail.com");//Where mail will be sent 
-                    msz.Subject = vm.Subject;
-                    msz.Body = vm.Message;
-                    SmtpClient smtp = new SmtpClient();
+        //[HttpPost]
+        //public IActionResult Contact(ContactViewModel vm)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            MailMessage msz = new MailMessage();
+        //            msz.From = new MailAddress(vm.Email);//Email which you are getting 
+        //            from contact us page
+        //            msz.To.Add("gavenomojahi@gmail.com");//Where mail will be sent 
+        //            msz.Subject = vm.Subject;
+        //            msz.Body = vm.Message;
+        //            SmtpClient smtp = new SmtpClient();
 
-                    smtp.Host = "smtp.gmail.com";
+        //            smtp.Host = "smtp.gmail.com";
 
-                    smtp.Port = 587;
+        //            smtp.Port = 587;
 
-                    smtp.Credentials = new System.Net.NetworkCredential
-                    ("gavenomojahi@gmail.com", "kutlwano23");
+        //            smtp.Credentials = new System.Net.NetworkCredential
+        //            ("gavenomojahi@gmail.com", "kutlwano23");
 
-                    smtp.EnableSsl = true;
+        //            smtp.EnableSsl = true;
 
-                    smtp.Send(msz);
+        //            smtp.Send(msz);
 
-                    ModelState.Clear();
-                    ViewBag.Message = "Thank you for Contacting us ";
-                }
-                catch (Exception ex)
-                {
-                    ModelState.Clear();
-                    ViewBag.Message = $" Sorry we are facing Problem here {ex.Message}";
-                }
-            }
+        //            ModelState.Clear();
+        //            ViewBag.Message = "Thank you for Contacting us ";
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.Clear();
+        //            ViewBag.Message = $" Sorry we are facing Problem here {ex.Message}";
+        //        }
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

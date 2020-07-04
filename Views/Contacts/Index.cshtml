@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Contact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TelephoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTelephoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CellphoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FaxNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityNoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelephoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkSchool)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTelephoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellphoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FaxNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityNoNavigation.IdentityNo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContactId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

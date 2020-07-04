@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Data.Center>
+
+@{
+    ViewData["Title"] = "Marking Centers";
+}
+
+<div class="col-10 table-content" style="padding-top:20px">
+
+    <table class="table">
+        <thead style="color:#fff; background-color: #000000;" class="font-weight-bold">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterNumber)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Longitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Latitude)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Scanner)
+                </th>
+                <th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Longitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Latitude)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateDate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Scanner)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CenterId"><i class="fa fa-marker fa-lg" title="Edit"></i></a> |
+
+                        <a asp-action="Delete" asp-route-id="@item.CenterId" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg" title="Delete"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

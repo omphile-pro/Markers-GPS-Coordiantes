@@ -1,0 +1,59 @@
+﻿@model Markers_GPS_Coordiantes.Data.CurrentEmployment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CurrentEmployment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdentityNo" class="control-label"></label>
+                <select asp-for="IdentityNo" class ="form-control" asp-items="ViewBag.IdentityNo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameOftheSchoolOffice" class="control-label"></label>
+                <input asp-for="NameOftheSchoolOffice" class="form-control" />
+                <span asp-validation-for="NameOftheSchoolOffice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CentreNumber" class="control-label"></label>
+                <input asp-for="CentreNumber" class="form-control" />
+                <span asp-validation-for="CentreNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="District" class="control-label"></label>
+                <input asp-for="District" class="form-control" />
+                <span asp-validation-for="District" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentPosition" class="control-label"></label>
+                <input asp-for="CurrentPosition" class="form-control" />
+                <span asp-validation-for="CurrentPosition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmploymentType" class="control-label"></label>
+                <input asp-for="EmploymentType" class="form-control" />
+                <span asp-validation-for="EmploymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Retiring" class="control-label"></label>
+                <input asp-for="Retiring" class="form-control" />
+                <span asp-validation-for="Retiring" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

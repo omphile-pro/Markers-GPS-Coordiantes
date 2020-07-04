@@ -3,103 +3,218 @@
 @{
     int roleID = 0;             //  assume 0 in case of guest (before users has logged in)
 
-    if (Convert.ToInt32(sessionAccessor.HttpContext.Session.GetString("roleID")) > 0) 
+    if (Convert.ToInt32(sessionAccessor.HttpContext.Session.GetInt32("roleID")) > 0)
     {
-        roleID = Convert.ToInt32(sessionAccessor.HttpContext.Session.GetString("roleID"));
+        roleID = Convert.ToInt32(sessionAccessor.HttpContext.Session.GetInt32("roleID"));
     }
- }
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Markers GPS Coordiantes</title>
+  
+    <title>@ViewData["Title"]  | Pay Marker</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
-    <link href="~/HomeTheme/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="~/HomeTheme/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="~/HomeTheme/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
-    <link href="~/HomeTheme/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
-
+ 
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/main2.css">
+    <link rel="stylesheet" type="text/css" href="~/css/cards.css">
+    <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
+    <link rel="stylesheet" type="text/css" href="~/css/reports.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="Admin/plugins/jquery/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
-    <link rel="stylesheet" href="~/js/tableexport.min.js" />
-    <link rel="stylesheet" href="~/css/tableexport.css" />
-    <link rel="stylesheet" href="~/css/tableexport.min.css" />
     <script src="https://kit.fontawesome.com/3051aeb07b.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/main2.css">
+    <link rel="stylesheet" type="text/css" href="~/css/cards.css">
+    <link rel="stylesheet" type="text/css" href="~/css/reports.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="Admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="Admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="Admin/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="Admin/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="Admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="Admin/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="Admin/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="color-logo.png" />
+    <!-- Custom styling -->
+    <link rel="stylesheet" type="text/css" href="~/css/NewLayout.css">
+    <link rel="stylesheet" type="text/css" href="~/css/TableLayoutStyle.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <header>
-        <!-- nav -->
-            <nav class="py-3 d-lg-flex fixed-top" style="color: rgba(255,255,255,0.9); background-color: #008B8B;">
-                <div id="logo">
-                    <h1> <a href="~/Home/"><img src="~/Content/HomeTheme/images/s2.png" alt=""> Markers GPS Coordinates</a></h1>
-                </div>
-                <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-                <input type="checkbox" id="drop" />
-                <ul class="menu ml-auto mt-1">  
-                    @if (roleID == 2)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Markers Panel</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Create">Add New Marker</a>
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Index">Markers List</a>
 
-                            </div>
-                        </li>
-                    }
+    <div class="main-container">
+        <div class="">
+            <!-- Side Navigation -->
+            <nav class="sidenav">
+                <!-- Side Navigation Logo -->
+                <a class="nav-logo" href="index.html"><img src="./images/logo.svg"></a>
 
-                    @if (roleID == 3)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Setup</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="Users" asp-action="Create">Create Administrator</a>
-                                <a class="dropdown-item " asp-controller="Users" asp-action="Index">Administrtrator Logins</a>
-                                <a class="dropdown-item " asp-controller="Centers" asp-action="Index">Marking Centers</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Subject</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="Subjects" asp-action="Index">Create Subject</a>
-                                <a class="dropdown-item " asp-controller="Exams" asp-action="Index">Exam</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Markers Panel</strong></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item " asp-controller="MarkersGpscoordinates" asp-action="Index">Markers List</a>
-                                <a class="dropdown-item " asp-controller="Centers" asp-action="Index">Markers</a>
-                                <a class="dropdown-item " asp-controller="MarkersReport" asp-action="Index">Distance Report</a>
-                            </div>
-                        </li>
-                    }
-                    <li>
+                <!-- Side Navigation List -->
+                <div class="nav-list">
+                    <a class="nav-list-item active"  asp-controller="Admin" asp-action="Index"><img class="icon active" src="./images/dash-icon.svg">Dashboard</a>
 
-                        @if (roleID == 0)
+
+                    <div class="drop-down-parent-container">
+                        @if (roleID == 4)
                         {
-                        
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="~/Login/Index/">Sign Out</a>
-                        </li>
-                    }
-                    </ul>
-            </nav>
-    </header>
-    <div class="container-fullwidth">
+                            <button class="dropdown-btn">
+                                <img class="icon" src="./images/admIcon.svg">
+                                <a class="nav-list-item">Data Capture</a>
+                                <img class="chevron" src="./images/chevron-down.svg">
+                            </button>
 
-            @RenderBody()
-       
+                            <div class="dropdown-container">
+                                <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Marking </strong></a>
+                                <a class="nav-list-item" asp-controller="Contacts" asp-action="Create"><strong>Marking </strong></a>
+                            </div>
+                        }
+
+
+                        @if (roleID == 3)
+                        {
+                            <button class="dropdown-btn">
+                                <img class="icon" src="./images/admIcon.svg">
+                                <a class="nav-list-item">Administration</a>
+                                <img class="chevron" src="./images/chevron-down.svg">
+                            </button>
+
+                            <div class="dropdown-container">
+                                <a class="nav-list-item" asp-controller="Users" asp-action="Index"><strong>Accounts</strong></a>
+                                <a class="nav-list-item" asp-controller="SuperAdmin" asp-action="Index"><strong>Markers List</strong></a>
+                                <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
+                                <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Marking </strong></a>
+                                <a class="nav-list-item" asp-controller="MarkerApplicationReport" asp-action="Index"><strong>Marker Application Report</strong></a>
+
+                            </div>
+                            <button class="dropdown-btn">
+                                <img class="icon" src="./images/Reports.svg">
+                                <a class="nav-list-item" href="#">Reports</a>
+                                <img class="chevron" src="./images/chevron-down.svg">
+                            </button>
+                            <div class="dropdown-container">
+
+                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+
+                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
+                            </div>
+
+                        }
+
+
+                        @if (roleID == 2)
+                        {
+                            <button class="dropdown-btn">
+                                <a class="nav-list-item">Administration</a>
+                                <img class="chevron" src="./images/chevron-down.svg">
+                            </button>
+                            <div class="dropdown-container">
+                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Account</strong></a>
+                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Markers List</strong></a>
+                                <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
+
+
+
+                            </div>
+                            <button class="dropdown-btn">
+                                <img class="icon" src="./images/Reports.svg">
+                                <a class="nav-list-item">Reports</a>
+                                <img class="chevron" src="./images/chevron-down.svg">
+                            </button>
+                            <div class="dropdown-container">
+                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
+                            </div>
+
+                        }
+                        @if (roleID == 1)
+                        {
+
+                            <button class="dropdown-btn">
+
+                                <a class="nav-list-item fa fa-folder">Reports</a>
+                                <img class="chevron" src="./images/chevron-down.svg">
+                            </button>
+                            <div class="dropdown-container">
+
+
+                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Markers"><strong>Access Track</strong></a>
+                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
+                            </div>
+
+                        }
+
+                        <a class="nav-list-item" href="#"><img class="icon" src="./images/timeIcon.svg">History</a>
+                    </div>
+                    <a class="nav-list-item set-margin-top" href="#"><img class="icon" src="./images/setIcon.svg">Settings</a>
+                </div>
+
+
+                <!-- End Side Navigation List -->
+            </nav>
+            <!-- End Side Navigation -->
+        </div>
+
+        <!-- End Side Navigation -->
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 formHolder">
+            <div class="row">
+                @RenderBody()
+
+            </div>
+            <!-- End main Content Container -->
+        </main>
+
+
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    }
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/dropDown.js" asp-append-version="true"></script>
+    <!-- Content Header (Page header) -->
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <!-- Small boxes (Stat box) -->
+ 
     @RenderSection("Scripts", required: false)
 </body>
 </html>

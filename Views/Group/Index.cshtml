@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Markers_GPS_Coordiantes.Models.groups>
+
+@{
+    ViewData["Title"] = "Access Track Infomation";
+}
+
+    <div class="col-12 table-content">
+
+        <div class="">
+            <table class="table start-hidden no-border-top">
+                <thead class="thead-dark no-border-top">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CenterName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.displayName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.licenceNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.timestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.hasBlacklist)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.expiryDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sadlExpiryDate)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="no-border-top">
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CenterName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.displayName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.licenceNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.timestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hasBlacklist)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.expiryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sadlExpiryDate)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
