@@ -40,7 +40,7 @@
       <i class='fas fa-circle'></i>
       <span>Checklist</span>
     </a> -->
-                    <a class="active" id="nav-contact-tab">
+                    <a class="active" id="ApplicationList">
                         <i class='far fa-circle'></i>
                         <span>Application</span>
                     </a>
@@ -70,6 +70,22 @@
                     </a>
                     <a id="nav-contact-tab">
                         <i class='far fa-circle'></i>
+                        <span>Motivation by Principal</span>
+                    </a>
+                    <a id="nav-contact-tab">
+                        <i class='far fa-circle'></i>
+                        <span>Declaration</span>
+                    </a>
+                    <a id="nav-contact-tab">
+                        <i class='far fa-circle'></i>
+                        <span>Declaration by Applicant</span>
+                    </a>
+                    <a id="nav-contact-tab">
+                        <i class='far fa-circle'></i>
+                        <span>Recommendation by</span>
+                    </a>
+                    <a id="nav-contact-tab">
+                        <i class='far fa-circle'></i>
                         <span>Language Perference</span>
                     </a>
                 </div>
@@ -96,22 +112,22 @@
                                             <div class=" row line-head-half">
                                                 <div class="col-md-8">
                                                     <label for="MarkingSubject" class="info-text">Subject</label>
-                                                    <input type="text" class="form-control App-detail-Subject" id="MarkingSubject" placeholder="" value="" required>
+                                                    <input asp-for="Subject" type="text" class="form-control App-detail-Subject" id="MarkingSubject" placeholder="" value="" required>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="radioGroup ">
                                                         <label for="SubjectDetails" class="info-text">Paper</label>
                                                         <div class="custom-control custom-radio">
-                                                            <input id="paper1" name="paper1" type="radio" class="custom-control-input" required>
+                                                            <input asp-for="Paper" value="Paper 1" id="paper1" name="paper1" type="radio" class="custom-control-input" required>
                                                             <label class="custom-control-label" for="paper1">l</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input id="paper2" name="paper2" type="radio" class="custom-control-input" required>
+                                                            <input asp-for="Paper" value="Paper 2" id="paper2" name="paper2" type="radio" class="custom-control-input" required>
                                                             <label class="custom-control-label" for="paper2">ll</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input id="paper3" name="paper3" type="radio" class="custom-control-input" required>
+                                                            <input asp-for="Paper" value="Paper 3" id="paper3" name="paper3" type="radio" class="custom-control-input" required>
                                                             <label class="custom-control-label" for="paper3">lll</label>
                                                         </div>
                                                     </div>
@@ -119,15 +135,15 @@
                                                     <div class="radioGroup line-head-half">
                                                         <label for="SubjectDetails" class="info-text">Level</label>
                                                         <div class="custom-control custom-radio">
-                                                            <input id="hl" name="level" type="radio" class="custom-control-input" required>
+                                                            <input asp-for="Language" value="HL" id="hl" name="level" type="radio" class="custom-control-input" required>
                                                             <label class="custom-control-label" for="hl">HL</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input id="fal" name="level" type="radio" class="custom-control-input" required>
+                                                            <input asp-for="Language" value="FAL" id="fal" name="level" type="radio" class="custom-control-input" required>
                                                             <label class="custom-control-label" for="fal">FAL</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input id="sal" name="level" type="radio" class="custom-control-input" required>
+                                                            <input asp-for="Language" value="SAL" id="sal" name="level" type="radio" class="custom-control-input" required>
                                                             <label class="custom-control-label" for="sal">SAL</label>
                                                         </div>
                                                     </div>
@@ -136,15 +152,15 @@
                                                 <div class="radioGroup line-head-half">
                                                     <label for="SubjectDetails" class="info-text">Position applied For</label>
                                                     <div class="custom-control custom-radio">
-                                                        <input id="marker" name="position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="Position" value="Marker" id="marker" name="position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="marker">Marker</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input id="senior-marker" name="position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="Position" value="Senior Marker" id="senior-marker" name="position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="senior-marker">Senior Marker</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input id="deputy-chief-marker" name="position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="Position" value="Deputy Chief Marker" id="deputy-chief-marker" name="position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="deputy-chief-marker">Deputy Chief Marker</label>
                                                     </div>
                                                 </div>
@@ -152,19 +168,19 @@
                                                 <div class="radioGroup line-head">
                                                     <label for="SubjectDetails" class="info-text">Indicate if you are currently appointed in the following positions(s)</label>
                                                     <div class="custom-control custom-radio line-head-half">
-                                                        <input id="chief-marker-gde" name="current-position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="CurrentPosition" value="Chief Marker (GDE)" id="chief-marker-gde" name="current-position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="chief-marker-gde">Chief Marker (GDE)</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input id="internal-moderator-gde" name="current-position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="CurrentPosition" value="Internal Moderator (GDE)" id="internal-moderator-gde" name="current-position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="internal-moderator-gde">Internal Moderator (GDE)</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input id="panel-chief-marker" name="current-position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="CurrentPosition" value="National Examination Panel/Umalusi" id="panel-chief-marker" name="current-position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="panel-chief-marker">National Examination Panel/Umalusi</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input id="position-dbe" name="current-position" type="radio" class="custom-control-input" required>
+                                                        <input asp-for="CurrentPosition" value="Position at DBE/Umalusi" id="position-dbe" name="current-position" type="radio" class="custom-control-input" required>
                                                         <label class="custom-control-label" for="position-dbe">Position at DBE/Umalusi</label>
                                                     </div>
                                                 </div>
@@ -177,16 +193,16 @@
 
                                                 <div class="line-head-half full-width">
                                                     <label for="MarkingSubject" class="info-text">Subject</label>
-                                                    <input type="text" class="form-control longer-subject-input" id="MarkingSubject" placeholder="" value="" required>
+                                                    <input asp-for="PracticalSubject" type="text" class="form-control longer-subject-input" id="MarkingSubject" placeholder="" value="" required>
                                                 </div>
-
+                                                <br>
                                                 <div class="line-head">
                                                     <div class="row">
                                                         <div class="col-md-9">
                                                             <p>If you are applying to mark Dance Studies, please indicate Genre</p>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="text" class="form-control long-subject-input" id="genre" placeholder="" value="" required>
+                                                            <input asp-for="PracticalExamination" type="text" class="form-control long-subject-input" id="genre" placeholder="" value="" required>
                                                         </div>
                                                     </div>
 
@@ -195,7 +211,7 @@
                                                             <p>If you are applying to mark Music Practical, please indicate instrument </p>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="text" class="form-control long-subject-input" id="instrument" placeholder="" value="" required>
+                                                            <input asp-for="PracticalExamination" type="text" class="form-control long-subject-input" id="instrument" placeholder="" value="" required>
                                                         </div>
                                                     </div>
 
@@ -204,7 +220,7 @@
                                                             <p>If you are applying to mark technical subject, please indicate Specialisation</p>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="text" class="form-control long-subject-input" id="Specialisation" placeholder="" value="" required>
+                                                            <input asp-for="PracticalExamination" type="text" class="form-control long-subject-input" id="Specialisation" placeholder="" value="" required>
                                                         </div>
 
                                                     </div>
@@ -233,28 +249,23 @@
 
                         </fieldset>
 
+                        Personal Particulars start
 
                         <fieldset>
-                            <div class="form-card " id="personal" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="form-card" id="personal" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <div class="sectionHaeder">
                                     <h3 class="heading1">Personal Particulars</h3>
                                 </div>
-                                <div class="row">
+                                <div class="row line-head-half">
                                     <div class="col-md-6 mb-3">
-                                        <label for="identityNo">Identity No</label>
-                                        <input asp-for="IdentityNo" type="text" class="form-control" autocomplete="off" id="identityNo" ng-focus="showList()" ng-blur="hideList" placeholder="" value="" ng-model="identityNo" ng-change="filterIDNumbers()" required>
-                                        <div ng-show="identityNo.length > 3 && listIsVisible" ng-if="identityNo.length > 3 && listIsVisible">
-                                            <ul ng-repeat="contact in filteredContacts">
-                                                <li ng-click="itemSelected(contact)">{{contact.emailAddress}}</li>
-                                            </ul>
-                                        </div>
-
+                                        <label asp-for="IdentityNo" for="identityNo" class="info-text">Identity No</label>
+                                        <input type="text" class="form-control" id="identityNo" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Identity No is required.
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="persal">Persal</label>
+                                        <label for="persal" class="info-text">Persal</label>
                                         <input asp-for="Persal" type="text" class="form-control" id="persal" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Persal is required.
@@ -264,44 +275,40 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="surname">Surname</label>
-                                        <input asp-for="Surname" text" class="form-control" id="surname" placeholder="" value="" required>
+                                        <label for="surname" class="info-text">Surname</label>
+                                        <input asp-for="Surname" type="text" class="form-control autoco" id="surname" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid surname is required.
                                         </div>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label for="initials">Initials</label>
+                                        <label for="initials" class="info-text">Initials</label>
                                         <input asp-for="Initials" type="text" class="form-control" id="initials" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid initials is required.
                                         </div>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label for="title">Title</label>
-                                        <select asp-for="Title" class="custom-select d-block w-100" id="title" required>
-                                            <option value="">Choose...</option>
-                                            <option value="Ms">Ms</option>
-                                            <option value="Mr">Mr</option>
-                                            <option value="Mrs">Mrs</option>
-                                        </select>
+                                        <label for="title" class="info-text">Title</label>
+                                        <input asp-for="Title" type="text" class="form-control longer-subject-input" id="title" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid title.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+
+                                <div class="row line-head">
                                     <div class="col-md-6 mb-3">
-                                        <label for="maidenName">Maiden Name</label>
+                                        <label for="maidenName" class="info-text">Maiden Name</label>
                                         <input asp-for="MaidenName" type="text" class="form-control" id="maidenName" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Maiden Name is required.
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3 radioGroup">
-                                        <label for="gender">Gender</label>
+                                        <label for="gender" class="info-text">Gender</label>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="Gender" value="Male" name="Gender" type="radio" class="custom-control-input " checked required>
+                                            <input asp-for="Gender" value="Male" id="male" name="Gender" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="male">Male</label>
                                         </div>
                                         <div class="custom-control custom-radio">
@@ -310,11 +317,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+
+                                <div class="row row line-head ">
                                     <div class="col-md-6 mb-3 radioGroup ">
-                                        <label for="gender">Race</label>
+                                        <label for="gender" class="info-text">Race</label>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="Race" id="Black" value="Black" name="Race" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="Race" value="Black" id="Black" name="Race" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="Black">Black</label>
                                         </div>
                                         <div class="custom-control custom-radio">
@@ -329,59 +337,81 @@
                                             <input asp-for="Race" value="Indian" id="Indian" name="Race" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="Indian">Indian</label>
                                         </div>
+
                                     </div>
+
                                     <div class="col-md-6 mb-3">
-                                        <label for="nationality">Nationality</label>
+                                        <label for="nationality" class="info-text">Nationality</label>
                                         <input asp-for="Nationality" type="text" class="form-control" id="nationality" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Nationality is required.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+
+                                <div class="row row line-head ">
                                     <div class="col-md-6 mb-3">
                                         <div class="mb-3">
-                                            <label for="email">Email Address</label>
-                                            <input asp-for="EmailAddress" type="email" class="form-control" ng-model="emailAddress" id="email" placeholder="" required>
+                                            <label for="email" class="info-text">Email Address</label>
+                                            <input asp-for="EmailAddress" type="email" class="form-control" id="email" placeholder="" required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid email address.
                                             </div>
                                         </div>
                                         <div id="resAddress" class="mb-3">
-                                            <label for="address">Residential Address</label>
-                                            <input type="text" class="form-control" id="address" placeholder="123 Street name, town, 2199" required>
+                                            <label for="address" class="info-text">Residential Address</label>
+                                            <input asp-for="ResidentialAddress" type="text" class="form-control" id="address" placeholder="" required>
                                             <div class="invalid-feedback">
                                                 Please enter your Residential address.
                                             </div>
                                         </div>
+
+                                        <div id="resAddress" class="mb-3">
+                                            <label for="postal-code" class="info-text">Postal Code</label>
+                                            <input asp-for="PostalCode" type="number" class="form-control long-subject-input " id="postal-code" placeholder="" required>
+                                            <div class="invalid-feedback">
+                                                Please enter your Postal Code.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="email">Telephone</label>
+                                        <label for="email" class="info-text">Telephone</label>
                                         <div class="form-group row">
                                             <label for="workSchool" class="col-sm-3 col-form-label">Work/School</label>
                                             <div class="col-sm-9">
-                                                <input type="email" asp-for="WorkSchool" class="form-control" id="workSchool">
+                                                <input asp-for="WorkSchool" type="number" class="form-control" id="workSchool">
                                             </div>
                                             <label for="home" class="col-sm-3 col-form-label">Home</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="HomeTelephoneNo" type="email" class="form-control" id="home">
+                                                <input asp-for="HomeTelephoneNo" type="number" class="form-control" id="home">
                                             </div>
                                             <label for="cell" class="col-sm-3 col-form-label">Cell</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="CellphoneNo" ng-model="cellphoneNo" type="email" class="form-control" id="cell">
+                                                <input asp-for="FaxNo" type="number" class="form-control" id="cell">
                                             </div>
                                             <label for="fax" class="col-sm-3 col-form-label">Fax</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="FaxNo" type="email" class="form-control" id="fax">
+                                                <input type="number" class="form-control" id="fax">
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row row line-head ">
+
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
-                            <input type="button" name="next" class="next action-button" value="Next Step" />
+
+
+                            <i class="fas fa-chevron-left light-blue previous"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
+
+
                         </fieldset>
+                        Personal Particulars end
                         <fieldset>
                             <div class="form-card" id="current" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <div class="sectionHaeder ">
@@ -390,82 +420,86 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3 line-head ">
                                         <label for="school-name">Name of School/Office</label>
-                                        <input asp-for="NameOftheSchoolOffice" type="text" class="form-control" id="school-name" placeholder="" value="" required>
+                                        <input asp-for="NameOftheSchoolOffice" type="text" class="form-control" id="school-name" placeholder="" value="" >
                                         <div class="invalid-feedback">
-                                            Valid School name is required.
+                                            Valid School name is .
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3 line-head ">
                                         <label for="centre-number">Centre Number</label>
-                                        <input asp-for="CentreNumber" type="text" class="form-control" id="centre-number" placeholder="" value="" required>
+                                        <input asp-for="CentreNumber" type="text" class="form-control" id="centre-number" placeholder="" value="" >
                                         <div class="invalid-feedback">
-                                            Valid centre number is required.
+                                            Valid centre number is .
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3 line-head ">
                                         <label for="district">District</label>
-                                        <input asp-for="District" type="text" class="form-control" id="district" placeholder="" value="" required>
+                                        <input asp-for="District" type="text" class="form-control" id="district" placeholder="" value="" >
                                         <div class="invalid-feedback">
-                                            Valid district is required.
+                                            Valid district is .
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-9 mb-3 radioGroup line-head ">
-                                        <!--changed coloumn width to 9-->
+                                        changed coloumn width to 9
                                         <label for="Post"></label>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="EmploymentType" value="GDE Perm" id="gde-perm" name="post" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="EmploymentType" value="GDE Perm" id="gde-perm" name="post" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="gde-perm">GDE Perm</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="EmploymentType" value="GDE Temp" id="gde-temp" name="post" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="EmploymentType" value="GDE Temp" id="gde-temp" name="post" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="gde-temp">GDE Temp</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="EmploymentType" value="Independent School" id="ind-school" name="post" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="EmploymentType" value="Independent School" id="ind-school" name="post" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="ind-school">Independent School</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="EmploymentType" value="SGB Post" id="sgb-post" name="post" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="EmploymentType" value="SGB Post" id="sgb-post" name="post" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="sgb-post">SGB Post</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="EmploymentType" value="Other" id="post-other" name="post" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="EmploymentType" value="Other" id="post-other" name="post" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="post-other">Other</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-9 mb-3 radioGroup line-head ">
-                                        <!--changed coloumn width to 9-->
+                                        changed coloumn width to 9
                                         <label for="current-position">Current Position</label>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="CurrentPosition" value="Educator" id="educator" name="current-position" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="CurrentPosition" value="Educator" id="educator" name="current-position" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="educator">Educator</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="CurrentPosition" value="Head of Department" id="hod" name="current-position" type="radio" class="custom-control-input" required>
+                                            <input asp-for="CurrentPosition" value="Head of Department" id="hod" name="current-position" type="radio" class="custom-control-input" >
                                             <label class="custom-control-label" for="hod">Head of Department</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="CurrentPosition" value="Deputy Principal" id="dep-principal" name="current-position" type="radio" class="custom-control-input" required>
+                                            <input asp-for="CurrentPosition" value="Deputy Principal" id="dep-principal" name="current-position" type="radio" class="custom-control-input" >
                                             <label class="custom-control-label" for="dep-principal">Deputy Principal</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="CurrentPosition" value="Deputy Principal" id="dist-official" name="current-position" type="radio" class="custom-control-input" required>
+                                            <input asp-for="CurrentPosition" value="Deputy Principal" id="dist-official" name="current-position" type="radio" class="custom-control-input" >
                                             <label class="custom-control-label" for="dist-official">District Official</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input id="none" name="current-position" type="radio" class="custom-control-input" >
+                                            <label class="custom-control-label" for="dist-none">None</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-9 mb-3 radioGroup line-head ">
-                                        <!--changed coloumn width to 9-->
-                                        <label for="retiring">Retiring on or before 31 December (Yes/No)</label>
+                                        changed coloumn width to 9
+                                        <label for="retiring" class="info-text switch-right">Retiring on or before 31 December (Yes or No)</label>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="Retiring" value="Yes" id="yes" name="current-position" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="Retiring" value="Yes" id="yes" name="current-position" type="radio" class="custom-control-input" checked >
                                             <label class="custom-control-label" for="yes">Yes</label>
                                         </div>
                                         <div class="custom-control custom-radio">
@@ -483,10 +517,10 @@
                                 <div class="sectionHaeder ">
                                     <h3 class="heading1">Qualifications</h3>
                                 </div>
-                                Start Qualifiaction Section
+
                                 <div class="row">
                                     <div>
-                                        Start Qualifiaction Form
+
                                         <div class="qualification-form">
                                             <p class="info-text line-head-half">Degrees: (Should be Dynamic)</p>
                                             <div class="flex">
@@ -503,97 +537,107 @@
                                                     <label for="DegreeInst">Institution</label>
                                                     <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="DegreeInst" placeholder="" value="" required>
                                                 </div>
+                                                <div style="margin-left: 20px">
+                                                    <label for="MajorSubjects">Major subjects  </label>
+                                                    <input asp-for="MajorSubjects" type="text" class="form-control" id="MajorSubjects" placeholder="" value="" required">
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="qualification-form">
+                                                <p class="info-text line-head-half">Diploma:</p>
+                                                <div class="flex">
+                                                    <div>
+                                                        <label for="NameOfDegree">Name of Diploma</label>
+                                                        <input asp-for="QualificationDescription" type="text" class="form-control smaller-input" id="NameOfDegree" placeholder="" value="" required>
+                                                    </div>
+                                                    <div>
+                                                        <label for="DegreeYear">Year</label>
+                                                        <input asp-for="QualificationYear" type="text" class="form-control smaller-input" id="datepicker3" placeholder="" value="" required>
+                                                    </div>
+
+                                                    <div>
+                                                        <label for="DegreeInst">Institution</label>
+                                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="DegreeInst" placeholder="" value="" required>
+                                                    </div>
+                                                    <div style="margin-left: 20px">
+                                                        <label for="MajorSubjects">Major subjects  </label>
+                                                        <input asp-for="MajorSubjects" type="text" class="form-control" id="MajorSubjects" placeholder="" value="" required">
+                                                    </div>
+
+
+                                                </div>
+
                                             </div>
                                             <div class="line-head-half">
-                                                <label for="MajorSubjects">Major subjects</label>
-                                                <input asp-for="MajorSubjects" type="text" class="form-control" id="MajorSubjects" placeholder="" value="" required>
-                                            </div>
-                                        </div>
-                                        End Qualifiaction Form
-                                        Start Qualifiaction Header
-                                        <div class="row">
-                                            <div class="col-md-9" style="background-color: yelow; height: 20px;">
-                                            </div>
-                                            <div class="flex line-head-half col-md-3">
-                                                <p class="text-icon-spacing">Add Qualification </p>
-                                                <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
-                                            </div>
-                                            Start Qualifiaction Drop-down
-                                            <div class="qualificcation-drop">
-                                                <select>
-                                                    <optgroup>dsfgh</optgroup>
-                                                    <option>Degree</option>
-                                                    <option>Diploma</option>
-                                                    <option>additional single subject</option>
-                                                </select>
-                                            </div>
-                                            End Qualifiaction Drop-down
-                                        </div>
-                                        End Qualifiaction Header
-                                        Start Marking Subject Details
-                                        <div class="line-head-half">
-                                            <p><b>NB</b>: Please indicate the highest qualification relevant to the subject that you are applying for:</p>
-                                            Start Select subject
-                                            <div class="flex">
-                                                <label for="MarkingSubject">Subject:</label>
-                                                <input asp-for="MajorSubjects" type="text" class="form-control subject-input" id="MarkingSubject" placeholder="" value="" required>
-                                            </div>
-                                            End Select subject
-                                            Start subject details
-                                            <div class="line-head-half">
-                                                <div class="radioGroup ">
-                                                    <label for="SubjectDetails">Level of Degree Qualification in subject</label>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDegree" value="l" id=" " name=" " type="radio" class="custom-control-input" checked required>
-                                                        <label class="custom-control-label" for="Black">l</label>
+                                                <p><b>NB</b>: Please indicate the highest qualification relevant to the subject that you are applying for:</p>
+
+                                                Start Select subject
+                                                <div class="flex line-head-half">
+                                                    <label for="MarkingSubject" class="info-text">Subject:</label>
+                                                    <input asp-for="HighestQualification" type="text" class="form-control subject-input" id="MarkingSubject" placeholder="" value="" required>
+                                                </div>
+                                                End Select subject
+
+
+
+
+                                                <div class="line-head-half">
+                                                    <div class="radioGroup ">
+                                                        <label for="SubjectDetails">Level of Degree Qualification in subject</label>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDegree" value="l" id=" " name=" " type="radio" class="custom-control-input" checked required>
+                                                            <label class="custom-control-label" for="Black">l</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDegree" value="ll" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="White">ll</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDegree" value="lll" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="Coloured">lll</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDegree" value="Hon" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="Indian">Hon</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDegree" value="M" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="Indian">M</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDegree" value="D" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="Indian">D</label>
+                                                        </div>
                                                     </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDegree" value="ll" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="White">ll</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDegree" value="lll" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="Coloured">lll</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDegree" value="Hon" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="Indian">Hon</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDegree" value="M" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="Indian">M</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDegree" value="D" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="Indian">D</label>
+                                                    <div class="radioGroup line-head-half">
+                                                        <label for="SubjectDetails">Level of Diploma Qualification in subject</label>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDiploma" value="1" id=" " name=" " type="radio" class="custom-control-input" checked required>
+                                                            <label class="custom-control-label" for="Black">1</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDiploma" value="2" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="White">2</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDiploma" value="3" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="Coloured">3</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input asp-for="LevelOfDiploma" value="4" id=" " name=" " type="radio" class="custom-control-input" required>
+                                                            <label class="custom-control-label" for="Indian">4</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="radioGroup line-head-half">
-                                                    <label for="SubjectDetails">Level of Diploma Qualification in subject</label>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDiploma" value="1" id=" " name=" " type="radio" class="custom-control-input" checked required>
-                                                        <label class="custom-control-label" for="Black">1</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDiploma" value="2" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="White">2</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDiploma" value="3" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="Coloured">3</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input asp-for="LevelOfDiploma" value="4" id=" " name=" " type="radio" class="custom-control-input" required>
-                                                        <label class="custom-control-label" for="Indian">4</label>
-                                                    </div>
-                                                </div>
+
                                             </div>
-                                            End subject details
+
                                         </div>
-                                        End Marking Subject Details
                                     </div>
                                 </div>
-                                End Qualifiaction Section
+
                             </div>
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                             <input type="button" name="next" class="next action-button" value="Next Step" />
@@ -641,16 +685,24 @@
                                         <p class="body-text">Years</p>
                                     </div>
                                 </div>
+
+
                                 <div class="row ">
                                     <div class="col-md-6 mb-3">
-                                        <p class="body-text">Experience as FET advisor in subject applied for</p>
+                                        <p class="body-text">
+                                            Experience as FET advisor in subject applied for
+                                        </p>
                                     </div>
+
                                     <div class="col-md-1 mb-3">
                                         <input asp-for="Fetexperience" type="number" class="form-control year-input " id="years" placeholder="" value="" required>
                                     </div>
+
                                     <div class="col-md-3 mb-3">
                                         <p class="body-text">Years</p>
                                     </div>
+
+
                                 </div>
                                 <div class="row line-head-half">
                                     <div class="col-md-10 mb-3">
@@ -668,6 +720,9 @@
                                             Valid year is required.
                                         </div>
                                     </div>
+
+
+
                                     <div class="col-md-3 mb-3">
                                         <label for="te-subject" class="info-text">Subject</label>
                                         <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="" required>
@@ -697,12 +752,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                Start Qualifiaction Header
+
                                 <div class="flex">
-                                    <p>Add Qualification   </p>
+
                                     <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
                                 </div>
-                                End Qualifiaction Header
+
                             </div>
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                             <input type="button" name="next" class="next action-button" value="Next Step" />
@@ -712,33 +767,47 @@
                                 <div class="sectionHaeder ">
                                     <h3 class="heading1">Marking Experience</h3>
                                 </div>
-                                <div class="row line-head-half ">
+
+                                <div class="row line-head ">
                                     <div class="col-md-6 mb-3">
-                                        <p class="info-text ">Please indicate the year and position in which you were appointed national senior certificate examination only</p>
+                                        <p class="body-text">Total Marking Experience for Gr. 12 NSC Final Examination</p>
+                                    </div>
+
+                                    <div class="col-md-1 mb-3">
+                                        <input asp-for="MarkingExperienceYears" type="number" class="form-control year-input  " id="years" placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-1 mb-3">
-                                        <label for="me-year">Year</label>
 
-                                        <input asp-for="MarkingExperienceYear" type="text" class="form-control smaller-input" id="datepicker1" placeholder="" value="" required>
+                                <div class="row line-head-half ">
+                                    <div class="col-md-12 mb-3">
+                                        <p class="info-text ">Please indicate the year and position in which you were appointed-national senior certificate examination only</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <label for="me-year" class="info-text">Year</label>
+                                        <input asp-for="MarkingExperienceYear" type="number" class="form-control" id="me-year" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Year is required.
                                         </div>
                                     </div>
+
                                     <div class="col-md-5 mb-3">
-                                        <label for="me-subject">Subject/Level(HL/FAL/SAL)/Paper</label>
+                                        <label for="me-subject" class="info-text">Subject/Level(HL/FAL/SAL)/Paper</label>
                                         <input asp-for="Subject" type="number" class="form-control" id="me-subject" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Subject is required.
                                         </div>
                                     </div>
+
                                     <div class="col-md-3 mb-3">
-                                        <label for="me-position">Position Held</label>
+                                        <label for="me-position" class="info-text">Position Held</label>
                                         <select asp-for="PositionHeld" class="custom-select d-block w-100" id="me-position" required>
-                                            <option value="">Choose....</option>
+                                            <option value="">Choose...</option>
                                             <option value="internal-moderator">Internal Moderator</option>
-                                            <option value="chief-marker">Chief</option>
+                                            <option value="chief-marker">Chief Marker</option>
                                             <option value="deputy-chief-marker">Deputy Chief Marker</option>
                                             <option value="senior-marker">Senior Marker</option>
                                             <option value="marker">Marker</option>
@@ -748,21 +817,31 @@
                                             Please provide a valid position.
                                         </div>
                                     </div>
+
+
+
                                 </div>
                                 Start Qualifiaction Header
-                                <div class="row line-head-half ">
+                                <div class="row line-head">
                                     <div class="col-md-9 mb-3">
                                         <div class="flex">
-                                            <p>Add Experience </p>
-                                            <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
+
                                         </div>
                                     </div>
                                 </div>
                                 End Qualifiaction Header
+
                             </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next Step" />
+
+                            <i class="fas fa-chevron-left light-blue previous"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
+
                         </fieldset>
+                        Marking Experience end
+                        Application Details start
+
                         <fieldset>
                             <div class="form-card" id="application" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <div class="sectionHaeder ">
@@ -784,7 +863,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3 radioGroup line-head ">
-                                        changed coloumn width to 9
+
                                         <label for="paper">paper</label>
                                         <div class="custom-control custom-radio ">
                                             <input asp-for="Paper" value="Paper 1" id="p1" name="paper" type="radio" class="custom-control-input" checked required>
@@ -814,7 +893,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3 ">
                                         <label for="prescribed-work">Prescribed Work</label>
-                                        <input type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                        <input asp-for="Drama" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Prescribed work is required.
                                         </div>
@@ -827,41 +906,246 @@
                                         </div>
                                     </div>
                                 </div>
-                                Start Qualifiaction Header
-                                <div class="flex">
-                                    <p>Add Prescribed work </p>
-                                    <i class="fa fa-plus icon-padding-top" aria-hidden="true"></i>
-                                </div>
-                                End Qualifiaction Header
-                            </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next Step" />
-                        </fieldset>
-                        <fieldset>
-                            <div class="form-card" id="Language" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <div class="sectionHaeder ">
+
+                                <div class="sectionHaeder line-head ">
                                     <h3 class="heading1">Language Perference</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3 radioGroup line-head-half ">
                                         <label for="language"></label>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="LanguageDescription" value="English" id="english" name="language" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="LanguageDescription" value="English" id="english" name="language" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="english">English</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="LanguageDescription" id="afrikaans" name="language" value="Afrikaans" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="LanguageDescription" value="Afrikaans" id="afrikaans" name="language" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="afrikaans">Afrikaans</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="LanguageDescription" value="Both" id="both" name="language" type="radio" class="custom-control-input" checked required>
+                                            <input asp-for="LanguageDescription" value="Both" id="both" name="language" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="both">Both</label>
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                            <input type="button" name="next" class="next action-button" value="Next Step" />
+                        </fieldset>
+
+
+                        Motivation by principal start
+                        <fieldset>
+                            <div class="form-card" id="motivation" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                                <div class="sectionHaeder ">
+                                    <h3 class="heading1">Motivation by Principal/Director</h3>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-9 mb-3 radioGroup line-head-half ">
+                                        <label for="motivation">
+                                            <strong>MOTIVATION BY PRINCIPAL/DIRECTOR. Please complete IF EDUCATOR/OFFICIAL/OFFICIAL DOES NOT HAVE THE MINIMUM QUALIFICATIONS BUT IS AN EXPERIENCED GRADE 12 EDUCATOR/FET SUBJECT FACILITATOR. Please indicate reasons for educator teaching Grade 12 learners, experience at Grade 12 levek and results if candidates. For office-based educators, please elaborate on experience as a subject facilitator and the results of candidates in the district.</strong>
+                                        </label>
+                                        <div class="line-head">
+                                            <textarea asp-for="MotivationDescription" id="motivation" name="motivation" rows="10" cols="90">
+                                                </textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <i class="fas fa-chevron-left light-blue previous"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
+                        </fieldset>
+
+
+                        Declaration Start
+                        <fieldset>
+                            <div class="form-card" id="motivation" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="sectionHaeder ">
+                                    <h3 class="heading1">Declaration</h3>
+                                </div>
+
+                                Start Decarartion
+                                <div class="row line-head">
+                                    <p class="info-text">
+                                        I declare that I have provided the details of the relatives/acquaintances who will be writing the 2020 NSC Examination in the subject applied for. I will not mark his/her script nor attempt to gaun access to
+                                        his/her script or marks
+                                    </p>
+
+                                    <div class="flex line-head-half">
+                                        <input asp-for="Declaration" type="checkbox" class="check-btn">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <i class="fas fa-chevron-left light-blue previous"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
+
+                        </fieldset>
+
+
+
+                        Declaration by applicant start
+                        <fieldset>
+                            <div class="form-card" id="declaration-by-applicant" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="sectionHaeder ">
+                                    <h3 class="heading1">Declaration by Applicant</h3>
+                                </div>
+
+                                Start Decarartion
+                                <div class="row">
+                                    <div>
+                                        Start Declaration section
+                                        <div class="Application-deail-section">
+                                            <p class="info-text line-head-half text-wrap">SCHOOL-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
+
+                                            Start Declaration Details
+                                            <div class=" row line-head-half">
+                                                <div class=" col-md-5  full-width">
+                                                    <label for="dba-year" class="body-text">Year</label>
+
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <p class="text-wrap">Pass percentage of Grade 12 Learners taught by applicant FOR SUBJECT (NOT SCHOOL AVERAGE)</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-5"><input asp-for="YearAvg" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+
+
+                                                <div class="col-md-6  full-width">
+                                                     <label for="MarkingSubject" class="info-text">2019</label> 
+                                                    <input asp-for="YearAvg" type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row line-head-half">
+                                                <div class="col-md-5"><input type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
+                                                <div class="col-md-6  full-width">
+                                                     <label for="MarkingSubject" class="info-text">2019</label> 
+                                                    <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
+                                                </div>
+
+                                            </div>
+
+
+                                            End subject
+                                            Start Declaration Details
+                                            <div class=" row line-head-half">
+                                                <div class=" col-md-5  full-width">
+
+                                                    <p class="info-text text-wrap">FET SUBJECT FACILITATORS - OFFICE-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
+
+                                                    <div class=" row full-width line-head-half">
+                                                        <div class=" col-md-5  full-width">
+                                                            <label for="dba-year" class="body-text">Year</label>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <p class="text-wrap">Pass percentage of Grade 12 candidates in the district, for subject</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row full-width ">
+                                                        <div class="col-md-5"><input type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+
+
+                                                        <div class="col-md-6  ">
+                                                             <label for="MarkingSubject" class="info-text">2019</label> 
+                                                            <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row line-head-half full-width ">
+                                                        <div class="col-md-5"><input type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
+                                                        <div class="col-md-6  full-width">
+                                                             <label for="MarkingSubject" class="info-text">2019</label> 
+                                                            <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            End subject
+                                            Start Declaration Details
+                                            <div class=" row line-head-half">
+                                                <div class=" col-md-5  full-width">
+                                                    <p class="info-text text-wrap">FET CURRICULUM SPECIALISTS</p>
+                                                    <div class=" row full-width line-head-half">
+                                                        <div class=" col-md-5  full-width">
+                                                            <label for="dba-year" class="body-text">Year</label>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <p class="text-wrap">Pass percentage of Grade 12 candidates in the province, for subject</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row full-width ">
+                                                        <div class="col-md-5">
+                                                            <input type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required>
+                                                        </div>
+
+
+                                                        <div class="col-md-6  ">
+                                                             <label for="MarkingSubject" class="info-text">2019</label> 
+                                                            <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row line-head-half full-width ">
+                                                        <div class="col-md-5">
+                                                            <input type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required>
+                                                        </div>
+                                                        <div class="col-md-6  full-width">
+                                                             <label for="MarkingSubject" class="info-text">2019</label> 
+                                                            <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>                                    <i class="fas fa-chevron-left light-blue previous"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
+
+
+                        </fieldset>
+                        <fieldset>
+
+
+
+
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
                         </fieldset>
                     </form>
                 </div>
@@ -881,6 +1165,11 @@
         minViewMode: "years"
     });
     $("#datepicker2").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+    });
+    $("#datepicker3").datepicker({
         format: "yyyy",
         viewMode: "years",
         minViewMode: "years"
