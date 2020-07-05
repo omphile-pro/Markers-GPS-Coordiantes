@@ -258,8 +258,14 @@
                                 </div>
                                 <div class="row line-head-half">
                                     <div class="col-md-6 mb-3">
-                                        <label asp-for="IdentityNo" for="identityNo" class="info-text">Identity No</label>
-                                        <input type="text" class="form-control" id="identityNo" placeholder="" value="" required>
+                                        <label for="identityNo">Identity No</label>
+                                        <input asp-for="IdentityNo" type="text" class="form-control" autocomplete="off" id="identityNo" ng-focus="showList()" ng-blur="hideList" placeholder="" value="" ng-model="identityNo" ng-change="filterIDNumbers()" required>
+                                        <div ng-show="identityNo.length > 3 && listIsVisible" ng-if="identityNo.length > 3 && listIsVisible">
+                                            <ul ng-repeat="contact in filteredContacts">
+                                                <li ng-click="itemSelected(contact)">{{contact.emailAddress}}</li>
+                                            </ul>
+                                        </div>
+
                                         <div class="invalid-feedback">
                                             Valid Identity No is required.
                                         </div>

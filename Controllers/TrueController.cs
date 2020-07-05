@@ -26,28 +26,11 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public IActionResult Create()
         {
-            //get marker data from database
             List<Marker> markers = db.Marker.ToList();
 
             ViewBag.id = JsonConvert.SerializeObject(markers);
+
             return View();
-        }
-
-        //public ActionResult getID()
-        //{
-        //    List<Marker> markers = db.Marker.ToList();
-
-        //    return Json(markers);
-
-        //}
-
-        public JsonResult getID()
-        {
-            List<Marker> markers = db.Marker.ToList();
-            // do something and return Json
-
-            return Json(db.Marker.ToList(),System.Web.Mvc.JsonRequestBehavior.AllowGet);
-
         }
         [HttpPost]
         public async Task<IActionResult> CreateAsync(TrueView model, string search)
