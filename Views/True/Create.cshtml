@@ -91,6 +91,37 @@
                                 </div>
                             </div>
 
+                            <script>
+                                $("#identityNo").blur(function () {
+                                    var idN = $("#identityNo").val();
+                                   // $.post("~/Markers-GPS-Coordiantes/Controllers/TrueController.cs", { parameter: idN}, function(data) {
+
+                                        // the data object has the return from the action
+                                      //  console.log(data);
+
+                                    //});
+
+                                    var model = @Html.Raw(@ViewBag.id); //Accessing the Json Object from ViewBag
+                                    console.log(model);
+
+                                    for (let i = 0; i < model.length; i++) { 
+                                    if (model[i].IdentityNo == idN) {
+                                        console.log(model[i].Gender);
+                                        $("#persal").val(model[i].Persal);
+                                        $("#persal").val(model[i].Persal);
+                                        $("#surname").val(model[i].Surname);
+                                        $("#initials").val(model[i].Initials);
+                                        $("#persal").val(model[i].Persal);
+                                        $("input[name=gender][value=Female]").attr('checked', true);
+                                        document.getElementById(model[i].Gender).checked = true;
+                                        document.getElementById(model[i].Race).checked = true;
+                                    }
+                                }
+
+                                    
+                                });
+                            </script>
+
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="surname">Surname</label>
@@ -131,12 +162,12 @@
                                 <div class="col-md-6 mb-3 radioGroup">
                                     <label for="gender">Gender</label>
                                     <div class="custom-control custom-radio">
-                                        <input id="male" name="Gender" type="radio" class="custom-control-input" checked required>
-                                        <label class="custom-control-label" for="male">Male</label>
+                                        <input id="Male" name="Gender" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="Male">Male</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input id="female" name="Gender" type="radio" class="custom-control-input" required>
-                                        <label class="custom-control-label" for="female">Female</label>
+                                        <input id="Female" name="Gender" type="radio" class="custom-control-input" required>
+                                        <label class="custom-control-label" for="Female">Female</label>
                                     </div>
                                 </div>
                             </div>
@@ -784,11 +815,9 @@
             </div>
         </div>
 
-
-
     </div>
 
 </main>
 
-<script src="~/css/jsFile.js"></script>
+<script src="~/js/jsFile.js"></script>
 <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
