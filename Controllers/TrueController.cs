@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace Markers_GPS_Coordiantes.Controllers
 {
@@ -25,6 +26,10 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public IActionResult Create()
         {
+            List<Marker> markers = db.Marker.ToList();
+
+            ViewBag.id = JsonConvert.SerializeObject(markers);
+
             return View();
         }
         [HttpPost]
