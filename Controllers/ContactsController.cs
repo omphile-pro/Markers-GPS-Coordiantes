@@ -25,6 +25,12 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             List<Contact> allsearch = db.Contact.Where(x => x.EmailAddress != search).Select(x => new Contact
             {
+
+                //  are these all the fields you want to autofill?
+                //no i want to autofill all the fields 
+                //  Use another model
+                // TrueView? yes
+
                ContactId= x.ContactId,
                IdentityNo= x.IdentityNo,
                TelephoneNo = x.TelephoneNo,

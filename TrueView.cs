@@ -110,7 +110,7 @@ namespace Markers_GPS_Coordiantes
 
         public DateTime QualificationYear { get; set; }
         public string QualificationDescription { get; set; }
-        public string MojarSubjects { get; set; }
+        public string MajorSubjects { get; set; }
         public string CourseLevel { get; set; }
         public string HighestQualification { get; set; }
         public string LevelOfDegree { get; set; }

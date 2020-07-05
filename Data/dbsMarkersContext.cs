@@ -75,7 +75,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.CurrentPosition)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -84,17 +83,14 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Language)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Paper)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Position)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -115,7 +111,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.Subject)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });
@@ -259,12 +254,9 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.TelephoneNo)
-                    .IsRequired()
-                    .HasMaxLength(10);
+                entity.Property(e => e.TelephoneNo).HasMaxLength(10);
 
                 entity.Property(e => e.WorkSchool)
-                    .IsRequired()
                     .HasColumnName("Work/School")
                     .HasMaxLength(10);
 
@@ -888,7 +880,7 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MojarSubjects)
+                entity.Property(e => e.MajorSubjects)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -925,32 +917,26 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.ResidentId).HasColumnName("ResidentID");
 
                 entity.Property(e => e.FullResidentialAddress)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdentityNo)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.IdentityNo).HasMaxLength(50);
 
                 entity.Property(e => e.Latitude).HasColumnType("decimal(18, 12)");
 
                 entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
 
                 entity.Property(e => e.PostalCode)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ResidentialAddress)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.IdentityNoNavigation)
                     .WithMany(p => p.Resident)
                     .HasForeignKey(d => d.IdentityNo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Resident_Marker");
             });
 

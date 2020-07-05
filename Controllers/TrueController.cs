@@ -62,56 +62,52 @@ namespace Markers_GPS_Coordiantes.Controllers
                 {
                     IdentityNo = x.IdentityNo,
                     Surname = x.Surname
+                    
                 }).ToList();
             };
 
             //Application
-            Application application = new Application();
-            application.IdentityNo = model.IdentityNo;
-            application.Subject = model.Subject;
-            application.Language = model.Language;
-            application.Paper = model.Paper;
-            application.Position = model.Position;
-            application.CurrentPosition = model.CurrentPosition;
-            application.PracticalSubject = model.PracticalSubject;
-            application.PracticalExamination = model.PracticalExamination;
+            //Application application = new Application();
+            //application.IdentityNo = model.IdentityNo;
+            //application.Subject = model.Subject;
+            //application.Language = model.Language;
+            //application.Paper = model.Paper;
 
-            application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
-            application.RecommendedBySubject = model.RecommendedBySubject;
-            application.SelectionReason = model.SelectionReason;
-            db.Application.Add(application);
-            db.SaveChanges();
+            //application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
+            //application.RecommendedBySubject = model.RecommendedBySubject;
+            //application.SelectionReason = model.SelectionReason;
+            //db.Application.Add(application);
+            //db.SaveChanges();
 
 
-            //LanguageContact
-            LanguagePreference languagePreference = new LanguagePreference();
-            languagePreference.IdentityNo = model.IdentityNo;
-            languagePreference.LanguageDescription = model.LanguageDescription;
-            db.LanguagePreference.Add(languagePreference);
-            db.SaveChanges();
+            ////LanguageContact
+            //LanguagePreference languagePreference = new LanguagePreference();
+            //languagePreference.IdentityNo = model.IdentityNo;
+            //languagePreference.LanguageDescription = model.LanguageDescription;
+            //db.LanguagePreference.Add(languagePreference);
+            ////db.SaveChanges();
 
-            //Save contact
+            ////Save contact
 
-            Contact contact = new Contact();
-            contact.IdentityNo = model.IdentityNo;
-            contact.TelephoneNo = model.TelephoneNo;
-            contact.WorkSchool = model.WorkSchool;
-            contact.HomeTelephoneNo = model.HomeTelephoneNo;
-            contact.CellphoneNo = model.CellphoneNo;
-            contact.FaxNo = model.FaxNo;
-            contact.EmailAddress = model.EmailAddress;
-            db.Contact.Add(contact);
-            db.SaveChanges();
+            //Contact contact = new Contact();
+            //contact.IdentityNo = model.IdentityNo;
+            //contact.TelephoneNo = model.TelephoneNo;
+            //contact.WorkSchool = model.WorkSchool;
+            //contact.HomeTelephoneNo = model.HomeTelephoneNo;
+            //contact.CellphoneNo = model.CellphoneNo;
+            //contact.FaxNo = model.FaxNo;
+            //contact.EmailAddress = model.EmailAddress;
+            //db.Contact.Add(contact);
+            //db.SaveChanges();
 
             //Resindent
             Resident resident = new Resident();
             resident.IdentityNo = model.IdentityNo;
             resident.ResidentialAddress = model.ResidentialAddress;
             resident.PostalCode = model.PostalCode;
-            resident.Latitude = model.Latitude;
-            resident.Longitude = model.Longitude;
-            resident.FullResidentialAddress = model.FullResidentialAddress;
-
+            //resident.Latitude = model.Latitude;
+            //resident.Longitude = model.Longitude;
+            //resident.FullResidentialAddress = model.FullResidentialAddress;
             db.Resident.Add(resident);
             db.SaveChanges();
             //currentEmployment
@@ -128,89 +124,89 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             //Qualification
 
-            Qualification qualification = new Qualification();
-            qualification.IdentityNo = model.IdentityNo;
-            qualification.QualificationYear = model.QualificationYear;
-            qualification.QualificationDescription = model.QualificationDescription;
-            qualification.MojarSubjects = model.MojarSubjects;
-            qualification.CourseLevel = model.CourseLevel;
-            qualification.LevelOfDegree = model.LevelOfDegree;
-            qualification.LevelOfDiploma = model.LevelOfDiploma;
-            db.Qualification.Add(qualification);
-            db.SaveChanges();
+            //Qualification qualification = new Qualification();
+            //qualification.IdentityNo = model.IdentityNo;
+            //qualification.QualificationYear = model.QualificationYear;
+            //qualification.QualificationDescription = model.QualificationDescription;
+            //qualification.MajorSubjects = model.MajorSubjects;
+            //qualification.CourseLevel = model.CourseLevel;
+            //qualification.LevelOfDegree = model.LevelOfDegree;
+            //qualification.LevelOfDiploma = model.LevelOfDiploma;
+            //db.Qualification.Add(qualification);
+            //db.SaveChanges();
 
-            //Teaching Experience
+            ////Teaching Experience
 
-            TeachingExperience teachingExperience = new TeachingExperience();
-            teachingExperience.IdentityNo = model.IdentityNo;
-            teachingExperience.TeachingExperience1 = model.TeachingExperience1;
-            teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
-            teachingExperience.SubjectExperience = model.SubjectExperience;
-            teachingExperience.Fetexperience = model.Fetexperience;
-            teachingExperience.Year = model.Year;
-            teachingExperience.Subject = model.Subject;
-            teachingExperience.Language = model.Language;
-            teachingExperience.Grade = model.Grade;
-            teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
-            teachingExperience.PercentageofLearners = model.PercentageofLearners;
-            db.TeachingExperience.Add(teachingExperience);
-            db.SaveChanges();
+            //TeachingExperience teachingExperience = new TeachingExperience();
+            //teachingExperience.IdentityNo = model.IdentityNo;
+            //teachingExperience.TeachingExperience1 = model.TeachingExperience1;
+            //teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
+            //teachingExperience.SubjectExperience = model.SubjectExperience;
+            //teachingExperience.Fetexperience = model.Fetexperience;
+            //teachingExperience.Year = model.Year;
+            //teachingExperience.Subject = model.Subject;
+            //teachingExperience.Language = model.Language;
+            //teachingExperience.Grade = model.Grade;
+            //teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
+            //teachingExperience.PercentageofLearners = model.PercentageofLearners;
+            //db.TeachingExperience.Add(teachingExperience);
+            //db.SaveChanges();
 
-            //Marking Experience
-            MarkingExperience markingExperience = new MarkingExperience();
-            markingExperience.IdentityNo = model.IdentityNo;
-            markingExperience.MarkingExperienceYear = model.MarkingExperienceYear;
-            markingExperience.Subject = model.Subject;
-            markingExperience.Language = model.Language;
-            markingExperience.PositionHeld = model.PositionHeld;
-            db.MarkingExperience.Add(markingExperience);
-            db.SaveChanges();
+            ////Marking Experience
+            //MarkingExperience markingExperience = new MarkingExperience();
+            //markingExperience.IdentityNo = model.IdentityNo;
+            //markingExperience.MarkingExperienceYear = model.MarkingExperienceYear;
+            //markingExperience.Subject = model.Subject;
+            //markingExperience.Language = model.Language;
+            //markingExperience.PositionHeld = model.PositionHeld;
+            //db.MarkingExperience.Add(markingExperience);
+            //db.SaveChanges();
 
-            ApplicationDetails applicationDetails = new ApplicationDetails();
+            //ApplicationDetails applicationDetails = new ApplicationDetails();
 
-            //Test
-
-
-            int max = applicationMax.AsQueryable().Max(pet => pet.AppliactionId);
-            applicationDetails.Subject = model.Subject;
-            applicationDetails.Language = model.Language;
-            applicationDetails.Paper = model.Paper;
-            applicationDetails.ApplicationId = max;
-            db.ApplicationDetails.Add(applicationDetails);
-            db.SaveChanges();
-
-            //Prescribe
-            PrescribedWorks prescribedWorks = new PrescribedWorks();
-            int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
-            prescribedWorks.ApplicationDetailsId = maxD;
-            prescribedWorks.Drama = model.Drama;
-            prescribedWorks.Novel = model.Novel;
-            prescribedWorks.ShortStories = model.ShortStories;
-            prescribedWorks.Poetry = model.Poetry;
-            db.PrescribedWorks.Add(prescribedWorks);
-            db.SaveChanges();
-            //Declaration
-
-            DeclerationByApplicant declerationByApplicant = new DeclerationByApplicant();
-            declerationByApplicant.IdentityNo = model.IdentityNo;
-            declerationByApplicant.Declaration = model.Declaration;
-            declerationByApplicant.YearAvg = model.YearAvg;
-            declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
-            declerationByApplicant.DistrictYear = model.DistrictYear;
-            declerationByApplicant.CandidatesByDistrictPercentage = model.CandidatesByDistrictPercentage;
-            declerationByApplicant.PercentageYear = model.PercentageYear;
-            declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
-            db.DeclerationByApplicant.Add(declerationByApplicant);
-            db.SaveChanges();
+            ////Test
 
 
+            //int max = applicationMax.AsQueryable().Max(pet => pet.AppliactionId);
+            //applicationDetails.Subject = model.Subject;
+            //applicationDetails.Language = model.Language;
+            //applicationDetails.Paper = model.Paper;
+            //applicationDetails.ApplicationId = max;
+            //db.ApplicationDetails.Add(applicationDetails);
+            //db.SaveChanges();
 
-            //Motivation
-            Motivation motivation = new Motivation();
-            motivation.IdentityNo = model.IdentityNo;
-            motivation.MotivationDescription = model.MotivationDescription;
-            db.Motivation.Add(motivation);
-            db.SaveChanges();
+            ////Prescribe
+            //PrescribedWorks prescribedWorks = new PrescribedWorks();
+            //int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
+            //prescribedWorks.ApplicationDetailsId = maxD;
+            //prescribedWorks.Drama = model.Drama;
+            //prescribedWorks.Novel = model.Novel;
+            //prescribedWorks.ShortStories = model.ShortStories;
+            //prescribedWorks.Poetry = model.Poetry;
+            //db.PrescribedWorks.Add(prescribedWorks);
+            //db.SaveChanges();
+            ////Declaration
+
+            //DeclerationByApplicant declerationByApplicant = new DeclerationByApplicant();
+            //declerationByApplicant.IdentityNo = model.IdentityNo;
+            //declerationByApplicant.Declaration = model.Declaration;
+            //declerationByApplicant.YearAvg = model.YearAvg;
+            //declerationByApplicant.TaughtByAverage = model.TaughtByAverage;
+            //declerationByApplicant.DistrictYear = model.DistrictYear;
+            //declerationByApplicant.CandidatesByDistrictPercentage = model.CandidatesByDistrictPercentage;
+            //declerationByApplicant.PercentageYear = model.PercentageYear;
+            //declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
+            //db.DeclerationByApplicant.Add(declerationByApplicant);
+            //db.SaveChanges();
+
+
+
+            ////Motivation
+            //Motivation motivation = new Motivation();
+            //motivation.IdentityNo = model.IdentityNo;
+            //motivation.MotivationDescription = model.MotivationDescription;
+            //db.Motivation.Add(motivation);
+            //db.SaveChanges();
 
 
             ////Applicatio
@@ -231,8 +227,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             //        con.Close();
 
-                //}
-                return View(model);
+            //}
+            return View(model);
 
 
             }
