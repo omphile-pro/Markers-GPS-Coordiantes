@@ -452,10 +452,7 @@
                                     <div class="col-md-9 mb-3 radioGroup line-head ">
 
                                         <label for="Post"></label>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input asp-for="EmploymentType" value="GDE Perm" type="radio" class="custom-control-input" id="customRadio" name="post">
-                                            <label class="custom-control-label" for="customRadio">Custom radio 1</label>
-                                        </div>
+                                      
                                         <div class="custom-control custom-radio">
                                             <input asp-for="EmploymentType" value="GDE Perm" id="gde-perm" name="post" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="gde-perm">GDE Perm</label>
@@ -899,6 +896,103 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-4 mb-3 line-head ">
+                                        <label for="ad-subject" class="info-text">Subject</label>
+                                        <input asp-for="Subject" type="text" class="form-control" id="ad-subject" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Subject is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 line-head ">
+                                        <label for="ad-level" class="info-text">Level(HL/FAL/SAL)</label>
+                                        <input asp-for="Language" type="text" class="form-control" id="ad-level" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid subject level is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3 radioGroup line-head ">
+
+                                        <label for="paper" class="info-text">paper</label>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 1" id="p1" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p1">I</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 2" id="p2" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p2">II</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 3" id="p3" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p3">III</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 mb-3 line-head ">
+                                        <label for="ad-subject" class="info-text">Subject</label>
+                                        <input asp-for="Subject" type="text" class="form-control" id="ad-subject" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Subject is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 line-head ">
+                                        <label for="ad-level" class="info-text">Level(HL/FAL/SAL)</label>
+                                        <input asp-for="Language" type="text" class="form-control" id="ad-level" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid subject level is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3 radioGroup line-head ">
+
+                                        <label for="paper" class="info-text">paper</label>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 1" id="p1" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p1">I</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 2" id="p2" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p2">II</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 3" id="p3" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p3">III</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3 line-head ">
+                                        <label for="ad-subject" class="info-text">Subject</label>
+                                        <input asp-for="Subject" type="text" class="form-control" id="ad-subject" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Subject is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 line-head ">
+                                        <label for="ad-level" class="info-text">Level(HL/FAL/SAL)</label>
+                                        <input asp-for="Language" type="text" class="form-control" id="ad-level" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid subject level is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3 radioGroup line-head ">
+
+                                        <label for="paper" class="info-text">paper</label>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 1" id="p1" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p1">I</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 2" id="p2" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p2">II</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ">
+                                            <input asp-for="Paper" value="Paper 3" id="p3" name="paper" type="radio" class="custom-control-input" checked required>
+                                            <label class="custom-control-label" for="p3">III</label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-9 mb-3 radioGroup line-head ">
@@ -908,7 +1002,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3 ">
                                         <label for="prescribed-work" class="info-text">Prescribed Work</label>
-                                        <input asp-for="Drama" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                        <input asp-for="Subject" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
                                         <div class="invalid-feedback">
                                             Valid Prescribed work is required.
                                         </div>
@@ -920,8 +1014,38 @@
                                             Valid prescribed work type is required.
                                         </div>
                                     </div>
-                                </div>
 
+                                    <div class="col-md-6 mb-3 ">
+                                        <label for="prescribed-work" class="info-text">Drama</label>
+                                        <input asp-for="Drama" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Prescribed work is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3 ">
+                                        <label for="prescribed-work" class="info-text">Novel</label>
+                                        <input asp-for="Novel" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Prescribed work is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3 ">
+                                        <label for="prescribed-work" class="info-text">Poetry</label>
+                                        <input asp-for="Poetry" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Prescribed work is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3 ">
+                                        <label for="prescribed-work" class="info-text">Short Stories</label>
+                                        <input asp-for="ShortStories" type="text" class="form-control" id="prescribed-work" placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid Prescribed work is required.
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="sectionHaeder line-head ">
                                     <h3 class="heading1">Language Perference</h3>
                                 </div>
@@ -1056,7 +1180,7 @@
                                 </div>
 
 
-                            <div class=" row line-head-half">
+                                <div class=" row line-head-half">
 
                                     <p class="info-text text-wrap">FET SUBJECT FACILITATORS - OFFICE-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
 
@@ -1091,9 +1215,9 @@
 
                                     </div>
 
-                                <div class=" row line-head-half">
-                                    <div class=" col-md-8  full-width">
-                                        <p class="info-text text-wrap">FET CURRICULUM SPECIALISTS</p>
+                                    <div class=" row line-head-half">
+                                        <div class=" col-md-8  full-width">
+                                            <p class="info-text text-wrap">FET CURRICULUM SPECIALISTS</p>
 
                                             <div class=" col-md-5  full-width">
                                                 <label for="dba-year" class="body-text">Year</label>
@@ -1104,29 +1228,29 @@
                                                 <p class="text-wrap">Pass percentage of Grade 12 candidates in the province, for subject</p>
                                             </div>
 
-                                        <div class="row full-width ">
-                                            <div class="col-md-5"><input asp-for="PercentageYear" type="text" readonly class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+                                            <div class="row full-width ">
+                                                <div class="col-md-5"><input asp-for="PercentageYear" type="text" readonly class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
 
 
-                                            <div class="col-md-6  ">
-                                                @*<label for="MarkingSubject" class="info-text">2019</label>*@
-                                                <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                                <div class="col-md-6  ">
+                                                    @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                                    <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                                </div>
+
                                             </div>
 
-                                        </div>
+                                            <div class="row line-head-half full-width ">
+                                                <div class="col-md-5"><input asp-for="ProvincePercentage" type="text" readonly class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
+                                                <div class="col-md-6  full-width">
+                                                    <label for="MarkingSubject" class="info-text">2019</label>
+                                                    <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
+                                                </div>
 
-                                        <div class="row line-head-half full-width ">
-                                            <div class="col-md-5"><input asp-for="ProvincePercentage" type="text" readonly class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
-                                            <div class="col-md-6  full-width">
-                                                <label for="MarkingSubject" class="info-text">2019</label>
-                                                <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
                                             </div>
-
                                         </div>
+
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -1157,36 +1281,35 @@
                         <p class="line-head-half">Recommended for selection?</p>
 
                         <div class="line-head">
-                            <textarea asp-for="SelectionReason"   id="recommendation" name="recommendation" cols="85" rows="10"></textarea>
+                            <textarea asp-for="SelectionReason" id="recommendation" name="recommendation" cols="85" rows="10"></textarea>
                         </div>
 
                     </div>
                     <div class="col-md-4">
                         <div class="radioGroup">
                             <div class="custom-control custom-radio">
-                                <input  asp-for="CheckedBySubjectAdvisor"  value="Yes" id="signed" name="advisor-signed" type="radio" class="custom-control-input" required>
+                                <input asp-for="CheckedBySubjectAdvisor" value="Yes" id="signed" name="advisor-signed" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="signed">Yes</label>
                             </div>
                             <div class="custom-control custom-radio radio-top">
-                                <input  asp-for="CheckedBySubjectAdvisor"  value="No" id="not-signed" name="advisor-signed" type="radio" class="custom-control-input" required>
+                                <input asp-for="CheckedBySubjectAdvisor" value="No" id="not-signed" name="advisor-signed" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="not-signed">No</label>
                             </div>
                         </div>
                         <div class="radioGroup line-head-half">
                             <div class="custom-control custom-radio">
-                                <input asp-for="RecommendedBySubject"  value="Yes" id="recommended" name="recommendation" type="radio" class="custom-control-input" required>
+                                <input asp-for="RecommendedBySubject" value="Yes" id="recommended" name="recommendation" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="recommended">Yes</label>
                             </div>
                             <div class="custom-control custom-radio radio-top">
-                                <input asp-for="RecommendedBySubject"  value="No" id="not-recommended" name="recommendation" type="radio" class="custom-control-input" required>
+                                <input asp-for="RecommendedBySubject" value="No" id="not-recommended" name="recommendation" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="not-recommended">No</label>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
+           
             <i class="fas fa-chevron-left light-blue previous"></i>
             <input type="button" name="previous" class="previous action-button-previous" value="Back" />
             <input type="button" name="next" class="next action-button centre" value="Submit" />

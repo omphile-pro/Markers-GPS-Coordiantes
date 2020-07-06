@@ -205,9 +205,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
             prescribedWorks.ApplicationDetailsId = maxD;
             prescribedWorks.Drama = model.Drama;
-            //prescribedWorks.Novel = model.Novel;
-            //prescribedWorks.ShortStories = model.ShortStories;
-            //prescribedWorks.Poetry = model.Poetry;
+            prescribedWorks.Novel = model.Novel;
+            prescribedWorks.ShortStories = model.ShortStories;
+            prescribedWorks.Poetry = model.Poetry;
             db.PrescribedWorks.Add(prescribedWorks);
             db.SaveChanges();
 
