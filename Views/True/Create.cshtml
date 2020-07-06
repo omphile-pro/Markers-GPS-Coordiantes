@@ -1214,6 +1214,31 @@
     </main>
 </section>
 <script>
+                                $("#identityNo").blur(function () {
+                                    var idN = $("#identityNo").val();
+                    
+
+                                    var model = @Html.Raw(@ViewBag.id); //Accessing the Json Object from ViewBag
+                                    console.log(model);
+
+                                    for (let i = 0; i < model.length; i++) {
+                                    if (model[i].IdentityNo == idN) {
+                                        console.log(model[i].Gender);
+                                        $("#persal").val(model[i].Persal);
+                                        $("#persal").val(model[i].Persal);
+                                        $("#surname").val(model[i].Surname);
+                                        $("#initials").val(model[i].Initials);
+                                        $("#persal").val(model[i].Persal);
+                                        $("input[name=gender][value=Female]").attr('checked', true);
+                                        document.getElementById(model[i].Gender).checked = true;
+                                        document.getElementById(model[i].Race).checked = true;
+                                    }
+                                }
+
+
+                                });
+
+
     $("#datepicker").datepicker({
         format: "yyyy",
         viewMode: "years",
