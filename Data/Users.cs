@@ -8,6 +8,7 @@ namespace Markers_GPS_Coordiantes.Data
         public Users()
         {
             CenterManger = new HashSet<CenterManger>();
+            Marker = new HashSet<Marker>();
             MarkersGpscoordinates = new HashSet<MarkersGpscoordinates>();
         }
 
@@ -36,6 +37,7 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual Gender Gender { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<CenterManger> CenterManger { get; set; }
+        public virtual ICollection<Marker> Marker { get; set; }
         public virtual ICollection<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             List<Marker> list = db.Marker.ToList();
             var applicationMax = db.Application;
             var applicationDetailsMax = db.ApplicationDetails;
-
+            var UserMax = db.Users;
             ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
 
             var markerDatabase = db.Marker;
@@ -48,6 +48,8 @@ namespace Markers_GPS_Coordiantes.Controllers
 
             if (idNumber.Count() <= 0)
             {
+
+                int maxU = UserMax.AsQueryable().Max(detail => detail.UsersId);
                 Marker marker = new Marker();
                 marker.IdentityNo = model.IdentityNo;
                 marker.Surname = model.Surname;
@@ -178,6 +180,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
             int max = applicationMax.AsQueryable().Max(pet => pet.AppliactionId);
+
             applicationDetails.Subject = model.Subject;
             applicationDetails.Language = model.Language;
             applicationDetails.Paper = model.Paper;

@@ -452,10 +452,7 @@
                                     <div class="col-md-9 mb-3 radioGroup line-head ">
 
                                         <label for="Post"></label>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input asp-for="EmploymentType" value="GDE Perm" type="radio" class="custom-control-input" id="customRadio" name="post">
-                                            <label class="custom-control-label" for="customRadio">Custom radio 1</label>
-                                        </div>
+                                        
                                         <div class="custom-control custom-radio">
                                             <input asp-for="EmploymentType" value="GDE Perm" id="gde-perm" name="post" type="radio" class="custom-control-input" required>
                                             <label class="custom-control-label" for="gde-perm">GDE Perm</label>
@@ -966,8 +963,8 @@
                             <strong>MOTIVATION BY PRINCIPAL/DIRECTOR. Please complete IF EDUCATOR/OFFICIAL/OFFICIAL DOES NOT HAVE THE MINIMUM QUALIFICATIONS BUT IS AN EXPERIENCED GRADE 12 EDUCATOR/FET SUBJECT FACILITATOR. Please indicate reasons for educator teaching Grade 12 learners, experience at Grade 12 levek and results if candidates. For office-based educators, please elaborate on experience as a subject facilitator and the results of candidates in the district.</strong>
                         </label>
                         <div class="line-head">
-                            <input asp-for="MotivationDescription" id="motivation" name="motivation" rows="10" cols="90">
-                              
+                            <textarea asp-for="MotivationDescription" id="motivation" name="motivation" rows="10" cols="90">
+                                </textarea>
                         </div>
                     </div>
 
@@ -982,14 +979,14 @@
 
         </fieldset>
 
-        Declaration Start
+       
         <fieldset>
             <div class="form-card" id="motivation" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <div class="sectionHaeder ">
                     <h3 class="heading1">Declaration</h3>
                 </div>
 
-                Start Decarartion
+               
                 <div class="row line-head">
                     <p class="info-text">
                         I declare that I have provided the details of the relatives/acquaintances who will be writing the 2020 NSC Examination in the subject applied for. I will not mark his/her script nor attempt to gaun access to
