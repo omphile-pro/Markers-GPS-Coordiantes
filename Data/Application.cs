@@ -22,6 +22,7 @@ namespace Markers_GPS_Coordiantes.Data
         public string CheckedBySubjectAdvisor { get; set; }
         public string RecommendedBySubject { get; set; }
         public string SelectionReason { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public virtual ICollection<ApplicationDetails> ApplicationDetails { get; set; }
     }

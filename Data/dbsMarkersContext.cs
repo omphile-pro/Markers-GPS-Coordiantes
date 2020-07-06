@@ -74,6 +74,10 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.Property(e => e.CurrentPosition)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -470,7 +474,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(50);
 
                 entity.Property(e => e.LanguageDescription)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -582,6 +585,14 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Marker)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Marker_Users");
             });
 
             modelBuilder.Entity<MarkerExam>(entity =>
@@ -779,7 +790,6 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.MarkingExperienceYear).HasColumnType("date");
 
                 entity.Property(e => e.MarkingExperienceYears)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
