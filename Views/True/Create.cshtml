@@ -44,7 +44,7 @@
                         <i class='far fa-circle'></i>
                         <span>Application</span>
                     </a>
-                    <a class="active" id="PersonalList">
+                    <a class="" id="PersonalList">
                         <i class='far fa-circle'></i>
                         <span>Personal Infomation</span>
                     </a>
@@ -242,7 +242,7 @@
                             </div>
                             <i class="fas fa-chevron-left light-blue previous extra-opaque"></i>
                             <input type="button" name="previous" class="previous action-button-previous extra-opaque" value="Back" />
-                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <input type="button" name="next" class="next action-button centre" value="Next Page" />
                             <i class="fas fa-chevron-right light-blue next"></i>
 
 
@@ -411,7 +411,7 @@
 
                             <i class="fas fa-chevron-left light-blue previous"></i>
                             <input type="button" name="previous" class="previous action-button-previous" value="Back" />
-                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <input type="button" name="next" class="next action-button centre" value="Next Page" />
                             <i class="fas fa-chevron-right light-blue next"></i>
 
 
@@ -519,8 +519,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <i class="fas fa-chevron-left light-blue previous extra-opaque"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
                             <input type="button" name="next" class="next action-button" value="Next Step" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
                         </fieldset>
 
 
@@ -532,7 +534,6 @@
 
                                 <div class="row">
                                     <div>
-
                                         <div class="qualification-form">
                                             <p class="info-text line-head-half">Degrees: (Should be Dynamic)</p>
                                             <div class="flex">
@@ -590,11 +591,6 @@
                                                     <label for="MarkingSubject" class="info-text">Subject:</label>
                                                     <input asp-for="HighestQualification" type="text" class="form-control subject-input" id="MarkingSubject" placeholder="" value="" required>
                                                 </div>
-
-
-
-
-
 
 
                                                 <div class="line-head">
@@ -660,9 +656,10 @@
                                 </div>
                             </div>
 
-
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <i class="fas fa-chevron-left light-blue previous extra-opaque"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
                             <input type="button" name="next" class="next action-button" value="Next Step" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
                         </fieldset>
 
                         <fieldset>
@@ -779,8 +776,10 @@
 
 
                             </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <i class="fas fa-chevron-left light-blue previous extra-opaque"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
                             <input type="button" name="next" class="next action-button" value="Next Step" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
                         </fieldset>
 
                         <fieldset>
@@ -947,8 +946,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <i class="fas fa-chevron-left light-blue previous extra-opaque"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
                             <input type="button" name="next" class="next action-button" value="Next Step" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
                         </fieldset>
 
                         
@@ -966,7 +967,9 @@
                             <strong>MOTIVATION BY PRINCIPAL/DIRECTOR. Please complete IF EDUCATOR/OFFICIAL/OFFICIAL DOES NOT HAVE THE MINIMUM QUALIFICATIONS BUT IS AN EXPERIENCED GRADE 12 EDUCATOR/FET SUBJECT FACILITATOR. Please indicate reasons for educator teaching Grade 12 learners, experience at Grade 12 levek and results if candidates. For office-based educators, please elaborate on experience as a subject facilitator and the results of candidates in the district.</strong>
                         </label>
                         <div class="line-head">
-                            <input asp-for="MotivationDescription" id="motivation" name="motivation" rows="10" cols="90">
+                            <textarea asp-for="MotivationDescription" id="motivation" name="motivation" rows="10" cols="90">
+
+                            </textarea>
                               
                         </div>
                     </div>
@@ -977,12 +980,11 @@
 
             <i class="fas fa-chevron-left light-blue previous"></i>
             <input type="button" name="previous" class="previous action-button-previous" value="Back" />
-            <input type="button" name="next" class="next action-button centre" value="Continue" />
+            <input type="button" name="next" class="next action-button centre" value="Next Page" />
             <i class="fas fa-chevron-right light-blue next"></i>
 
         </fieldset>
 
-        Declaration Start
         <fieldset>
             <div class="form-card" id="motivation" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <div class="sectionHaeder ">
@@ -1006,7 +1008,7 @@
 
             <i class="fas fa-chevron-left light-blue previous"></i>
             <input type="button" name="previous" class="previous action-button-previous" value="Back" />
-            <input type="button" name="next" class="next action-button centre" value="Continue" />
+            <input type="button" name="next" class="next action-button centre" value="Next Page" />
             <i class="fas fa-chevron-right light-blue next"></i>
 
         </fieldset>
@@ -1019,84 +1021,46 @@
 
                
                 <div class="row">
-
-                    <div class=" row line-head-half">
-                        <div class=" col-md-8  full-width">
-                            <p class="info-text line-head-half text-wrap">SCHOOL-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
-
-                           
-                            <div class=" row line-head-half">
-                                <div class=" col-md-5  full-width">
-                                    <label for="dba-year" class="body-text">Year</label>
-
-                                </div>
-
-                                <div class="col-md-6">
-                                    <p class="text-wrap">Pass percentage of Grade 12 Learners taught by applicant FOR SUBJECT (NOT SCHOOL AVERAGE)</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-5"><input asp-for="YearAvg"  type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+                    <div>
+                        <div class="Application-deail-section">
+                                <p class="info-text line-head-half text-wrap">SCHOOL-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
 
 
-                                <div class="col-md-6  full-width">
-                                     <label for="MarkingSubject" class="info-text">2019</label>
-                                    <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
-                                </div>
-
-                            </div>
-
-                            <div class="row line-head-half">
-                                <div class="col-md-5"><input asp-for="TaughtByAverage" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
-                                <div class="col-md-6  full-width">
-                                     <label for="MarkingSubject" class="info-text">2019</label>
-                                    <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
-                                </div>
-
-                            </div>
-                        </div>
-
-           
-                        <div class=" row line-head-half">
-                            <div class=" col-md-8  full-width">
-                                <p class="info-text text-wrap">FET SUBJECT FACILITATORS - OFFICE-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
-
-                                <div class=" row full-width line-head-half">
+                                <div class=" row line-head-half">
                                     <div class=" col-md-5  full-width">
                                         <label for="dba-year" class="body-text">Year</label>
 
                                     </div>
 
                                     <div class="col-md-6">
-                                        <p class="text-wrap">Pass percentage of Grade 12 candidates in the district, for subject</p>
+                                        <p class="text-wrap">Pass percentage of Grade 12 Learners taught by applicant FOR SUBJECT (NOT SCHOOL AVERAGE)</p>
                                     </div>
                                 </div>
 
-                                <div class="row full-width ">
-                                    <div class="col-md-5"><input  asp-for="DistrictYear" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+                                <div class="row">
+                                    <div class="col-md-5"><input asp-for="YearAvg" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
 
 
-                                    <div class="col-md-6  ">
-                                         <label for="MarkingSubject" class="info-text">2019</label>
-                                        <input type="text"  asp-for="CandidatesByDistrictPercentage" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
-                                    </div>
-
-                                </div>
-
-                                <div class="row line-head-half full-width ">
-                                    <div class="col-md-5"><input asp-for="PercentageYear" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
                                     <div class="col-md-6  full-width">
-                                         <label for="MarkingSubject" class="info-text">2019</label>
+                                        <label for="MarkingSubject" class="info-text">2019</label>
+                                        <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                    </div>
+
+                                </div>
+
+                                <div class="row line-head-half">
+                                    <div class="col-md-5"><input asp-for="TaughtByAverage" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
+                                    <div class="col-md-6  full-width">
+                                        <label for="MarkingSubject" class="info-text">2019</label>
                                         <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
                                     </div>
 
                                 </div>
-                            </div>
-                       
+
+
                             <div class=" row line-head-half">
-                                <div class=" col-md-8  full-width">
-                                    <p class="info-text text-wrap">FET CURRICULUM SPECIALISTS</p>
+
+                                    <p class="info-text text-wrap">FET SUBJECT FACILITATORS - OFFICE-BASED EDUCATORS - DO NOT COMPLETE IF YOU DID NOT TEACH THE SUBJECT APPLIED FOR AT GRADE 12 LEVEL IN THE YEAR STIPULATED</p>
 
                                     <div class=" row full-width line-head-half">
                                         <div class=" col-md-5  full-width">
@@ -1105,40 +1069,75 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <p class="text-wrap">Pass percentage of Grade 12 candidates in the province, for subject</p>
+                                            <p class="text-wrap">Pass percentage of Grade 12 candidates in the district, for subject</p>
                                         </div>
                                     </div>
 
                                     <div class="row full-width ">
-                                        <div class="col-md-5"><input asp-for="PercentageYear" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+                                        <div class="col-md-5"><input asp-for="DistrictYear" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
 
 
                                         <div class="col-md-6  ">
-                                             <label for="MarkingSubject" class="info-text">2019</label>
-                                            <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                            @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                            <input type="text" asp-for="CandidatesByDistrictPercentage" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
                                         </div>
 
                                     </div>
 
                                     <div class="row line-head-half full-width ">
-                                        <div class="col-md-5"><input asp-for="ProvincePercentage" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
+                                        <div class="col-md-5"><input asp-for="PercentageYear" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
                                         <div class="col-md-6  full-width">
-                                             <label for="MarkingSubject" class="info-text">2019</label>
+                                            @*<label for="MarkingSubject" class="info-text">2019</label>*@
                                             <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
                                         </div>
 
                                     </div>
-                                </div>
-                           
-                            </div>
 
+                                <div class=" row line-head-half">
+                                    <div class=" col-md-8  full-width">
+                                        <p class="info-text text-wrap">FET CURRICULUM SPECIALISTS</p>
+
+                                        <div class=" row full-width line-head-half">
+                                            <div class=" col-md-5  full-width">
+                                                <label for="dba-year" class="body-text">Year</label>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <p class="text-wrap">Pass percentage of Grade 12 candidates in the province, for subject</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row full-width ">
+                                            <div class="col-md-5"><input asp-for="PercentageYear" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2019" required></div>
+
+
+                                            <div class="col-md-6  ">
+                                                @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                                <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row line-head-half full-width ">
+                                            <div class="col-md-5"><input asp-for="ProvincePercentage" type="text" class="form-control longer-subject-input" id="dba-year" placeholder="" value="2018" required></div>
+                                            <div class="col-md-6  full-width">
+                                                <label for="MarkingSubject" class="info-text">2019</label>
+                                                <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <i class="fas fa-chevron-left light-blue previous"></i>
                 <input type="button" name="previous" class="previous action-button-previous" value="Back" />
-                <input type="button" name="next" class="next action-button centre" value="Continue" />
+                <input type="button" name="next" class="next action-button centre" value="Next Page" />
                 <i class="fas fa-chevron-right light-blue next"></i>
         </fieldset>
 
@@ -1200,14 +1199,14 @@
         </fieldset>
 
 
-                        <fieldset>
+        <fieldset>
+
+            <i class="fas fa-chevron-left light-blue previous"></i>
+            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
 
 
-
-
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
-                        </fieldset>
+        </fieldset>
                     </form>
                 </div>
             </div>
@@ -1237,7 +1236,7 @@
     });
 </script>
 <script src="~/js/jsFile.js"></script>
-<script src="js/yearpicker.js"></script>
+<script src="~/js/yearpicker.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
 <script src="~/Angular/TrueView.js"></script>

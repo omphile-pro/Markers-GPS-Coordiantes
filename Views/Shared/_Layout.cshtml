@@ -50,7 +50,7 @@
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="Admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
     <link rel="stylesheet" href="Admin/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
@@ -83,19 +83,19 @@
             <!-- Side Navigation -->
             <nav class="sidenav">
                 <!-- Side Navigation Logo -->
-                <a class="nav-logo" href="index.html"><img src="./images/logo.svg"></a>
+                <a class="nav-logo" href="index.html"><img src="~/images/logo.svg"></a>
 
                 <!-- Side Navigation List -->
                 <div class="nav-list">
-                    <a class="nav-list-item active"  asp-controller="Admin" asp-action="Index"><img class="icon active" src="./images/dash-icon.svg">Dashboard</a>
+                    <a class="nav-list-item active"  asp-controller="Admin" asp-action="Index"><img class="icon active" src="~/images/dash-icon.svg">Dashboard</a>
 
                     <div class="drop-down-parent-container">
                         @if (roleID == 4)
                         {
                             <button class="dropdown-btn">
-                                <img class="icon" src="./images/admIcon.svg">
+                                <img class="icon" src="~/images/admIcon.svg">
                                 <a class="nav-list-item">Data Capture</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
+                                <img class="chevron" src="~/images/chevron-down.svg">
                             </button>
 
                             <div class="dropdown-container">
@@ -108,9 +108,9 @@
                         @if (roleID == 3)
                         {
                             <button class="dropdown-btn">
-                                <img class="icon" src="./images/admIcon.svg">
+                                <img class="icon" src="~/images/admIcon.svg">
                                 <a class="nav-list-item">Administration</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
+                                <img class="chevron" src="~/images/chevron-down.svg">
                             </button>
 
                             <div class="dropdown-container">
@@ -121,9 +121,9 @@
                                 <a class="nav-list-item" asp-controller="MarkerApplicationReport" asp-action="Index"><strong>Marker Application Report</strong></a>
                             </div>
                             <button class="dropdown-btn">
-                                <img class="icon" src="./images/Reports.svg">
+                                <img class="icon" src="~/images/Reports.svg">
                                 <a class="nav-list-item" href="#">Reports</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
+                                <img class="chevron" src="~/images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
 
@@ -139,7 +139,7 @@
                         {
                             <button class="dropdown-btn">
                                 <a class="nav-list-item">Administration</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
+                                <img class="chevron" src="~/images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
                                 <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Account</strong></a>
@@ -150,9 +150,9 @@
 
                             </div>
                             <button class="dropdown-btn">
-                                <img class="icon" src="./images/Reports.svg">
+                                <img class="icon" src="~/images/Reports.svg">
                                 <a class="nav-list-item">Reports</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
+                                <img class="chevron" src="~/images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
                                 <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
@@ -166,7 +166,7 @@
                             <button class="dropdown-btn">
 
                                 <a class="nav-list-item fa fa-folder">Reports</a>
-                                <img class="chevron" src="./images/chevron-down.svg">
+                                <img class="chevron" src="~/images/chevron-down.svg">
                             </button>
                             <div class="dropdown-container">
 
@@ -178,9 +178,9 @@
 
                         }
 
-                        <a class="nav-list-item" href="#"><img class="icon" src="./images/timeIcon.svg">History</a>
+                        <a class="nav-list-item" href="#"><img class="icon" src="~/images/timeIcon.svg">History</a>
                     </div>
-                    <a class="nav-list-item set-margin-top" href="#"><img class="icon" src="./images/setIcon.svg">Settings</a>
+                    <a class="nav-list-item set-margin-top" href="#"><img class="icon" src="~/images/setIcon.svg">Settings</a>
                 </div>
 
 
