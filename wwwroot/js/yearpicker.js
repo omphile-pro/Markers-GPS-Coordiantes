@@ -538,7 +538,6 @@ if ($.fn) {
   };
   $.fn.yearpicker.constractor = Yearpicker;
 }
-<script>
     $(document).ready(function() {
         $(".yearpicker").yearpicker({
             year: 2017,
@@ -546,4 +545,3 @@ if ($.fn) {
             endYear: 2030
         });
   });
-    </script>
