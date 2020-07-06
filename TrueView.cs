@@ -108,10 +108,10 @@ namespace Markers_GPS_Coordiantes
 
         //Qualification
 
-        public DateTime QualificationYear { get; set; }
+        public string QualificationYear { get; set; }
         public string QualificationDescription { get; set; }
         public string MajorSubjects { get; set; }
-        public string CourseLevel { get; set; }
+        public string Institution { get; set; }
         public string HighestQualification { get; set; }
         public string LevelOfDegree { get; set; }
         public string LevelOfDiploma { get; set; }
@@ -122,7 +122,7 @@ namespace Markers_GPS_Coordiantes
         public string ExperienceInNcsCaps { get; set; }
         public string SubjectExperience { get; set; }
         public string Fetexperience { get; set; }
-        public DateTime Year { get; set; }
+        public string Year { get; set; }
         
         public string Grade { get; set; }
         public string NameofschooIInstitution { get; set; }

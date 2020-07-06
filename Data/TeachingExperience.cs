@@ -11,7 +11,7 @@ namespace Markers_GPS_Coordiantes.Data
         public string ExperienceInNcsCaps { get; set; }
         public string SubjectExperience { get; set; }
         public string Fetexperience { get; set; }
-        public DateTime Year { get; set; }
+        public string Year { get; set; }
         public string Subject { get; set; }
         public string Language { get; set; }
         public string Grade { get; set; }

@@ -77,7 +77,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             application.Subject = model.Subject;
             application.Language = model.Language;
             application.Paper = model.Paper;
-
+            application.Position = model.Position;
+            application.PracticalExamination = model.PracticalExamination;
+            application.PracticalExamination = model.PracticalSubject;
+            application.CurrentPosition = model.CurrentPosition;
             application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
             application.RecommendedBySubject = model.RecommendedBySubject;
             application.SelectionReason = model.SelectionReason;
@@ -90,9 +93,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             languagePreference.IdentityNo = model.IdentityNo;
             languagePreference.LanguageDescription = model.LanguageDescription;
             db.LanguagePreference.Add(languagePreference);
-            //db.SaveChanges();
+            db.SaveChanges();
 
-            ////Save contact
+            //////Save contact
 
             Contact contact = new Contact();
             contact.IdentityNo = model.IdentityNo;
@@ -115,7 +118,8 @@ namespace Markers_GPS_Coordiantes.Controllers
             resident.FullResidentialAddress = model.FullResidentialAddress;
             db.Resident.Add(resident);
             db.SaveChanges();
-            //currentEmployment
+
+            ////currentEmployment
             CurrentEmployment currentEmployment = new CurrentEmployment();
             currentEmployment.IdentityNo = model.IdentityNo;
             currentEmployment.NameOftheSchoolOffice = model.NameOftheSchoolOffice;
@@ -123,24 +127,25 @@ namespace Markers_GPS_Coordiantes.Controllers
             currentEmployment.District = model.District;
             currentEmployment.CurrentPosition = model.CurrentPosition;
             currentEmployment.EmploymentType = model.EmploymentType;
-            currentEmployment.Retiring = model.Retiring;
+            //currentEmployment.Retiring = model.Retiring;
             db.CurrentEmployment.Add(currentEmployment);
             db.SaveChanges();
 
-            //Qualification
+            ////Qualification
 
             Qualification qualification = new Qualification();
             qualification.IdentityNo = model.IdentityNo;
             qualification.QualificationYear = model.QualificationYear;
             qualification.QualificationDescription = model.QualificationDescription;
             qualification.MajorSubjects = model.MajorSubjects;
-            qualification.CourseLevel = model.CourseLevel;
+            qualification.Institution = model.Institution;
+            qualification.HighestQualification = model.HighestQualification;
             qualification.LevelOfDegree = model.LevelOfDegree;
             qualification.LevelOfDiploma = model.LevelOfDiploma;
             db.Qualification.Add(qualification);
             db.SaveChanges();
 
-            ////Teaching Experience
+            //////Teaching Experience
 
             TeachingExperience teachingExperience = new TeachingExperience();
             teachingExperience.IdentityNo = model.IdentityNo;
@@ -148,9 +153,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
             teachingExperience.SubjectExperience = model.SubjectExperience;
             teachingExperience.Fetexperience = model.Fetexperience;
-            teachingExperience.Year = model.Year;
+            //teachingExperience.Year = model.Year;
             teachingExperience.Subject = model.Subject;
-            teachingExperience.Language = model.Language;
+            //teachingExperience.Language = model.Language;
             teachingExperience.Grade = model.Grade;
             teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
             teachingExperience.PercentageofLearners = model.PercentageofLearners;
@@ -162,7 +167,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             markingExperience.IdentityNo = model.IdentityNo;
             markingExperience.MarkingExperienceYear = model.MarkingExperienceYear;
             markingExperience.Subject = model.Subject;
-            markingExperience.Language = model.Language;
+            //markingExperience.Language = model.Language;
             markingExperience.PositionHeld = model.PositionHeld;
             db.MarkingExperience.Add(markingExperience);
             db.SaveChanges();
@@ -180,16 +185,17 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.ApplicationDetails.Add(applicationDetails);
             db.SaveChanges();
 
-            ////Prescribe
+            //////Prescribe
             PrescribedWorks prescribedWorks = new PrescribedWorks();
             int maxD = applicationDetailsMax.AsQueryable().Max(detail => detail.ApplicationDetailsId);
             prescribedWorks.ApplicationDetailsId = maxD;
             prescribedWorks.Drama = model.Drama;
-            prescribedWorks.Novel = model.Novel;
-            prescribedWorks.ShortStories = model.ShortStories;
-            prescribedWorks.Poetry = model.Poetry;
+            //prescribedWorks.Novel = model.Novel;
+            //prescribedWorks.ShortStories = model.ShortStories;
+            //prescribedWorks.Poetry = model.Poetry;
             db.PrescribedWorks.Add(prescribedWorks);
-            //db.SaveChanges();
+            db.SaveChanges();
+
             ////Declaration
 
             DeclerationByApplicant declerationByApplicant = new DeclerationByApplicant();
@@ -202,7 +208,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             declerationByApplicant.PercentageYear = model.PercentageYear;
             declerationByApplicant.ProvincePercentage = model.ProvincePercentage;
             db.DeclerationByApplicant.Add(declerationByApplicant);
-            //db.SaveChanges();
+            db.SaveChanges();
 
 
 
@@ -211,10 +217,10 @@ namespace Markers_GPS_Coordiantes.Controllers
             motivation.IdentityNo = model.IdentityNo;
             motivation.MotivationDescription = model.MotivationDescription;
             db.Motivation.Add(motivation);
-            //db.SaveChanges();
+            db.SaveChanges();
 
 
-       
+
             return View(model);
 
 
