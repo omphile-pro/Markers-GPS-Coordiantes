@@ -20,6 +20,15 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class TrueController : Controller
     {
 
+        private readonly IHttpContextAccessor _sessionAccessor;
+        int roleID = 0;
+        public int UsersID = 0;
+
+        public TrueController(IHttpContextAccessor sessionAccessor)
+        {
+            _sessionAccessor = sessionAccessor;
+        }
+
 
         dbsMarkersContext db = new dbsMarkersContext();
         
@@ -38,6 +47,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             List<Marker> list = db.Marker.ToList();
             var applicationMax = db.Application;
             var applicationDetailsMax = db.ApplicationDetails;
+
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+
             var UserMax = db.Users;
             ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
 
@@ -49,7 +61,6 @@ namespace Markers_GPS_Coordiantes.Controllers
             if (idNumber.Count() <= 0)
             {
 
-                int maxU = UserMax.AsQueryable().Max(detail => detail.UsersId);
                 Marker marker = new Marker();
                 marker.IdentityNo = model.IdentityNo;
                 marker.Surname = model.Surname;
@@ -60,6 +71,7 @@ namespace Markers_GPS_Coordiantes.Controllers
                 marker.Persal = model.Persal;
                 marker.MaidenName = model.MaidenName;
                 marker.Nationality = model.Nationality;
+                marker.UserId = UsersID;
                 db.Marker.Add(marker);
                 db.SaveChanges();
             }
