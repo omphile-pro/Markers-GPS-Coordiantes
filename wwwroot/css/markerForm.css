@@ -492,3 +492,7 @@ input[type=number] {
 #applicationDetail .radioGroup {
     padding-left: 10%
 }
+
+i.previous {
+    padding-left: 36%;
+}

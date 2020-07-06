@@ -40,7 +40,7 @@ $(document).ready(function () {
             'display': 'block',
             'position': 'relative'
         });
-
+        $("html, body").animate({ scrollTop: 0 }, "slow");
         console.log("works");
 
     });
@@ -58,6 +58,7 @@ $(document).ready(function () {
 
         //show the next fieldset
         next_fs.show();
+        
         //hide the current fieldset with style
         current_fs.animate({ opacity: 0 }, {
             step: function (now) {
@@ -72,6 +73,8 @@ $(document).ready(function () {
             },
             duration: 600
         });
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        console.log("to top");
     });
 
     $(".previous").click(function () {
