@@ -148,12 +148,37 @@ namespace Markers_GPS_Coordiantes.Controllers
             ////Qualification
 
             Qualification qualification = new Qualification();
+            //Degree
             qualification.IdentityNo = model.IdentityNo;
-            qualification.QualificationYear = model.QualificationYear;
-            qualification.QualificationDescription = model.QualificationDescription;
-            qualification.MajorSubjects = model.MajorSubjects;
-            qualification.Institution = model.Institution;
-            qualification.HighestQualification = model.HighestQualification;
+            qualification.NameofDegreeOne = model.NameofDegreeOne;
+            qualification.NameofDegreeTwo = model.NameofDegreeTwo;
+            qualification.NameofDegreeThree = model.NameofDegreeThree;
+            qualification.DegreeYearOne = model.DegreeYearOne;
+            qualification.DegreeYearTwo = model.DegreeYearTwo;
+            qualification.DegreeYearThree = model.DegreeYearThree;
+            qualification.InstitutionOne = model.InstitutionOne;
+            qualification.InstitutionTwo = model.InstitutionTwo;
+            qualification.InstitutionThree = model.InstitutionThree;
+            qualification.DegreeMajorSubjects = model.DegreeMajorSubjects;
+            qualification.DegreeMajorSubjectsTwo = model.DegreeMajorSubjectsTwo;
+            qualification.DegreeMajorSubjectsThree = model.DegreeMajorSubjectsThree;
+            //Dimploma
+            qualification.NameofDiplomaOne = model.NameofDiplomaOne;
+            qualification.NameofDiplomaTwo = model.NameofDiplomaTwo;
+            qualification.DiplomaYearOne = model.DiplomaYearOne;
+            qualification.DiplomaYearOne = model.DiplomaYearOne;
+            qualification.DiplomainstitutionOne = model.DiplomainstitutionOne;
+            qualification.DiplomainstitutionTwo = model.DiplomainstitutionTwo;
+            qualification.DiplomaMajorSubjects = model.DiplomaMajorSubjects;
+            qualification.DiplomaMajorSubjectsTwo = model.DiplomaMajorSubjectsTwo;
+            //Additional Subjcet
+            qualification.AdditionalSubjectOne = model.AdditionalSubjectOne;
+            qualification.AdditionalSubjectTwo = model.AdditionalSubjectTwo;
+            // Year to be amanded
+            qualification.QualificationInstitutionOne = model.QualificationInstitutionOne;
+            qualification.QualificationInstitutionTwo = model.QualificationInstitutionTwo;
+            qualification.CourseLevelOne = model.CourseLevelOne;
+            qualification.CourseLevelTwo = model.CourseLevelTwo;
             qualification.LevelOfDegree = model.LevelOfDegree;
             qualification.LevelOfDiploma = model.LevelOfDiploma;
             db.Qualification.Add(qualification);
@@ -167,22 +192,44 @@ namespace Markers_GPS_Coordiantes.Controllers
             teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
             teachingExperience.SubjectExperience = model.SubjectExperience;
             teachingExperience.Fetexperience = model.Fetexperience;
-            //teachingExperience.Year = model.Year;
-            teachingExperience.Subject = model.Subject;
-            //teachingExperience.Language = model.Language;
-            teachingExperience.Grade = model.Grade;
-            teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
-            teachingExperience.PercentageofLearners = model.PercentageofLearners;
+           
             db.TeachingExperience.Add(teachingExperience);
             db.SaveChanges();
+
+            //SubjectTaught(Still Busy Here)
+
+            SubjectTaught subjectTaught = new SubjectTaught();
+            db.SaveChanges();
+
 
             ////Marking Experience
             MarkingExperience markingExperience = new MarkingExperience();
             markingExperience.IdentityNo = model.IdentityNo;
-            markingExperience.MarkingExperienceYear = model.MarkingExperienceYear;
-            markingExperience.Subject = model.Subject;
-            //markingExperience.Language = model.Language;
-            markingExperience.PositionHeld = model.PositionHeld;
+            //2015
+            markingExperience.MarkingExperience2019 = model.MarkingExperience2019;
+            markingExperience.SubjectOne = model.SubjectOne;
+            markingExperience.PositionHeldOne = model.PositionHeldOne;
+            //2018
+            markingExperience.MarkingExperience2018 = model.MarkingExperience2018;
+            markingExperience.SubjectTwo = model.SubjectTwo;
+            markingExperience.PositionHeldTwo = model.PositionHeldTwo;
+            //2017
+            markingExperience.MarkingExperience2017 = model.MarkingExperience2017;
+            markingExperience.SubjectThree = model.SubjectThree;
+            markingExperience.PositionHeldThree = model.PositionHeldThree;
+            //2016
+            markingExperience.MarkingExperience2016 = model.MarkingExperience2016;
+            markingExperience.SubjectFour = model.SubjectFour;
+            markingExperience.PositionHeldFour = model.PositionHeldFour;
+            //2015
+            markingExperience.MarkingExperience2015 = model.MarkingExperience2015;
+            markingExperience.SubjectFive = model.SubjectFive;
+            markingExperience.PositionHeldFive = model.PositionHeldFive;
+            //2014
+            markingExperience.MarkingExperience2014 = model.MarkingExperience2014;
+            markingExperience.SubjectSix = model.SubjectSix;
+            markingExperience.PositionHeldSive = model.PositionHeldSive;
+
             db.MarkingExperience.Add(markingExperience);
             db.SaveChanges();
 
