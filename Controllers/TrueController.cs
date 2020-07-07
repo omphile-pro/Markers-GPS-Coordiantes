@@ -236,7 +236,7 @@ namespace Markers_GPS_Coordiantes.Controllers
             db.SaveChanges();
 
 
-            return RedirectToAction("Create", model);
+            return RedirectToAction("Create");
             
         }
     }
