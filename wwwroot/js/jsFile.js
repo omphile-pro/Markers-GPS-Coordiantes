@@ -49,7 +49,8 @@ $(document).ready(function () {
 
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
-
+        console.log(next_fs);
+        console.log(current_fs);
         //Add Class Active
         $(".markerOnList a").eq($("fieldset").index(current_fs)).removeClass().addClass("done");
         $(".markerOnList i").eq($("fieldset").index(current_fs)).removeClass().addClass("fas fa-circle");
@@ -74,7 +75,6 @@ $(document).ready(function () {
             duration: 600
         });
         $("html, body").animate({ scrollTop: 0 }, "slow");
-        console.log("to top");
     });
 
     $(".previous").click(function () {
@@ -126,6 +126,7 @@ function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
+    console.log(currentFocus);
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
@@ -274,6 +275,9 @@ var countries = [
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("MarkingSubject"), countries);
+autocomplete(document.getElementById("MarkingSubject1"), countries);
+autocomplete(document.getElementById("te-subject"), countries);
+autocomplete(document.getElementById("ad-subject"), countries);
 
 
 //top drop down
@@ -290,3 +294,29 @@ $(document).on('click', '.qua-form-option', function () {
     $('.qualification-form').css('display', 'block');
     $('.top-qualification').hide();
 })
+
+
+//Decliration check
+
+$('.Recommended').hide();
+$('.notRecommendedReason').hide();
+
+$('input[name="advisor-signed"]').click(function () {
+    console.log("Works");
+
+    if ($('#not-signed').is(':checked')) {
+        $('.Recommended').hide();
+    } else if ($('#signed').is(':checked')){
+        $('.Recommended').show();
+    }
+});
+
+$('input[name="recommendation"]').click(function () {
+    console.log("Works");
+
+    if ($('#recommended').is(':checked')) {
+        $('.notRecommendedReason').hide();
+    } else if ($('#not-recommended').is(':checked')) {
+        $('.notRecommendedReason').show();
+    }
+});

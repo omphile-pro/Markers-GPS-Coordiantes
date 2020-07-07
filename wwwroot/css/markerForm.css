@@ -296,6 +296,7 @@ body {
     border-bottom: 2px solid #B7B7B8;
     box-shadow: none !important;
     border-radius: 0;
+    color:black;
 }
 
 
@@ -495,4 +496,8 @@ input[type=number] {
 
 i.previous {
     padding-left: 36%;
+}
+
+.form-control:focus {
+    color:black;
 }
