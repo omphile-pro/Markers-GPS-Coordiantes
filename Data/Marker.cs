@@ -19,7 +19,7 @@ namespace Markers_GPS_Coordiantes.Data
         }
 
         public string IdentityNo { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public string Surname { get; set; }
         public string Initials { get; set; }
         public string Gender { get; set; }
@@ -33,7 +33,6 @@ namespace Markers_GPS_Coordiantes.Data
         public DateTime CreateDate { get; set; }
 
         public virtual Users User { get; set; }
-        public virtual ExistingMarkers ExistingMarkers { get; set; }
         public virtual ICollection<Contact> Contact { get; set; }
         public virtual ICollection<CurrentEmployment> CurrentEmployment { get; set; }
         public virtual ICollection<DeclerationByApplicant> DeclerationByApplicant { get; set; }

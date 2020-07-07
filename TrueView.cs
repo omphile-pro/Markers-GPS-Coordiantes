@@ -108,11 +108,13 @@ namespace Markers_GPS_Coordiantes
 
         //Qualification
 
-        public string QualificationYear { get; set; }
         public string QualificationDescription { get; set; }
+        public string QualificationYear { get; set; }
         public string MajorSubjects { get; set; }
+
         public string Institution { get; set; }
         public string HighestQualification { get; set; }
+        public string CourseLevel { get; set; }
         public string LevelOfDegree { get; set; }
         public string LevelOfDiploma { get; set; }
 
@@ -123,17 +125,17 @@ namespace Markers_GPS_Coordiantes
         public string SubjectExperience { get; set; }
         public string Fetexperience { get; set; }
         public string Year { get; set; }
-        
+       
         public string Grade { get; set; }
-        public string NameofschooIInstitution { get; set; }
+        public string NameOfSchooIorInstitution { get; set; }
         public string PercentageofLearners { get; set; }
 
         //MARKING EXPERIENCE
+        
+        public string MarkingExperienceYear { get; set; }
         public string PositionHeld { get; set; }
-        public DateTime MarkingExperienceYear { get; set; }
-        public string MarkingExperienceYears { get; set; }
-    //APPLICATION DETAILS
-    public string Poetry { get; set; }
+        //APPLICATION DETAILS
+        public string Poetry { get; set; }
 
         public string Drama { get; set; }
         public string Novel { get; set; }

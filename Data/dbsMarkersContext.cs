@@ -24,7 +24,6 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<CurrentEmployment> CurrentEmployment { get; set; }
         public virtual DbSet<DeclerationByApplicant> DeclerationByApplicant { get; set; }
         public virtual DbSet<Exam> Exam { get; set; }
-        public virtual DbSet<ExistingMarkers> ExistingMarkers { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<LanguagePreference> LanguagePreference { get; set; }
         public virtual DbSet<Login> Login { get; set; }
@@ -398,63 +397,6 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasConstraintName("FK_Exam_Subject");
             });
 
-            modelBuilder.Entity<ExistingMarkers>(entity =>
-            {
-                entity.HasKey(e => e.IdNumber)
-                    .HasName("PK_ExistingMakers");
-
-                entity.Property(e => e.IdNumber)
-                    .HasColumnName("ID_Number")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Cellphone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CentreNumber)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FullName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.HomeTelephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Latitude)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Longitude)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PersalNumber)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhysicalAddress)
-                    .HasColumnName("Physical_Address")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PostalCode)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.WorkTelephone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.IdNumberNavigation)
-                    .WithOne(p => p.ExistingMarkers)
-                    .HasForeignKey<ExistingMarkers>(d => d.IdNumber)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ExistingMakers_Marker");
-            });
-
             modelBuilder.Entity<Gender>(entity =>
             {
                 entity.Property(e => e.GenderId).HasColumnName("GenderID");
@@ -591,7 +533,6 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Marker)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Marker_Users");
             });
 
@@ -782,14 +723,8 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Language)
+                entity.Property(e => e.MarkingExperienceYear)
                     .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.MarkingExperienceYear).HasColumnType("date");
-
-                entity.Property(e => e.MarkingExperienceYears)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -802,6 +737,10 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Year)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.IdentityNoNavigation)
                     .WithMany(p => p.MarkingExperience)
@@ -873,8 +812,11 @@ namespace Markers_GPS_Coordiantes.Data
             {
                 entity.Property(e => e.QualificationId).HasColumnName("QualificationID");
 
+                entity.Property(e => e.CourseLevel)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.HighestQualification)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -883,20 +825,20 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Institution)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LevelOfDegree)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LevelOfDiploma)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.MajorSubjects)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -1010,12 +952,13 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Language)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameofschooIInstitution)
+                entity.Property(e => e.NameOfSchooIorInstitution)
                     .IsRequired()
-                    .HasColumnName("NameofschooI/Institution")
+                    .HasColumnName("NameOfSchooIOrInstitution")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -1040,7 +983,9 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Year).HasMaxLength(50);
+                entity.Property(e => e.Year)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.IdentityNoNavigation)
                     .WithMany(p => p.TeachingExperience)
