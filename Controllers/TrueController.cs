@@ -236,7 +236,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
 
-            return View(model);
+            return View();
 
 
             }

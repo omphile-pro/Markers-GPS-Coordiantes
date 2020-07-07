@@ -116,15 +116,15 @@
                                                     <div class="radioGroup ">
                                                         <label for="SubjectDetails" class="info-text">Paper</label>
                                                         <div class="custom-control custom-radio">
-                                                            <input asp-for="Paper" value="Paper 1" id="paper1" name="paper" type="radio" class="custom-control-input" >
+                                                            <input @*asp-for="Paper"*@ value="Paper 1" id="paper1" name="paper" type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="paper1">l</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input asp-for="Paper" value="Paper 2" id="paper2" name="paper2" type="radio" class="custom-control-input" >
+                                                            <input @*asp-for="Paper"*@ value="Paper 2" id="paper2" name="paper2" type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="paper2">ll</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input asp-for="Paper" value="Paper 3" id="paper3" name="paper3" type="radio" class="custom-control-input" >
+                                                            <input @*asp-for="Paper"*@ value="Paper 3" id="paper3" name="paper3" type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="paper3">lll</label>
                                                         </div>
                                                     </div>
@@ -132,15 +132,15 @@
                                                     <div class="radioGroup">
                                                         <label for="Subjec" class="info-text">Level</label>
                                                         <div class="custom-control custom-radio">
-                                                            <input asp-for="Language" value="HL" id="hl" name="level" type="radio" class="custom-control-input" >
+                                                            <input asp-for="Language" value="HL" id="hl" name="level" type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="hl">HL</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input asp-for="Language" value="FAL" id="fal" name="level" type="radio" class="custom-control-input" >
+                                                            <input asp-for="Language" value="FAL" id="fal" name="level" type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="fal">FAL</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input asp-for="Language" value="SAL" id="sal" name="level" type="radio" class="custom-control-input" >
+                                                            <input asp-for="Language" value="SAL" id="sal" name="level" type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="sal">SAL</label>
                                                         </div>
 
@@ -849,7 +849,7 @@
 
                                     <div class="col-md-2 mb-3">
                                         <label for="te-grade" class="info-text">Grade</label>
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -863,7 +863,7 @@
                                     </div>
                                     <div class="col-md-2 mb-3 ">
                                         <label for="te-percent" class="info-text">PERCENTAGE</label>
-                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <input asp-for="PercentageofLearners" type="number" step="0.01" class="form-control" id="te-percent" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid Percentage pass of learners  taught by applicant is required.
                                         </div>
@@ -896,7 +896,315 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid grade is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="NameofschooIInstitution" type="text" class="form-control" id="te-school" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid school is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3 ">
+                                        <input asp-for="PercentageofLearners" type="number" class="form-control" id="te-percent" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid Percentage pass of learners  taught by applicant is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Year" type="text" class="form-control smaller-input" id="datepicker2" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid year is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="te-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Subject" type="text" class="form-control" id="level-subject" placeholder="" value="">
+                                        <div class="invalid-feedback">
+                                            Valid subject is required.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2 mb-3">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -941,7 +1249,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -986,7 +1294,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1031,7 +1339,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1076,7 +1384,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1121,7 +1429,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1166,7 +1474,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1211,7 +1519,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1256,7 +1564,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1301,7 +1609,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1346,7 +1654,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1391,7 +1699,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1436,7 +1744,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1481,7 +1789,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1526,7 +1834,7 @@
 
 
                                     <div class="col-md-2 mb-3">
-                                        <input asp-for="Grade" type="number" class="form-control" id="te-grade" placeholder="" value="">
+                                        <input asp-for="Grade" type="text" class="form-control" id="te-grade" placeholder="" value="">
                                         <div class="invalid-feedback">
                                             Valid grade is required.
                                         </div>
@@ -1858,15 +2166,15 @@
 
                                         <label for="paper" class="info-text">paper</label>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 1" id="p1a" name="paperD1" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 1" id="p1a" name="paperD1" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p1a">I</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 2" id="p2a" name="paperD2" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 2" id="p2a" name="paperD2" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p2a">II</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 3" id="p3a" name="paperD3" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 3" id="p3a" name="paperD3" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p3a">III</label>
                                         </div>
                                     </div>
@@ -1888,15 +2196,15 @@
                                     <div class="col-md-6 mb-3 radioGroup line-head ">
 
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 1" id="p1b" name="paperD4" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 1" id="p1b" name="paperD4" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p1b">I</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 2" id="p2b" name="paperD5" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 2" id="p2b" name="paperD5" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p2b">II</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 3" id="p3b" name="paperD6" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 3" id="p3b" name="paperD6" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p3b">III</label>
                                         </div>
                                     </div>
@@ -1918,15 +2226,15 @@
                                     <div class="col-md-6 mb-3 radioGroup line-head ">
 
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 1" id="p1c" name="paperD7" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 1" id="p1c" name="paperD7" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p1c">I</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 2" id="p2c" name="paperD8" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 2" id="p2c" name="paperD8" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p2c">II</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 3" id="p3c" name="paperD9" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 3" id="p3c" name="paperD9" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p3c">III</label>
                                         </div>
                                     </div>
@@ -1947,15 +2255,15 @@
                                     <div class="col-md-6 mb-3 radioGroup line-head ">
 
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 1" id="p1e" name="paperD10" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 1" id="p1e" name="paperD10" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p1e">I</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 2" id="p2e" name="paperD11" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 2" id="p2e" name="paperD11" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p2e">II</label>
                                         </div>
                                         <div class="custom-control custom-radio ">
-                                            <input asp-for="Paper" value="Paper 3" id="p3e" name="paperD12" type="checkbox" class="custom-control-input"  >
+                                            <input @*asp-for="Paper"*@ value="Paper 3" id="p3e" name="paperD12" type="checkbox" class="custom-control-input"  >
                                             <label class="custom-control-label" for="p3e">III</label>
                                         </div>
                                     </div>
