@@ -1,4 +1,4 @@
-﻿@model Markers_GPS_Coordiantes.TrueView
+﻿@*@model Markers_GPS_Coordiantes.TrueView
 
 @{
     ViewData["Title"] = "Add Marker";
@@ -36,10 +36,10 @@
                     <div id="listHeader">
                         <h6>MARKER ONBORDING</h6>
                     </div>
-                    <!-- <a class="done" id="nav-home-tab">
+                     <a class="done" id="nav-home-tab">
       <i class='fas fa-circle'></i>
       <span>Checklist</span>
-    </a> -->
+    </a> 
                     <a class="active" id="ApplicationList">
                         <i class='far fa-circle'></i>
                         <span>Application</span>
@@ -98,14 +98,14 @@
                                     <h3 class="heading1">Application</h3>
                                 </div>
 
-                                <!--Start Application Detail-->
+                                Start Application Detail
                                 <div class="row">
                                     <div>
-                                        <!--Start Aplication detail section-->
+                                        Start Aplication detail section
                                         <div class="Application-deail-section">
                                             <p class="info-text line-head-half">Closng date: 20 march 2020</p>
 
-                                            <!--Start subject-->
+                                            Start subject
                                             <div class=" row line-head-half">
                                                 <div class="col-md-8">
                                                     <label for="MarkingSubject" class="info-text">Subject</label>
@@ -229,12 +229,12 @@
 
                                                 </div>
                                             </div>
-                                            <!--End subject-->
+                                            End subject
 
 
                                         </div>
                                     </div>
-                                    <!--End Aplication detail section-->
+                                    End Aplication detail section
 
 
                                 </div>
@@ -658,7 +658,7 @@
                                                                     </div>
                                                                     <div>
                                                                         <label for="DegreeYear">Year</label>
-                                                                        @*<input asp-for="" type="text" class="form-control smaller-input" id="datepicker3" placeholder="" value="" required>*@
+                                                                        <input asp-for="" type="text" class="form-control smaller-input" id="datepicker3" placeholder="" value="" required>
                                                                     </div>
 
                                                                     <div>
@@ -681,7 +681,7 @@
                                                                         </div>
                                                                         <div>
 
-                                                                            @*<input asp-for="QualificationYear" type="text" class="form-control smaller-input" id="datepicker3" placeholder="" value="" required>*@
+                                                                            <input asp-for="QualificationYear" type="text" class="form-control smaller-input" id="datepicker3" placeholder="" value="" required>
                                                                         </div>
 
                                                                         <div>
@@ -1872,7 +1872,7 @@
                                     </div>
 
                                     <div class="col-md-1 mb-3">
-                                        @*<input asp-for="MarkingExperience" type="number" class="form-control year-input  " id="years" placeholder="" required>*@
+                                        <input asp-for="MarkingExperience" type="number" class="form-control year-input  " id="years" placeholder="" required>
                                     </div>
                                 </div>
 
@@ -2053,15 +2053,47 @@
                                     </div>
                                 </div>
                             </div>
-                
 
+                            <div class="row">
+                                <div class="col-md-2 mb-3">
+                                    <label for="me-year" class="info-text">Year</label>
+                                    <input asp-for="MarkingExperience2014" type="number" class="form-control" id="me-year" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Year is required.
+                                    </div>
+                                </div>
 
-                <i class="fas fa-chevron-left light-blue previous"></i>
-                <input type="button" name="previous" class="previous action-button-previous" value="Back" />
-                <input type="button" name="next" class="next action-button centre" value="Continue" />
-                <i class="fas fa-chevron-right light-blue next"></i>
+                                <div class="col-md-5 mb-3">
+                                    <label for="me-subject" class="info-text">Subject/Level(HL/FAL/SAL)/Paper</label>
+                                    <input asp-for="SubjectSix" type="number" class="form-control" id="me-subject" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid Subject is required.
+                                    </div>
+                                </div>
 
-                </fieldset>
+                                <div class="col-md-3 mb-3">
+                                    <label for="me-position" class="info-text">Position Held</label>
+                                    <select asp-for="PositionHeldSix" class="custom-select d-block w-100" id="me-position" required>
+                                        <option value="">Choose...</option>
+                                        <option value="internal-moderator">Internal Moderator</option>
+                                        <option value="chief-marker">Chief Marker</option>
+                                        <option value="deputy-chief-marker">Deputy Chief Marker</option>
+                                        <option value="senior-marker">Senior Marker</option>
+                                        <option value="marker">Marker</option>
+                                        <option value="novice-marker">Novice Marker</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid position.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <i class="fas fa-chevron-left light-blue previous"></i>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Back" />
+                            <input type="button" name="next" class="next action-button centre" value="Continue" />
+                            <i class="fas fa-chevron-right light-blue next"></i>
+
+                        </fieldset>
 
 
                         <fieldset>
@@ -2370,7 +2402,7 @@
 
 
                                         <div class="col-md-6  full-width">
-                                            @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                            <label for="MarkingSubject" class="info-text">2019</label>
                                             <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
                                         </div>
 
@@ -2379,7 +2411,7 @@
                                     <div class="row line-head-half">
                                         <div class="col-md-5"><input asp-for="TaughtByAverage" type="text" class="form-control longer-subject-input" readonly id="dba-year" placeholder="" value="2018" required></div>
                                         <div class="col-md-6  full-width">
-                                            @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                            <label for="MarkingSubject" class="info-text">2019</label>
                                             <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
                                         </div>
 
@@ -2406,7 +2438,7 @@
 
 
                                             <div class="col-md-6  ">
-                                                @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                                <label for="MarkingSubject" class="info-text">2019</label>
                                                 <input type="text" asp-for="CandidatesByDistrictPercentage" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
                                             </div>
 
@@ -2415,7 +2447,7 @@
                                         <div class="row line-head-half full-width ">
                                             <div class="col-md-5"><input asp-for="PercentageYear" type="text" class="form-control longer-subject-input" readonly id="dba-year" placeholder="" value="2018" required></div>
                                             <div class="col-md-6  full-width">
-                                                @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                                <label for="MarkingSubject" class="info-text">2019</label>
                                                 <input type="text" class="form-control App-detail-Subject" id="dba2018" placeholder="" value="" required>
                                             </div>
 
@@ -2439,7 +2471,7 @@
 
 
                                                     <div class="col-md-6  ">
-                                                        @*<label for="MarkingSubject" class="info-text">2019</label>*@
+                                                        <label for="MarkingSubject" class="info-text">2019</label>
                                                         <input type="text" class="form-control App-detail-Subject" id="dba2019" placeholder="" value="" required>
                                                     </div>
 
@@ -2590,4 +2622,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
 <script src="~/Angular/TrueView.js"></script>
-<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>*@
