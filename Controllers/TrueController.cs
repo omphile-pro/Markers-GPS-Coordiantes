@@ -31,7 +31,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
         dbsMarkersContext db = new dbsMarkersContext();
-        
+
 
         public IActionResult Create()
         {
@@ -44,62 +44,62 @@ namespace Markers_GPS_Coordiantes.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(TrueView model, string search)
         {
-            //List<Marker> list = db.Marker.ToList();
-            //var applicationMax = db.Application;
-            //var applicationDetailsMax = db.ApplicationDetails;
+            List<Marker> list = db.Marker.ToList();
+            var applicationMax = db.Application;
+            var applicationDetailsMax = db.ApplicationDetails;
 
-            //UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
+            UsersID = Convert.ToInt32(_sessionAccessor.HttpContext.Session.GetInt32("usersID"));
 
-            //var UserMax = db.Users;
-            //ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
+            var UserMax = db.Users;
+            ViewBag.MarkerList = new SelectList(list, "IdentityNo", "Name");
 
-            //var markerDatabase = db.Marker;
+            var markerDatabase = db.Marker;
 
 
-            //var idNumber = markerDatabase.AsQueryable().Where(idNumber => model.IdentityNo == idNumber.IdentityNo);
+            var idNumber = markerDatabase.AsQueryable().Where(idNumber => model.IdentityNo == idNumber.IdentityNo);
 
-            //if (idNumber.Count() <= 0)
-            //{
+            if (idNumber.Count() <= 0)
+            {
 
-            //    Marker marker = new Marker();
-            //    marker.IdentityNo = model.IdentityNo;
-            //    marker.Surname = model.Surname;
-            //    marker.Initials = model.Initials;
-            //    marker.Gender = model.Gender;
-            //    marker.Race = model.Race;
-            //    marker.Title = model.Title;
-            //    marker.Persal = model.Persal;
-            //    marker.MaidenName = model.MaidenName;
-            //    marker.Nationality = model.Nationality;
-            //    marker.UserId = UsersID;
-            //    db.Marker.Add(marker);
-            //    db.SaveChanges();
-            //}
-            //else
-            //{
-            //    List<Marker> allsearch = db.Marker.Where(x => x.IdentityNo.Contains(search)).Select(x => new Marker
-            //    {
-            //        IdentityNo = x.IdentityNo,
-            //        Surname = x.Surname
-                    
-            //    }).ToList();
-            //};
+                Marker marker = new Marker();
+                marker.IdentityNo = model.IdentityNo;
+                marker.Surname = model.Surname;
+                marker.Initials = model.Initials;
+                marker.Gender = model.Gender;
+                marker.Race = model.Race;
+                marker.Title = model.Title;
+                marker.Persal = model.Persal;
+                marker.MaidenName = model.MaidenName;
+                marker.Nationality = model.Nationality;
+                marker.UserId = UsersID;
+                db.Marker.Add(marker);
+                db.SaveChanges();
+            }
+            else
+            {
+                List<Marker> allsearch = db.Marker.Where(x => x.IdentityNo.Contains(search)).Select(x => new Marker
+                {
+                    IdentityNo = x.IdentityNo,
+                    Surname = x.Surname
 
-            ////Application
-            //Application application = new Application();
-            //application.IdentityNo = model.IdentityNo;
-            //application.Subject = model.Subject;
-            //application.Language = model.Language;
-            //application.Paper = model.Paper;
-            //application.Position = model.Position;
-            //application.PracticalExamination = model.PracticalExamination;
-            //application.PracticalExamination = model.PracticalSubject;
-            //application.CurrentPosition = model.CurrentPosition;
-            //application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
-            //application.RecommendedBySubject = model.RecommendedBySubject;
-            //application.SelectionReason = model.SelectionReason;
-            //db.Application.Add(application);
-            //db.SaveChanges();
+                }).ToList();
+            };
+
+            //Application
+            Application application = new Application();
+            application.IdentityNo = model.IdentityNo;
+            application.Subject = model.Subject;
+            application.Language = model.Language;
+            application.Paper = model.Paper;
+            application.Position = model.Position;
+            application.PracticalExamination = model.PracticalExamination;
+            application.PracticalExamination = model.PracticalSubject;
+            application.CurrentPosition = model.CurrentPosition;
+            application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
+            application.RecommendedBySubject = model.RecommendedBySubject;
+            application.SelectionReason = model.SelectionReason;
+            db.Application.Add(application);
+            db.SaveChanges();
 
 
             //////LanguageContact
@@ -133,31 +133,31 @@ namespace Markers_GPS_Coordiantes.Controllers
             //db.Resident.Add(resident);
             //db.SaveChanges();
 
-            //////currentEmployment
-            //CurrentEmployment currentEmployment = new CurrentEmployment();
-            //currentEmployment.IdentityNo = model.IdentityNo;
-            //currentEmployment.NameOftheSchoolOffice = model.NameOftheSchoolOffice;
-            //currentEmployment.CentreNumber = model.CentreNumber;
-            //currentEmployment.District = model.District;
-            //currentEmployment.CurrentPosition = model.CurrentPosition;
-            //currentEmployment.EmploymentType = model.EmploymentType;
-            ////currentEmployment.Retiring = model.Retiring;
-            //db.CurrentEmployment.Add(currentEmployment);
-            //db.SaveChanges();
+            ////currentEmployment
+            CurrentEmployment currentEmployment = new CurrentEmployment();
+            currentEmployment.IdentityNo = model.IdentityNo;
+            currentEmployment.NameOftheSchoolOffice = model.NameOftheSchoolOffice;
+            currentEmployment.CentreNumber = model.CentreNumber;
+            currentEmployment.District = model.District;
+            currentEmployment.CurrentPosition = model.CurrentPosition;
+            currentEmployment.EmploymentType = model.EmploymentType;
+            currentEmployment.Retiring = model.Retiring;
+            db.CurrentEmployment.Add(currentEmployment);
+            db.SaveChanges();
 
-            //////Qualification
+            ////Qualification
 
-            //Qualification qualification = new Qualification();
-            //qualification.IdentityNo = model.IdentityNo;
-            //qualification.QualificationYear = model.QualificationYear;
-            //qualification.QualificationDescription = model.QualificationDescription;
-            //qualification.MajorSubjects = model.MajorSubjects;
-            //qualification.Institution = model.Institution;
-            //qualification.HighestQualification = model.HighestQualification;
-            //qualification.LevelOfDegree = model.LevelOfDegree;
-            //qualification.LevelOfDiploma = model.LevelOfDiploma;
-            //db.Qualification.Add(qualification);
-            //db.SaveChanges();
+            Qualification qualification = new Qualification();
+            qualification.IdentityNo = model.IdentityNo;
+            qualification.QualificationYear = model.QualificationYear;
+            qualification.QualificationDescription = model.QualificationDescription;
+            qualification.MajorSubjects = model.MajorSubjects;
+            qualification.Institution = model.Institution;
+            qualification.HighestQualification = model.HighestQualification;
+            qualification.LevelOfDegree = model.LevelOfDegree;
+            qualification.LevelOfDiploma = model.LevelOfDiploma;
+            db.Qualification.Add(qualification);
+            db.SaveChanges();
 
             ////////Teaching Experience
 
@@ -167,11 +167,11 @@ namespace Markers_GPS_Coordiantes.Controllers
             //teachingExperience.ExperienceInNcsCaps = model.ExperienceInNcsCaps;
             //teachingExperience.SubjectExperience = model.SubjectExperience;
             //teachingExperience.Fetexperience = model.Fetexperience;
-            ////teachingExperience.Year = model.Year;
+            //teachingExperience.Year = model.Year;
             //teachingExperience.Subject = model.Subject;
             ////teachingExperience.Language = model.Language;
             //teachingExperience.Grade = model.Grade;
-            //teachingExperience.NameofschooIInstitution = model.NameofschooIInstitution;
+            //teachingExperience.NameOfSchooIorInstitution = model.NameOfSchooIorInstitution;
             //teachingExperience.PercentageofLearners = model.PercentageofLearners;
             //db.TeachingExperience.Add(teachingExperience);
             //db.SaveChanges();
@@ -236,9 +236,9 @@ namespace Markers_GPS_Coordiantes.Controllers
 
 
 
-            return View(model);
 
-
-            }
+            return RedirectToAction("Create", model);
+            
         }
     }
+}

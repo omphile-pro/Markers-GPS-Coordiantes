@@ -14,6 +14,7 @@ namespace Markers_GPS_Coordiantes.Data
         public string Year { get; set; }
         public string Subject { get; set; }
         public string Language { get; set; }
+        public string Grade { get; set; }
         public string NameOfSchooIorInstitution { get; set; }
         public string PercentageofLearners { get; set; }
 

@@ -7,6 +7,7 @@ namespace Markers_GPS_Coordiantes.Data
     {
         public int MarkingExperienceid { get; set; }
         public string IdentityNo { get; set; }
+        public string Year { get; set; }
         public string MarkingExperienceYear { get; set; }
         public string Subject { get; set; }
         public string PositionHeld { get; set; }
