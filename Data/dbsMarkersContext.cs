@@ -28,12 +28,14 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<LanguagePreference> LanguagePreference { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Marker> Marker { get; set; }
+        public virtual DbSet<MarkerDatabase> MarkerDatabase { get; set; }
         public virtual DbSet<MarkerExam> MarkerExam { get; set; }
         public virtual DbSet<MarkerSubjectCenter> MarkerSubjectCenter { get; set; }
         public virtual DbSet<MarkersGpscoordinates> MarkersGpscoordinates { get; set; }
         public virtual DbSet<MarkersReport> MarkersReport { get; set; }
         public virtual DbSet<MarkingExperience> MarkingExperience { get; set; }
         public virtual DbSet<Motivation> Motivation { get; set; }
+        public virtual DbSet<OldPayMarkerData> OldPayMarkerData { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<PrescribedWorks> PrescribedWorks { get; set; }
         public virtual DbSet<Qualification> Qualification { get; set; }
@@ -49,6 +51,7 @@ namespace Markers_GPS_Coordiantes.Data
         public virtual DbSet<VExam> VExam { get; set; }
         public virtual DbSet<VMarkerApplicationReport> VMarkerApplicationReport { get; set; }
         public virtual DbSet<VMarkersGpscoordinates> VMarkersGpscoordinates { get; set; }
+        public virtual DbSet<VmarkerProfile> VmarkerProfile { get; set; }
         public virtual DbSet<Vsubject> Vsubject { get; set; }
         public virtual DbSet<VusersReport> VusersReport { get; set; }
 
@@ -324,13 +327,22 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DistrictYear).HasColumnType("date");
+                entity.Property(e => e.Declaration)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.DistrictYear)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.IdentityNo)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.PercentageYear).HasColumnType("date");
+                entity.Property(e => e.PercentageYear)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.ProvincePercentage)
                     .IsRequired()
@@ -343,8 +355,9 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.YearAvg)
+                    .IsRequired()
                     .HasColumnName("YearAVG")
-                    .HasColumnType("date");
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.IdentityNoNavigation)
                     .WithMany(p => p.DeclerationByApplicant)
@@ -534,6 +547,98 @@ namespace Markers_GPS_Coordiantes.Data
                     .WithMany(p => p.Marker)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_Marker_Users");
+            });
+
+            modelBuilder.Entity<MarkerDatabase>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Marker Database");
+
+                entity.Property(e => e.Address1)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Address2)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Address3)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Cellphone).HasMaxLength(100);
+
+                entity.Property(e => e.CentreName)
+                    .IsRequired()
+                    .HasColumnName("Centre_Name")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.CentreNo)
+                    .HasColumnName("Centre_No")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.DutyGranted)
+                    .IsRequired()
+                    .HasColumnName("Duty_Granted")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.HomeTel)
+                    .IsRequired()
+                    .HasColumnName("Home_Tel")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.IdNo)
+                    .HasColumnName("Id_No")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Initials)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Latitude)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Longitude)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.PCode)
+                    .HasColumnName("P_Code")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Paper)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.PersalNo)
+                    .HasColumnName("Persal_No")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Race)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Surname)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.SurnameIni)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.WorkTel)
+                    .HasColumnName("Work_Tel")
+                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<MarkerExam>(entity =>
@@ -769,6 +874,40 @@ namespace Markers_GPS_Coordiantes.Data
                     .HasConstraintName("FK_Motivation_Marker");
             });
 
+            modelBuilder.Entity<OldPayMarkerData>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdentityNo)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Initials)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Persal)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Race)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Surname)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.Property(e => e.PositionId).HasColumnName("PositionID");
@@ -829,12 +968,10 @@ namespace Markers_GPS_Coordiantes.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.LevelOfDegree)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LevelOfDiploma)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -1431,6 +1568,342 @@ namespace Markers_GPS_Coordiantes.Data
                 entity.Property(e => e.WorkTelephone)
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<VmarkerProfile>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VMarkerProfile");
+
+                entity.Property(e => e.CandidatesByDistrictPercentage)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CellphoneNo)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.CentreNumber)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CheckedBySubjectAdvisor)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseLevel)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.CurrentPosition)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Declaration)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.District)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DistrictYear)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Drama)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EmailAddress)
+                    .IsRequired()
+                    .HasMaxLength(225);
+
+                entity.Property(e => e.EmploymentType)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ExperienceInNcsCaps)
+                    .IsRequired()
+                    .HasColumnName("ExperienceInNCS/CAPS")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr1)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr2)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr3)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr4)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Expr5)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr6)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr7)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expr8)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FaxNo)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Fetexperience)
+                    .IsRequired()
+                    .HasColumnName("FETExperience")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FullResidentialAddress)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Grade)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.HighestQualification)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.HomeTelephoneNo).HasMaxLength(225);
+
+                entity.Property(e => e.IdentityNo)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Initials)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Institution)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Language)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LanguageDescription)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Latitude).HasColumnType("decimal(18, 12)");
+
+                entity.Property(e => e.LevelOfDegree)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LevelOfDiploma)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Longitude).HasColumnType("decimal(18, 12)");
+
+                entity.Property(e => e.MaidenName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MajorSubjects)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MarkingExperienceYear)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MotivationDescription)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameOfSchooIorInstitution)
+                    .IsRequired()
+                    .HasColumnName("NameOfSchooIOrInstitution")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameOftheSchoolOffice)
+                    .IsRequired()
+                    .HasColumnName("NameOftheSchool/Office")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Nationality)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Novel)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Paper)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PercentageYear)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.PercentageofLearners)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Persal)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Poetry)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Position)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PositionHeld)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostalCode)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PracticalExamination)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PracticalSubject)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProvincePercentage)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QualificationDescription)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QualificationYear)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Race)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RecommendedBySubject)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ResidentialAddress)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Retiring)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SelectionReason)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShortStories)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Subject)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SubjectExperience)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Surname)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TaughtByAverage)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TeachingExperience)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TelephoneNo).HasMaxLength(10);
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.WorkSchool)
+                    .HasColumnName("Work/School")
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Year)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.YearAvg)
+                    .IsRequired()
+                    .HasColumnName("YearAVG")
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Vsubject>(entity =>

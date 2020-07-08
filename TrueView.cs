@@ -147,12 +147,12 @@ namespace Markers_GPS_Coordiantes
         public string MotivationDescription { get; set; }
         //DECLARATRIONBY APPLICANT
 
-        public bool Declaration { get; set; }
-        public DateTime YearAvg { get; set; }
+        public string Declaration { get; set; }
+        public string YearAvg { get; set; }
         public string TaughtByAverage { get; set; }
-        public DateTime DistrictYear { get; set; }
+        public string DistrictYear { get; set; }
         public string CandidatesByDistrictPercentage { get; set; }
-        public DateTime PercentageYear { get; set; }
+        public string PercentageYear { get; set; }
         public string ProvincePercentage { get; set; }
 
     }
