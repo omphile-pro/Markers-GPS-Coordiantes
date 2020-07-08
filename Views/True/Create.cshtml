@@ -368,7 +368,7 @@
                                         </div>
                                         <div id="resAddress" class="mb-3">
                                             <label for="address" class="info-text">Residential Address</label>
-                                            <input asp-for="ResidentialAddress" type="text" class="form-control" id="address" placeholder="">
+                                            <input asp-for="ResidentialAddress" type="text" class="form-control" onblur="checkAddress()" id="address" placeholder="">
                                             <div class="invalid-feedback">
                                                 Please enter your Residential address.
                                             </div>
@@ -376,11 +376,38 @@
 
                                         <div id="resAddress" class="mb-3">
                                             <label for="postal-code" class="info-text">Postal Code</label>
-                                            <input asp-for="PostalCode" type="number" class="form-control long-subject-input " id="postal-code" placeholder="">
+                                            <input asp-for="PostalCode" type="number" class="form-control long-subject-input" id="postal-code" placeholder="">
                                             <div class="invalid-feedback">
                                                 Please enter your Postal Code.
                                             </div>
                                         </div>
+
+                                        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="Latitude" placeholder="Latitude" id="lat">
+                                        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="Longitude" placeholder="Longitude" id="long">
+                                        <input class="col-sm-3 edit-input-tag short left" type="text" asp-for="FullResidentialAddress" placeholder="Full Resident Address" id="fullAddress">
+                                        <script>
+                                            function checkAddress() {
+                                                var geocoder = new google.maps.Geocoder();
+                                                var address = document.getElementById('address').value;
+
+                                                geocoder.geocode({ 'address': address }, function (results, status) {
+                                                    if (status === 'OK') {
+
+                                                        var lat = results[0].geometry.location.lat();
+                                                        var long = results[0].geometry.location.lng();
+                                                        var fullAddress = results[0].formatted_address;
+
+
+                                                        document.getElementById("lat").value = lat;
+                                                        document.getElementById("long").value = long;
+                                                        document.getElementById("fullAddress").value = fullAddress;
+                                                    } else {
+                                                        alert('Geocode was not successful for the following reason: ' + status);
+                                                    }
+                                                });
+                                            }
+
+                                        </script>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="info-text">Telephone</label>
