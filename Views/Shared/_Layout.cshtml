@@ -84,97 +84,112 @@
             <nav class="sidenav">
                 <!-- Side Navigation Logo -->
                 <a class="nav-logo" href="index.html"><img src="~/images/logo.svg"></a>
+                <div class="person-details">
+                    @if (roleID == 0)
+                {
+                    <a style="        padding-left: 38%;color: red;" href="~/Login">Login</a>
+                }
+                else
+                {
+                    <a style="        padding-left: 38%;color: green;" href="~/Login/SignOut/">Logout</a>
+                }
+
+
+                    <p class="person-name">@Context.Session.GetString("displayname")</p>
+                    <p class="person-role">@Context.Session.GetString("Email")</p>
+
+                </div>
 
                 <!-- Side Navigation List -->
                 <div class="nav-list">
-                    <a class="nav-list-item active"  asp-controller="Admin" asp-action="Index"><img class="icon active" src="~/images/dash-icon.svg">Dashboard</a>
+                    <a class="nav-list-item active" asp-controller="Admin" asp-action="Index"><img class="icon active" src="~/images/dash-icon.svg">Dashboard</a>
 
                     <div class="drop-down-parent-container">
                         @if (roleID == 4)
                         {
-                            <button class="dropdown-btn">
-                                <img class="icon" src="~/images/admIcon.svg">
-                                <a class="nav-list-item">Data Capture</a>
-                                <img class="chevron" src="~/images/chevron-down.svg">
-                            </button>
+                        <button class="dropdown-btn">
+                            <img class="icon" src="~/images/admIcon.svg">
+                            <a class="nav-list-item">Data Capture</a>
+                            <img class="chevron" src="~/images/chevron-down.svg">
+                        </button>
 
-                            <div class="dropdown-container">
-                                <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Application Form</strong></a>
-                            
-                            </div>
+                        <div class="dropdown-container">
+                            <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Application Form</strong></a>
+
+                        </div>
                         }
 
 
                         @if (roleID == 3)
                         {
-                            <button class="dropdown-btn">
-                                <img class="icon" src="~/images/admIcon.svg">
-                                <a class="nav-list-item">Administration</a>
-                                <img class="chevron" src="~/images/chevron-down.svg">
-                            </button>
+                        <button class="dropdown-btn">
+                            <img class="icon" src="~/images/admIcon.svg">
+                            <a class="nav-list-item">Administration</a>
+                            <img class="chevron" src="~/images/chevron-down.svg">
+                        </button>
 
-                            <div class="dropdown-container">
-                                <a class="nav-list-item" asp-controller="Users" asp-action="Index"><strong>Accounts</strong></a>
-                                <a class="nav-list-item" asp-controller="SuperAdmin" asp-action="Index"><strong>Markers List</strong></a>
-                                <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
-                                <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Marking </strong></a>
-                                <a class="nav-list-item" asp-controller="MarkerApplicationReport" asp-action="Index"><strong>Marker Application Report</strong></a>
-                            </div>
-                            <button class="dropdown-btn">
-                                <img class="icon" src="~/images/Reports.svg">
-                                <a class="nav-list-item" href="#">Reports</a>
-                                <img class="chevron" src="~/images/chevron-down.svg">
-                            </button>
-                            <div class="dropdown-container">
+                        <div class="dropdown-container">
+                            <a class="nav-list-item" asp-controller="Users" asp-action="Index"><strong>Accounts</strong></a>
+                            <a class="nav-list-item" asp-controller="SuperAdmin" asp-action="Index"><strong>Markers List</strong></a>
+                            <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
+                            <a class="nav-list-item" asp-controller="True" asp-action="Create"><strong>Marking </strong></a>
+                            <a class="nav-list-item" asp-controller="MarkerApplicationReport" asp-action="Index"><strong>Marker Application Report</strong></a>
+                        </div>
+                        <button class="dropdown-btn">
+                            <img class="icon" src="~/images/Reports.svg">
+                            <a class="nav-list-item" href="#">Reports</a>
+                            <img class="chevron" src="~/images/chevron-down.svg">
+                        </button>
+                        <div class="dropdown-container">
 
-                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                            <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
 
-                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
-                            </div>
+                            <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
+                        </div>
 
                         }
 
 
                         @if (roleID == 2)
                         {
-                            <button class="dropdown-btn">
-                                <a class="nav-list-item">Administration</a>
-                                <img class="chevron" src="~/images/chevron-down.svg">
-                            </button>
-                            <div class="dropdown-container">
-                                <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Account</strong></a>
-                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Markers List</strong></a>
-                                <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
+                        <button class="dropdown-btn">
+                            <a class="nav-list-item">Administration</a>
+                            <img class="chevron" src="~/images/chevron-down.svg">
+                        </button>
+                        <div class="dropdown-container">
+                            <a class="nav-list-item" asp-controller="Accounts" asp-action="Index"><strong>Account</strong></a>
+                            <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Index"><strong>Markers List</strong></a>
+                            <a class="nav-list-item" asp-controller="Centers" asp-action="Index"><strong>Marking Centers</strong></a>
 
 
 
-                            </div>
-                            <button class="dropdown-btn">
-                                <img class="icon" src="~/images/Reports.svg">
-                                <a class="nav-list-item">Reports</a>
-                                <img class="chevron" src="~/images/chevron-down.svg">
-                            </button>
-                            <div class="dropdown-container">
-                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
-                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
-                            </div>
+                        </div>
+                        <button class="dropdown-btn">
+                            <img class="icon" src="~/images/Reports.svg">
+                            <a class="nav-list-item">Reports</a>
+                            <img class="chevron" src="~/images/chevron-down.svg">
+                        </button>
+                        <div class="dropdown-container">
+                            <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                            <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
+                        </div>
 
                         }
                         @if (roleID == 1)
                         {
 
-                            <button class="dropdown-btn">
+                        <button class="dropdown-btn">
 
-                                <a class="nav-list-item fa fa-folder">Reports</a>
-                                <img class="chevron" src="~/images/chevron-down.svg">
-                            </button>
-                            <div class="dropdown-container">
+                            <a class="nav-list-item fa fa-folder">Reports</a>
+                            <img class="chevron" src="~/images/chevron-down.svg">
+                        </button>
+                        <div class="dropdown-container">
 
 
-                                <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Markers"><strong>Access Track</strong></a>
-                                <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
-                                <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
-                            </div>
+                            <a class="nav-list-item" asp-controller="MarkersGpscoordinates" asp-action="Markers"><strong>Access Track</strong></a>
+                            <a class="nav-list-item" asp-controller="MarkersReport" asp-action="Index"><strong>Distance Report</strong></a>
+                            <a class="nav-list-item" asp-controller="group" asp-action="Index"><strong>Access Track</strong></a>
+                        </div>
 
                         }
 
