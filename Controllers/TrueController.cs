@@ -77,11 +77,14 @@ namespace Markers_GPS_Coordiantes.Controllers
             }
             else
             {
-                List<Marker> allsearch = db.Marker.Where(x => x.IdentityNo.Contains(search)).Select(x => new Marker
+                List<MarkerDatabase> allsearch = db.MarkerDatabase.Where(x => x.IdNo.Contains(search)).Select(x => new MarkerDatabase
                 {
-                    IdentityNo = x.IdentityNo,
-                    Surname = x.Surname
-
+                    IdNo = x.IdNo,
+                    Surname = x.Surname,
+                    Initials = x.Initials,
+                    PersalNo = x.PersalNo,
+                    Gender= x.Gender,
+                    Race = x.Race
                 }).ToList();
             };
 
