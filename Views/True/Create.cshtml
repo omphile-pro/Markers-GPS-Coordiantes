@@ -316,12 +316,12 @@
                                     <div class="col-md-6 mb-3 radioGroup">
                                         <label for="gender" class="info-text">Gender</label>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="Gender" value="Male" id="male" name="Gender" type="radio" class="custom-control-input">
-                                            <label class="custom-control-label" for="male">Male</label>
+                                            <input asp-for="Gender" value="Male" id="Male" name="Gender" type="radio" class="custom-control-input">
+                                            <label class="custom-control-label" for="Male">Male</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input asp-for="Gender" value="Female" id="female" name="Gender" type="radio" class="custom-control-input">
-                                            <label class="custom-control-label" for="female">Female</label>
+                                            <input asp-for="Gender" value="Female" id="Female" name="Gender" type="radio" class="custom-control-input">
+                                            <label class="custom-control-label" for="Female">Female</label>
                                         </div>
                                     </div>
                                 </div>
@@ -2574,11 +2574,6 @@
                         </fieldset>
 
 
-
-
-
-
-
                         <fieldset>
                             <div class="form-card" id="motivation" role="tabpanel" aria-labelledby="nav-contact-tab">
 
@@ -2639,20 +2634,23 @@
         var idN = $("#identityNo").val();
 
 
-        var model; //Accessing the Json Object from ViewBag
-        console.log(model);
-
-        for (let i = 0; i < model.length; i++) {
-            if (model[i].IdentityNo == idN) {
-                console.log(model[i].Gender);
-                $("#persal").val(model[i].Persal);
-                $("#persal").val(model[i].Persal);
-                $("#surname").val(model[i].Surname);
-                $("#initials").val(model[i].Initials);
-                $("#persal").val(model[i].Persal);
-                $("input[name=gender][value=Female]").attr('checked', true);
-                document.getElementById(model[i].Gender).checked = true;
-                document.getElementById(model[i].Race).checked = true;
+        var model = @Html.Raw(Json.Serialize(ViewBag.id)); ; //Accessing the Json Object from ViewBag
+        var marker = JSON.parse(model);
+        
+    console.log(idN);
+    console.log(marker);
+        
+        for (let i = 0; i < marker.length; i++) {
+            if (marker[i].IdNo == idN) {
+                console.log(marker[i].Gender);
+                $("#persal").val(marker[i].PersalNo);
+                $("#surname").val(marker[i].Surname);
+                $("#initials").val(marker[i].Initials);
+                $("#persal").val(marker[i].PersalNo);
+                document.getElementById(marker[i].Gender).checked = true;
+                document.getElementById(marker[i].Race).checked = true;
+                $("#workSchool").val('0' + marker[i].WorkTel);
+                $("#cell").val('0' +  marker[i].Cellphone);
             }
         }
 
