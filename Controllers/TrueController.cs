@@ -30,7 +30,7 @@ namespace Markers_GPS_Coordiantes.Controllers
         }
 
 
-        dbsMarkersContext db = new dbsMarkersContext();
+        payMarkerContext db = new payMarkerContext();
 
 
         public IActionResult Create()
@@ -96,7 +96,9 @@ namespace Markers_GPS_Coordiantes.Controllers
             application.Paper = model.Paper;
             application.Position = model.Position;
             application.PracticalSubject = model.PracticalSubject;
-            application.PracticalExamination = model.PracticalExamination;
+            application.DanceStudiesGenre = model.DanceStudiesGenre;
+            application.MusicalPracticalInstruments = model.MusicalPracticalInstruments;
+            application.TechnicalSubject = model.TechnicalSubject;
             application.CurrentPosition = model.CurrentPosition;
             application.CheckedBySubjectAdvisor = model.CheckedBySubjectAdvisor;
             application.RecommendedBySubject = model.RecommendedBySubject;

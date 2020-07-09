@@ -25,8 +25,11 @@ namespace Markers_GPS_Coordiantes
         public string Position { get; set; }
       
         public string PracticalSubject { get; set; }
-        public string PracticalExamination { get; set; }
-        public string PrescribedBook { get; set; }
+       
+
+        public string DanceStudiesGenre { get; set; }
+        public string MusicalPracticalInstruments { get; set; }
+        public string TechnicalSubject { get; set; }
 
         public string CheckedBySubjectAdvisor { get; set; }
         public string RecommendedBySubject { get; set; }

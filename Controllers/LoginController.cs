@@ -17,7 +17,7 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class LoginController : Controller
     {
 
-        dbsMarkersContext db = new dbsMarkersContext();
+        payMarkerContext db = new payMarkerContext();
        
 
         public string EmailAddress;

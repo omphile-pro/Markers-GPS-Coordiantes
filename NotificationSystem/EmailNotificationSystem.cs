@@ -19,7 +19,7 @@ namespace Markers_GPS_Coordiantes.NotificationSystem
     public class EmailNotificationSystem
     {
         private readonly IHostingEnvironment env;
-        dbsMarkersContext _context = new dbsMarkersContext();
+        payMarkerContext _context = new payMarkerContext();
 
         public EmailNotificationSystem(IHostingEnvironment _env) 
         {

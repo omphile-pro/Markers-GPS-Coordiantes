@@ -21,7 +21,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public JsonResult Create(string search)
         {
-            dbsMarkersContext db = new dbsMarkersContext();
+            payMarkerContext db = new payMarkerContext();
 
             List<Contact> allsearch = db.Contact.Where(x => x.EmailAddress != search).Select(x => new Contact
             {

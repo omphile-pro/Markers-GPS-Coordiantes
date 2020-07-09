@@ -11,7 +11,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class ExamsController : Controller
     {
-        dbsMarkersContext _context = new dbsMarkersContext();
+        payMarkerContext _context = new payMarkerContext();
         // GET: Exams
         public async Task<IActionResult> Index()
         {

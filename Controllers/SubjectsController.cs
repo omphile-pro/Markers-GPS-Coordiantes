@@ -12,7 +12,7 @@ namespace Markers_GPS_Coordiantes.Controllers
     public class SubjectsController : Controller
     {
 
-        dbsMarkersContext _context = new dbsMarkersContext();
+        payMarkerContext _context = new payMarkerContext();
        
         // GET: Subjects
         public async Task<IActionResult> Index()

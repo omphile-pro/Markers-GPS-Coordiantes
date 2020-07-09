@@ -14,7 +14,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 {
     public class MarkersGpscoordinatesController : Controller
     {
-        dbsMarkersContext _context = new dbsMarkersContext();
+        payMarkerContext _context = new payMarkerContext();
         private readonly IHttpContextAccessor _sessionAccessor;
         int roleID = 0;
         public int CenterID = 0;
