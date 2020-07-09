@@ -35,7 +35,7 @@ namespace Markers_GPS_Coordiantes.Controllers
 
         public IActionResult Create()
         {
-            List<Marker> markers = db.Marker.ToList();
+            List<MarkerDatabase> markers = db.MarkerDatabase.ToList();
 
             ViewBag.id = JsonConvert.SerializeObject(markers);
 

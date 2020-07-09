@@ -274,10 +274,12 @@ var countries = [
 ];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("MarkingSubject"), countries);
-autocomplete(document.getElementById("MarkingSubject1"), countries);
-autocomplete(document.getElementById("te-subject"), countries);
-autocomplete(document.getElementById("ad-subject"), countries);
+//autocomplete(document.getElementById("MarkingSubject"), countries);
+//autocomplete(document.getElementById("MarkingSubject1"), countries);
+//autocomplete(document.getElementById("te-subject"), countries);
+//autocomplete(document.getElementById("ad-subject"), countries); 
+//autocomplete(document.getElementById("MarkingSubject2"), countries); 
+//autocomplete(document.getElementById("te-subject1"), countries); 
 
 
 //top drop down
@@ -320,3 +322,75 @@ $('input[name="recommendation"]').click(function () {
         $('.notRecommendedReason').show();
     }
 });
+
+
+
+//Auto complte test
+
+var availableTags  = [
+    "Afrikaans Second Additional Language",
+    "Civil Technology (Woodworking)",
+    "English First Additional Language",
+    "Technical Sciences",
+    "Mic",
+    "Tourism",
+    "Xitsonga Home Language",
+    "Electrical Technology (Power Systems)",
+    "Physical Sciences",
+    "Life Sciences",
+    "Setswana Home Language",
+    "Visual Arts",
+    "Tshivenda Home Language",
+    "IsiZulu First Additional Language",
+    "IsiXhosa Home Language",
+    "Religion Studies",
+    "Mechanical Technology (Fitting and Machi",
+    "Geography",
+    "Mechanical Technology (Automotive)",
+    "Consumer Studies",
+    "Technical Mathematics",
+    "Mechanical Technology (Welding and Metal",
+    "Afrikaans Home Language",
+    "Agricultural Technology",
+    "History",
+    "Hospitality Studies",
+    "Sesotho Home Language",
+    "Civil Technology (Civil Services)",
+    "Engineering Graphics and Design",
+    "IsiZulu Home Language",
+    "Computer Applications Technology",
+    "Sepedi First Additional Language",
+    "Sepedi Home Language",
+    "Setswana First Additional Language",
+    "Business Studies",
+    "Civil Technology (Construction)",
+    "Agricultural Sciences",
+    "Electrical Technology (Digital Systems)",
+    "English Home Language",
+    "Dance Studies",
+    "Afrikaans First Additional Language",
+    "Information Technology",
+    "Mathematics",
+    "Design",
+    "Dramatic Arts",
+    "Electrical Technology (Electronics)",
+    "Mathematical Literacy",
+    "Accounting",
+    "Economics"
+];
+
+
+$(".autocomplete-test").autocomplete({
+    source: availableTags //$(".autocomplete-test").attr("data-autocomplete-url")
+}).each(function (idx, ele) {
+    console.log(ele);
+    $(ele[idx]).data("ui-autocomplete")
+        ._renderItem = function (ul, item) {
+            var listItem = $("<li></li>")
+                .data("item.autocomplete", item[idx])
+                .append("<a>" + item[idx] + "</a>")
+                .appendTo(ul);
+            return listItem;
+        };
+});
+
